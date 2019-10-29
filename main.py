@@ -7,16 +7,17 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5 import QtQuickWidgets
 import sys
-import RightDock
+import RightDock, menuStatusBar
 
-class Ui_MainWindow(object):
-    def setupUi(self, MainWindow):
-        MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(800, 598)
-        MainWindow.setContextMenuPolicy(QtCore.Qt.NoContextMenu)
-        MainWindow.setTabShape(QtWidgets.QTabWidget.Triangular)
 
-        self.centralwidget = QtWidgets.QWidget(MainWindow)
+class UiMainWindow(object):
+    def setupUi(self, main_window):
+        main_window.setObjectName("MainWindow")
+        main_window.resize(800, 598)
+        main_window.setContextMenuPolicy(QtCore.Qt.NoContextMenu)
+        main_window.setTabShape(QtWidgets.QTabWidget.Triangular)
+
+        self.centralwidget = QtWidgets.QWidget(main_window)
         self.centralwidget.setObjectName("centralwidget")
 
         self.gridLayout_2 = QtWidgets.QGridLayout(self.centralwidget)
@@ -28,18 +29,13 @@ class Ui_MainWindow(object):
 
         self.gridLayout_2.addWidget(self.quickWidget, 0, 0, 1, 1)
 
-        MainWindow.setCentralWidget(self.centralwidget)
+        main_window.setCentralWidget(self.centralwidget)
 
-        self.menubar = QtWidgets.QMenuBar(MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 800, 21))
-        self.menubar.setObjectName("menubar")
-        MainWindow.setMenuBar(self.menubar)
+        status_bar = menuStatusBar.Bar(main_window)
+        status_bar.menu_bar()
+        status_bar.status_bar()
 
-        self.statusbar = QtWidgets.QStatusBar(MainWindow)
-        self.statusbar.setObjectName("statusbar")
-        MainWindow.setStatusBar(self.statusbar)
-
-        self.dockWidgetChart = QtWidgets.QDockWidget(MainWindow)
+        self.dockWidgetChart = QtWidgets.QDockWidget(main_window)
         self.dockWidgetChart.setMinimumSize(QtCore.QSize(130, 163))
         self.dockWidgetChart.setObjectName("dockWidgetChart")
 
@@ -69,17 +65,17 @@ class Ui_MainWindow(object):
         self.horizontalLayout.addWidget(self.PieCharm)
 
         self.dockWidgetChart.setWidget(self.dockWidgetChartContents)
-        MainWindow.addDockWidget(QtCore.Qt.DockWidgetArea(1), self.dockWidgetChart)
+        main_window.addDockWidget(QtCore.Qt.DockWidgetArea(1), self.dockWidgetChart)
 
-        showDock = RightDock.Dock(MainWindow)
+        showDock = RightDock.Dock(main_window)
         showDock.right_up()
         showDock.right_down()
 
 
 
-        self.retranslateUi(MainWindow)
+        self.retranslateUi(main_window)
         self.PieCharm.setCurrentIndex(0)
-        QtCore.QMetaObject.connectSlotsByName(MainWindow)
+        QtCore.QMetaObject.connectSlotsByName(main_window)
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
@@ -92,8 +88,8 @@ class Ui_MainWindow(object):
 
 if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)
-    MainWindow = QtWidgets.QMainWindow()
-    ui = Ui_MainWindow()
-    ui.setupUi(MainWindow)
-    MainWindow.show()
+    main_window = QtWidgets.QMainWindow()
+    ui = UiMainWindow()
+    ui.setupUi(main_window)
+    main_window.show()
     sys.exit(app.exec_())

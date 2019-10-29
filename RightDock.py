@@ -2,11 +2,11 @@ from PyQt5 import QtCore, QtWidgets
 
 
 class Dock():
-        def __init__(self, MainWindow):
-                self.mainWindowInClass = MainWindow
+        def __init__(self, main_window):
+                self.main_window_in_class = main_window
 
         def right_up(self):
-                self.dockWidget_1 = QtWidgets.QDockWidget(self.mainWindowInClass)
+                self.dockWidget_1 = QtWidgets.QDockWidget(self.main_window_in_class)
 
                 sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
                 sizePolicy.setHorizontalStretch(0)
@@ -20,10 +20,10 @@ class Dock():
                 self.dockWidget_1Contents = QtWidgets.QWidget()
                 self.dockWidget_1Contents.setObjectName("dockWidget_1Contents")
                 self.dockWidget_1.setWidget(self.dockWidget_1Contents)
-                self.mainWindowInClass.addDockWidget(QtCore.Qt.DockWidgetArea(2), self.dockWidget_1)
+                self.main_window_in_class.addDockWidget(QtCore.Qt.DockWidgetArea(2), self.dockWidget_1)
 
         def right_down(self):
-                self.dockWidget_2 = QtWidgets.QDockWidget(self.mainWindowInClass)
+                self.dockWidget_2 = QtWidgets.QDockWidget(self.main_window_in_class)
 
                 sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
                 sizePolicy.setHorizontalStretch(0)
@@ -37,4 +37,4 @@ class Dock():
                 self.dockWidgetContents_2 = QtWidgets.QWidget()
                 self.dockWidgetContents_2.setObjectName("dockWidgetContents_2")
                 self.dockWidget_2.setWidget(self.dockWidgetContents_2)
-                self.mainWindowInClass.addDockWidget(QtCore.Qt.DockWidgetArea(2), self.dockWidget_2)
+                self.main_window_in_class.addDockWidget(QtCore.Qt.DockWidgetArea(2), self.dockWidget_2)
