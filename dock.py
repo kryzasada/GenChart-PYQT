@@ -1,5 +1,5 @@
 from PyQt5 import QtCore, QtWidgets
-
+import chart
 
 class Dock():
         def __init__(self, main_window):
@@ -38,3 +38,18 @@ class Dock():
                 self.dockWidgetContents_2.setObjectName("dockWidgetContents_2")
                 self.dockWidget_2.setWidget(self.dockWidgetContents_2)
                 self.main_window_in_class.addDockWidget(QtCore.Qt.DockWidgetArea(2), self.dockWidget_2)
+
+        def left_chart(self):
+                self.dockWidgetChart = QtWidgets.QDockWidget(self.main_window_in_class)
+                self.dockWidgetChart.setMinimumSize(QtCore.QSize(130, 163))
+                self.dockWidgetChart.setObjectName("dockWidgetChart")
+
+                self.dockWidgetChartContents = QtWidgets.QWidget()
+                self.dockWidgetChartContents.setObjectName("dockWidgetChartContents")
+
+                self.main_window_in_class.addDockWidget(QtCore.Qt.DockWidgetArea(1), self.dockWidgetChart)
+
+                ss = chart.Chart(self.main_window_in_class, self.dockWidgetChartContents, self.dockWidgetChart)
+                ss.pie_chart()
+
+
