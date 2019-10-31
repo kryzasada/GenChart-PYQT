@@ -41,7 +41,7 @@ class Dock():
 
         def left_chart(self):
                 self.dockWidgetChart = QtWidgets.QDockWidget(self.main_window_in_class)
-                self.dockWidgetChart.setMinimumSize(QtCore.QSize(130, 163))
+                self.dockWidgetChart.setMinimumSize(QtCore.QSize(133, 163))
                 self.dockWidgetChart.setObjectName("dockWidgetChart")
 
                 self.dockWidgetChartContents = QtWidgets.QWidget()
