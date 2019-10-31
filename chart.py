@@ -9,28 +9,32 @@ class Chart():
         self.dockWidgetChart = dockWidgetChart
 
     def pie_chart(self):
-        self.horizontalLayout = QtWidgets.QHBoxLayout(self.dockWidgetChartContents)
-        self.horizontalLayout.setObjectName("horizontalLayout")
+        self.horizontal_layout = QtWidgets.QHBoxLayout(self.dockWidgetChartContents)
+        self.horizontal_layout.setObjectName("horizontal_layout")
 
-        self.PieCharm = QtWidgets.QToolBox(self.dockWidgetChartContents)
-        self.PieCharm.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
-        self.PieCharm.setObjectName("PieCharm")
+        self.tabbed_widget  = QtWidgets.QToolBox(self.dockWidgetChartContents)
+        self.tabbed_widget.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.tabbed_widget.setObjectName("tabbed_widget")
 
-        self.inPieCharm = QtWidgets.QWidget()
-        self.inPieCharm.setGeometry(QtCore.QRect(0, 0, 112, 463))
-        self.inPieCharm.setObjectName("inPieCharm")
+        self.pie_charm_tabbed = QtWidgets.QWidget()
+        self.pie_charm_tabbed.setGeometry(QtCore.QRect(0, 0, 112, 463))
+        self.pie_charm_tabbed.setObjectName("pie_charm_tabbed")
 
-        self.ChartButton = QtWidgets.QPushButton(self.inPieCharm)
-        self.ChartButton.setGeometry(QtCore.QRect(20, 0, 75, 23))
-        self.ChartButton.setObjectName("ChartButton")
+        self.tabbed_widget.addItem(self.pie_charm_tabbed, "")
+        self.tabbed_widget.setItemText(self.tabbed_widget.indexOf(self.pie_charm_tabbed), "Pie chart")
 
-        self.PieCharm.addItem(self.inPieCharm, "")
+        self.chart_button = QtWidgets.QPushButton(self.pie_charm_tabbed)
+        self.chart_button.setGeometry(QtCore.QRect(20, 0, 75, 23))
+        self.chart_button.setObjectName("chart_button")
+        self.chart_button.setText("Basic")
+
+
         self.page_2 = QtWidgets.QWidget()
         self.page_2.setGeometry(QtCore.QRect(0, 0, 112, 463))
         self.page_2.setObjectName("page_2")
+        self.tabbed_widget.addItem(self.page_2, "")
 
-        self.PieCharm.addItem(self.page_2, "")
-        self.horizontalLayout.addWidget(self.PieCharm)
+        self.horizontal_layout.addWidget(self.tabbed_widget)
 
         self.dockWidgetChart.setWidget(self.dockWidgetChartContents)
         self.main_window_in_class.addDockWidget(QtCore.Qt.DockWidgetArea(1), self.dockWidgetChart)
