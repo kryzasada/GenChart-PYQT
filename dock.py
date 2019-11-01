@@ -1,9 +1,10 @@
 from PyQt5 import QtCore, QtWidgets
 import chart
 
+
 class Dock():
-        def __init__(self, main_window):
-                self.main_window_in_class = main_window
+        def __init__(self, *args):
+                self.main_window_in_class = args[0]
 
         def right_up(self):
                 self.dockWidget_1 = QtWidgets.QDockWidget(self.main_window_in_class)
@@ -19,6 +20,8 @@ class Dock():
 
                 self.dockWidget_1Contents = QtWidgets.QWidget()
                 self.dockWidget_1Contents.setObjectName("dockWidget_1Contents")
+
+
                 self.dockWidget_1.setWidget(self.dockWidget_1Contents)
                 self.main_window_in_class.addDockWidget(QtCore.Qt.DockWidgetArea(2), self.dockWidget_1)
 
@@ -49,7 +52,7 @@ class Dock():
 
                 self.main_window_in_class.addDockWidget(QtCore.Qt.DockWidgetArea(1), self.dockWidgetChart)
 
-                ss = chart.Chart(self.main_window_in_class, self.dockWidgetChartContents, self.dockWidgetChart)
-                ss.pie_chart()
+                ss = chart.Chart(self.dockWidgetChartContents, self.dockWidgetChart)
+
 
 

@@ -2,8 +2,8 @@ from PyQt5 import QtCore, QtWidgets
 
 
 class Bar():
-    def __init__(self, main_window):
-        self.main_window_in_class = main_window
+    def __init__(self, *args):
+        self.main_window_in_class = args[0]
 
     def menu_bar(self):
         self.menubar = QtWidgets.QMenuBar(self.main_window_in_class)
