@@ -4,10 +4,13 @@
 # Created by: PyQt5 UI code generator 5.13.0
 #
 
-from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5 import QtCore, QtGui, QtWidgets, QtQuickWidgets
 from PyQt5 import QtQuickWidgets
 import sys
 import dock, menuStatusBar, chart
+
+from matplotlib.backends.backend_qt5agg import FigureCanvas
+from matplotlib.figure import Figure
 
 
 class UiMainWindow(object):
@@ -19,17 +22,24 @@ class UiMainWindow(object):
 
         self.centralwidget = QtWidgets.QWidget(main_window)
         self.centralwidget.setObjectName("centralwidget")
-
-        self.gridLayout_2 = QtWidgets.QGridLayout(self.centralwidget)
-        self.gridLayout_2.setObjectName("gridLayout_2")
-
-        self.quickWidget = QtQuickWidgets.QQuickWidget(self.centralwidget)
-        self.quickWidget.setResizeMode(QtQuickWidgets.QQuickWidget.SizeRootObjectToView)
-        self.quickWidget.setObjectName("quickWidget")
-
-        self.gridLayout_2.addWidget(self.quickWidget, 0, 0, 1, 1)
-
         main_window.setCentralWidget(self.centralwidget)
+
+
+        self.central_layout = QtWidgets.QHBoxLayout(self.centralwidget)
+
+        sizes = [15, 30, 45, 10]
+        labels = 'Frogs', 'Hogs', 'Dogs', 'Logs'
+        explode = (0, 0.1, 0, 0)  # only "explode" the 2nd slice (i.e. 'Hogs')
+
+        static_canvas = FigureCanvas(Figure())
+
+        self.central_layout.addWidget(static_canvas)
+
+        self._static_ax = static_canvas.figure.subplots()
+        self._static_ax.pie(sizes, explode=explode, labels=labels, autopct='%1.1f%%',
+        shadow=True, startangle=90)
+
+
 
         status_bar = menuStatusBar.Bar(main_window)
         status_bar.menu_bar()
