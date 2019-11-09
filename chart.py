@@ -37,7 +37,7 @@ class Chart():
         self.chart_button.setGeometry(QtCore.QRect(37, 4, 75, 23))
         self.chart_button.setObjectName("chart_button")
         self.chart_button.setText("Basic")
-        self.chart_button.clicked.connect(lambda: self.on_click(self.stacked_Widget))
+        self.chart_button.clicked.connect(lambda: self.on_click())
 
 
         self.test_button = QtWidgets.QPushButton(self.dockWidget_1Contents)
@@ -60,7 +60,8 @@ class Chart():
         self.horizontal_layout.addWidget(self.tabbed_widget)
 
 
-    def on_click(self, stacked_Widget):
+    def on_click(self):
         self.stacked_Widget.setCurrentIndex(1)
 
         print("po wykonaniu")
+

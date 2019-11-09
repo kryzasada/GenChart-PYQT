@@ -27,25 +27,13 @@ class UiMainWindow(object):
 
         self.central_layout = QtWidgets.QHBoxLayout(self.centralwidget)
 
-        sizes = [15, 30, 45, 10]
-        labels = 'Frogs', 'Hogs', 'Dogs', 'Logs'
-        explode = (0, 0.1, 0, 0)  # only "explode" the 2nd slice (i.e. 'Hogs')
-
-        static_canvas = FigureCanvas(Figure())
-
-        self.central_layout.addWidget(static_canvas)
-
-        self._static_ax = static_canvas.figure.subplots()
-        self._static_ax.pie(sizes, explode=explode, labels=labels, autopct='%1.1f%%',
-        shadow=True, startangle=90)
-
 
 
         status_bar = menuStatusBar.Bar(main_window)
         status_bar.menu_bar()
         status_bar.status_bar()
 
-        showDock = dock.Dock(main_window)
+        showDock = dock.Dock(main_window, self.central_layout)
         showDock.right_up()
         showDock.right_down()
         showDock.left_chart()

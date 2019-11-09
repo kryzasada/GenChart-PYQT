@@ -5,6 +5,7 @@ import chart, dockData
 class Dock():
         def __init__(self, *args):
                 self.main_window_in_class = args[0]
+                self.central_layout = args[1]
 
         def right_up(self):
                 self.dockWidget_1 = QtWidgets.QDockWidget(self.main_window_in_class)
@@ -66,7 +67,8 @@ class Dock():
                 self.form_layout = QtWidgets.QFormLayout(self.scroll_area_widget_contents)
                 self.form_layout.setObjectName("form_layout")
 
-                dock_data = dockData.Data(self.form_layout, self.scroll_area_widget_contents, self.stacked_Widget)
+                dock_data = dockData.Data(self.form_layout, self.scroll_area_widget_contents, self.stacked_Widget,
+                                          self.central_layout)
 
                 self.page_3 = QtWidgets.QWidget()
                 self.page_3.setObjectName("page_3")
@@ -107,9 +109,10 @@ class Dock():
                 self.dock_widget_chart_contents.setObjectName("dockWidgetChartContents")
 
                 self.main_window_in_class.addDockWidget(QtCore.Qt.DockWidgetArea(1), self.dock_widget_chart)
-                print(self.dockWidget_1Contents)
                 ss = chart.Chart(self.dock_widget_chart_contents, self.dock_widget_chart, self.dockWidget_1Contents,
                                  self.stacked_Widget)
+
+
 
 
 

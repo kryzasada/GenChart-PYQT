@@ -1,10 +1,13 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 
+from matplotlib.backends.backend_qt5agg import FigureCanvas
+from matplotlib.figure import Figure
 
 class Data():
     def __init__(self, *args):
         self.form_layout = args[0]
         self.scroll_area_widget_contents = args[1]
+        self.central_layout = args[3]
 
         self.write_data()
     def write_data(self):
@@ -39,6 +42,22 @@ class Data():
         self.pushButton.setObjectName("pushButton")
         self.form_layout.setWidget(2, QtWidgets.QFormLayout.LabelRole, self.pushButton)
         self.pushButton.setText("ADD")
+        self.pushButton.clicked.connect(lambda: self.pie_default())
+
+    def pie_default(self):
+        sizes = [15, 30]
+        labels = 'Frogs', 'Hogs'
+        explode = (0, 0.1)  # only "explode" the 2nd slice (i.e. 'Hogs')
+
+        static_canvas = FigureCanvas(Figure())
+
+        self.central_layout.addWidget(static_canvas)
+
+        self._static_ax = static_canvas.figure.subplots()
+        self._static_ax.pie(sizes, explode=explode, labels=labels, autopct='%1.1f%%',
+        shadow=False, startangle=90)
+
+
 
 
 
