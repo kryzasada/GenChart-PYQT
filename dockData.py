@@ -12,37 +12,50 @@ class Data():
         self.write_data()
     def write_data(self):
 
-        self.label_value = QtWidgets.QLabel(self.scroll_area_widget_contents)
-        self.label_value.setObjectName("label")
-        self.label_value.setText("VALUE")
-        self.form_layout.setWidget(0, QtWidgets.QFormLayout.FieldRole, self.label_value)
-
-        self.label_name = QtWidgets.QLabel(self.scroll_area_widget_contents)
-        self.label_name.setObjectName("label_name")
-        self.label_name.setText("NAME")
-        self.form_layout.setWidget(0, QtWidgets.QFormLayout.LabelRole, self.label_name)
-
-
-        self.line_edit_value = QtWidgets.QLineEdit(self.scroll_area_widget_contents)
-        self.line_edit_value.setObjectName("line_edit_value")
-        self.form_layout.setWidget(1, QtWidgets.QFormLayout.LabelRole, self.line_edit_value)
-
-
-
-        self.line_edit_name = QtWidgets.QLineEdit(self.scroll_area_widget_contents)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Maximum, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.line_edit_name.sizePolicy().hasHeightForWidth())
-        self.line_edit_name.setSizePolicy(sizePolicy)
-        self.line_edit_name.setObjectName("line_edit_name")
-        self.form_layout.setWidget(1, QtWidgets.QFormLayout.FieldRole, self.line_edit_name)
 
-        self.pushButton = QtWidgets.QPushButton(self.scroll_area_widget_contents)
-        self.pushButton.setObjectName("pushButton")
-        self.form_layout.setWidget(2, QtWidgets.QFormLayout.LabelRole, self.pushButton)
-        self.pushButton.setText("ADD")
-        self.pushButton.clicked.connect(lambda: self.pie_default())
+        label_def = []
+        line_edit = []
+        for x in range(0, 4, 2):
+            for i in range(0, 2):
+                label_def.append(QtWidgets.QLabel(self.scroll_area_widget_contents))
+                line_edit.append(QtWidgets.QLineEdit(self.scroll_area_widget_contents))
+
+                if i == 0:
+                    if (x+1) < 2:
+                        self.form_layout.setWidget(x, QtWidgets.QFormLayout.LabelRole, label_def[x+i])
+                        label_def[x+i].setText("NAME")
+
+                    self.form_layout.setWidget(x+1, QtWidgets.QFormLayout.LabelRole, line_edit[x+i])
+
+                if i == 1:
+                    if (x + 1) < 2:
+                        self.form_layout.setWidget(x, QtWidgets.QFormLayout.FieldRole, label_def[x+i])
+                        label_def[x+i].setText("VALUE")
+
+                    self.form_layout.setWidget(x+1, QtWidgets.QFormLayout.FieldRole, line_edit[x+i])
+                    sizePolicy.setHeightForWidth(line_edit[x+i].sizePolicy().hasHeightForWidth())
+                    line_edit[x+i].setSizePolicy(sizePolicy)
+
+
+
+
+        self.button_add = QtWidgets.QPushButton(self.scroll_area_widget_contents)
+        self.button_add.setSizePolicy(sizePolicy)
+        self.button_add.setObjectName("pushButton")
+        self.form_layout.setWidget(6, QtWidgets.QFormLayout.LabelRole, self.button_add)
+        self.button_add.setText("ADD DATA")
+
+        self.line = QtWidgets.QFrame(self.scroll_area_widget_contents)
+        self.form_layout.setWidget(7, QtWidgets.QFormLayout.LabelRole, self.line)
+
+        self.button_create = QtWidgets.QPushButton(self.scroll_area_widget_contents)
+        self.button_create.setObjectName("button_create")
+        self.form_layout.setWidget(8, QtWidgets.QFormLayout.LabelRole, self.button_create)
+        self.button_create.setText("CREATE")
+        self.button_create.clicked.connect(lambda: self.pie_default())
 
     def pie_default(self):
         sizes = [15, 30]
