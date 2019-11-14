@@ -63,9 +63,10 @@ class Data():
         self.button_create.clicked.connect(lambda: self.pie_default())
 
 
+
+
     def add_data(self):
         self.horizontal_position_widgets += 2
-        print("123: " + str(self.horizontal_position_widgets))
         self.form_layout.setWidget(self.horizontal_position_widgets + 4, QtWidgets.QFormLayout.LabelRole,
                                    self.button_create)
         self.form_layout.setWidget(self.horizontal_position_widgets + 3, QtWidgets.QFormLayout.LabelRole,
@@ -87,17 +88,28 @@ class Data():
         self.array_position += 2
 
 
+
     def pie_default(self):
-        sizes = [15, 30]
-        labels = 'Frogs', 'Hogs'
-        explode = (0, 0.1)  # only "explode" the 2nd slice (i.e. 'Hogs')
-
         static_canvas = FigureCanvas(Figure())
-
         self.central_layout.addWidget(static_canvas)
 
+        sizes = []
+        for x in range(0, len(self.line_edit), 2):
+            sizes.append(self.line_edit[x+1].text())
+
+        labels = []
+        for x in range(0, len(self.line_edit), 2):
+            labels.append(str(self.line_edit[x].text()))
+
+        # explode = (0, 0.1)  # only "explode" the 2nd slice (i.e. 'Hogs')
+
         self._static_ax = static_canvas.figure.subplots()
-        self._static_ax.pie(sizes, explode=explode, labels=labels, autopct='%1.1f%%',
+        '''explode=explode,'''
+        self._static_ax.pie(sizes,labels=labels, autopct='%1.1f%%',
         shadow=False, startangle=90)
+
+
+
+
 
 

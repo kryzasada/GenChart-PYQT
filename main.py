@@ -9,8 +9,7 @@ from PyQt5 import QtQuickWidgets
 import sys
 import dock, menuStatusBar, chart
 
-from matplotlib.backends.backend_qt5agg import FigureCanvas
-from matplotlib.figure import Figure
+
 
 
 class UiMainWindow(object):
