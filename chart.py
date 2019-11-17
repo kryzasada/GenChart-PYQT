@@ -27,9 +27,6 @@ class Chart():
         self.pie_charm_tabbed.setGeometry(QtCore.QRect(0, 0, 112, 463))
         self.pie_charm_tabbed.setObjectName("pie_charm_tabbed")
 
-    # TODO
-        #  Separate class: content widget pie_charm_tabbed and tabbed_widget
-
         self.tabbed_widget.addItem(self.pie_charm_tabbed, "")
         self.tabbed_widget.setItemText(self.tabbed_widget.indexOf(self.pie_charm_tabbed), "Pie chart")
 
