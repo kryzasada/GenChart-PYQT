@@ -46,6 +46,8 @@ class Data():
                                                       ].sizePolicy().hasHeightForWidth())
                     self.line_edit[self.horizontal_position_widgets+self.array_position].setSizePolicy(self.sizePolicy)
 
+        self.default_data()
+
         self.button_add = QtWidgets.QPushButton(self.scroll_area_widget_contents)
         self.button_add.setSizePolicy(self.sizePolicy)
         self.button_add.setObjectName("pushButton")
@@ -63,7 +65,12 @@ class Data():
         self.button_create.clicked.connect(lambda: self.pie_default())
 
 
+    def default_data(self):
+        self.line_edit[0].setText("default_1")
+        self.line_edit[2].setText("default_2")
 
+        self.line_edit[1].setText("1")
+        self.line_edit[3].setText("1")
 
     def add_data(self):
         self.horizontal_position_widgets += 2
@@ -81,13 +88,14 @@ class Data():
         self.form_layout.setWidget(self.horizontal_position_widgets, QtWidgets.QFormLayout.FieldRole,
                                    self.line_edit[self.array_position + 4])
 
+        self.line_edit[self.array_position + 3].setText("default_" + str(int(self.horizontal_position_widgets/2 + 1)))
+        self.line_edit[self.array_position + 4].setText("1")
+
         self.sizePolicy.setHeightForWidth(self.line_edit[self.array_position + 4]
                                           .sizePolicy().hasHeightForWidth())
         self.line_edit[self.array_position + 4].setSizePolicy(self.sizePolicy)
 
         self.array_position += 2
-
-
 
     def pie_default(self):
         static_canvas = FigureCanvas(Figure())
