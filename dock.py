@@ -16,7 +16,7 @@ class Dock():
                 sizePolicy.setHeightForWidth(self.dockWidget_1.sizePolicy().hasHeightForWidth())
 
                 self.dockWidget_1.setSizePolicy(sizePolicy)
-                self.dockWidget_1.setMinimumSize(QtCore.QSize(150, 20))
+                self.dockWidget_1.setMinimumSize(QtCore.QSize(150, 250))
                 self.dockWidget_1.setObjectName("dockWidget_1")
 
                 self.dockWidget_1Contents = QtWidgets.QWidget()
@@ -86,13 +86,13 @@ class Dock():
         def right_down(self):
                 self.dockWidget_2 = QtWidgets.QDockWidget(self.main_window_in_class)
 
-                sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Fixed)
+                sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
                 sizePolicy.setHorizontalStretch(0)
                 sizePolicy.setVerticalStretch(0)
                 sizePolicy.setHeightForWidth(self.dockWidget_2.sizePolicy().hasHeightForWidth())
 
                 self.dockWidget_2.setSizePolicy(sizePolicy)
-                self.dockWidget_2.setMinimumSize(QtCore.QSize(150, 20))
+                self.dockWidget_2.setMinimumSize(QtCore.QSize(150, 50))
                 self.dockWidget_2.setObjectName("dockWidget_2")
 
 
