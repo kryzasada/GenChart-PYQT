@@ -98,6 +98,10 @@ class Data():
         self.array_position += 2
 
     def pie_default(self):
+
+        for i in reversed(range(self.central_layout.count())):
+            self.central_layout.itemAt(i).widget().deleteLater()
+
         static_canvas = FigureCanvas(Figure())
         self.central_layout.addWidget(static_canvas)
 
@@ -109,13 +113,13 @@ class Data():
         for x in range(0, len(self.line_edit), 2):
             labels.append(str(self.line_edit[x].text()))
 
+
         # explode = (0, 0.1)  # only "explode" the 2nd slice (i.e. 'Hogs')
 
         self._static_ax = static_canvas.figure.subplots()
         '''explode=explode,'''
         self._static_ax.pie(sizes,labels=labels, autopct='%1.1f%%',
         shadow=False, startangle=90)
-
 
 
 
