@@ -75,7 +75,6 @@ class Dock():
                 self.dockWidget_2.setMinimumSize(QtCore.QSize(150, 50))
                 self.dockWidget_2.setObjectName("dockWidget_2")
 
-
                 self.dockWidgetContents_2 = QtWidgets.QWidget()
                 self.dockWidgetContents_2.setObjectName("dockWidgetContents_2")
                 self.dockWidget_2.setWidget(self.dockWidgetContents_2)
@@ -91,14 +90,15 @@ class Dock():
                 self.stacked_widget_dock.setSizePolicy(sizePolicy)
                 self.stacked_widget_dock.setObjectName("stacked_widget_dock")
 
-                self.page_2_dock = QtWidgets.QWidget()
-                self.page_2_dock.setObjectName("page_2_dock")
-                self.stacked_widget_dock.addWidget(self.page_2_dock)
+                self.page_2_stack = QtWidgets.QWidget()
+                self.page_2_stack.setObjectName("page_2_stack")
+                self.stacked_widget_dock.addWidget(self.page_2_stack)
 
-                self.gridLayout_3 = QtWidgets.QGridLayout(self.page_2_dock)
+                self.gridLayout_3 = QtWidgets.QGridLayout(self.page_2_stack)
                 self.gridLayout_3.setObjectName("gridLayout_3")
 
-                self.tab_widget_features = QtWidgets.QTabWidget(self.page_2_dock)
+                ###
+                self.tab_widget_features = QtWidgets.QTabWidget(self.page_2_stack)
                 self.tab_widget_features.setObjectName("tab_widget_features")
 
                 self.page_color = QtWidgets.QWidget()
@@ -124,18 +124,17 @@ class Dock():
                 self.formLayout = QtWidgets.QFormLayout(self.scroll_contents_color)
                 self.formLayout.setObjectName("formLayout")
 
+                '''    
                 self.label1_col = QtWidgets.QLabel(self.scroll_contents_color)
-
                 sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Preferred)
                 sizePolicy.setHorizontalStretch(0)
                 sizePolicy.setVerticalStretch(0)
                 sizePolicy.setHeightForWidth(self.label1_col.sizePolicy().hasHeightForWidth())
                 self.label1_col.setSizePolicy(sizePolicy)
                 self.label1_col.setObjectName("label1_col")
+                self.formLayout.setWidget(0, QtWidgets.QFormLayout.LabelRole, self.label1_col) '''
 
-                self.formLayout.setWidget(0, QtWidgets.QFormLayout.LabelRole, self.label1_col)
-
-                self.color_button1 = QtWidgets.QPushButton(self.scroll_contents_color)
+                """                self.color_button1 = QtWidgets.QPushButton(self.scroll_contents_color)
                 sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
                 sizePolicy.setHorizontalStretch(0)
                 sizePolicy.setVerticalStretch(0)
@@ -144,19 +143,18 @@ class Dock():
                 self.color_button1.setStyleSheet("background-color: rgb(170, 0, 0);")
                 self.color_button1.setText("")
                 self.color_button1.setObjectName("color_button1")
+                self.formLayout.setWidget(0, QtWidgets.QFormLayout.FieldRole, self.color_button1)"""
 
-                self.formLayout.setWidget(0, QtWidgets.QFormLayout.FieldRole, self.color_button1)
-
-                self.label2_col = QtWidgets.QLabel(self.scroll_contents_color)
+                """self.label2_col = QtWidgets.QLabel(self.scroll_contents_color)
                 sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Preferred)
                 sizePolicy.setHorizontalStretch(0)
                 sizePolicy.setVerticalStretch(0)
                 sizePolicy.setHeightForWidth(self.label2_col.sizePolicy().hasHeightForWidth())
                 self.label2_col.setSizePolicy(sizePolicy)
                 self.label2_col.setObjectName("label2_col")
-                self.formLayout.setWidget(1, QtWidgets.QFormLayout.LabelRole, self.label2_col)
+                self.formLayout.setWidget(1, QtWidgets.QFormLayout.LabelRole, self.label2_col) """
 
-                self.color_button2 = QtWidgets.QPushButton(self.scroll_contents_color)
+                """self.color_button2 = QtWidgets.QPushButton(self.scroll_contents_color)
                 sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
                 sizePolicy.setHorizontalStretch(0)
                 sizePolicy.setVerticalStretch(0)
@@ -165,8 +163,7 @@ class Dock():
                 self.color_button2.setStyleSheet("background-color: rgb(170, 0, 0);")
                 self.color_button2.setText("")
                 self.color_button2.setObjectName("color_button2")
-
-                self.formLayout.setWidget(1, QtWidgets.QFormLayout.FieldRole, self.color_button2)
+                self.formLayout.setWidget(1, QtWidgets.QFormLayout.FieldRole, self.color_button2)"""
 
                 self.scroll_area_color.setWidget(self.scroll_contents_color)
                 self.verticalLayout_2.addWidget(self.scroll_area_color)
@@ -264,7 +261,7 @@ class Dock():
 
                 self.gridLayout_3.addWidget(self.tab_widget_features, 0, 0, 1, 1)
 
-                self.button_create = QtWidgets.QPushButton(self.page_2_dock)
+                self.button_create = QtWidgets.QPushButton(self.page_2_stack)
                 sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Minimum)
                 sizePolicy.setHorizontalStretch(0)
                 sizePolicy.setVerticalStretch(0)
@@ -278,19 +275,24 @@ class Dock():
 
                 self.gridLayout_3.addWidget(self.button_create, 1, 0, 1, 1, QtCore.Qt.AlignLeft)
 
-                self.stacked_widget_dock.addWidget(self.page_2_dock)
+                self.stacked_widget_dock.addWidget(self.page_2_stack)
 
-                self.page_1_dock = QtWidgets.QWidget()
-                self.page_1_dock.setObjectName("page_1_dock")
+                self.page_1_stack = QtWidgets.QWidget()
+                self.page_1_stack.setObjectName("page_1_stack")
 
-                self.verticalLayout = QtWidgets.QVBoxLayout(self.page_1_dock)
+                self.verticalLayout = QtWidgets.QVBoxLayout(self.page_1_stack)
                 self.verticalLayout.setObjectName("verticalLayout")
-                self.default_label = QtWidgets.QLabel(self.page_1_dock)
+                self.default_label = QtWidgets.QLabel(self.page_1_stack)
                 self.default_label.setObjectName("default_label")
+
+                """dock_settings = dockData.Data(self.stacked_Widget,
+                                          self.central_layout,self.central_layout,self.central_layout )
+
+                dock_settings.settings_chart()"""
 
                 self.verticalLayout.addWidget(self.default_label)
 
-                self.stacked_widget_dock.addWidget(self.page_1_dock)
+                self.stacked_widget_dock.addWidget(self.page_1_stack)
                 self.grid_features_dock.addWidget(self.stacked_widget_dock)
                 self.dockWidget_2.setWidget(self.dockWidgetContents_2)
 
@@ -302,8 +304,6 @@ class Dock():
         def retranslateUi(self, MainWindow):
                 _translate = QtCore.QCoreApplication.translate
                 MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
-                self.label1_col.setText(_translate("MainWindow", "TextLabel"))
-                self.label2_col.setText(_translate("MainWindow", "TextLabel"))
                 self.tab_widget_features.setTabText(self.tab_widget_features.indexOf(self.page_color),
                                                     _translate("MainWindow", "Color"))
                 self.label2_expl.setText(_translate("MainWindow", "TextLabel"))

@@ -117,6 +117,46 @@ class Data():
 
         self.array_position += 2
 
+    def settings_chart(self):
+
+        self.label1_col = QtWidgets.QLabel(self.scroll_contents_color)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Preferred)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.label1_col.sizePolicy().hasHeightForWidth())
+        self.label1_col.setSizePolicy(sizePolicy)
+        self.formLayout.setWidget(0, QtWidgets.QFormLayout.LabelRole, self.label1_col)
+        self.label1_col.setText("TextLabel")
+
+        self.label2_col = QtWidgets.QLabel(self.scroll_contents_color)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Preferred)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.label2_col.sizePolicy().hasHeightForWidth())
+        self.label2_col.setSizePolicy(sizePolicy)
+        self.formLayout.setWidget(1, QtWidgets.QFormLayout.LabelRole, self.label2_col)
+        self.label2_col.setText("TextLabel")
+
+        self.color_button1 = QtWidgets.QPushButton(self.scroll_contents_color)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.color_button1.sizePolicy().hasHeightForWidth())
+        self.color_button1.setSizePolicy(sizePolicy)
+        self.color_button1.setStyleSheet("background-color: rgb(170, 0, 0);")
+        self.color_button1.setText("")
+        self.formLayout.setWidget(0, QtWidgets.QFormLayout.FieldRole, self.color_button1)
+
+        self.color_button2 = QtWidgets.QPushButton(self.scroll_contents_color)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.color_button2.sizePolicy().hasHeightForWidth())
+        self.color_button2.setSizePolicy(sizePolicy)
+        self.color_button2.setStyleSheet("background-color: rgb(170, 0, 0);")
+        self.color_button2.setText("")
+        self.formLayout.setWidget(1, QtWidgets.QFormLayout.FieldRole, self.color_button2)
+
     def pie_default(self):
 
         for i in reversed(range(self.central_layout.count())):
