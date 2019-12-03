@@ -43,43 +43,23 @@ class Dock():
                 self.label_page_1.setText("Select chart")
                 self.horizontal_layout.addWidget(self.label_page_1)
 
-
                 self.page_2 = QtWidgets.QWidget()
                 self.page_2.setObjectName("page_2")
 
                 self.grid_page_2 = QtWidgets.QGridLayout(self.page_2)
                 self.grid_page_2.setObjectName("grid_page_2")
-                self.scroll_area = QtWidgets.QScrollArea(self.page_2)
 
-                sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Ignored, QtWidgets.QSizePolicy.Expanding)
-                sizePolicy.setHorizontalStretch(0)
-                sizePolicy.setVerticalStretch(0)
-                sizePolicy.setHeightForWidth(self.scroll_area.sizePolicy().hasHeightForWidth())
-
-                self.scroll_area.setSizePolicy(sizePolicy)
-                self.scroll_area.setWidgetResizable(True)
-                self.scroll_area.setObjectName("scroll_area")
-                self.scroll_area_widget_contents = QtWidgets.QWidget()
-                self.scroll_area_widget_contents.setGeometry(QtCore.QRect(0, 0, 153, 523))
-                self.scroll_area_widget_contents.setObjectName("scroll_area_widget_contents")
-                self.grid_page_2.addWidget(self.scroll_area, 0, 0, 1, 1)
-
-                self.form_layout = QtWidgets.QFormLayout(self.scroll_area_widget_contents)
-                self.form_layout.setObjectName("form_layout")
-
-                dock_data = dockData.Data(self.form_layout, self.scroll_area_widget_contents, self.stacked_Widget,
-                                          self.central_layout)
+                dock_data = dockData.Data(self.page_2, self.grid_page_2, self.central_layout)
+                dock_data.write_data()
 
                 self.page_3 = QtWidgets.QWidget()
                 self.page_3.setObjectName("page_3")
-
 
                 self.stacked_Widget.addWidget(self.page_1)
                 self.stacked_Widget.addWidget(self.page_2)
                 self.stacked_Widget.addWidget(self.page_3)
 
                 self.stacked_Widget.setCurrentIndex(0)
-                self.scroll_area.setWidget(self.scroll_area_widget_contents)
 
                 self.main_window_in_class.addDockWidget(QtCore.Qt.DockWidgetArea(2), self.dockWidget_1)
 
