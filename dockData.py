@@ -9,8 +9,6 @@ class Data():
         self.grid_page_2 = args[1]
         self.central_layout = args[2]
 
-
-
     def write_data(self):
         self.scroll_area = QtWidgets.QScrollArea(self.page_2)
 
@@ -21,34 +19,34 @@ class Data():
         self.scroll_area.setWidgetResizable(True)
         self.scroll_area.setObjectName("scroll_area")
 
-        self.scroll_area_widget_contents = QtWidgets.QWidget()
-        self.scroll_area_widget_contents.setGeometry(QtCore.QRect(0, 0, 153, 523))
-        self.scroll_area_widget_contents.setObjectName("scroll_area_widget_contents")
+        self.scroll_area_contents = QtWidgets.QWidget()
+        self.scroll_area_contents.setGeometry(QtCore.QRect(0, 0, 153, 523))
+        self.scroll_area_contents.setObjectName("scroll_area_contents")
 
         self.grid_page_2.addWidget(self.scroll_area, 0, 0, 1, 1)
-        self.scroll_area.setWidget(self.scroll_area_widget_contents)
+        self.scroll_area.setWidget(self.scroll_area_contents)
 
-        self.data_scroll_layout = QtWidgets.QFormLayout(self.scroll_area_widget_contents)
+        self.data_scroll_layout = QtWidgets.QFormLayout(self.scroll_area_contents)
         self.data_scroll_layout.setObjectName("data_scroll_layout")
 
         self.sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Maximum, QtWidgets.QSizePolicy.Fixed)
         self.sizePolicy.setHorizontalStretch(0)
         self.sizePolicy.setVerticalStretch(0)
 
-        self.label_def = []
+        self.label_data = []
         self.line_edit = []
         self.array_position = int()
         self.horizontal_position_widgets = int()
         for self.horizontal_position_widgets in range(0, 4, 2):
             for self.array_position in range(0, 2):
-                self.label_def.append(QtWidgets.QLabel(self.scroll_area_widget_contents))
-                self.line_edit.append(QtWidgets.QLineEdit(self.scroll_area_widget_contents))
+                self.label_data.append(QtWidgets.QLabel(self.scroll_area_contents))
+                self.line_edit.append(QtWidgets.QLineEdit(self.scroll_area_contents))
 
                 if self.array_position == 0:
                     if (self.horizontal_position_widgets+1) < 2:
                         self.data_scroll_layout.setWidget(self.horizontal_position_widgets, QtWidgets.QFormLayout.LabelRole,
-                                                   self.label_def[self.horizontal_position_widgets + self.array_position])
-                        self.label_def[self.horizontal_position_widgets+self.array_position].setText("NAME")
+                                                   self.label_data[self.horizontal_position_widgets + self.array_position])
+                        self.label_data[self.horizontal_position_widgets+self.array_position].setText("NAME")
 
                     self.data_scroll_layout.setWidget(self.horizontal_position_widgets + 1, QtWidgets.QFormLayout.LabelRole,
                                                self.line_edit[self.horizontal_position_widgets + self.array_position])
@@ -56,8 +54,8 @@ class Data():
                 if self.array_position == 1:
                     if (self.horizontal_position_widgets + 1) < 2:
                         self.data_scroll_layout.setWidget(self.horizontal_position_widgets, QtWidgets.QFormLayout.FieldRole,
-                                                   self.label_def[self.horizontal_position_widgets + self.array_position])
-                        self.label_def[self.horizontal_position_widgets+self.array_position].setText("VALUE")
+                                                   self.label_data[self.horizontal_position_widgets + self.array_position])
+                        self.label_data[self.horizontal_position_widgets+self.array_position].setText("VALUE")
 
                     self.data_scroll_layout.setWidget(self.horizontal_position_widgets + 1, QtWidgets.QFormLayout.FieldRole,
                                                self.line_edit[self.horizontal_position_widgets + self.array_position])
@@ -68,21 +66,21 @@ class Data():
 
         self.default_data()
 
-        self.button_add = QtWidgets.QPushButton(self.scroll_area_widget_contents)
-        self.button_add.setSizePolicy(self.sizePolicy)
-        self.button_add.setObjectName("pushButton")
-        self.data_scroll_layout.setWidget(5, QtWidgets.QFormLayout.LabelRole, self.button_add)
-        self.button_add.clicked.connect(self.add_data)
-        self.button_add.setText("ADD DATA")
+        self.button_Add = QtWidgets.QPushButton(self.scroll_area_contents)
+        self.button_Add.setSizePolicy(self.sizePolicy)
+        self.button_Add.setObjectName("pushButton")
+        self.data_scroll_layout.setWidget(5, QtWidgets.QFormLayout.LabelRole, self.button_Add)
+        self.button_Add.clicked.connect(self.add_data)
+        self.button_Add.setText("ADD DATA")
 
-        self.space = QtWidgets.QFrame(self.scroll_area_widget_contents)
+        self.space = QtWidgets.QFrame(self.scroll_area_contents)
         self.data_scroll_layout.setWidget(6, QtWidgets.QFormLayout.LabelRole, self.space)
 
-        self.button_create = QtWidgets.QPushButton(self.scroll_area_widget_contents)
-        self.button_create.setObjectName("button_create")
-        self.data_scroll_layout.setWidget(7, QtWidgets.QFormLayout.LabelRole, self.button_create)
-        self.button_create.setText("CREATE")
-        self.button_create.clicked.connect(lambda: self.pie_default())
+        self.button_Create = QtWidgets.QPushButton(self.scroll_area_contents)
+        self.button_Create.setObjectName("button_Create")
+        self.data_scroll_layout.setWidget(7, QtWidgets.QFormLayout.LabelRole, self.button_Create)
+        self.button_Create.setText("CREATE")
+        self.button_Create.clicked.connect(lambda: self.pie_default())
 
 
     def default_data(self):
@@ -95,16 +93,16 @@ class Data():
     def add_data(self):
         self.horizontal_position_widgets += 2
         self.data_scroll_layout.setWidget(self.horizontal_position_widgets + 4, QtWidgets.QFormLayout.LabelRole,
-                                   self.button_create)
+                                   self.button_Create)
         self.data_scroll_layout.setWidget(self.horizontal_position_widgets + 3, QtWidgets.QFormLayout.LabelRole,
-                                   self.button_add)
+                                   self.button_Add)
         self.data_scroll_layout.setWidget(self.horizontal_position_widgets + 2, QtWidgets.QFormLayout.LabelRole,
                                    self.space)
 
-        self.line_edit.append(QtWidgets.QLineEdit(self.scroll_area_widget_contents))
+        self.line_edit.append(QtWidgets.QLineEdit(self.scroll_area_contents))
         self.data_scroll_layout.setWidget(self.horizontal_position_widgets, QtWidgets.QFormLayout.LabelRole,
                                    self.line_edit[self.array_position + 3])
-        self.line_edit.append(QtWidgets.QLineEdit(self.scroll_area_widget_contents))
+        self.line_edit.append(QtWidgets.QLineEdit(self.scroll_area_contents))
         self.data_scroll_layout.setWidget(self.horizontal_position_widgets, QtWidgets.QFormLayout.FieldRole,
                                    self.line_edit[self.array_position + 4])
 
