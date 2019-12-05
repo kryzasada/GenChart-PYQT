@@ -8,60 +8,60 @@ class Dock():
                 self.central_layout = args[1]
 
         def right_up(self):
-                self.dockWidget_1 = QtWidgets.QDockWidget(self.main_window_in_class)
+                self.dockWidget_data = QtWidgets.QDockWidget(self.main_window_in_class)
 
                 sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
                 sizePolicy.setHorizontalStretch(0)
                 sizePolicy.setVerticalStretch(0)
-                sizePolicy.setHeightForWidth(self.dockWidget_1.sizePolicy().hasHeightForWidth())
+                sizePolicy.setHeightForWidth(self.dockWidget_data.sizePolicy().hasHeightForWidth())
 
-                self.dockWidget_1.setSizePolicy(sizePolicy)
-                self.dockWidget_1.setMinimumSize(QtCore.QSize(150, 250))
-                self.dockWidget_1.setObjectName("dockWidget_1")
+                self.dockWidget_data.setSizePolicy(sizePolicy)
+                self.dockWidget_data.setMinimumSize(QtCore.QSize(150, 250))
+                self.dockWidget_data.setObjectName("dockWidget_data")
 
-                self.dockWidget_1Contents = QtWidgets.QWidget()
-                self.dockWidget_1Contents.setObjectName("dockWidget_1Contents")
-                self.dockWidget_1.setWidget(self.dockWidget_1Contents)
+                self.dockWidget_data_contents = QtWidgets.QWidget()
+                self.dockWidget_data_contents.setObjectName("dockWidget_data_contents")
+                self.dockWidget_data.setWidget(self.dockWidget_data_contents)
 
-                self.grid_data_dock = QtWidgets.QGridLayout(self.dockWidget_1Contents)
+                self.grid_data_dock = QtWidgets.QGridLayout(self.dockWidget_data_contents)
                 self.grid_data_dock.setContentsMargins(0, 0, 0, 0)
                 self.grid_data_dock.setObjectName("grid_data_dock")
 
-                self.stacked_Widget = QtWidgets.QStackedWidget(self.dockWidget_1Contents)
-                self.stacked_Widget.setObjectName("stacked_Widget")
-                self.grid_data_dock.addWidget(self.stacked_Widget, 0, 0, 1, 1)
+                self.stacked_widget_data= QtWidgets.QStackedWidget(self.dockWidget_data_contents)
+                self.stacked_widget_data.setObjectName("stacked_widget_data")
+                self.grid_data_dock.addWidget(self.stacked_widget_data, 0, 0, 1, 1)
 
 
-                self.page_1 = QtWidgets.QWidget()
-                self.page_1.setObjectName("page_1")
+                self.data_page_1 = QtWidgets.QWidget()
+                self.data_page_1.setObjectName("data_page_1")
 
-                self.horizontal_layout = QtWidgets.QGridLayout(self.page_1)
+                self.horizontal_layout = QtWidgets.QGridLayout(self.data_page_1)
                 self.horizontal_layout.setObjectName("horizontal_layout")
 
-                self.label_page_1 = QtWidgets.QLabel(self.page_1)
-                self.label_page_1.setObjectName("chart_button")
-                self.label_page_1.setText("Select chart")
-                self.horizontal_layout.addWidget(self.label_page_1)
+                self.label_data_page_1 = QtWidgets.QLabel(self.data_page_1)
+                self.label_data_page_1.setObjectName("chart_button")
+                self.label_data_page_1.setText("Select chart")
+                self.horizontal_layout.addWidget(self.label_data_page_1)
 
-                self.page_2 = QtWidgets.QWidget()
-                self.page_2.setObjectName("page_2")
+                self.data_page_2 = QtWidgets.QWidget()
+                self.data_page_2.setObjectName("data_page_2")
 
-                self.grid_page_2 = QtWidgets.QGridLayout(self.page_2)
-                self.grid_page_2.setObjectName("grid_page_2")
+                self.data_grid_page_2 = QtWidgets.QGridLayout(self.data_page_2)
+                self.data_grid_page_2.setObjectName("data_grid_page_2")
 
-                dock_data = dockData.Data(self.page_2, self.grid_page_2, self.central_layout)
+                dock_data = dockData.Data(self.data_page_2, self.data_grid_page_2, self.central_layout)
                 dock_data.write_data()
 
                 self.page_3 = QtWidgets.QWidget()
                 self.page_3.setObjectName("page_3")
 
-                self.stacked_Widget.addWidget(self.page_1)
-                self.stacked_Widget.addWidget(self.page_2)
-                self.stacked_Widget.addWidget(self.page_3)
+                self.stacked_widget_data.addWidget(self.data_page_1)
+                self.stacked_widget_data.addWidget(self.data_page_2)
+                self.stacked_widget_data.addWidget(self.page_3)
 
-                self.stacked_Widget.setCurrentIndex(0)
+                self.stacked_widget_data.setCurrentIndex(0)
 
-                self.main_window_in_class.addDockWidget(QtCore.Qt.DockWidgetArea(2), self.dockWidget_1)
+                self.main_window_in_class.addDockWidget(QtCore.Qt.DockWidgetArea(2), self.dockWidget_data)
 
         def right_down(self):
                 self.dockWidget_2 = QtWidgets.QDockWidget(self.main_window_in_class)
@@ -285,7 +285,7 @@ class Dock():
                 self.default_label = QtWidgets.QLabel(self.page_1_stack)
                 self.default_label.setObjectName("default_label")
 
-                """dock_settings = dockData.Data(self.stacked_Widget,
+                """dock_settings = dockData.Data(self.stacked_widget_data,
                                           self.central_layout,self.central_layout,self.central_layout )
 
                 dock_settings.settings_chart()"""
@@ -333,8 +333,8 @@ class Dock():
                 self.dock_widget_chart_contents.setObjectName("dockWidgetChartContents")
 
                 self.main_window_in_class.addDockWidget(QtCore.Qt.DockWidgetArea(1), self.dock_widget_chart)
-                ss = chart.Chart(self.dock_widget_chart_contents, self.dock_widget_chart, self.dockWidget_1Contents,
-                                 self.stacked_Widget)
+                ss = chart.Chart(self.dock_widget_chart_contents, self.dock_widget_chart, self.dockWidget_data_contents,
+                                 self.stacked_widget_data)
 
 
 
