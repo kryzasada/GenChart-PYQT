@@ -52,12 +52,8 @@ class Dock():
                 dock_data = dockData.Data(self.data_page_2, self.data_grid_page_2, self.central_layout)
                 dock_data.write_data()
 
-                self.page_3 = QtWidgets.QWidget()
-                self.page_3.setObjectName("page_3")
-
                 self.stacked_widget_data.addWidget(self.data_page_1)
                 self.stacked_widget_data.addWidget(self.data_page_2)
-                self.stacked_widget_data.addWidget(self.page_3)
 
                 self.stacked_widget_data.setCurrentIndex(0)
 
