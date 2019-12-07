@@ -2,7 +2,7 @@ from PyQt5 import QtCore, QtWidgets
 import chart, dockData
 
 
-class Dock():
+class Dock:
         def __init__(self, *args):
                 self.main_window_in_class = args[0]
                 self.central_layout = args[1]
@@ -60,265 +60,224 @@ class Dock():
                 self.main_window_in_class.addDockWidget(QtCore.Qt.DockWidgetArea(2), self.dockWidget_data)
 
         def right_down(self):
-                self.dockWidget_2 = QtWidgets.QDockWidget(self.main_window_in_class)
+                self.dockWidget_features = QtWidgets.QDockWidget(self.main_window_in_class)
 
                 sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
                 sizePolicy.setHorizontalStretch(0)
                 sizePolicy.setVerticalStretch(0)
-                sizePolicy.setHeightForWidth(self.dockWidget_2.sizePolicy().hasHeightForWidth())
+                sizePolicy.setHeightForWidth(self.dockWidget_features.sizePolicy().hasHeightForWidth())
 
-                self.dockWidget_2.setSizePolicy(sizePolicy)
-                self.dockWidget_2.setMinimumSize(QtCore.QSize(150, 50))
-                self.dockWidget_2.setObjectName("dockWidget_2")
+                self.dockWidget_features.setSizePolicy(sizePolicy)
+                self.dockWidget_features.setMinimumSize(QtCore.QSize(150, 50))
+                self.dockWidget_features.setObjectName("dockWidget_features")
 
-                self.dockWidgetContents_2 = QtWidgets.QWidget()
-                self.dockWidgetContents_2.setObjectName("dockWidgetContents_2")
-                self.dockWidget_2.setWidget(self.dockWidgetContents_2)
+                self.dockWidget_features_contentsontents = QtWidgets.QWidget()
+                self.dockWidget_features_contentsontents.setObjectName("ddockWidget_features_contentsontents")
+                self.dockWidget_features.setWidget(self.dockWidget_features_contentsontents)
 
-                self.grid_features_dock = QtWidgets.QHBoxLayout(self.dockWidgetContents_2)
-                self.grid_features_dock.setObjectName("horizontalLayout_2")
+                self.grid_features_dock = QtWidgets.QHBoxLayout(self.dockWidget_features_contentsontents)
+                self.grid_features_dock.setObjectName("grid_features_dock")
 
-                self.stacked_widget_dock = QtWidgets.QStackedWidget(self.dockWidgetContents_2)
+                self.stacked_widget_features = QtWidgets.QStackedWidget(self.dockWidget_features_contentsontents)
                 sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Ignored, QtWidgets.QSizePolicy.Ignored)
-                sizePolicy.setHorizontalStretch(0)
-                sizePolicy.setVerticalStretch(0)
-                sizePolicy.setHeightForWidth(self.stacked_widget_dock.sizePolicy().hasHeightForWidth())
-                self.stacked_widget_dock.setSizePolicy(sizePolicy)
-                self.stacked_widget_dock.setObjectName("stacked_widget_dock")
+                sizePolicy.setHeightForWidth(self.stacked_widget_features.sizePolicy().hasHeightForWidth())
+                self.stacked_widget_features.setSizePolicy(sizePolicy)
+                self.stacked_widget_features.setObjectName("stacked_widget_features")
+                self.grid_features_dock.addWidget(self.stacked_widget_features)
 
-                self.page_2_stack = QtWidgets.QWidget()
-                self.page_2_stack.setObjectName("page_2_stack")
-                self.stacked_widget_dock.addWidget(self.page_2_stack)
+                self.features_page_1 = QtWidgets.QWidget()
+                self.features_page_1.setObjectName("features_page_1")
 
-                self.gridLayout_3 = QtWidgets.QGridLayout(self.page_2_stack)
-                self.gridLayout_3.setObjectName("gridLayout_3")
+                self.features_grid_page_1 = QtWidgets.QVBoxLayout(self.features_page_1)
+                self.features_grid_page_1.setObjectName("features_grid_page_1")
+
+                self.label_default = QtWidgets.QLabel(self.features_page_1)
+                self.label_default.setObjectName("label_default")
+                self.label_default.setText("Select chart")
+                self.features_grid_page_1.addWidget(self.label_default)
+
+
+                self.features_page_2 = QtWidgets.QWidget()
+                self.features_page_2.setObjectName("features_page_2")
+
+
+                self.features_grid_page_2  = QtWidgets.QGridLayout(self.features_page_2)
+                self.features_grid_page_2.setObjectName("features_grid_page_2")
 
                 ###
-                self.tab_widget_features = QtWidgets.QTabWidget(self.page_2_stack)
-                self.tab_widget_features.setObjectName("tab_widget_features")
+                self.tab_widget = QtWidgets.QTabWidget(self.features_page_2)
+                self.tab_widget.setObjectName("tab_widget")
+                self.features_grid_page_2.addWidget(self.tab_widget, 0, 0, 1, 1)
+
 
                 self.page_color = QtWidgets.QWidget()
                 self.page_color.setObjectName("page_color")
+                self.tab_widget.addTab(self.page_color, "Color")
 
-                self.verticalLayout_2 = QtWidgets.QVBoxLayout(self.page_color)
-                self.verticalLayout_2.setObjectName("verticalLayout_2")
+                self.page_color_layout = QtWidgets.QVBoxLayout(self.page_color)
+                self.page_color_layout.setObjectName("page_color_layout")
 
                 self.scroll_area_color = QtWidgets.QScrollArea(self.page_color)
-                sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Ignored, QtWidgets.QSizePolicy.Expanding)
-                sizePolicy.setHorizontalStretch(0)
-                sizePolicy.setVerticalStretch(0)
-                sizePolicy.setHeightForWidth(self.scroll_area_color.sizePolicy().hasHeightForWidth())
-                self.scroll_area_color.setSizePolicy(sizePolicy)
                 self.scroll_area_color.setWidgetResizable(True)
                 self.scroll_area_color.setAlignment(QtCore.Qt.AlignLeading | QtCore.Qt.AlignLeft | QtCore.Qt.AlignTop)
                 self.scroll_area_color.setObjectName("scroll_area_color")
+                self.page_color_layout.addWidget(self.scroll_area_color)
 
-                self.scroll_contents_color = QtWidgets.QWidget()
-                self.scroll_contents_color.setGeometry(QtCore.QRect(0, 0, 103, 450))
-                self.scroll_contents_color.setObjectName("scroll_contents_color")
+                self.scroll_color_contents = QtWidgets.QWidget()
+                self.scroll_color_contents.setGeometry(QtCore.QRect(0, 0, 103, 450))
+                self.scroll_color_contents.setObjectName("scroll_color_contents")
+                self.scroll_area_color.setWidget(self.scroll_color_contents)
 
-                self.formLayout = QtWidgets.QFormLayout(self.scroll_contents_color)
-                self.formLayout.setObjectName("formLayout")
+                self.scroll_color_layout = QtWidgets.QFormLayout(self.scroll_color_contents)
+                self.scroll_color_layout.setObjectName("scroll_color_layout")
 
-                '''    
-                self.label1_col = QtWidgets.QLabel(self.scroll_contents_color)
+                ###
+                self.label1_color = QtWidgets.QLabel(self.scroll_color_contents)
                 sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Preferred)
                 sizePolicy.setHorizontalStretch(0)
                 sizePolicy.setVerticalStretch(0)
-                sizePolicy.setHeightForWidth(self.label1_col.sizePolicy().hasHeightForWidth())
-                self.label1_col.setSizePolicy(sizePolicy)
-                self.label1_col.setObjectName("label1_col")
-                self.formLayout.setWidget(0, QtWidgets.QFormLayout.LabelRole, self.label1_col) '''
+                sizePolicy.setHeightForWidth(self.label1_color.sizePolicy().hasHeightForWidth())
+                self.label1_color.setSizePolicy(sizePolicy)
+                self.label1_color.setObjectName("label1_color")
+                self.label1_color.setText("123")
+                self.scroll_color_layout.setWidget(0, QtWidgets.QFormLayout.LabelRole, self.label1_color)
 
-                """                self.color_button1 = QtWidgets.QPushButton(self.scroll_contents_color)
+                self.button1_color = QtWidgets.QPushButton(self.scroll_color_contents)
                 sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
                 sizePolicy.setHorizontalStretch(0)
                 sizePolicy.setVerticalStretch(0)
-                sizePolicy.setHeightForWidth(self.color_button1.sizePolicy().hasHeightForWidth())
-                self.color_button1.setSizePolicy(sizePolicy)
-                self.color_button1.setStyleSheet("background-color: rgb(170, 0, 0);")
-                self.color_button1.setText("")
-                self.color_button1.setObjectName("color_button1")
-                self.formLayout.setWidget(0, QtWidgets.QFormLayout.FieldRole, self.color_button1)"""
+                sizePolicy.setHeightForWidth(self.button1_color.sizePolicy().hasHeightForWidth())
+                self.button1_color.setSizePolicy(sizePolicy)
+                self.button1_color.setStyleSheet("background-color: rgb(170, 0, 0);")
+                self.button1_color.setText("")
+                self.button1_color.setObjectName("button1_color")
+                self.scroll_color_layout.setWidget(0, QtWidgets.QFormLayout.FieldRole, self.button1_color)
 
-                """self.label2_col = QtWidgets.QLabel(self.scroll_contents_color)
+                self.label2_color = QtWidgets.QLabel(self.scroll_color_contents)
                 sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Preferred)
                 sizePolicy.setHorizontalStretch(0)
                 sizePolicy.setVerticalStretch(0)
-                sizePolicy.setHeightForWidth(self.label2_col.sizePolicy().hasHeightForWidth())
-                self.label2_col.setSizePolicy(sizePolicy)
-                self.label2_col.setObjectName("label2_col")
-                self.formLayout.setWidget(1, QtWidgets.QFormLayout.LabelRole, self.label2_col) """
+                sizePolicy.setHeightForWidth(self.label2_color.sizePolicy().hasHeightForWidth())
+                self.label2_color.setSizePolicy(sizePolicy)
+                self.label2_color.setObjectName("label2_color")
+                self.label2_color.setText("123")
+                self.scroll_color_layout.setWidget(1, QtWidgets.QFormLayout.LabelRole, self.label2_color)
 
-                """self.color_button2 = QtWidgets.QPushButton(self.scroll_contents_color)
+                self.button2_color = QtWidgets.QPushButton(self.scroll_color_contents)
                 sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
                 sizePolicy.setHorizontalStretch(0)
                 sizePolicy.setVerticalStretch(0)
-                sizePolicy.setHeightForWidth(self.color_button2.sizePolicy().hasHeightForWidth())
-                self.color_button2.setSizePolicy(sizePolicy)
-                self.color_button2.setStyleSheet("background-color: rgb(170, 0, 0);")
-                self.color_button2.setText("")
-                self.color_button2.setObjectName("color_button2")
-                self.formLayout.setWidget(1, QtWidgets.QFormLayout.FieldRole, self.color_button2)"""
+                sizePolicy.setHeightForWidth(self.button2_color.sizePolicy().hasHeightForWidth())
+                self.button2_color.setSizePolicy(sizePolicy)
+                self.button2_color.setStyleSheet("background-color: rgb(170, 0, 0);")
+                self.button2_color.setText("")
+                self.button2_color.setObjectName("button2_color")
+                self.scroll_color_layout.setWidget(1, QtWidgets.QFormLayout.FieldRole, self.button2_color)
 
-                self.scroll_area_color.setWidget(self.scroll_contents_color)
-                self.verticalLayout_2.addWidget(self.scroll_area_color)
-                self.tab_widget_features.addTab(self.page_color, "")
                 self.page_explode = QtWidgets.QWidget()
                 self.page_explode.setObjectName("page_explode")
+                self.tab_widget.addTab(self.page_explode, "Explode")
 
-                self.horizontalLayout_3 = QtWidgets.QHBoxLayout(self.page_explode)
-                self.horizontalLayout_3.setObjectName("horizontalLayout_3")
+                self.page_explode_layout = QtWidgets.QHBoxLayout(self.page_explode)
+                self.page_explode_layout.setObjectName("page_explode_layout")
 
                 self.scroll_area_explode = QtWidgets.QScrollArea(self.page_explode)
                 self.scroll_area_explode.setWidgetResizable(True)
                 self.scroll_area_explode.setObjectName("scroll_area_explode")
+                self.page_explode_layout.addWidget(self.scroll_area_explode)
 
-                self.scroll_contents_explode = QtWidgets.QWidget()
-                self.scroll_contents_explode.setGeometry(QtCore.QRect(-58, 0, 126, 450))
-                self.scroll_contents_explode.setObjectName("scroll_contents_explode")
+                self.scroll_explode_contents = QtWidgets.QWidget()
+                self.scroll_explode_contents.setGeometry(QtCore.QRect(-58, 0, 126, 450))
+                self.scroll_explode_contents.setObjectName("scroll_explode_contents")
 
-                self.formLayout_2 = QtWidgets.QFormLayout(self.scroll_contents_explode)
-                self.formLayout_2.setObjectName("formLayout_2")
+                self.scroll_area_explode.setWidget(self.scroll_explode_contents)
+                self.scroll_explode_layout = QtWidgets.QFormLayout(self.scroll_explode_contents)
+                self.scroll_explode_layout.setObjectName("scroll_explode_layout")
 
-                self.label2_expl = QtWidgets.QLabel(self.scroll_contents_explode)
+                self.label1_explode = QtWidgets.QLabel(self.scroll_explode_contents)
                 sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Preferred)
-                sizePolicy.setHorizontalStretch(0)
-                sizePolicy.setVerticalStretch(0)
-                sizePolicy.setHeightForWidth(self.label2_expl.sizePolicy().hasHeightForWidth())
-                self.label2_expl.setSizePolicy(sizePolicy)
-                self.label2_expl.setObjectName("label2_expl")
+                sizePolicy.setHeightForWidth(self.label1_explode.sizePolicy().hasHeightForWidth())
+                self.label1_explode.setSizePolicy(sizePolicy)
+                self.label1_explode.setObjectName("label1_explode")
+                self.label1_explode.setText("TextLabel_1")
+                self.scroll_explode_layout.setWidget(0, QtWidgets.QFormLayout.LabelRole, self.label1_explode)
 
-                self.formLayout_2.setWidget(1, QtWidgets.QFormLayout.LabelRole, self.label2_expl)
-
-                self.label1_expl = QtWidgets.QLabel(self.scroll_contents_explode)
+                self.label2_explode = QtWidgets.QLabel(self.scroll_explode_contents)
                 sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Preferred)
-                sizePolicy.setHorizontalStretch(0)
-                sizePolicy.setVerticalStretch(0)
-                sizePolicy.setHeightForWidth(self.label1_expl.sizePolicy().hasHeightForWidth())
-                self.label1_expl.setSizePolicy(sizePolicy)
-                self.label1_expl.setObjectName("label1_expl")
+                sizePolicy.setHeightForWidth(self.label2_explode.sizePolicy().hasHeightForWidth())
+                self.label2_explode.setSizePolicy(sizePolicy)
+                self.label2_explode.setObjectName("label2_explode")
+                self.label2_explode.setText("TextLabel_2")
+                self.scroll_explode_layout.setWidget(1, QtWidgets.QFormLayout.LabelRole, self.label2_explode)
 
-                self.formLayout_2.setWidget(0, QtWidgets.QFormLayout.LabelRole, self.label1_expl)
-
-                self.double_spin_box2 = QtWidgets.QDoubleSpinBox(self.scroll_contents_explode)
+                self.double_spin1_explode = QtWidgets.QDoubleSpinBox(self.scroll_explode_contents)
                 sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
                 sizePolicy.setHorizontalStretch(0)
                 sizePolicy.setVerticalStretch(0)
-                sizePolicy.setHeightForWidth(self.double_spin_box2.sizePolicy().hasHeightForWidth())
-                self.double_spin_box2.setSizePolicy(sizePolicy)
-                self.double_spin_box2.setObjectName("double_spin_box2")
+                sizePolicy.setHeightForWidth(self.double_spin1_explode.sizePolicy().hasHeightForWidth())
+                self.double_spin1_explode.setSizePolicy(sizePolicy)
+                self.double_spin1_explode.setObjectName("double_spin1_explode")
 
-                self.formLayout_2.setWidget(1, QtWidgets.QFormLayout.FieldRole, self.double_spin_box2)
+                self.scroll_explode_layout.setWidget(1, QtWidgets.QFormLayout.FieldRole, self.double_spin1_explode)
 
-                self.double_spin_box1 = QtWidgets.QDoubleSpinBox(self.scroll_contents_explode)
+                self.double_spin2_explode = QtWidgets.QDoubleSpinBox(self.scroll_explode_contents)
                 sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
                 sizePolicy.setHorizontalStretch(0)
                 sizePolicy.setVerticalStretch(0)
-                sizePolicy.setHeightForWidth(self.double_spin_box1.sizePolicy().hasHeightForWidth())
-                self.double_spin_box1.setSizePolicy(sizePolicy)
+                sizePolicy.setHeightForWidth(self.double_spin2_explode.sizePolicy().hasHeightForWidth())
+                self.double_spin2_explode.setSizePolicy(sizePolicy)
+                self.double_spin2_explode.setObjectName("double_spin2_explode")
+                self.scroll_explode_layout.setWidget(0, QtWidgets.QFormLayout.FieldRole, self.double_spin2_explode)
 
-                self.double_spin_box1.setObjectName("double_spin_box1")
-                self.formLayout_2.setWidget(0, QtWidgets.QFormLayout.FieldRole, self.double_spin_box1)
-                self.scroll_area_explode.setWidget(self.scroll_contents_explode)
-                self.horizontalLayout_3.addWidget(self.scroll_area_explode)
-                self.tab_widget_features.addTab(self.page_explode, "")
+
                 self.page_settings = QtWidgets.QWidget()
                 self.page_settings.setObjectName("page_settings")
+                self.tab_widget.addTab(self.page_settings, "Settings")
 
-                self.horizontalLayout = QtWidgets.QHBoxLayout(self.page_settings)
-                self.horizontalLayout.setObjectName("horizontalLayout")
+                self.page_settings_layout = QtWidgets.QHBoxLayout(self.page_settings)
+                self.page_settings_layout.setObjectName("page_settings_layout")
 
                 self.scroll_area_settings = QtWidgets.QScrollArea(self.page_settings)
                 self.scroll_area_settings.setWidgetResizable(True)
                 self.scroll_area_settings.setObjectName("scroll_area_settings")
+                self.page_settings_layout.addWidget(self.scroll_area_settings)
 
-                self.scroll_contents_settings = QtWidgets.QWidget()
-                self.scroll_contents_settings.setGeometry(QtCore.QRect(0, 0, 94, 450))
-                self.scroll_contents_settings.setObjectName("scroll_contents_settings")
+                self.scroll_settings_contents = QtWidgets.QWidget()
+                self.scroll_settings_contents.setGeometry(QtCore.QRect(0, 0, 94, 450))
+                self.scroll_settings_contents.setObjectName("scroll_settings_contents")
+                self.scroll_area_settings.setWidget(self.scroll_settings_contents)
 
-                self.formLayout_3 = QtWidgets.QFormLayout(self.scroll_contents_settings)
-                self.formLayout_3.setObjectName("formLayout_3")
+                self.scroll_settings_layout = QtWidgets.QFormLayout(self.scroll_settings_contents)
+                self.scroll_settings_layout.setObjectName("scroll_settings_layout")
 
-                self.check_box1_set = QtWidgets.QCheckBox(self.scroll_contents_settings)
-                self.check_box1_set.setObjectName("check_box1_set")
+                self.check_box1_settings = QtWidgets.QCheckBox(self.scroll_settings_contents)
+                self.check_box1_settings.setObjectName("check_box1_settings")
+                self.check_box1_settings.setText("CheckBox_1")
+                self.scroll_settings_layout.setWidget(0, QtWidgets.QFormLayout.LabelRole, self.check_box1_settings)
 
-                self.formLayout_3.setWidget(0, QtWidgets.QFormLayout.LabelRole, self.check_box1_set)
-                self.check_box2_set = QtWidgets.QCheckBox(self.scroll_contents_settings)
-                self.check_box2_set.setObjectName("check_box2_set")
 
-                self.formLayout_3.setWidget(1, QtWidgets.QFormLayout.LabelRole, self.check_box2_set)
+                self.check_box2_settings = QtWidgets.QCheckBox(self.scroll_settings_contents)
+                self.check_box2_settings.setObjectName("check_box2_settings")
+                self.check_box2_settings.setText("CheckBox_2")
+                self.scroll_settings_layout.setWidget(1, QtWidgets.QFormLayout.LabelRole, self.check_box2_settings)
 
-                self.scroll_area_settings.setWidget(self.scroll_contents_settings)
 
-                self.horizontalLayout.addWidget(self.scroll_area_settings)
-
-                self.tab_widget_features.addTab(self.page_settings, "")
-
-                self.gridLayout_3.addWidget(self.tab_widget_features, 0, 0, 1, 1)
-
-                self.button_create = QtWidgets.QPushButton(self.page_2_stack)
+                self.button_create = QtWidgets.QPushButton(self.features_page_2)
                 sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Minimum)
-                sizePolicy.setHorizontalStretch(0)
-                sizePolicy.setVerticalStretch(0)
                 sizePolicy.setHeightForWidth(self.button_create.sizePolicy().hasHeightForWidth())
+
                 self.button_create.setSizePolicy(sizePolicy)
-                self.button_create.setCheckable(False)
-                self.button_create.setAutoDefault(False)
-                self.button_create.setDefault(False)
-                self.button_create.setFlat(False)
                 self.button_create.setObjectName("button_create")
+                self.button_create.setText("Create")
+                self.features_grid_page_2.addWidget(self.button_create, 1, 0, 1, 1, QtCore.Qt.AlignLeft)
 
-                self.gridLayout_3.addWidget(self.button_create, 1, 0, 1, 1, QtCore.Qt.AlignLeft)
+                self.stacked_widget_features.addWidget(self.features_page_1)
+                self.stacked_widget_features.addWidget(self.features_page_2)
 
-                self.stacked_widget_dock.addWidget(self.page_2_stack)
+                self.stacked_widget_features.setCurrentIndex(1)
+                self.tab_widget.setCurrentIndex(0)
 
-                self.page_1_stack = QtWidgets.QWidget()
-                self.page_1_stack.setObjectName("page_1_stack")
-
-                self.verticalLayout = QtWidgets.QVBoxLayout(self.page_1_stack)
-                self.verticalLayout.setObjectName("verticalLayout")
-                self.default_label = QtWidgets.QLabel(self.page_1_stack)
-                self.default_label.setObjectName("default_label")
-
-                """dock_settings = dockData.Data(self.stacked_widget_data,
-                                          self.central_layout,self.central_layout,self.central_layout )
-
-                dock_settings.settings_chart()"""
-
-                self.verticalLayout.addWidget(self.default_label)
-
-                self.stacked_widget_dock.addWidget(self.page_1_stack)
-                self.grid_features_dock.addWidget(self.stacked_widget_dock)
-                self.dockWidget_2.setWidget(self.dockWidgetContents_2)
-
-                self.retranslateUi(self.main_window_in_class)
-                self.stacked_widget_dock.setCurrentIndex(0)
-                self.tab_widget_features.setCurrentIndex(0)
-                QtCore.QMetaObject.connectSlotsByName(self.main_window_in_class)
-
-        def retranslateUi(self, MainWindow):
-                _translate = QtCore.QCoreApplication.translate
-                MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
-                self.tab_widget_features.setTabText(self.tab_widget_features.indexOf(self.page_color),
-                                                    _translate("MainWindow", "Color"))
-                self.label2_expl.setText(_translate("MainWindow", "TextLabel"))
-                self.label1_expl.setText(_translate("MainWindow", "TextLabel"))
-                self.tab_widget_features.setTabText(self.tab_widget_features.indexOf(self.page_explode),
-                                                    _translate("MainWindow", "Explode"))
-                self.check_box1_set.setText(_translate("MainWindow", "CheckBox"))
-                self.check_box2_set.setText(_translate("MainWindow", "CheckBox"))
-                self.tab_widget_features.setTabText(self.tab_widget_features.indexOf(self.page_settings),
-                                                    _translate("MainWindow", "Settings"))
-                self.button_create.setText(_translate("MainWindow", "CREATE"))
-                self.default_label.setText(_translate("MainWindow", "TextLabel"))
-
-
-
-
-
-
-                self.main_window_in_class.addDockWidget(QtCore.Qt.DockWidgetArea(2), self.dockWidget_2)
+                self.main_window_in_class.addDockWidget(QtCore.Qt.DockWidgetArea(2), self.dockWidget_features)
 
         def left_chart(self):
                 self.dock_widget_chart = QtWidgets.QDockWidget(self.main_window_in_class)
