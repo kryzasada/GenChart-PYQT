@@ -115,7 +115,7 @@ class Data():
 
         self.array_position += 2
 
-    def futures_chart(self):
+    def settings_chart(self):
         self.tab_widget = QtWidgets.QTabWidget(self.page_2)
         self.tab_widget.setObjectName("tab_widget")
         self.grid_page_2.addWidget(self.tab_widget, 0, 0, 1, 1)

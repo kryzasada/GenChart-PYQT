@@ -60,67 +60,67 @@ class Dock:
                 self.main_window_in_class.addDockWidget(QtCore.Qt.DockWidgetArea(2), self.dockWidget_data)
 
         def right_down(self):
-                self.dockWidget_features = QtWidgets.QDockWidget(self.main_window_in_class)
+                self.dockWidget_settings = QtWidgets.QDockWidget(self.main_window_in_class)
 
                 sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
                 sizePolicy.setHorizontalStretch(0)
                 sizePolicy.setVerticalStretch(0)
-                sizePolicy.setHeightForWidth(self.dockWidget_features.sizePolicy().hasHeightForWidth())
+                sizePolicy.setHeightForWidth(self.dockWidget_settings.sizePolicy().hasHeightForWidth())
 
-                self.dockWidget_features.setSizePolicy(sizePolicy)
-                self.dockWidget_features.setMinimumSize(QtCore.QSize(150, 50))
-                self.dockWidget_features.setObjectName("dockWidget_features")
+                self.dockWidget_settings.setSizePolicy(sizePolicy)
+                self.dockWidget_settings.setMinimumSize(QtCore.QSize(150, 50))
+                self.dockWidget_settings.setObjectName("dockWidget_settings")
 
-                self.dockWidget_features_contentsontents = QtWidgets.QWidget()
-                self.dockWidget_features_contentsontents.setObjectName("ddockWidget_features_contentsontents")
-                self.dockWidget_features.setWidget(self.dockWidget_features_contentsontents)
+                self.dockWidget_settings_contentsontents = QtWidgets.QWidget()
+                self.dockWidget_settings_contentsontents.setObjectName("ddockWidget_settings_contentsontents")
+                self.dockWidget_settings.setWidget(self.dockWidget_settings_contentsontents)
 
-                self.grid_features_dock = QtWidgets.QHBoxLayout(self.dockWidget_features_contentsontents)
-                self.grid_features_dock.setObjectName("grid_features_dock")
+                self.grid_settings_dock = QtWidgets.QHBoxLayout(self.dockWidget_settings_contentsontents)
+                self.grid_settings_dock.setObjectName("grid_settings_dock")
 
-                self.stacked_widget_features = QtWidgets.QStackedWidget(self.dockWidget_features_contentsontents)
+                self.stacked_widget_settings = QtWidgets.QStackedWidget(self.dockWidget_settings_contentsontents)
                 sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Ignored, QtWidgets.QSizePolicy.Ignored)
-                sizePolicy.setHeightForWidth(self.stacked_widget_features.sizePolicy().hasHeightForWidth())
-                self.stacked_widget_features.setSizePolicy(sizePolicy)
-                self.stacked_widget_features.setObjectName("stacked_widget_features")
-                self.grid_features_dock.addWidget(self.stacked_widget_features)
+                sizePolicy.setHeightForWidth(self.stacked_widget_settings.sizePolicy().hasHeightForWidth())
+                self.stacked_widget_settings.setSizePolicy(sizePolicy)
+                self.stacked_widget_settings.setObjectName("stacked_widget_settings")
+                self.grid_settings_dock.addWidget(self.stacked_widget_settings)
 
-                self.features_page_1 = QtWidgets.QWidget()
-                self.features_page_1.setObjectName("features_page_1")
+                self.settings_page_1 = QtWidgets.QWidget()
+                self.settings_page_1.setObjectName("settings_page_1")
 
-                self.features_grid_page_1 = QtWidgets.QVBoxLayout(self.features_page_1)
-                self.features_grid_page_1.setObjectName("features_grid_page_1")
+                self.settings_grid_page_1 = QtWidgets.QVBoxLayout(self.settings_page_1)
+                self.settings_grid_page_1.setObjectName("settings_grid_page_1")
 
-                self.label_default = QtWidgets.QLabel(self.features_page_1)
+                self.label_default = QtWidgets.QLabel(self.settings_page_1)
                 self.label_default.setObjectName("label_default")
                 self.label_default.setText("Select chart")
-                self.features_grid_page_1.addWidget(self.label_default)
+                self.settings_grid_page_1.addWidget(self.label_default)
 
 
-                self.features_page_2 = QtWidgets.QWidget()
-                self.features_page_2.setObjectName("features_page_2")
+                self.settings_page_2 = QtWidgets.QWidget()
+                self.settings_page_2.setObjectName("settings_page_2")
 
 
-                self.features_grid_page_2  = QtWidgets.QGridLayout(self.features_page_2)
-                self.features_grid_page_2.setObjectName("features_grid_page_2")
+                self.settings_grid_page_2  = QtWidgets.QGridLayout(self.settings_page_2)
+                self.settings_grid_page_2.setObjectName("settings_grid_page_2")
 
-                dock_data2 = dockData.Data(self.features_page_2, self.features_grid_page_2, self.central_layout)
-                dock_data2.futures_chart()
+                dock_data2 = dockData.Data(self.settings_page_2, self.settings_grid_page_2, self.central_layout)
+                dock_data2.settings_chart()
 
-                self.button_create = QtWidgets.QPushButton(self.features_page_2)
+                self.button_create = QtWidgets.QPushButton(self.settings_page_2)
                 sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Minimum)
                 sizePolicy.setHeightForWidth(self.button_create.sizePolicy().hasHeightForWidth())
                 self.button_create.setSizePolicy(sizePolicy)
                 self.button_create.setObjectName("button_create")
                 self.button_create.setText("Create")
-                self.features_grid_page_2.addWidget(self.button_create, 1, 0, 1, 1, QtCore.Qt.AlignLeft)
+                self.settings_grid_page_2.addWidget(self.button_create, 1, 0, 1, 1, QtCore.Qt.AlignLeft)
 
-                self.stacked_widget_features.addWidget(self.features_page_1)
-                self.stacked_widget_features.addWidget(self.features_page_2)
+                self.stacked_widget_settings.addWidget(self.settings_page_1)
+                self.stacked_widget_settings.addWidget(self.settings_page_2)
 
-                self.stacked_widget_features.setCurrentIndex(1)
+                self.stacked_widget_settings.setCurrentIndex(1)
 
-                self.main_window_in_class.addDockWidget(QtCore.Qt.DockWidgetArea(2), self.dockWidget_features)
+                self.main_window_in_class.addDockWidget(QtCore.Qt.DockWidgetArea(2), self.dockWidget_settings)
 
         def left_chart(self):
                 self.dock_widget_chart = QtWidgets.QDockWidget(self.main_window_in_class)
@@ -132,7 +132,7 @@ class Dock:
 
                 self.main_window_in_class.addDockWidget(QtCore.Qt.DockWidgetArea(1), self.dock_widget_chart)
                 ss = chart.Chart(self.dock_widget_chart_contents, self.dock_widget_chart, self.dockWidget_data_contents,
-                                 self.stacked_widget_data)
+                                 self.stacked_widget_data, self.stacked_widget_settings)
 
 
 
