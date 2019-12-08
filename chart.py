@@ -7,7 +7,8 @@ class Chart():
         self.dockWidgetChartContents = args[0]
         self.dockWidgetChart = args[1]
         self.dockWidget_1Contents = args[2]
-        self.stacked_Widget = args[3]
+        self.stacked_Widget_data = args[3]
+        self.stacked_widget_settings = args[4]
 
 
         self.horizontal_layout = QtWidgets.QHBoxLayout(self.dockWidgetChartContents)
@@ -58,7 +59,6 @@ class Chart():
 
 
     def on_click(self):
-        self.stacked_Widget.setCurrentIndex(1)
-
-        print("po wykonaniu")
+        self.stacked_Widget_data.setCurrentIndex(1)
+        self.stacked_widget_settings.setCurrentIndex(1)
 

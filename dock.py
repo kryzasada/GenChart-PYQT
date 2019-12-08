@@ -118,7 +118,7 @@ class Dock:
                 self.stacked_widget_settings.addWidget(self.settings_page_1)
                 self.stacked_widget_settings.addWidget(self.settings_page_2)
 
-                self.stacked_widget_settings.setCurrentIndex(1)
+                self.stacked_widget_settings.setCurrentIndex(0)
 
                 self.main_window_in_class.addDockWidget(QtCore.Qt.DockWidgetArea(2), self.dockWidget_settings)
 
