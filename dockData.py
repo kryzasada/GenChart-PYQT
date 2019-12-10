@@ -34,35 +34,35 @@ class Data():
         self.sizePolicy.setVerticalStretch(0)
 
         self.label_data = []
-        self.line_edit = []
-        self.array_position = int()
-        self.horizontal_position_widgets = int()
-        for self.horizontal_position_widgets in range(0, 4, 2):
-            for self.array_position in range(0, 2):
+        self.line_edit_data = []
+        self.array_position_data = int()
+        self.horizontal_position_widgets_data = int()
+        for self.horizontal_position_widgets_data in range(0, 4, 2):
+            for self.array_position_data in range(0, 2):
                 self.label_data.append(QtWidgets.QLabel(self.scroll_area_contents))
-                self.line_edit.append(QtWidgets.QLineEdit(self.scroll_area_contents))
+                self.line_edit_data.append(QtWidgets.QLineEdit(self.scroll_area_contents))
 
-                if self.array_position == 0:
-                    if (self.horizontal_position_widgets+1) < 2:
-                        self.data_scroll_layout.setWidget(self.horizontal_position_widgets, QtWidgets.QFormLayout.LabelRole,
-                                                   self.label_data[self.horizontal_position_widgets + self.array_position])
-                        self.label_data[self.horizontal_position_widgets+self.array_position].setText("NAME")
+                if self.array_position_data == 0:
+                    if (self.horizontal_position_widgets_data+1) < 2:
+                        self.data_scroll_layout.setWidget(self.horizontal_position_widgets_data, QtWidgets.QFormLayout.LabelRole,
+                                                   self.label_data[self.horizontal_position_widgets_data + self.array_position_data])
+                        self.label_data[self.horizontal_position_widgets_data+self.array_position_data].setText("NAME")
 
-                    self.data_scroll_layout.setWidget(self.horizontal_position_widgets + 1, QtWidgets.QFormLayout.LabelRole,
-                                               self.line_edit[self.horizontal_position_widgets + self.array_position])
+                    self.data_scroll_layout.setWidget(self.horizontal_position_widgets_data + 1, QtWidgets.QFormLayout.LabelRole,
+                                               self.line_edit_data[self.horizontal_position_widgets_data + self.array_position_data])
 
-                if self.array_position == 1:
-                    if (self.horizontal_position_widgets + 1) < 2:
-                        self.data_scroll_layout.setWidget(self.horizontal_position_widgets, QtWidgets.QFormLayout.FieldRole,
-                                                   self.label_data[self.horizontal_position_widgets + self.array_position])
-                        self.label_data[self.horizontal_position_widgets+self.array_position].setText("VALUE")
+                if self.array_position_data == 1:
+                    if (self.horizontal_position_widgets_data + 1) < 2:
+                        self.data_scroll_layout.setWidget(self.horizontal_position_widgets_data, QtWidgets.QFormLayout.FieldRole,
+                                                   self.label_data[self.horizontal_position_widgets_data + self.array_position_data])
+                        self.label_data[self.horizontal_position_widgets_data+self.array_position_data].setText("VALUE")
 
-                    self.data_scroll_layout.setWidget(self.horizontal_position_widgets + 1, QtWidgets.QFormLayout.FieldRole,
-                                               self.line_edit[self.horizontal_position_widgets + self.array_position])
-                    self.sizePolicy.setHeightForWidth(self.line_edit[
-                                                          self.horizontal_position_widgets + self.array_position
+                    self.data_scroll_layout.setWidget(self.horizontal_position_widgets_data + 1, QtWidgets.QFormLayout.FieldRole,
+                                               self.line_edit_data[self.horizontal_position_widgets_data + self.array_position_data])
+                    self.sizePolicy.setHeightForWidth(self.line_edit_data[
+                                                          self.horizontal_position_widgets_data + self.array_position_data
                                                       ].sizePolicy().hasHeightForWidth())
-                    self.line_edit[self.horizontal_position_widgets+self.array_position].setSizePolicy(self.sizePolicy)
+                    self.line_edit_data[self.horizontal_position_widgets_data+self.array_position_data].setSizePolicy(self.sizePolicy)
 
         self.default_data()
 
@@ -84,36 +84,36 @@ class Data():
 
 
     def default_data(self):
-        self.line_edit[0].setText("default_1")
-        self.line_edit[2].setText("default_2")
+        self.line_edit_data[0].setText("default_1")
+        self.line_edit_data[2].setText("default_2")
 
-        self.line_edit[1].setText("1")
-        self.line_edit[3].setText("1")
+        self.line_edit_data[1].setText("1")
+        self.line_edit_data[3].setText("1")
 
     def add_data(self):
-        self.horizontal_position_widgets += 2
-        self.data_scroll_layout.setWidget(self.horizontal_position_widgets + 4, QtWidgets.QFormLayout.LabelRole,
+        self.horizontal_position_widgets_data += 2
+        self.data_scroll_layout.setWidget(self.horizontal_position_widgets_data + 4, QtWidgets.QFormLayout.LabelRole,
                                    self.button_Create)
-        self.data_scroll_layout.setWidget(self.horizontal_position_widgets + 3, QtWidgets.QFormLayout.LabelRole,
+        self.data_scroll_layout.setWidget(self.horizontal_position_widgets_data + 3, QtWidgets.QFormLayout.LabelRole,
                                    self.button_Add)
-        self.data_scroll_layout.setWidget(self.horizontal_position_widgets + 2, QtWidgets.QFormLayout.LabelRole,
+        self.data_scroll_layout.setWidget(self.horizontal_position_widgets_data + 2, QtWidgets.QFormLayout.LabelRole,
                                    self.space)
 
-        self.line_edit.append(QtWidgets.QLineEdit(self.scroll_area_contents))
-        self.data_scroll_layout.setWidget(self.horizontal_position_widgets, QtWidgets.QFormLayout.LabelRole,
-                                   self.line_edit[self.array_position + 3])
-        self.line_edit.append(QtWidgets.QLineEdit(self.scroll_area_contents))
-        self.data_scroll_layout.setWidget(self.horizontal_position_widgets, QtWidgets.QFormLayout.FieldRole,
-                                   self.line_edit[self.array_position + 4])
+        self.line_edit_data.append(QtWidgets.QLineEdit(self.scroll_area_contents))
+        self.data_scroll_layout.setWidget(self.horizontal_position_widgets_data, QtWidgets.QFormLayout.LabelRole,
+                                   self.line_edit_data[self.array_position_data + 3])
+        self.line_edit_data.append(QtWidgets.QLineEdit(self.scroll_area_contents))
+        self.data_scroll_layout.setWidget(self.horizontal_position_widgets_data, QtWidgets.QFormLayout.FieldRole,
+                                   self.line_edit_data[self.array_position_data + 4])
 
-        self.line_edit[self.array_position + 3].setText("default_" + str(int(self.horizontal_position_widgets/2 + 1)))
-        self.line_edit[self.array_position + 4].setText("1")
+        self.line_edit_data[self.array_position_data + 3].setText("default_" + str(int(self.horizontal_position_widgets_data/2 + 1)))
+        self.line_edit_data[self.array_position_data + 4].setText("1")
 
-        self.sizePolicy.setHeightForWidth(self.line_edit[self.array_position + 4]
+        self.sizePolicy.setHeightForWidth(self.line_edit_data[self.array_position_data + 4]
                                           .sizePolicy().hasHeightForWidth())
-        self.line_edit[self.array_position + 4].setSizePolicy(self.sizePolicy)
+        self.line_edit_data[self.array_position_data + 4].setSizePolicy(self.sizePolicy)
 
-        self.array_position += 2
+        self.array_position_data += 2
 
     def settings_chart(self):
         self.tab_widget = QtWidgets.QTabWidget(self.page_2)
@@ -141,7 +141,8 @@ class Data():
         self.scroll_color_layout = QtWidgets.QFormLayout(self.scroll_color_contents)
         self.scroll_color_layout.setObjectName("scroll_color_layout")
 
-        ###
+
+
         self.label1_color = QtWidgets.QLabel(self.scroll_color_contents)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
@@ -149,7 +150,7 @@ class Data():
         sizePolicy.setHeightForWidth(self.label1_color.sizePolicy().hasHeightForWidth())
         self.label1_color.setSizePolicy(sizePolicy)
         self.label1_color.setObjectName("label1_color")
-        self.label1_color.setText("123")
+        self.label1_color.setText("default_1")
         self.scroll_color_layout.setWidget(0, QtWidgets.QFormLayout.LabelRole, self.label1_color)
 
         self.button1_color = QtWidgets.QPushButton(self.scroll_color_contents)
@@ -170,7 +171,7 @@ class Data():
         sizePolicy.setHeightForWidth(self.label2_color.sizePolicy().hasHeightForWidth())
         self.label2_color.setSizePolicy(sizePolicy)
         self.label2_color.setObjectName("label2_color")
-        self.label2_color.setText("123")
+        self.label2_color.setText("default_2")
         self.scroll_color_layout.setWidget(1, QtWidgets.QFormLayout.LabelRole, self.label2_color)
 
         self.button2_color = QtWidgets.QPushButton(self.scroll_color_contents)
@@ -280,12 +281,12 @@ class Data():
         self.central_layout.addWidget(static_canvas)
 
         sizes = []
-        for x in range(0, len(self.line_edit), 2):
-            sizes.append(self.line_edit[x+1].text())
+        for x in range(0, len(self.line_edit_data), 2):
+            sizes.append(self.line_edit_data[x+1].text())
 
         labels = []
-        for x in range(0, len(self.line_edit), 2):
-            labels.append(str(self.line_edit[x].text()))
+        for x in range(0, len(self.line_edit_data), 2):
+            labels.append(str(self.line_edit_data[x].text()))
 
 
         # explode = (0, 0.1)  # only "explode" the 2nd slice (i.e. 'Hogs')
