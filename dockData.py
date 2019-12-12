@@ -3,13 +3,17 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from matplotlib.backends.backend_qt5agg import FigureCanvas
 from matplotlib.figure import Figure
 
+import dock
+
 class Data():
     def __init__(self, *args):
         self.page_2 = args[0]
         self.grid_page_2 = args[1]
         self.central_layout = args[2]
 
-    def write_data(self):
+
+    def write_data(self, dock_data):
+        self.dock_data = dock_data
         self.scroll_area = QtWidgets.QScrollArea(self.page_2)
 
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Ignored, QtWidgets.QSizePolicy.Expanding)
@@ -84,6 +88,7 @@ class Data():
 
 
     def default_data(self):
+
         self.line_edit_data[0].setText("default_1")
         self.line_edit_data[2].setText("default_2")
 
@@ -115,7 +120,9 @@ class Data():
 
         self.array_position_data += 2
 
-    def settings_chart(self):
+    def settings_chart(self, dock_data):
+        self.dock_data=dock_data
+
         self.tab_widget = QtWidgets.QTabWidget(self.page_2)
         self.tab_widget.setObjectName("tab_widget")
         self.grid_page_2.addWidget(self.tab_widget, 0, 0, 1, 1)
@@ -141,49 +148,30 @@ class Data():
         self.scroll_color_layout = QtWidgets.QFormLayout(self.scroll_color_contents)
         self.scroll_color_layout.setObjectName("scroll_color_layout")
 
-
-
-        self.label1_color = QtWidgets.QLabel(self.scroll_color_contents)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Preferred)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.label1_color.sizePolicy().hasHeightForWidth())
-        self.label1_color.setSizePolicy(sizePolicy)
-        self.label1_color.setObjectName("label1_color")
-        self.label1_color.setText("default_1")
-        self.scroll_color_layout.setWidget(0, QtWidgets.QFormLayout.LabelRole, self.label1_color)
-
-        self.button1_color = QtWidgets.QPushButton(self.scroll_color_contents)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.button1_color.sizePolicy().hasHeightForWidth())
-        self.button1_color.setSizePolicy(sizePolicy)
-        self.button1_color.setStyleSheet("background-color: rgb(170, 0, 0);")
-        self.button1_color.setText("")
-        self.button1_color.setObjectName("button1_color")
-        self.scroll_color_layout.setWidget(0, QtWidgets.QFormLayout.FieldRole, self.button1_color)
 
-        self.label2_color = QtWidgets.QLabel(self.scroll_color_contents)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Preferred)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.label2_color.sizePolicy().hasHeightForWidth())
-        self.label2_color.setSizePolicy(sizePolicy)
-        self.label2_color.setObjectName("label2_color")
-        self.label2_color.setText("default_2")
-        self.scroll_color_layout.setWidget(1, QtWidgets.QFormLayout.LabelRole, self.label2_color)
+        #print (str(dock.Dock.right_up(self).dock_data.data.line_edit_data[0].text()))
+        self.buttons_color = []
+        self.array_position_color= int()
 
-        self.button2_color = QtWidgets.QPushButton(self.scroll_color_contents)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.button2_color.sizePolicy().hasHeightForWidth())
-        self.button2_color.setSizePolicy(sizePolicy)
-        self.button2_color.setStyleSheet("background-color: rgb(170, 0, 0);")
-        self.button2_color.setText("")
-        self.button2_color.setObjectName("button2_color")
-        self.scroll_color_layout.setWidget(1, QtWidgets.QFormLayout.FieldRole, self.button2_color)
+        label_settings = []
+
+        for self.array_position_color in range(0, 2):
+            print(self.array_position_color)
+            label_settings.append(QtWidgets.QLabel(self.scroll_color_contents))
+            label_settings[self.array_position_color].setText(self.dock_data.line_edit_data[self.array_position_color*2].text())
+            self.scroll_color_layout.setWidget(self.array_position_color, QtWidgets.QFormLayout.LabelRole, label_settings[self.array_position_color])
+
+            self.buttons_color.append(QtWidgets.QPushButton(self.scroll_color_contents))
+            self.scroll_color_layout.setWidget(self.array_position_color, QtWidgets.QFormLayout.FieldRole, self.buttons_color[self.array_position_color])
+            self.buttons_color[self.array_position_color].setSizePolicy(sizePolicy)
+            sizePolicy.setHeightForWidth(self.buttons_color[self.array_position_color].hasHeightForWidth())
+            self.buttons_color[self.array_position_color].setStyleSheet("background-color: rgb(170, 0, 0);")
+
+
+
 
         self.page_explode = QtWidgets.QWidget()
         self.page_explode.setObjectName("page_explode")
@@ -283,6 +271,7 @@ class Data():
         sizes = []
         for x in range(0, len(self.line_edit_data), 2):
             sizes.append(self.line_edit_data[x+1].text())
+
 
         labels = []
         for x in range(0, len(self.line_edit_data), 2):
