@@ -19,5 +19,9 @@ Chart generating program, written in PyQt5
 
 ## TODO
 
-&#x23F3; Coming soon
+|  ![Graph](https://github.com/kryzasada/ReadMe-Photo/blob/master/Chart/chart-table1.png) | ![Graph](https://github.com/kryzasada/ReadMe-Photo/blob/master/Chart/chart-table2.png) | ![Graph](https://github.com/kryzasada/ReadMe-Photo/blob/master/Chart/Chart-table3.png) |
+| :------------: | :------------: | :------------: |
+| &#x2753; | &#x2753; | &#x2753; |
+| &#x2753; | &#x2753; | &#x2753; |
         
+&#x23F3; Coming soon
