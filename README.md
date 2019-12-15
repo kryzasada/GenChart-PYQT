@@ -1,4 +1,4 @@
-## Chart
+# Chart
 
 Chart generating program, written in PyQt5 
 
