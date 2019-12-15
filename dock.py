@@ -1,5 +1,5 @@
 from PyQt5 import QtCore, QtWidgets
-import chart, dockData
+import chart, basicPie
 
 
 class Dock:
@@ -50,7 +50,7 @@ class Dock:
                 self.data_grid_page_2.setObjectName("data_grid_page_2")
 
                 self.dock_data2 = 0
-                self.dock_data = dockData.Data(self.data_page_2, self.data_grid_page_2, self.central_layout)
+                self.dock_data = basicPie.Data(self.data_page_2, self.data_grid_page_2, self.central_layout)
                 self.dock_data.write_data(self.dock_data2)
                 print(str(self.dock_data.line_edit_data[0].text()))
 
@@ -106,7 +106,7 @@ class Dock:
                 self.settings_grid_page_2  = QtWidgets.QGridLayout(self.settings_page_2)
                 self.settings_grid_page_2.setObjectName("settings_grid_page_2")
 
-                self.dock_data2 = dockData.Data(self.settings_page_2, self.settings_grid_page_2, self.central_layout)
+                self.dock_data2 = basicPie.Data(self.settings_page_2, self.settings_grid_page_2, self.central_layout)
                 self.dock_data2.settings_chart(self.dock_data)
 
                 self.button_create = QtWidgets.QPushButton(self.settings_page_2)
