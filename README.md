@@ -11,7 +11,7 @@ Chart generating program, written in PyQt5
 
 
 ## Program structure
-![Graph](https://github.com/kryzasada/ReadMe-Image/blob/master/graph-chart.png)
+![Graph](https://github.com/kryzasada/ReadMe-Photo/blob/master/Chart/graph-chart.png)
 ## Important versions
 
 &#x23F3; Coming soon
