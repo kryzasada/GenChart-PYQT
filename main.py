@@ -7,7 +7,7 @@
 from PyQt5 import QtCore, QtGui, QtWidgets, QtQuickWidgets
 from PyQt5 import QtQuickWidgets
 import sys
-import dock, menuStatusBar, chart
+import dock, menuStatusBar, chartList
 
 
 

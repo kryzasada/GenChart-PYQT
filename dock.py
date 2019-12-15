@@ -1,5 +1,5 @@
 from PyQt5 import QtCore, QtWidgets
-import chart, basicPie
+import chartList, basicPie
 
 
 class Dock:
@@ -133,7 +133,7 @@ class Dock:
                 self.dock_widget_chart_contents.setObjectName("dockWidgetChartContents")
 
                 self.main_window_in_class.addDockWidget(QtCore.Qt.DockWidgetArea(1), self.dock_widget_chart)
-                ss = chart.Chart(self.dock_widget_chart_contents, self.dock_widget_chart, self.dockWidget_data_contents,
+                ss = chartList.Chart(self.dock_widget_chart_contents, self.dock_widget_chart, self.dockWidget_data_contents,
                                  self.stacked_widget_data, self.stacked_widget_settings)
 
 
