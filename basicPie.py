@@ -36,7 +36,6 @@ class Data():
         self.sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Maximum, QtWidgets.QSizePolicy.Fixed)
         self.sizePolicy.setHorizontalStretch(0)
         self.sizePolicy.setVerticalStretch(0)
-
         self.label_data = []
         self.line_edit_data = []
         self.array_position_data = int()
@@ -96,6 +95,7 @@ class Data():
         self.line_edit_data[3].setText("1")
 
     def add_data(self):
+
         self.horizontal_position_widgets_data += 2
         self.data_scroll_layout.setWidget(self.horizontal_position_widgets_data + 4, QtWidgets.QFormLayout.LabelRole,
                                    self.button_Create)
@@ -120,8 +120,11 @@ class Data():
 
         self.array_position_data += 2
 
+        print(dock.dock_data)
+
     def settings_chart(self, dock_data):
         self.dock_data=dock_data
+
 
         self.tab_widget = QtWidgets.QTabWidget(self.page_2)
         self.tab_widget.setObjectName("tab_widget")
@@ -155,9 +158,8 @@ class Data():
         label_color = []
         self.buttons_color = []
         for array_position in range(0, 2):
-            print(array_position)
             label_color.append(QtWidgets.QLabel(self.scroll_color_contents))
-            label_color[array_position].setText(self.dock_data.line_edit_data[array_position*2].text())
+            label_color[array_position].setText(dock.dock_data.line_edit_data[array_position*2].text())
             self.scroll_color_layout.setWidget(array_position, QtWidgets.QFormLayout.LabelRole, label_color[array_position])
 
             self.buttons_color.append(QtWidgets.QPushButton(self.scroll_color_contents))
@@ -195,7 +197,7 @@ class Data():
         spin_box_explode = []
         for array_position in range(0, 2):
             label_explode.append(QtWidgets.QLabel(self.scroll_explode_contents))
-            label_explode[array_position].setText(self.dock_data.line_edit_data[array_position*2].text())
+            label_explode[array_position].setText(dock.dock_data.line_edit_data[array_position*2].text())
             self.scroll_explode_layout.setWidget(array_position, QtWidgets.QFormLayout.LabelRole, label_explode[array_position])
 
             spin_box_explode.append(QtWidgets.QDoubleSpinBox(self.scroll_explode_contents))
@@ -234,7 +236,6 @@ class Data():
         self.scroll_settings_layout.setWidget(1, QtWidgets.QFormLayout.LabelRole, self.check_box2_settings)
 
         self.tab_widget.setCurrentIndex(0)
-
     def pie_default(self):
 
         for i in reversed(range(self.central_layout.count())):

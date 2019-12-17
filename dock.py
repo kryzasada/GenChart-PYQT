@@ -1,6 +1,9 @@
 from PyQt5 import QtCore, QtWidgets
 import chartList, basicPie
 
+dock_data = 0
+dock_data2 = 0
+
 
 class Dock:
         def __init__(self, *args):
@@ -49,10 +52,9 @@ class Dock:
                 self.data_grid_page_2 = QtWidgets.QGridLayout(self.data_page_2)
                 self.data_grid_page_2.setObjectName("data_grid_page_2")
 
-                self.dock_data2 = 0
-                self.dock_data = basicPie.Data(self.data_page_2, self.data_grid_page_2, self.central_layout)
-                self.dock_data.write_data(self.dock_data2)
-                print(str(self.dock_data.line_edit_data[0].text()))
+                global dock_data
+                dock_data = basicPie.Data(self.data_page_2, self.data_grid_page_2, self.central_layout)
+                dock_data.write_data(dock_data2)
 
                 self.stacked_widget_data.addWidget(self.data_page_1)
                 self.stacked_widget_data.addWidget(self.data_page_2)
@@ -106,8 +108,9 @@ class Dock:
                 self.settings_grid_page_2  = QtWidgets.QGridLayout(self.settings_page_2)
                 self.settings_grid_page_2.setObjectName("settings_grid_page_2")
 
-                self.dock_data2 = basicPie.Data(self.settings_page_2, self.settings_grid_page_2, self.central_layout)
-                self.dock_data2.settings_chart(self.dock_data)
+                global dock_data2
+                dock_data2 = basicPie.Data(self.settings_page_2, self.settings_grid_page_2, self.central_layout)
+                dock_data2.settings_chart(dock_data)
 
                 self.button_create = QtWidgets.QPushButton(self.settings_page_2)
                 sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Minimum)
@@ -135,8 +138,6 @@ class Dock:
                 self.main_window_in_class.addDockWidget(QtCore.Qt.DockWidgetArea(1), self.dock_widget_chart)
                 ss = chartList.Chart(self.dock_widget_chart_contents, self.dock_widget_chart, self.dockWidget_data_contents,
                                  self.stacked_widget_data, self.stacked_widget_settings)
-
-
 
 
 
