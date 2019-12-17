@@ -112,6 +112,8 @@ class Dock:
                 dock_data2 = basicPie.Data(self.settings_page_2, self.settings_grid_page_2, self.central_layout)
                 dock_data2.settings_chart(dock_data)
 
+
+
                 self.button_create = QtWidgets.QPushButton(self.settings_page_2)
                 sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Minimum)
                 sizePolicy.setHeightForWidth(self.button_create.sizePolicy().hasHeightForWidth())

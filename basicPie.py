@@ -85,7 +85,6 @@ class Data():
         self.button_Create.setText("CREATE")
         self.button_Create.clicked.connect(lambda: self.pie_default())
 
-
     def default_data(self):
 
         self.line_edit_data[0].setText("default_1")
@@ -96,6 +95,7 @@ class Data():
 
     def add_data(self):
 
+        print(self.horizontal_position_widgets_data)
         self.horizontal_position_widgets_data += 2
         self.data_scroll_layout.setWidget(self.horizontal_position_widgets_data + 4, QtWidgets.QFormLayout.LabelRole,
                                    self.button_Create)
@@ -120,7 +120,41 @@ class Data():
 
         self.array_position_data += 2
 
-        print(dock.dock_data)
+
+
+
+        dock.dock_data2.label_color.append(QtWidgets.QLabel(dock.dock_data2.scroll_color_contents))
+        dock.dock_data2.label_color[int(self.horizontal_position_widgets_data/2)].setText(dock.dock_data.line_edit_data[self.horizontal_position_widgets_data].text())
+        dock.dock_data2.scroll_color_layout.setWidget(int(self.horizontal_position_widgets_data/2), QtWidgets.QFormLayout.LabelRole,
+                                           dock.dock_data2.label_color[int(self.horizontal_position_widgets_data/2)])
+
+
+
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+
+        dock.dock_data2.buttons_color.append(QtWidgets.QPushButton(dock.dock_data2.scroll_color_contents))
+        dock.dock_data2.scroll_color_layout.setWidget(int(self.horizontal_position_widgets_data/2), QtWidgets.QFormLayout.FieldRole,
+                                           dock.dock_data2.buttons_color[int(self.horizontal_position_widgets_data/2)])
+        dock.dock_data2.buttons_color[int(self.horizontal_position_widgets_data/2)].setSizePolicy(sizePolicy)
+        sizePolicy.setHeightForWidth(dock.dock_data2.buttons_color[int(self.horizontal_position_widgets_data/2)].hasHeightForWidth())
+        dock.dock_data2.buttons_color[int(self.horizontal_position_widgets_data/2)].setStyleSheet("background-color: rgb(170, 0, 0);")
+
+
+
+        dock.dock_data2.label_explode.append(QtWidgets.QLabel(dock.dock_data2.scroll_explode_contents))
+        dock.dock_data2.label_explode[int(self.horizontal_position_widgets_data/2)].setText(dock.dock_data.line_edit_data[self.horizontal_position_widgets_data].text())
+        dock.dock_data2.scroll_explode_layout.setWidget(int(self.horizontal_position_widgets_data/2), QtWidgets.QFormLayout.LabelRole,
+                                           dock.dock_data2.label_explode[int(self.horizontal_position_widgets_data/2)])
+
+        dock.dock_data2.spin_box_explode.append(QtWidgets.QDoubleSpinBox(dock.dock_data2.scroll_explode_contents))
+        sizePolicy.setHeightForWidth(dock.dock_data2.spin_box_explode[int(self.horizontal_position_widgets_data/2)].sizePolicy().hasHeightForWidth())
+        dock.dock_data2.spin_box_explode[int(self.horizontal_position_widgets_data/2)].setSizePolicy(sizePolicy)
+        dock.dock_data2.scroll_explode_layout.setWidget(int(self.horizontal_position_widgets_data/2), QtWidgets.QFormLayout.FieldRole,
+                                           dock.dock_data2.spin_box_explode[int(self.horizontal_position_widgets_data/2)])
+
+        dock.dock_data2.scroll_color_contents.update()
 
     def settings_chart(self, dock_data):
         self.dock_data=dock_data
@@ -155,18 +189,21 @@ class Data():
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
 
-        label_color = []
+
+
+        self.label_color = []
         self.buttons_color = []
         for array_position in range(0, 2):
-            label_color.append(QtWidgets.QLabel(self.scroll_color_contents))
-            label_color[array_position].setText(dock.dock_data.line_edit_data[array_position*2].text())
-            self.scroll_color_layout.setWidget(array_position, QtWidgets.QFormLayout.LabelRole, label_color[array_position])
+            self.label_color.append(QtWidgets.QLabel(self.scroll_color_contents))
+            self.label_color[array_position].setText(dock.dock_data.line_edit_data[array_position*2].text())
+            self.scroll_color_layout.setWidget(array_position, QtWidgets.QFormLayout.LabelRole, self.label_color[array_position])
 
             self.buttons_color.append(QtWidgets.QPushButton(self.scroll_color_contents))
             self.scroll_color_layout.setWidget(array_position, QtWidgets.QFormLayout.FieldRole, self.buttons_color[array_position])
             self.buttons_color[array_position].setSizePolicy(sizePolicy)
             sizePolicy.setHeightForWidth(self.buttons_color[array_position].hasHeightForWidth())
             self.buttons_color[array_position].setStyleSheet("background-color: rgb(170, 0, 0);")
+
 
         self.page_explode = QtWidgets.QWidget()
         self.page_explode.setObjectName("page_explode")
@@ -193,17 +230,17 @@ class Data():
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
 
-        label_explode = []
-        spin_box_explode = []
+        self.label_explode = []
+        self.spin_box_explode = []
         for array_position in range(0, 2):
-            label_explode.append(QtWidgets.QLabel(self.scroll_explode_contents))
-            label_explode[array_position].setText(dock.dock_data.line_edit_data[array_position*2].text())
-            self.scroll_explode_layout.setWidget(array_position, QtWidgets.QFormLayout.LabelRole, label_explode[array_position])
+            self.label_explode.append(QtWidgets.QLabel(self.scroll_explode_contents))
+            self.label_explode[array_position].setText(dock.dock_data.line_edit_data[array_position*2].text())
+            self.scroll_explode_layout.setWidget(array_position, QtWidgets.QFormLayout.LabelRole, self.label_explode[array_position])
 
-            spin_box_explode.append(QtWidgets.QDoubleSpinBox(self.scroll_explode_contents))
-            sizePolicy.setHeightForWidth(spin_box_explode[array_position].sizePolicy().hasHeightForWidth())
-            spin_box_explode[array_position].setSizePolicy(sizePolicy)
-            self.scroll_explode_layout.setWidget(array_position, QtWidgets.QFormLayout.FieldRole, spin_box_explode[array_position])
+            self.spin_box_explode.append(QtWidgets.QDoubleSpinBox(self.scroll_explode_contents))
+            sizePolicy.setHeightForWidth(self.spin_box_explode[array_position].sizePolicy().hasHeightForWidth())
+            self.spin_box_explode[array_position].setSizePolicy(sizePolicy)
+            self.scroll_explode_layout.setWidget(array_position, QtWidgets.QFormLayout.FieldRole, self.spin_box_explode[array_position])
 
         self.page_settings = QtWidgets.QWidget()
         self.page_settings.setObjectName("page_settings")
