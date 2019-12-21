@@ -54,6 +54,9 @@ class Data():
                     self.data_scroll_layout.setWidget(self.horizontal_position_widgets_data + 1, QtWidgets.QFormLayout.LabelRole,
                                                self.line_edit_data[self.horizontal_position_widgets_data + self.array_position_data])
 
+                    self.line_edit_data[self.horizontal_position_widgets_data].setText(
+                        "default_" + str(int(self.horizontal_position_widgets_data/2+1)))
+
                 if self.array_position_data == 1:
                     if (self.horizontal_position_widgets_data + 1) < 2:
                         self.data_scroll_layout.setWidget(self.horizontal_position_widgets_data, QtWidgets.QFormLayout.FieldRole,
@@ -67,7 +70,19 @@ class Data():
                                                       ].sizePolicy().hasHeightForWidth())
                     self.line_edit_data[self.horizontal_position_widgets_data+self.array_position_data].setSizePolicy(self.sizePolicy)
 
-        self.default_data()
+                    self.line_edit_data[self.horizontal_position_widgets_data+self.array_position_data].setText("1")
+
+        self.line_edit_data[0].textChanged.connect(lambda: dock.dock_data2.label_color[0].setText(
+                self.line_edit_data[0].text()))
+
+        self.line_edit_data[2].textChanged.connect(lambda: dock.dock_data2.label_color[1].setText(
+            self.line_edit_data[2].text()))
+
+        self.line_edit_data[0].textChanged.connect(lambda: dock.dock_data2.label_explode[0].setText(
+                self.line_edit_data[0].text()))
+
+        self.line_edit_data[2].textChanged.connect(lambda: dock.dock_data2.label_explode[1].setText(
+            self.line_edit_data[2].text()))
 
         self.button_Add = QtWidgets.QPushButton(self.scroll_area_contents)
         self.button_Add.setSizePolicy(self.sizePolicy)
@@ -85,18 +100,11 @@ class Data():
         self.button_Create.setText("CREATE")
         self.button_Create.clicked.connect(lambda: self.pie_default())
 
-    def default_data(self):
-
-        self.line_edit_data[0].setText("default_1")
-        self.line_edit_data[2].setText("default_2")
-
-        self.line_edit_data[1].setText("1")
-        self.line_edit_data[3].setText("1")
 
     def add_data(self):
 
-        print(self.horizontal_position_widgets_data)
         self.horizontal_position_widgets_data += 2
+        self.array_position_data += 2
         self.data_scroll_layout.setWidget(self.horizontal_position_widgets_data + 4, QtWidgets.QFormLayout.LabelRole,
                                    self.button_Create)
         self.data_scroll_layout.setWidget(self.horizontal_position_widgets_data + 3, QtWidgets.QFormLayout.LabelRole,
@@ -106,29 +114,27 @@ class Data():
 
         self.line_edit_data.append(QtWidgets.QLineEdit(self.scroll_area_contents))
         self.data_scroll_layout.setWidget(self.horizontal_position_widgets_data, QtWidgets.QFormLayout.LabelRole,
-                                   self.line_edit_data[self.array_position_data + 3])
+                                   self.line_edit_data[self.array_position_data + 1])
         self.line_edit_data.append(QtWidgets.QLineEdit(self.scroll_area_contents))
         self.data_scroll_layout.setWidget(self.horizontal_position_widgets_data, QtWidgets.QFormLayout.FieldRole,
-                                   self.line_edit_data[self.array_position_data + 4])
+                                   self.line_edit_data[self.array_position_data + 2])
 
-        self.line_edit_data[self.array_position_data + 3].setText("default_" + str(int(self.horizontal_position_widgets_data/2 + 1)))
-        self.line_edit_data[self.array_position_data + 4].setText("1")
+        self.line_edit_data[self.array_position_data + 1].setText("default_" + str(int(self.horizontal_position_widgets_data/2 + 1)))
+        self.line_edit_data[self.array_position_data + 2].setText("1")
 
-        self.sizePolicy.setHeightForWidth(self.line_edit_data[self.array_position_data + 4]
+        self.sizePolicy.setHeightForWidth(self.line_edit_data[self.array_position_data + 2]
                                           .sizePolicy().hasHeightForWidth())
-        self.line_edit_data[self.array_position_data + 4].setSizePolicy(self.sizePolicy)
-
-        self.array_position_data += 2
-
-
+        self.line_edit_data[self.array_position_data + 2].setSizePolicy(self.sizePolicy)
 
 
         dock.dock_data2.label_color.append(QtWidgets.QLabel(dock.dock_data2.scroll_color_contents))
-        dock.dock_data2.label_color[int(self.horizontal_position_widgets_data/2)].setText(dock.dock_data.line_edit_data[self.horizontal_position_widgets_data].text())
+        dock.dock_data2.label_color[int(self.horizontal_position_widgets_data / 2)].setText(dock.dock_data.line_edit_data[self.horizontal_position_widgets_data].text())
         dock.dock_data2.scroll_color_layout.setWidget(int(self.horizontal_position_widgets_data/2), QtWidgets.QFormLayout.LabelRole,
                                            dock.dock_data2.label_color[int(self.horizontal_position_widgets_data/2)])
 
-
+        self.line_edit_data[self.horizontal_position_widgets_data].textChanged.connect(
+            lambda: dock.dock_data2.label_color[int(self.horizontal_position_widgets_data / 2)].setText(
+                self.line_edit_data[self.horizontal_position_widgets_data].text()))
 
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
@@ -141,12 +147,14 @@ class Data():
         sizePolicy.setHeightForWidth(dock.dock_data2.buttons_color[int(self.horizontal_position_widgets_data/2)].hasHeightForWidth())
         dock.dock_data2.buttons_color[int(self.horizontal_position_widgets_data/2)].setStyleSheet("background-color: rgb(170, 0, 0);")
 
-
-
         dock.dock_data2.label_explode.append(QtWidgets.QLabel(dock.dock_data2.scroll_explode_contents))
         dock.dock_data2.label_explode[int(self.horizontal_position_widgets_data/2)].setText(dock.dock_data.line_edit_data[self.horizontal_position_widgets_data].text())
         dock.dock_data2.scroll_explode_layout.setWidget(int(self.horizontal_position_widgets_data/2), QtWidgets.QFormLayout.LabelRole,
                                            dock.dock_data2.label_explode[int(self.horizontal_position_widgets_data/2)])
+
+        self.line_edit_data[self.horizontal_position_widgets_data].textChanged.connect(
+            lambda: dock.dock_data2.label_explode[int(self.horizontal_position_widgets_data / 2)].setText(
+                self.line_edit_data[self.horizontal_position_widgets_data].text()))
 
         dock.dock_data2.spin_box_explode.append(QtWidgets.QDoubleSpinBox(dock.dock_data2.scroll_explode_contents))
         sizePolicy.setHeightForWidth(dock.dock_data2.spin_box_explode[int(self.horizontal_position_widgets_data/2)].sizePolicy().hasHeightForWidth())
