@@ -3,6 +3,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from matplotlib.backends.backend_qt5agg import FigureCanvas
 from matplotlib.figure import Figure
 from functools import partial
+import random
 
 import dock
 
@@ -142,18 +143,32 @@ class Data():
         sizePolicy.setVerticalStretch(0)
 
         dock.dock_data2.buttons_color.append(QtWidgets.QPushButton(dock.dock_data2.scroll_color_contents))
-        dock.dock_data2.scroll_color_layout.setWidget(int(self.horizontal_position_widgets_data/2), QtWidgets.QFormLayout.FieldRole,
-                                           dock.dock_data2.buttons_color[int(self.horizontal_position_widgets_data/2)])
+        dock.dock_data2.scroll_color_layout.setWidget(int(self.horizontal_position_widgets_data/2),
+                    QtWidgets.QFormLayout.FieldRole,dock.dock_data2.buttons_color[
+                     int(self.horizontal_position_widgets_data/2)])
         dock.dock_data2.buttons_color[int(self.horizontal_position_widgets_data/2)].setSizePolicy(sizePolicy)
-        sizePolicy.setHeightForWidth(dock.dock_data2.buttons_color[int(self.horizontal_position_widgets_data/2)].hasHeightForWidth())
-        dock.dock_data2.buttons_color[int(self.horizontal_position_widgets_data/2)].setStyleSheet("background-color: rgb(170, 0, 0);")
-        dock.dock_data2.buttons_color[int(self.horizontal_position_widgets_data/2)].clicked.connect(partial(self.button_color, int(self.horizontal_position_widgets_data/2)))
+        sizePolicy.setHeightForWidth(dock.dock_data2.buttons_color[int(
+                    self.horizontal_position_widgets_data/2)].hasHeightForWidth())
+        dock.dock_data2.buttons_color[int(self.horizontal_position_widgets_data/2)].clicked.connect(partial(
+                    self.button_color, int(self.horizontal_position_widgets_data/2)))
 
+        if self.horizontal_position_widgets_data/2 == 2.0:
+            dock.dock_data2.buttons_color[2].setStyleSheet("background-color: rgb(44, 180, 44);")
+
+        elif self.horizontal_position_widgets_data/2 == 3.0:
+            dock.dock_data2.buttons_color[3].setStyleSheet("background-color: rgb(164, 70, 74);")
+
+        else:
+            dock.dock_data2.buttons_color[int(self.horizontal_position_widgets_data/2)].setStyleSheet(
+                    "background-color: rgb(%s, %s, %s);" % (random.randint(0, 250), random.randint(0, 250),
+                                                            random.randint(0, 250)))
 
         dock.dock_data2.label_explode.append(QtWidgets.QLabel(dock.dock_data2.scroll_explode_contents))
-        dock.dock_data2.label_explode[int(self.horizontal_position_widgets_data/2)].setText(dock.dock_data.line_edit_data[self.horizontal_position_widgets_data].text())
-        dock.dock_data2.scroll_explode_layout.setWidget(int(self.horizontal_position_widgets_data/2), QtWidgets.QFormLayout.LabelRole,
-                                           dock.dock_data2.label_explode[int(self.horizontal_position_widgets_data/2)])
+        dock.dock_data2.label_explode[int(self.horizontal_position_widgets_data/2)].setText(
+                                            dock.dock_data.line_edit_data[self.horizontal_position_widgets_data].text())
+        dock.dock_data2.scroll_explode_layout.setWidget(int(self.horizontal_position_widgets_data/2),
+                                                        QtWidgets.QFormLayout.LabelRole,dock.dock_data2.label_explode[
+                                                        int(self.horizontal_position_widgets_data/2)])
 
         self.line_edit_data[self.horizontal_position_widgets_data].textChanged.connect(
             lambda: dock.dock_data2.label_explode[int(self.horizontal_position_widgets_data / 2)].setText(
@@ -162,15 +177,16 @@ class Data():
         dock.dock_data2.spin_box_explode.append(QtWidgets.QDoubleSpinBox(dock.dock_data2.scroll_explode_contents))
         sizePolicy.setHeightForWidth(dock.dock_data2.spin_box_explode[int(self.horizontal_position_widgets_data/2)].sizePolicy().hasHeightForWidth())
         dock.dock_data2.spin_box_explode[int(self.horizontal_position_widgets_data/2)].setSizePolicy(sizePolicy)
-        dock.dock_data2.scroll_explode_layout.setWidget(int(self.horizontal_position_widgets_data/2), QtWidgets.QFormLayout.FieldRole,
-                                           dock.dock_data2.spin_box_explode[int(self.horizontal_position_widgets_data/2)])
-
-
+        dock.dock_data2.scroll_explode_layout.setWidget(int(self.horizontal_position_widgets_data/2),
+                                                        QtWidgets.QFormLayout.FieldRole,
+                                                        dock.dock_data2.spin_box_explode[int(
+                                                            self.horizontal_position_widgets_data/2)])
 
         dock.dock_data2.scroll_color_contents.update()
-    def settings_chart(self, dock_data):
-        self.dock_data=dock_data
 
+    def settings_chart(self, dock_data):
+
+        self.dock_data=dock_data
 
         self.tab_widget = QtWidgets.QTabWidget(self.page_2)
         self.tab_widget.setObjectName("tab_widget")
@@ -197,7 +213,6 @@ class Data():
         self.scroll_color_layout = QtWidgets.QFormLayout(self.scroll_color_contents)
         self.scroll_color_layout.setObjectName("scroll_color_layout")
 
-
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -213,8 +228,12 @@ class Data():
             self.scroll_color_layout.setWidget(array_position, QtWidgets.QFormLayout.FieldRole, self.buttons_color[array_position])
             self.buttons_color[array_position].setSizePolicy(sizePolicy)
             sizePolicy.setHeightForWidth(self.buttons_color[array_position].hasHeightForWidth())
-            self.buttons_color[array_position].setStyleSheet("background-color: rgb(170, 0, 0);")
             self.buttons_color[array_position].clicked.connect(partial(self.button_color, array_position))
+
+            if array_position == 0:
+                self.buttons_color[array_position].setStyleSheet("background-color: rgb(255, 167, 14);")
+            else:
+                self.buttons_color[array_position].setStyleSheet("background-color: rgb(100, 150, 190);")
 
 
         self.page_explode = QtWidgets.QWidget()
@@ -290,6 +309,7 @@ class Data():
         color = QtWidgets.QColorDialog.getColor()
         dock.dock_data2.buttons_color[number].setStyleSheet("background-color: %s;" % (str(color.name())))
 
+
     def pie_default(self):
 
         for i in reversed(range(self.central_layout.count())):
@@ -298,21 +318,24 @@ class Data():
         static_canvas = FigureCanvas(Figure())
         self.central_layout.addWidget(static_canvas)
 
-        sizes = []
+        outer_sizes = []
         for x in range(0, len(self.line_edit_data), 2):
-            sizes.append(self.line_edit_data[x+1].text())
+            outer_sizes.append(self.line_edit_data[x+1].text())
 
-
-        labels = []
+        outer_labels = []
         for x in range(0, len(self.line_edit_data), 2):
-            labels.append(str(self.line_edit_data[x].text()))
+            outer_labels.append(str(self.line_edit_data[x].text()))
+
+        outer_colors = []
+        for x in range(0, len(dock.dock_data2.buttons_color)):
+           outer_colors.append(dock.dock_data2.buttons_color[x].palette().button().color().name())
 
 
         # explode = (0, 0.1)  # only "explode" the 2nd slice (i.e. 'Hogs')
 
         self._static_ax = static_canvas.figure.subplots()
         '''explode=explode,'''
-        self._static_ax.pie(sizes,labels=labels, autopct='%1.1f%%',
+        self._static_ax.pie(outer_sizes,labels=outer_labels, colors=outer_colors, autopct='%1.1f%%',
         shadow=False, startangle=90)
 
 
