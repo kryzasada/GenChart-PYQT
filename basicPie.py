@@ -197,8 +197,6 @@ class Data():
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
 
-
-
         self.label_color = []
         self.buttons_color = []
         for array_position in range(0, 2):
@@ -212,6 +210,7 @@ class Data():
             sizePolicy.setHeightForWidth(self.buttons_color[array_position].hasHeightForWidth())
             self.buttons_color[array_position].setStyleSheet("background-color: rgb(170, 0, 0);")
 
+        self.buttons_color[0].clicked.connect(self.createColor)
 
         self.page_explode = QtWidgets.QWidget()
         self.page_explode.setObjectName("page_explode")
@@ -281,6 +280,14 @@ class Data():
         self.scroll_settings_layout.setWidget(1, QtWidgets.QFormLayout.LabelRole, self.check_box2_settings)
 
         self.tab_widget.setCurrentIndex(0)
+
+    def createColor(self):
+        color = QtWidgets.QColorDialog.getColor()
+        print(color.name())
+        print("nie jest poprawnym haslem dla %s" % (str(color.name())))
+        dock.dock_data2.buttons_color[0].setStyleSheet("background-color: %s;" % (str(color.name())))
+
+
     def pie_default(self):
 
         for i in reversed(range(self.central_layout.count())):
