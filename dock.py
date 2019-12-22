@@ -100,10 +100,8 @@ class Dock:
                 self.label_default.setText("Select chart")
                 self.settings_grid_page_1.addWidget(self.label_default)
 
-
                 self.settings_page_2 = QtWidgets.QWidget()
                 self.settings_page_2.setObjectName("settings_page_2")
-
 
                 self.settings_grid_page_2  = QtWidgets.QGridLayout(self.settings_page_2)
                 self.settings_grid_page_2.setObjectName("settings_grid_page_2")
@@ -111,16 +109,6 @@ class Dock:
                 global dock_data2
                 dock_data2 = basicPie.Data(self.settings_page_2, self.settings_grid_page_2, self.central_layout)
                 dock_data2.settings_chart(dock_data)
-
-
-
-                self.button_create = QtWidgets.QPushButton(self.settings_page_2)
-                sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Minimum)
-                sizePolicy.setHeightForWidth(self.button_create.sizePolicy().hasHeightForWidth())
-                self.button_create.setSizePolicy(sizePolicy)
-                self.button_create.setObjectName("button_create")
-                self.button_create.setText("Create")
-                self.settings_grid_page_2.addWidget(self.button_create, 1, 0, 1, 1, QtCore.Qt.AlignLeft)
 
                 self.stacked_widget_settings.addWidget(self.settings_page_1)
                 self.stacked_widget_settings.addWidget(self.settings_page_2)
