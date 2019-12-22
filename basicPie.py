@@ -2,6 +2,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 
 from matplotlib.backends.backend_qt5agg import FigureCanvas
 from matplotlib.figure import Figure
+from functools import partial
 
 import dock
 
@@ -146,6 +147,8 @@ class Data():
         dock.dock_data2.buttons_color[int(self.horizontal_position_widgets_data/2)].setSizePolicy(sizePolicy)
         sizePolicy.setHeightForWidth(dock.dock_data2.buttons_color[int(self.horizontal_position_widgets_data/2)].hasHeightForWidth())
         dock.dock_data2.buttons_color[int(self.horizontal_position_widgets_data/2)].setStyleSheet("background-color: rgb(170, 0, 0);")
+        dock.dock_data2.buttons_color[int(self.horizontal_position_widgets_data/2)].clicked.connect(partial(self.button_color, int(self.horizontal_position_widgets_data/2)))
+
 
         dock.dock_data2.label_explode.append(QtWidgets.QLabel(dock.dock_data2.scroll_explode_contents))
         dock.dock_data2.label_explode[int(self.horizontal_position_widgets_data/2)].setText(dock.dock_data.line_edit_data[self.horizontal_position_widgets_data].text())
@@ -162,8 +165,9 @@ class Data():
         dock.dock_data2.scroll_explode_layout.setWidget(int(self.horizontal_position_widgets_data/2), QtWidgets.QFormLayout.FieldRole,
                                            dock.dock_data2.spin_box_explode[int(self.horizontal_position_widgets_data/2)])
 
-        dock.dock_data2.scroll_color_contents.update()
 
+
+        dock.dock_data2.scroll_color_contents.update()
     def settings_chart(self, dock_data):
         self.dock_data=dock_data
 
@@ -193,6 +197,7 @@ class Data():
         self.scroll_color_layout = QtWidgets.QFormLayout(self.scroll_color_contents)
         self.scroll_color_layout.setObjectName("scroll_color_layout")
 
+
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -209,8 +214,8 @@ class Data():
             self.buttons_color[array_position].setSizePolicy(sizePolicy)
             sizePolicy.setHeightForWidth(self.buttons_color[array_position].hasHeightForWidth())
             self.buttons_color[array_position].setStyleSheet("background-color: rgb(170, 0, 0);")
+            self.buttons_color[array_position].clicked.connect(partial(self.button_color, array_position))
 
-        self.buttons_color[0].clicked.connect(self.createColor)
 
         self.page_explode = QtWidgets.QWidget()
         self.page_explode.setObjectName("page_explode")
@@ -281,12 +286,9 @@ class Data():
 
         self.tab_widget.setCurrentIndex(0)
 
-    def createColor(self):
+    def button_color(self, number):
         color = QtWidgets.QColorDialog.getColor()
-        print(color.name())
-        print("nie jest poprawnym haslem dla %s" % (str(color.name())))
-        dock.dock_data2.buttons_color[0].setStyleSheet("background-color: %s;" % (str(color.name())))
-
+        dock.dock_data2.buttons_color[number].setStyleSheet("background-color: %s;" % (str(color.name())))
 
     def pie_default(self):
 
