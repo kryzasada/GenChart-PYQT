@@ -311,7 +311,7 @@ class Data():
 
         self.check_box2_settings = QtWidgets.QCheckBox(self.scroll_settings_contents)
         self.check_box2_settings.setObjectName("check_box2_settings")
-        self.check_box2_settings.setText("CheckBox_2")
+        self.check_box2_settings.setText("Rotate Labels")
         self.scroll_settings_layout.setWidget(1, QtWidgets.QFormLayout.LabelRole, self.check_box2_settings)
 
         self.tab_widget.setCurrentIndex(0)
@@ -322,11 +322,11 @@ class Data():
 
     def pie_default(self):
 
-        for i in reversed(range(self.central_layout.count())):
-            self.central_layout.itemAt(i).widget().deleteLater()
-
         static_canvas = FigureCanvas(Figure())
         self.central_layout.addWidget(static_canvas)
+
+        for i in reversed(range(self.central_layout.count())):
+            self.central_layout.itemAt(i).widget().deleteLater()
 
         outer_sizes = []
         for x in range(0, len(self.line_edit_data), 2):
@@ -348,11 +348,13 @@ class Data():
         if dock.dock_data2.check_box1_settings.checkState():
             outer_shadow = dock.dock_data2.check_box1_settings.checkState()
 
-        rotatelabels = 0
+        outer_rotatelabels = 0
+        if dock.dock_data2.check_box2_settings.checkState():
+            outer_rotatelabels = dock.dock_data2.check_box2_settings.checkState()
 
         self._static_ax = static_canvas.figure.subplots()
         self._static_ax.pie(outer_sizes,labels=outer_labels, colors=outer_colors, explode=outer_explode,
-                            autopct='%1.1f%%', shadow=outer_shadow, startangle=90, rotatelabels  = rotatelabels )
+                            autopct='%1.1f%%', shadow=outer_shadow, startangle=90, rotatelabels=outer_rotatelabels)
 
 
 
