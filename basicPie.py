@@ -306,7 +306,7 @@ class Data():
 
         self.check_box1_settings = QtWidgets.QCheckBox(self.scroll_settings_contents)
         self.check_box1_settings.setObjectName("check_box1_settings")
-        self.check_box1_settings.setText("CheckBox_1")
+        self.check_box1_settings.setText("Shadow")
         self.scroll_settings_layout.setWidget(0, QtWidgets.QFormLayout.LabelRole, self.check_box1_settings)
 
         self.check_box2_settings = QtWidgets.QCheckBox(self.scroll_settings_contents)
@@ -344,11 +344,15 @@ class Data():
         for x in range(0, len(dock.dock_data2.spin_box_explode)):
             outer_explode.append(float(dock.dock_data2.spin_box_explode[x].value()/10))
 
+        outer_shadow = 0
+        if dock.dock_data2.check_box1_settings.checkState():
+            outer_shadow = dock.dock_data2.check_box1_settings.checkState()
+
+        rotatelabels = 0
 
         self._static_ax = static_canvas.figure.subplots()
-        '''explode=explode,'''
-        self._static_ax.pie(outer_sizes,labels=outer_labels, colors=outer_colors, explode=outer_explode, autopct='%1.1f%%',
-                            shadow=False, startangle=90)
+        self._static_ax.pie(outer_sizes,labels=outer_labels, colors=outer_colors, explode=outer_explode,
+                            autopct='%1.1f%%', shadow=outer_shadow, startangle=90, rotatelabels  = rotatelabels )
 
 
 
