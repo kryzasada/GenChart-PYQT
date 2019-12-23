@@ -24,7 +24,7 @@ class UiMainWindow(object):
         main_window.setCentralWidget(self.centralwidget)
 
 
-        self.central_layout = QtWidgets.QHBoxLayout(self.centralwidget)
+        self.central_layout = QtWidgets.QVBoxLayout(self.centralwidget)
 
 
 

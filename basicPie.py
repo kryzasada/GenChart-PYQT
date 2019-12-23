@@ -1,7 +1,9 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 from matplotlib.backends.backend_qt5agg import FigureCanvas
+from matplotlib.backends.backend_qt5agg import NavigationToolbar2QT
 from matplotlib.figure import Figure
+
 from functools import partial
 import random
 import time
@@ -327,6 +329,9 @@ class Data():
 
         static_canvas = FigureCanvas(Figure())
         self.central_layout.addWidget(static_canvas)
+
+        self.toolbar2 = NavigationToolbar2QT(static_canvas, static_canvas)
+        self.central_layout.addWidget(self.toolbar2)
 
         outer_sizes = []
         for x in range(0, len(self.line_edit_data), 2):
