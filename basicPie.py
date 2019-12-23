@@ -39,6 +39,7 @@ class Data():
         self.sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Maximum, QtWidgets.QSizePolicy.Fixed)
         self.sizePolicy.setHorizontalStretch(0)
         self.sizePolicy.setVerticalStretch(0)
+
         self.label_data = []
         self.line_edit_data = []
         self.array_position_data = int()
@@ -281,6 +282,8 @@ class Data():
             self.spin_box_explode[array_position].setSizePolicy(sizePolicy)
             self.scroll_explode_layout.setWidget(array_position, QtWidgets.QFormLayout.FieldRole, self.spin_box_explode[array_position])
 
+        self.spin_box_explode[0].setValue(1.0)
+
         self.page_settings = QtWidgets.QWidget()
         self.page_settings.setObjectName("page_settings")
         self.tab_widget.addTab(self.page_settings, "Settings")
@@ -317,7 +320,6 @@ class Data():
         color = QtWidgets.QColorDialog.getColor()
         dock.dock_data2.buttons_color[number].setStyleSheet("background-color: %s;" % (str(color.name())))
 
-
     def pie_default(self):
 
         for i in reversed(range(self.central_layout.count())):
@@ -338,13 +340,15 @@ class Data():
         for x in range(0, len(dock.dock_data2.buttons_color)):
            outer_colors.append(dock.dock_data2.buttons_color[x].palette().button().color().name())
 
+        outer_explode = []
+        for x in range(0, len(dock.dock_data2.spin_box_explode)):
+            outer_explode.append(float(dock.dock_data2.spin_box_explode[x].value()/10))
 
-        # explode = (0, 0.1)  # only "explode" the 2nd slice (i.e. 'Hogs')
 
         self._static_ax = static_canvas.figure.subplots()
         '''explode=explode,'''
-        self._static_ax.pie(outer_sizes,labels=outer_labels, colors=outer_colors, autopct='%1.1f%%',
-        shadow=False, startangle=90)
+        self._static_ax.pie(outer_sizes,labels=outer_labels, colors=outer_colors, explode=outer_explode, autopct='%1.1f%%',
+                            shadow=False, startangle=90)
 
 
 
