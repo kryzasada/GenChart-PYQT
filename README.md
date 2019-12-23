@@ -11,7 +11,7 @@ Chart generating program, written in PyQt5
 
 
 ## Program structure
-![Graph](https://github.com/kryzasada/ReadMe-Photo/blob/master/Chart/graph-chart.png)
+![Struktore](https://github.com/kryzasada/ReadMe-Photo/blob/master/Chart/Struktore-main.png)
 ## Important versions
 
 &#x23F3; Coming soon
@@ -19,7 +19,7 @@ Chart generating program, written in PyQt5
 
 ## TODO
 
-|  ![Graph](https://github.com/kryzasada/ReadMe-Photo/blob/master/Chart/chart-table1.png) | ![Graph](https://github.com/kryzasada/ReadMe-Photo/blob/master/Chart/chart-table2.png) | ![Graph](https://github.com/kryzasada/ReadMe-Photo/blob/master/Chart/Chart-table3.png) |
+|  ![Graph](https://github.com/kryzasada/ReadMe-Photo/blob/master/Chart/TODO-table1.png) | ![Graph](https://github.com/kryzasada/ReadMe-Photo/blob/master/Chart/TODO-table2.png) | ![Graph](https://github.com/kryzasada/ReadMe-Photo/blob/master/Chart/TODO-table3.png) |
 | :------------: | :------------: | :------------: |
 | Download chart | Create logo | More languages |
 | Create menu bar | Release of version 0.1 | &#x2796; |
