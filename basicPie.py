@@ -4,6 +4,7 @@ from matplotlib.backends.backend_qt5agg import FigureCanvas
 from matplotlib.figure import Figure
 from functools import partial
 import random
+import time
 
 import dock
 
@@ -138,6 +139,9 @@ class Data():
             lambda: dock.dock_data2.label_color[int(self.horizontal_position_widgets_data / 2)].setText(
                 self.line_edit_data[self.horizontal_position_widgets_data].text()))
 
+        time.sleep(0.1)
+        self.line_edit_data[self.horizontal_position_widgets_data].textChanged.connect(partial(self.label_name, self.horizontal_position_widgets_data))
+
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -183,6 +187,10 @@ class Data():
                                                             self.horizontal_position_widgets_data/2)])
 
         dock.dock_data2.scroll_color_contents.update()
+
+    def label_name(self, position):
+        dock.dock_data2.label_color[int(position / 2)].setText(
+                self.line_edit_data[position].text())
 
     def settings_chart(self, dock_data):
 
