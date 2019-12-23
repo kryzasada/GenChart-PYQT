@@ -322,11 +322,11 @@ class Data():
 
     def pie_default(self):
 
-        static_canvas = FigureCanvas(Figure())
-        self.central_layout.addWidget(static_canvas)
-
         for i in reversed(range(self.central_layout.count())):
             self.central_layout.itemAt(i).widget().deleteLater()
+
+        static_canvas = FigureCanvas(Figure())
+        self.central_layout.addWidget(static_canvas)
 
         outer_sizes = []
         for x in range(0, len(self.line_edit_data), 2):
