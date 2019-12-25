@@ -21,6 +21,6 @@ Chart generating program, written in PyQt5
 
 |  ![Graph](https://github.com/kryzasada/ReadMe-Photo/blob/master/Chart/TODO-table1.png) | ![Graph](https://github.com/kryzasada/ReadMe-Photo/blob/master/Chart/TODO-table2.png) | ![Graph](https://github.com/kryzasada/ReadMe-Photo/blob/master/Chart/TODO-table3.png) |
 | :------------: | :------------: | :------------: |
-| Download chart | Create logo | More languages |
-| Create menu bar | Release of version 0.1 | &#x2796; |
+| Create menu bar | Create logo | More languages |
+| &#x2796; | Release of version 0.1 | &#x2796; |
         
