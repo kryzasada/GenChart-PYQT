@@ -330,6 +330,18 @@ class Data():
         static_canvas = FigureCanvas(Figure())
         self.central_layout.addWidget(static_canvas)
 
+        NavigationToolbar2QT.toolitems = (
+            ('Home', 'Reset original view', 'home', 'home'),
+            ('Back', 'Back to previous view', 'back', 'back'),
+            ('Forward', 'Forward to next view', 'forward', 'forward'),
+            (None, None, None, None),
+            ('Pan', 'Pan axes with left mouse, zoom with right', 'move', 'pan'),
+            ('Zoom', 'Zoom to rectangle', 'zoom_to_rect', 'zoom'),
+            ('', 'Configure subplots', 'subplots', 'configure_subplots'),
+            (None, None, None, None),
+            (None, None, None, None),
+            ('Save', 'Save the figure', 'filesave', 'save_figure'),
+        )
         self.toolbar2 = NavigationToolbar2QT(static_canvas, static_canvas)
         self.central_layout.addWidget(self.toolbar2)
 
