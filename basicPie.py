@@ -1,7 +1,6 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 
-from matplotlib.backends.backend_qt5agg import FigureCanvas
-from matplotlib.backends.backend_qt5agg import NavigationToolbar2QT
+from matplotlib.backends.backend_qt5agg import NavigationToolbar2QT, FigureCanvas
 from matplotlib.figure import Figure
 
 from functools import partial
@@ -378,7 +377,7 @@ class Data():
         self.Data_autopct.addItem("----")
         self.Data_autopct.addItem("100%     1")
         self.Data_autopct.addItem("100.0%    1")
-        self.Data_autopct.addItem("100.00%   1")
+        self.Data_autopct.addItem("100.00%    1")
         self.Data_settings_layout.setWidget(2, QtWidgets.QFormLayout.FieldRole, self.Data_autopct)
 
         self.scroll_settings_layout.setLayout(4, QtWidgets.QFormLayout.LabelRole, self.Data_settings_layout)
@@ -425,9 +424,11 @@ class Data():
         self.toolbar2 = NavigationToolbar2QT(static_canvas, static_canvas)
         self.central_layout.addWidget(self.toolbar2)
 
+        all=0
         outer_sizes = []
         for x in range(0, len(self.line_edit_data), 2):
             outer_sizes.append(self.line_edit_data[x+1].text())
+            all += float(self.line_edit_data[x+1].text())
 
         outer_labels = []
         for x in range(0, len(self.line_edit_data), 2):
@@ -449,11 +450,24 @@ class Data():
         if dock.dock_data2.check_box2_settings.checkState():
             outer_rotatelabels = dock.dock_data2.check_box2_settings.checkState()
 
+        data_autopct_list = {
+            '100%': '%1.0f%%',
+            '100.0%': '%1.1f%%',
+            '100.00%': '%1.2f%%',
+            '----': '',
+            '1': (lambda p: '{:,.3f}'.format(p * all/100)),
+            '100%  (1)': (lambda p: '{:1.0f}%({:,.0f})'.format(p, p * all/100)),
+            '100.0%  (1)': (lambda p: '{:1.1f}%({:,.0f})'.format(p, p * all / 100)),
+            '100.00%  (1)': (lambda p: '{:1.2f}%({:,.0f})'.format(p, p * all / 100)),
+            '100%     1': (lambda p: '{:1.0f}%\n{:,.0f}'.format(p, p * all / 100)),
+            '100.0%    1': (lambda p: '{:1.1f}%\n{:,.0f}'.format(p, p * all / 100)),
+            '100.00%    1': (lambda p: '{:1.2f}%\n{:,.0f}'.format(p, p * all / 100)),
+        }
+        outer_autopct = data_autopct_list[dock.dock_data2.Data_autopct.currentText()]
+
+        if not dock.dock_data2.check_box3_settings.checkState():
+            outer_autopct = ''
+
         self._static_ax = static_canvas.figure.subplots()
         self._static_ax.pie(outer_sizes,labels=outer_labels, colors=outer_colors, explode=outer_explode,
-                            autopct='%1.1f%%', shadow=outer_shadow, startangle=90, rotatelabels=outer_rotatelabels)
-
-
-
-
-
+                            autopct=outer_autopct, shadow=outer_shadow, startangle=90, rotatelabels=outer_rotatelabels)
