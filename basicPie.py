@@ -346,6 +346,8 @@ class Data():
         self.check_box3_settings.setObjectName("check_box1_settings")
         self.check_box3_settings.setText("Show")
         self.Data_settings_layout.setWidget(0, QtWidgets.QFormLayout.LabelRole, self.check_box3_settings)
+        self.check_box3_settings.setChecked(True)
+        self.check_box3_settings.clicked.connect(self.show_data_setting)
 
         self.data_size = QtWidgets.QSpinBox(self.scroll_settings_contents)
         self.data_size.setMinimumSize(QtCore.QSize(45, 0))
@@ -360,7 +362,7 @@ class Data():
         self.button_data_color.setMinimumSize(QtCore.QSize(45, 0))
         self.button_data_color.setMaximumSize(QtCore.QSize(47, 16777215))
         self.button_data_color.setText("Color")
-        self.button_data_color.setStyleSheet("background-color: rgb(0, 0, 0);" "color: rgb(255, 255, 255);")
+        self.button_data_color.setStyleSheet("background-color: rgb(255, 255, 255);" "color: rgb(0, 0, 0);")
         self.Data_settings_layout.setWidget(2, QtWidgets.QFormLayout.LabelRole, self.button_data_color)
 
         self.Data_autopct = QtWidgets.QComboBox(self.scroll_settings_contents)
@@ -381,6 +383,20 @@ class Data():
 
         self.scroll_settings_layout.setLayout(4, QtWidgets.QFormLayout.LabelRole, self.Data_settings_layout)
         self.tab_widget.setCurrentIndex(0)
+
+    def show_data_setting(self):
+        if self.check_box3_settings.checkState():
+            self.button_data_color.setEnabled(True)
+            self.Data_autopct.setEnabled(True)
+            self.Data_font.setEnabled(True)
+            self.data_size.setEnabled(True)
+            self.button_data_color.setStyleSheet("background-color: rgb(255, 255, 255);" "color: rgb(0, 0, 0);")
+        else:
+            self.button_data_color.setEnabled(False)
+            self.Data_autopct.setEnabled(False)
+            self.Data_font.setEnabled(False)
+            self.data_size.setEnabled(False)
+            self.button_data_color.setStyleSheet("background-color: rgb(255, 255, 255);" "color: rgb(160, 160, 160);")
 
     def button_color(self, number):
         color = QtWidgets.QColorDialog.getColor()
