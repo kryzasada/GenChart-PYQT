@@ -286,42 +286,42 @@ class Data():
         self.spin_box_explode[0].setValue(1.0)
 
         self.page_settings = QtWidgets.QWidget()
-        self.page_settings.setObjectName("page_settings")
         self.tab_widget.addTab(self.page_settings, "Settings")
 
         self.page_settings_layout = QtWidgets.QHBoxLayout(self.page_settings)
-        self.page_settings_layout.setObjectName("page_settings_layout")
 
         self.scroll_area_settings = QtWidgets.QScrollArea(self.page_settings)
         self.scroll_area_settings.setWidgetResizable(True)
-        self.scroll_area_settings.setObjectName("scroll_area_settings")
         self.page_settings_layout.addWidget(self.scroll_area_settings)
 
         self.scroll_settings_contents = QtWidgets.QWidget()
         self.scroll_settings_contents.setGeometry(QtCore.QRect(0, 0, 94, 450))
-        self.scroll_settings_contents.setObjectName("scroll_settings_contents")
         self.scroll_area_settings.setWidget(self.scroll_settings_contents)
 
         self.scroll_settings_layout = QtWidgets.QFormLayout(self.scroll_settings_contents)
-        self.scroll_settings_layout.setObjectName("scroll_settings_layout")
+
+        self.line_edit_title=QtWidgets.QLineEdit(self.scroll_color_contents)
+        self.line_edit_title.setMaximumSize(QtCore.QSize(95, 16777215))
+        self.line_edit_title.setClearButtonEnabled(True)
+        self.line_edit_title.setPlaceholderText('Set title')
+        self.scroll_settings_layout.setWidget(0, QtWidgets.QFormLayout.LabelRole, self.line_edit_title)
 
         self.check_box1_settings = QtWidgets.QCheckBox(self.scroll_settings_contents)
-        self.check_box1_settings.setObjectName("check_box1_settings")
         self.check_box1_settings.setText("Shadow")
-        self.scroll_settings_layout.setWidget(0, QtWidgets.QFormLayout.LabelRole, self.check_box1_settings)
+        self.scroll_settings_layout.setWidget(1, QtWidgets.QFormLayout.LabelRole, self.check_box1_settings)
 
         self.check_box2_settings = QtWidgets.QCheckBox(self.scroll_settings_contents)
-        self.check_box2_settings.setObjectName("check_box2_settings")
         self.check_box2_settings.setText("Rotate Labels")
-        self.scroll_settings_layout.setWidget(1, QtWidgets.QFormLayout.LabelRole, self.check_box2_settings)
+        self.scroll_settings_layout.setWidget(2, QtWidgets.QFormLayout.LabelRole, self.check_box2_settings)
 
         self.check_box3_settings = QtWidgets.QCheckBox(self.scroll_settings_contents)
-        self.check_box3_settings.setObjectName("check_box2_settings")
         self.check_box3_settings.setText("Frame")
         self.check_box3_settings.setTristate(True)
-        self.scroll_settings_layout.setWidget(2, QtWidgets.QFormLayout.LabelRole, self.check_box3_settings)
+        self.scroll_settings_layout.setWidget(3, QtWidgets.QFormLayout.LabelRole, self.check_box3_settings)
 
-
+        self.check_box4_settings = QtWidgets.QCheckBox(self.scroll_settings_contents)
+        self.check_box4_settings.setText("Legend")
+        self.scroll_settings_layout.setWidget(4, QtWidgets.QFormLayout.LabelRole, self.check_box4_settings)
 
         self.line_1 = QtWidgets.QFrame(self.scroll_settings_contents)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
@@ -332,8 +332,7 @@ class Data():
         self.line_1.setMinimumSize(QtCore.QSize(110, 0))
         self.line_1.setFrameShape(QtWidgets.QFrame.HLine)
         self.line_1.setFrameShadow(QtWidgets.QFrame.Sunken)
-        self.line_1.setObjectName("line_1")
-        self.scroll_settings_layout.setWidget(4, QtWidgets.QFormLayout.LabelRole, self.line_1)
+        self.scroll_settings_layout.setWidget(5, QtWidgets.QFormLayout.LabelRole, self.line_1)
 
         self.label_data_settings = QtWidgets.QLabel(self.scroll_settings_contents)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
@@ -345,7 +344,7 @@ class Data():
         self.label_data_settings.setMaximumSize(QtCore.QSize(155, 16777215))
         self.label_data_settings.setAlignment(QtCore.Qt.AlignCenter)
         self.label_data_settings.setText("DATA SETTINGS")
-        self.scroll_settings_layout.setWidget(5, QtWidgets.QFormLayout.LabelRole,  self.label_data_settings)
+        self.scroll_settings_layout.setWidget(6, QtWidgets.QFormLayout.LabelRole,  self.label_data_settings)
 
         self.Data_settings_layout = QtWidgets.QFormLayout()
 
@@ -381,7 +380,7 @@ class Data():
         self.Data_autopct.setMinimumSize(QtCore.QSize(0, 23))
         self.Data_settings_layout.setWidget(1, QtWidgets.QFormLayout.FieldRole, self.Data_autopct)
 
-        self.scroll_settings_layout.setLayout(6, QtWidgets.QFormLayout.LabelRole, self.Data_settings_layout)
+        self.scroll_settings_layout.setLayout(7, QtWidgets.QFormLayout.LabelRole, self.Data_settings_layout)
         self.tab_widget.setCurrentIndex(0)
 
     def data_color(self):
@@ -454,18 +453,18 @@ class Data():
             outer_rotatelabels = dock.dock_data2.check_box2_settings.checkState()
 
         data_autopct_list = {
-            '100%': '%1.0f%%',
-            '100.0%': '%1.1f%%',
-            '100.00%': '%1.2f%%',
-            '----': '',
-            '1': (lambda p: '{:,.1f}'.format(p * all/100)),
-            '100%  (1)': (lambda p: '{:1.0f}%({:,.0f})'.format(p, p * all/100)),
-            '100.0%  (1)': (lambda p: '{:1.1f}%({:,.0f})'.format(p, p * all / 100)),
-            '100.00%  (1)': (lambda p: '{:1.2f}%({:,.0f})'.format(p, p * all / 100)),
-            '100%     1': (lambda p: '{:1.0f}%\n{:,.0f}'.format(p, p * all / 100)),
-            '100.0%    1': (lambda p: '{:1.1f}%\n{:,.0f}'.format(p, p * all / 100)),
-            '100.00%    1': (lambda p: '{:1.2f}%\n{:,.0f}'.format(p, p * all / 100)),
-        }
+                '100%': '%1.0f%%',
+                '100.0%': '%1.1f%%',
+                '100.00%': '%1.2f%%',
+                '----': '',
+                '1': (lambda p: '{:,.1f}'.format(p * all/100)),
+                '100%  (1)': (lambda p: '{:1.0f}%({:,.0f})'.format(p, p * all/100)),
+                '100.0%  (1)': (lambda p: '{:1.1f}%({:,.0f})'.format(p, p * all / 100)),
+                '100.00%  (1)': (lambda p: '{:1.2f}%({:,.0f})'.format(p, p * all / 100)),
+                '100%     1': (lambda p: '{:1.0f}%\n{:,.0f}'.format(p, p * all / 100)),
+                '100.0%    1': (lambda p: '{:1.1f}%\n{:,.0f}'.format(p, p * all / 100)),
+                '100.00%    1': (lambda p: '{:1.2f}%\n{:,.0f}'.format(p, p * all / 100)),
+                }
         outer_autopct = data_autopct_list[dock.dock_data2.Data_autopct.currentText()]
         if not dock.dock_data2.check_box5_settings.checkState():
             outer_autopct = ''
@@ -492,3 +491,13 @@ class Data():
                             rotatelabels=outer_rotatelabels,
                             textprops=outer_textprops,
                             )
+
+        if dock.dock_data2.check_box4_settings.checkState():
+            self._static_ax.legend(outer_labels,
+                                   loc='upper right',
+                                   bbox_to_anchor=(1.1, 1.120),
+                                   )
+        else:
+            self._static_ax.legend().remove()
+
+        self._static_ax.set_title(dock.dock_data2.line_edit_title.text())
