@@ -315,6 +315,14 @@ class Data():
         self.check_box2_settings.setText("Rotate Labels")
         self.scroll_settings_layout.setWidget(1, QtWidgets.QFormLayout.LabelRole, self.check_box2_settings)
 
+        self.check_box3_settings = QtWidgets.QCheckBox(self.scroll_settings_contents)
+        self.check_box3_settings.setObjectName("check_box2_settings")
+        self.check_box3_settings.setText("Frame")
+        self.check_box3_settings.setTristate(True)
+        self.scroll_settings_layout.setWidget(2, QtWidgets.QFormLayout.LabelRole, self.check_box3_settings)
+
+
+
         self.line_1 = QtWidgets.QFrame(self.scroll_settings_contents)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(110)
@@ -325,7 +333,7 @@ class Data():
         self.line_1.setFrameShape(QtWidgets.QFrame.HLine)
         self.line_1.setFrameShadow(QtWidgets.QFrame.Sunken)
         self.line_1.setObjectName("line_1")
-        self.scroll_settings_layout.setWidget(2, QtWidgets.QFormLayout.LabelRole, self.line_1)
+        self.scroll_settings_layout.setWidget(4, QtWidgets.QFormLayout.LabelRole, self.line_1)
 
         self.label_data_settings = QtWidgets.QLabel(self.scroll_settings_contents)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
@@ -337,32 +345,24 @@ class Data():
         self.label_data_settings.setMaximumSize(QtCore.QSize(155, 16777215))
         self.label_data_settings.setAlignment(QtCore.Qt.AlignCenter)
         self.label_data_settings.setText("DATA SETTINGS")
-        self.scroll_settings_layout.setWidget(3, QtWidgets.QFormLayout.LabelRole,  self.label_data_settings)
+        self.scroll_settings_layout.setWidget(5, QtWidgets.QFormLayout.LabelRole,  self.label_data_settings)
 
         self.Data_settings_layout = QtWidgets.QFormLayout()
 
-        self.check_box3_settings = QtWidgets.QCheckBox(self.scroll_settings_contents)
-        self.check_box3_settings.setObjectName("check_box1_settings")
-        self.check_box3_settings.setText("Show")
-        self.Data_settings_layout.setWidget(0, QtWidgets.QFormLayout.LabelRole, self.check_box3_settings)
-        self.check_box3_settings.setChecked(True)
-        self.check_box3_settings.clicked.connect(self.show_data_setting)
-
-        self.data_size = QtWidgets.QSpinBox(self.scroll_settings_contents)
-        self.data_size.setMinimumSize(QtCore.QSize(45, 0))
-        self.data_size.setMaximumSize(QtCore.QSize(45, 16777215))
-        self.Data_settings_layout.setWidget(1, QtWidgets.QFormLayout.LabelRole, self.data_size)
-
-        self.Data_font = QtWidgets.QFontComboBox(self.scroll_settings_contents)
-        self.Data_font.setMaximumSize(QtCore.QSize(100, 100))
-        self.Data_settings_layout.setWidget(1, QtWidgets.QFormLayout.FieldRole, self.Data_font)
+        self.check_box5_settings = QtWidgets.QCheckBox(self.scroll_settings_contents)
+        self.check_box5_settings.setObjectName("check_box1_settings")
+        self.check_box5_settings.setText("Show")
+        self.Data_settings_layout.setWidget(0, QtWidgets.QFormLayout.LabelRole, self.check_box5_settings)
+        self.check_box5_settings.setChecked(True)
+        self.check_box5_settings.clicked.connect(self.show_data_setting)
 
         self.button_data_color = QtWidgets.QPushButton(self.scroll_settings_contents)
         self.button_data_color.setMinimumSize(QtCore.QSize(45, 0))
         self.button_data_color.setMaximumSize(QtCore.QSize(47, 16777215))
         self.button_data_color.setText("Color")
-        self.button_data_color.setStyleSheet("background-color: rgb(255, 255, 255);" "color: rgb(0, 0, 0);")
-        self.Data_settings_layout.setWidget(2, QtWidgets.QFormLayout.LabelRole, self.button_data_color)
+        self.button_data_color.clicked.connect(self.data_color)
+        self.button_data_color.setStyleSheet("background-color: #f0f0f0;" "color: rgb(0, 0, 0);")
+        self.Data_settings_layout.setWidget(1, QtWidgets.QFormLayout.LabelRole, self.button_data_color)
 
         self.Data_autopct = QtWidgets.QComboBox(self.scroll_settings_contents)
         self.Data_autopct.addItem("100%")
@@ -378,24 +378,27 @@ class Data():
         self.Data_autopct.addItem("100%     1")
         self.Data_autopct.addItem("100.0%    1")
         self.Data_autopct.addItem("100.00%    1")
-        self.Data_settings_layout.setWidget(2, QtWidgets.QFormLayout.FieldRole, self.Data_autopct)
+        self.Data_autopct.setMinimumSize(QtCore.QSize(0, 23))
+        self.Data_settings_layout.setWidget(1, QtWidgets.QFormLayout.FieldRole, self.Data_autopct)
 
-        self.scroll_settings_layout.setLayout(4, QtWidgets.QFormLayout.LabelRole, self.Data_settings_layout)
+        self.scroll_settings_layout.setLayout(6, QtWidgets.QFormLayout.LabelRole, self.Data_settings_layout)
         self.tab_widget.setCurrentIndex(0)
 
+    def data_color(self):
+        if self.button_data_color.palette().button().color().name() == '#f0f0f0':
+            self.button_data_color.setStyleSheet("background-color: rgb(90, 90, 90);" "color: rgb(255, 255, 255);")
+        else:
+            self.button_data_color.setStyleSheet("background-color:#f0f0f0;" "color: rgb(0, 0, 0);")
+
     def show_data_setting(self):
-        if self.check_box3_settings.checkState():
+        if self.check_box5_settings.checkState():
             self.button_data_color.setEnabled(True)
             self.Data_autopct.setEnabled(True)
-            self.Data_font.setEnabled(True)
-            self.data_size.setEnabled(True)
-            self.button_data_color.setStyleSheet("background-color: rgb(255, 255, 255);" "color: rgb(0, 0, 0);")
+            self.button_data_color.setStyleSheet("background-color: #f0f0f0;" "color: rgb(0, 0, 0);")
         else:
             self.button_data_color.setEnabled(False)
             self.Data_autopct.setEnabled(False)
-            self.Data_font.setEnabled(False)
-            self.data_size.setEnabled(False)
-            self.button_data_color.setStyleSheet("background-color: rgb(255, 255, 255);" "color: rgb(160, 160, 160);")
+            self.button_data_color.setStyleSheet("background-color: #f0f0f0;" "color: rgb(160, 160, 160);")
 
     def button_color(self, number):
         color = QtWidgets.QColorDialog.getColor()
@@ -455,7 +458,7 @@ class Data():
             '100.0%': '%1.1f%%',
             '100.00%': '%1.2f%%',
             '----': '',
-            '1': (lambda p: '{:,.3f}'.format(p * all/100)),
+            '1': (lambda p: '{:,.1f}'.format(p * all/100)),
             '100%  (1)': (lambda p: '{:1.0f}%({:,.0f})'.format(p, p * all/100)),
             '100.0%  (1)': (lambda p: '{:1.1f}%({:,.0f})'.format(p, p * all / 100)),
             '100.00%  (1)': (lambda p: '{:1.2f}%({:,.0f})'.format(p, p * all / 100)),
@@ -464,10 +467,28 @@ class Data():
             '100.00%    1': (lambda p: '{:1.2f}%\n{:,.0f}'.format(p, p * all / 100)),
         }
         outer_autopct = data_autopct_list[dock.dock_data2.Data_autopct.currentText()]
-
-        if not dock.dock_data2.check_box3_settings.checkState():
+        if not dock.dock_data2.check_box5_settings.checkState():
             outer_autopct = ''
 
+        outer_wedgeprops={'edgecolor': 'white'}
+        if dock.dock_data2.check_box3_settings.checkState() == 1:
+            outer_wedgeprops = {'edgecolor': 'black', 'linewidth': 1}
+        elif dock.dock_data2.check_box3_settings.checkState() == 2:
+            outer_wedgeprops = {'edgecolor': 'black', 'linewidth': 2}
+
+        outer_textprops = {'color': "black"}
+        if not dock.dock_data2.button_data_color.palette().button().color().name() == '#f0f0f0':
+            outer_textprops = {'color': "white"}
+
         self._static_ax = static_canvas.figure.subplots()
-        self._static_ax.pie(outer_sizes,labels=outer_labels, colors=outer_colors, explode=outer_explode,
-                            autopct=outer_autopct, shadow=outer_shadow, startangle=90, rotatelabels=outer_rotatelabels)
+        self._static_ax.pie(outer_sizes,
+                            labels=outer_labels,
+                            wedgeprops=outer_wedgeprops,
+                            colors=outer_colors,
+                            explode=outer_explode,
+                            autopct=outer_autopct,
+                            shadow=outer_shadow,
+                            startangle=90,
+                            rotatelabels=outer_rotatelabels,
+                            textprops=outer_textprops,
+                            )
