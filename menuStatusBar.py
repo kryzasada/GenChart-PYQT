@@ -1,5 +1,5 @@
 from PyQt5 import QtCore, QtGui
-from PyQt5.QtWidgets import QMenuBar, QAction, QStatusBar, QMessageBox, QPushButton
+from PyQt5.QtWidgets import QMenuBar, QAction, QStatusBar, QMessageBox, QPushButton, QLabel
 from PyQt5.QtGui import QIcon
 import webbrowser
 
@@ -42,5 +42,10 @@ class StatusBar:
         self.contain()
 
     def contain(self):
-        self.statusbar = QStatusBar(self.main_window_in_class)
-        self.main_window_in_class.setStatusBar(self.statusbar)
+        self.status_bar = QStatusBar(self.main_window_in_class)
+        self.main_window_in_class.setStatusBar(self.status_bar)
+
+        version = QLabel(self.main_window_in_class)
+        version.setText("v. 0.1.0")
+
+        self.status_bar.addWidget(version)
