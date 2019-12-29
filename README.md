@@ -12,15 +12,17 @@ Chart generating program, written in PyQt5
 
 ## Program structure
 ![Struktore](https://github.com/kryzasada/ReadMe-Photo/blob/master/Chart/Struktore-main.png)
+
+
 ## Important versions
 
 &#x23F3; Coming soon
 
 
 ## TODO
-
-|  ![Graph](https://github.com/kryzasada/ReadMe-Photo/blob/master/Chart/TODO-table1.png) | ![Graph](https://github.com/kryzasada/ReadMe-Photo/blob/master/Chart/TODO-table2.png) | ![Graph](https://github.com/kryzasada/ReadMe-Photo/blob/master/Chart/TODO-table3.png) |
+|  ![Urgent](https://github.com/kryzasada/ReadMe-Photo/blob/master/Chart/TODO-table1.png) | ![Important](https://github.com/kryzasada/ReadMe-Photo/blob/master/Chart/TODO-table2.png) | ![Not urgent](https://github.com/kryzasada/ReadMe-Photo/blob/master/Chart/TODO-table3.png) |
 | :------------: | :------------: | :------------: |
-| Create menu bar | Create logo | More languages |
-| &#x2796; | Release of version 0.1 | &#x2796; |
-        
+| &#x2796; | Create logo | More languages |
+| &#x2796; | Release of version 0.1 | User settings |
+| &#x2796; | Legend settings  | Black motive |
+| &#x2796; | Text editor in graph  | &#x2796; |       
