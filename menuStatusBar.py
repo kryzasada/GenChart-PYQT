@@ -1,13 +1,16 @@
 from PyQt5 import QtCore, QtGui
-from PyQt5.QtWidgets import QMenuBar, QAction, QStatusBar,QMessageBox, QPushButton
+from PyQt5.QtWidgets import QMenuBar, QAction, QStatusBar, QMessageBox, QPushButton
 from PyQt5.QtGui import QIcon
 import webbrowser
 
-class Bar():
+
+class MenuBar:
     def __init__(self, *args):
         self.main_window_in_class = args[0]
 
-    def menu_bar(self):
+        self.contain()
+
+    def contain(self):
         self.main_manu = QMenuBar(self.main_window_in_class)
         self.main_manu.setGeometry(QtCore.QRect(0, 0, 800, 21))
         self.main_window_in_class.setMenuBar(self.main_manu)
@@ -19,7 +22,7 @@ class Bar():
     def message_report(self):
         message = QMessageBox()
         message.setWindowTitle("Report your problem")
-        message.setText(" If you found bugs, inform me.                  ")
+        message.setText(" If you found bugs, inform me:                  ")
         message.setIcon(QMessageBox.Information)
         message.setStandardButtons(QMessageBox.Ignore)
         message.addButton(QPushButton('Gtihub'), QMessageBox.YesRole)
@@ -31,6 +34,13 @@ class Bar():
         if i.text() == 'Gtihub':
             webbrowser.open('https://github.com/kryzasada/Chart')
 
-    def status_bar(self):
+
+class StatusBar:
+    def __init__(self, *args):
+        self.main_window_in_class = args[0]
+
+        self.contain()
+
+    def contain(self):
         self.statusbar = QStatusBar(self.main_window_in_class)
         self.main_window_in_class.setStatusBar(self.statusbar)
