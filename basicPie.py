@@ -399,17 +399,17 @@ class Data():
             self.Data_autopct.setEnabled(False)
             self.button_data_color.setStyleSheet("background-color: #f0f0f0;" "color: rgb(160, 160, 160);")
 
-    def button_color(self, number):
+    @staticmethod
+    def button_color(number):
         color = QtWidgets.QColorDialog.getColor()
         dock.dock_data2.buttons_color[number].setStyleSheet("background-color: %s;" % (str(color.name())))
 
     def pie_default(self):
 
-        for i in reversed(range(self.central_layout.count())):
-            self.central_layout.itemAt(i).widget().deleteLater()
+        for i in reversed(range(dock.dock_data.central_layout.count())):
+            dock.dock_data.central_layout.itemAt(i).widget().deleteLater()
 
         static_canvas = FigureCanvas(Figure())
-        self.central_layout.addWidget(static_canvas)
 
         NavigationToolbar2QT.toolitems = (
             ('Home', 'Reset original view', 'home', 'home'),
@@ -423,18 +423,32 @@ class Data():
             (None, None, None, None),
             ('Save', 'Save the figure', 'filesave', 'save_figure'),
         )
-        self.toolbar2 = NavigationToolbar2QT(static_canvas, static_canvas)
-        self.central_layout.addWidget(self.toolbar2)
+        dock.dock_data.toolbar2 = NavigationToolbar2QT(static_canvas, static_canvas)
 
-        all=0
+        all = 0
         outer_sizes = []
-        for x in range(0, len(self.line_edit_data), 2):
-            outer_sizes.append(self.line_edit_data[x+1].text())
-            all += float(self.line_edit_data[x+1].text())
+        try:
+            for x in range(0, len(dock.dock_data.line_edit_data), 2):
+                outer_sizes.append(dock.dock_data.line_edit_data[x+1].text())
+                all += float(dock.dock_data.line_edit_data[x+1].text())
+
+        except ValueError:
+            outer_sizes2 = 0
+            for x in str(outer_sizes[-1]):
+                if x == ',':
+                    outer_sizes2 = outer_sizes[-1].replace(',', '.')
+
+            value_error = QtWidgets.QMessageBox()
+            value_error.setWindowTitle("VALUE")
+            value_error.setText("Value entry error                       ")
+            value_error.setInformativeText("Your value: %s \nCorrect: %s " % (str(outer_sizes[-1]), outer_sizes2))
+            value_error.setIcon(QtWidgets.QMessageBox.Critical)
+            value_error.setStandardButtons(QtWidgets.QMessageBox.Ok)
+            value_error.exec_()
 
         outer_labels = []
-        for x in range(0, len(self.line_edit_data), 2):
-            outer_labels.append(str(self.line_edit_data[x].text()))
+        for x in range(0, len(dock.dock_data.line_edit_data), 2):
+            outer_labels.append(str(dock.dock_data.line_edit_data[x].text()))
 
         outer_colors = []
         for x in range(0, len(dock.dock_data2.buttons_color)):
@@ -479,25 +493,32 @@ class Data():
         if not dock.dock_data2.button_data_color.palette().button().color().name() == '#f0f0f0':
             outer_textprops = {'color': "white"}
 
-        self._static_ax = static_canvas.figure.subplots()
-        self._static_ax.pie(outer_sizes,
-                            labels=outer_labels,
-                            wedgeprops=outer_wedgeprops,
-                            colors=outer_colors,
-                            explode=outer_explode,
-                            autopct=outer_autopct,
-                            shadow=outer_shadow,
-                            startangle=90,
-                            rotatelabels=outer_rotatelabels,
-                            textprops=outer_textprops,
-                            )
+        try:
+            self._static_ax = static_canvas.figure.subplots()
+            self._static_ax.pie(outer_sizes,
+                                labels=outer_labels,
+                                wedgeprops=outer_wedgeprops,
+                                colors=outer_colors,
+                                explode=outer_explode,
+                                autopct=outer_autopct,
+                                shadow=outer_shadow,
+                                startangle=90,
+                                rotatelabels=outer_rotatelabels,
+                                textprops=outer_textprops,
+                                )
 
-        if dock.dock_data2.check_box4_settings.checkState():
-            self._static_ax.legend(outer_labels,
-                                   loc='upper right',
-                                   bbox_to_anchor=(1.1, 1.120),
-                                   )
-        else:
-            self._static_ax.legend().remove()
+            if dock.dock_data2.check_box4_settings.checkState():
+                self._static_ax.legend(outer_labels,
+                                       loc='upper right',
+                                       bbox_to_anchor=(1.1, 1.120),
+                                       )
+            else:
+                self._static_ax.legend().remove()
 
-        self._static_ax.set_title(dock.dock_data2.line_edit_title.text())
+            self._static_ax.set_title(dock.dock_data2.line_edit_title.text())
+
+            dock.dock_data.central_layout.addWidget(static_canvas)
+            dock.dock_data.central_layout.addWidget(dock.dock_data.toolbar2)
+
+        except ValueError:
+            pass
