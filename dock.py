@@ -22,6 +22,7 @@ class Dock:
                 self.dockWidget_data.setMinimumSize(QtCore.QSize(150, 250))
                 self.dockWidget_data.setObjectName("dockWidget_data")
 
+
                 self.dockWidget_data_contents = QtWidgets.QWidget()
                 self.dockWidget_data_contents.setObjectName("dockWidget_data_contents")
                 self.dockWidget_data.setWidget(self.dockWidget_data_contents)
@@ -51,6 +52,9 @@ class Dock:
 
                 self.data_grid_page_2 = QtWidgets.QGridLayout(self.data_page_2)
                 self.data_grid_page_2.setObjectName("data_grid_page_2")
+
+                self.data_grid_page_2.setContentsMargins(3.5, 5, 3.5, 10)
+                self.data_grid_page_2.setSpacing(0)
 
                 global dock_data
                 dock_data = basicPie.Data(self.data_page_2, self.data_grid_page_2, self.central_layout)
@@ -82,6 +86,9 @@ class Dock:
                 self.grid_settings_dock = QtWidgets.QHBoxLayout(self.dockWidget_settings_contentsontents)
                 self.grid_settings_dock.setObjectName("grid_settings_dock")
 
+                self.grid_settings_dock.setContentsMargins(0, 3, 0, 0)
+                self.grid_settings_dock.setSpacing(0)
+
                 self.stacked_widget_settings = QtWidgets.QStackedWidget(self.dockWidget_settings_contentsontents)
                 sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Ignored, QtWidgets.QSizePolicy.Ignored)
                 sizePolicy.setHeightForWidth(self.stacked_widget_settings.sizePolicy().hasHeightForWidth())
@@ -105,6 +112,9 @@ class Dock:
 
                 self.settings_grid_page_2  = QtWidgets.QGridLayout(self.settings_page_2)
                 self.settings_grid_page_2.setObjectName("settings_grid_page_2")
+
+                self.settings_grid_page_2.setContentsMargins(0, 0, 0, 0)
+                self.settings_grid_page_1.setSpacing(0)
 
                 global dock_data2
                 dock_data2 = basicPie.Data(self.settings_page_2, self.settings_grid_page_2, self.central_layout)
