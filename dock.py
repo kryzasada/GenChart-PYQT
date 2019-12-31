@@ -4,7 +4,7 @@ from PyQt5 import QtCore, QtWidgets
 import chartList, basicPie
 
 dock_data = 0
-dock_data2 = 0
+dock_settings = 0
 
 
 class Dock:
@@ -60,7 +60,7 @@ class Dock:
 
                 global dock_data
                 dock_data = basicPie.Data(self.data_page_2, self.data_grid_page_2, self.central_layout)
-                dock_data.write_data(dock_data2)
+                dock_data.contain()
 
                 self.stacked_widget_data.addWidget(self.data_page_1)
                 self.stacked_widget_data.addWidget(self.data_page_2)
@@ -118,9 +118,9 @@ class Dock:
                 self.settings_grid_page_2.setContentsMargins(0, 0, 0, 0)
                 self.settings_grid_page_1.setSpacing(0)
 
-                global dock_data2
-                dock_data2 = basicPie.Data(self.settings_page_2, self.settings_grid_page_2, self.central_layout)
-                dock_data2.settings_chart(dock_data)
+                global dock_settings
+                dock_settings = basicPie.Settings(self.settings_page_2, self.settings_grid_page_2, self.central_layout)
+                dock_settings.contain()
 
                 self.stacked_widget_settings.addWidget(self.settings_page_1)
                 self.stacked_widget_settings.addWidget(self.settings_page_2)
@@ -138,8 +138,12 @@ class Dock:
                 self.dock_widget_chart_contents.setObjectName("dockWidgetChartContents")
 
                 self.main_window_in_class.addDockWidget(QtCore.Qt.DockWidgetArea(1), self.dock_widget_chart)
-                ss = chartList.Chart(self.dock_widget_chart_contents, self.dock_widget_chart, self.dockWidget_data_contents,
-                                 self.stacked_widget_data, self.stacked_widget_settings)
+                chart_list = chartList.Chart(
+                                     self.dock_widget_chart_contents,
+                                     self.dock_widget_chart,
+                                     self.dockWidget_data_contents,
+                                     self.stacked_widget_data,
+                                     self.stacked_widget_settings)
 
 
 
