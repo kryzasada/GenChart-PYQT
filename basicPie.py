@@ -508,12 +508,18 @@ class PieDefault:
             for x in range(0, len(dock.dock_data.line_edit_data), 2):
                 outer_sizes.append(dock.dock_data.line_edit_data[x+1].text())
                 all += float(dock.dock_data.line_edit_data[x+1].text())
+                if outer_sizes[-1] == '0':
+                    raise ValueError("VALUE = 0")
 
         except ValueError:
             outer_sizes2 = 0
             for x in str(outer_sizes[-1]):
                 if x == ',':
                     outer_sizes2 = outer_sizes[-1].replace(',', '.')
+
+
+            if outer_sizes2 == 0:
+                outer_sizes2 = 1
 
             value_error = QtWidgets.QMessageBox()
             value_error.setWindowTitle("VALUE")
@@ -522,7 +528,6 @@ class PieDefault:
             value_error.setIcon(QtWidgets.QMessageBox.Critical)
             value_error.setStandardButtons(QtWidgets.QMessageBox.Ok)
             value_error.exec_()
-
         outer_labels = []
         for x in range(0, len(dock.dock_data.line_edit_data), 2):
             outer_labels.append(str(dock.dock_data.line_edit_data[x].text()))
@@ -571,6 +576,9 @@ class PieDefault:
             outer_textprops = {'color': "white"}
 
         try:
+            if outer_sizes[-1] == '0':
+                raise ValueError("VALUE = 0")
+
             self._static_ax = static_canvas.figure.subplots()
             self._static_ax.pie(outer_sizes,
                                 labels=outer_labels,
@@ -596,6 +604,8 @@ class PieDefault:
 
             dock.dock_data.central_layout.addWidget(static_canvas)
             dock.dock_data.central_layout.addWidget(dock.dock_data.toolbar2)
+
+
 
         except ValueError:
             pass
