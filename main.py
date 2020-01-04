@@ -24,13 +24,13 @@ class UiMainWindow(object):
 
         self.central_layout = QtWidgets.QVBoxLayout(self.centralwidget)
 
-        menu_bar = menuStatusBar.MenuBar(main_window)
-        status_bar = menuStatusBar.StatusBar(main_window)
-
         showDock = dock.Dock(main_window, self.central_layout)
         showDock.right_up()
         showDock.right_down()
         showDock.left_chart()
+
+        menu_bar = menuStatusBar.MenuBar(main_window, showDock)
+        status_bar = menuStatusBar.StatusBar(main_window)
 
         self.retranslateUi(main_window)
 
@@ -39,8 +39,6 @@ class UiMainWindow(object):
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
-
-
 
 
 if __name__ == "__main__":
