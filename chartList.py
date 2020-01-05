@@ -22,17 +22,29 @@ class Chart:
 
         self.page_1_layout = QtWidgets.QFormLayout(self.page_1)
 
-        self.chart_button = QtWidgets.QPushButton(self.page_1)
-        self.chart_button.setText("Basic")
-        self.chart_button.setMaximumSize(QtCore.QSize(110, 23))
-        self.page_1_layout.setWidget(0, QtWidgets.QFormLayout.FieldRole, self.chart_button)
-        self.chart_button.clicked.connect(lambda: self.on_click())
+        self.default_pie_button = QtWidgets.QPushButton(self.page_1)
+        self.default_pie_button.setText("Basic")
+        self.default_pie_button.setMaximumSize(QtCore.QSize(110, 23))
+        self.page_1_layout.setWidget(0, QtWidgets.QFormLayout.FieldRole, self.default_pie_button)
+        self.default_pie_button.clicked.connect(lambda: self.on_click())
 
-        self.label = QtWidgets.QLabel(self.page_1)
-        self.label.setPixmap(QtGui.QPixmap('Image/Basic_pie_chart.png'))
-        self.label.setScaledContents(True)
-        self.label.setMaximumSize(QtCore.QSize(27, 27))
-        self.page_1_layout.setWidget(0, QtWidgets.QFormLayout.LabelRole, self.label)
+        self.default_pie_image = QtWidgets.QLabel(self.page_1)
+        self.default_pie_image.setPixmap(QtGui.QPixmap('Image/Basic_pie_chart.png'))
+        self.default_pie_image.setScaledContents(True)
+        self.default_pie_image.setMaximumSize(QtCore.QSize(27, 27))
+        self.page_1_layout.setWidget(0, QtWidgets.QFormLayout.LabelRole, self.default_pie_image)
+
+        self.donut_pie_button = QtWidgets.QPushButton(self.page_1)
+        self.donut_pie_button.setText("Donut")
+        self.donut_pie_button.setMaximumSize(QtCore.QSize(110, 23))
+        self.page_1_layout.setWidget(1, QtWidgets.QFormLayout.FieldRole, self.donut_pie_button)
+        self.donut_pie_button.clicked.connect(lambda: self.on_click())
+
+        self.donut_pie_image = QtWidgets.QLabel(self.page_1)
+        self.donut_pie_image.setPixmap(QtGui.QPixmap('Image/Donut_pie_chart.png'))
+        self.donut_pie_image.setScaledContents(True)
+        self.donut_pie_image.setMaximumSize(QtCore.QSize(27, 27))
+        self.page_1_layout.setWidget(1, QtWidgets.QFormLayout.LabelRole, self.donut_pie_image)
 
     def pie_page_2(self):
         self.page_2 = QtWidgets.QWidget()
