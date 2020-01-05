@@ -135,15 +135,17 @@ class Dock:
                 self.dock_widget_chart.setObjectName("dock_widget_chart")
 
                 self.dock_widget_chart_contents = QtWidgets.QWidget()
-                self.dock_widget_chart_contents.setObjectName("dockWidgetChartContents")
+                self.dock_widget_chart.setWidget(self.dock_widget_chart_contents)
+
+                self.grid_chart_dock = QtWidgets.QHBoxLayout(self.dock_widget_chart_contents)
+
 
                 self.main_window_in_class.addDockWidget(QtCore.Qt.DockWidgetArea(1), self.dock_widget_chart)
                 chart_list = chartList.Chart(
-                                     self.dock_widget_chart_contents,
-                                     self.dock_widget_chart,
-                                     self.dockWidget_data_contents,
-                                     self.stacked_widget_data,
-                                     self.stacked_widget_settings)
+                                             self.grid_chart_dock,
+                                             self.dockWidget_data_contents,
+                                             self.stacked_widget_data,
+                                             self.stacked_widget_settings)
 
 
 
