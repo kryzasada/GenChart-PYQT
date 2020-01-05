@@ -83,13 +83,13 @@ class MenuBar:
 
         elif self.showDock.dockWidget_data.isVisible() is False and number == 1:
             self.Data.setChecked(False)
-        elif self.showDock.dock_widget_chart.isVisible() is True and number == 0:
-            self.list_charts.setChecked(True)
+        elif self.showDock.dockWidget_data.isVisible() is True and number == 1:
+            self.Data.setChecked(True)
 
         elif self.showDock.dockWidget_settings.isVisible() is False and number == 2:
             self.Settings.setChecked(False)
-        elif self.showDock.dock_widget_chart.isVisible() is True and number == 0:
-            self.list_charts.setChecked(True)
+        elif self.showDock.dockWidget_settings.isVisible() is True and number == 2:
+            self.Settings.setChecked(True)
 
 
 class StatusBar:
