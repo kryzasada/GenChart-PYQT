@@ -9,7 +9,7 @@ from functools import partial
 import random
 import time
 
-import dock
+import dock, pieChart
 
 
 class Data:
@@ -17,6 +17,8 @@ class Data:
         self.page_2 = args[0]
         self.grid_page_2 = args[1]
         self.central_layout = args[2]
+
+        self.chart_type = 0
 
     def contain(self):
         self.scroll_area = QtWidgets.QScrollArea(self.page_2)
@@ -123,7 +125,8 @@ class Data:
         self.button_Create.setObjectName("button_Create")
         self.data_scroll_layout.setWidget(7, QtWidgets.QFormLayout.LabelRole, self.button_Create)
         self.button_Create.setText("CREATE")
-        self.button_Create.clicked.connect(lambda: PieDefault())
+
+        self.button_Create.clicked.connect(lambda: pieChart.Basic(self.chart_type))
 
     def add_data(self):
         self.data_horizontal_position_widgets += 2
@@ -477,135 +480,3 @@ class Settings:
         dock.dock_settings.buttons_color[number].setStyleSheet("background-color: %s;" % (str(color.name())))
 
 
-class PieDefault:
-    def __init__(self):
-        self.contain()
-
-    def contain(self):
-
-        for i in reversed(range(dock.dock_data.central_layout.count())):
-            dock.dock_data.central_layout.itemAt(i).widget().deleteLater()
-
-        static_canvas = FigureCanvas(Figure())
-
-        NavigationToolbar2QT.toolitems = (
-            ('Home', 'Reset original view', 'home', 'home'),
-            ('Back', 'Back to previous view', 'back', 'back'),
-            ('Forward', 'Forward to next view', 'forward', 'forward'),
-            (None, None, None, None),
-            ('Pan', 'Pan axes with left mouse, zoom with right', 'move', 'pan'),
-            ('Zoom', 'Zoom to rectangle', 'zoom_to_rect', 'zoom'),
-            ('', 'Configure subplots', 'subplots', 'configure_subplots'),
-            (None, None, None, None),
-            (None, None, None, None),
-            ('Save', 'Save the figure', 'filesave', 'save_figure'),
-        )
-        dock.dock_data.toolbar2 = NavigationToolbar2QT(static_canvas, static_canvas)
-
-        all = 0
-        outer_sizes = []
-        try:
-            for x in range(0, len(dock.dock_data.line_edit_data), 2):
-                outer_sizes.append(dock.dock_data.line_edit_data[x+1].text())
-                all += float(dock.dock_data.line_edit_data[x+1].text())
-                if outer_sizes[-1] == '0':
-                    raise ValueError("VALUE = 0")
-
-        except ValueError:
-            outer_sizes2 = 0
-            for x in str(outer_sizes[-1]):
-                if x == ',':
-                    outer_sizes2 = outer_sizes[-1].replace(',', '.')
-
-
-            if outer_sizes2 == 0:
-                outer_sizes2 = 1
-
-            value_error = QtWidgets.QMessageBox()
-            value_error.setWindowTitle("VALUE")
-            value_error.setText("Value entry error                       ")
-            value_error.setInformativeText("Your value: %s \nCorrect: %s " % (str(outer_sizes[-1]), outer_sizes2))
-            value_error.setIcon(QtWidgets.QMessageBox.Critical)
-            value_error.setStandardButtons(QtWidgets.QMessageBox.Ok)
-            value_error.exec_()
-        outer_labels = []
-        for x in range(0, len(dock.dock_data.line_edit_data), 2):
-            outer_labels.append(str(dock.dock_data.line_edit_data[x].text()))
-
-        outer_colors = []
-        for x in range(0, len(dock.dock_settings.buttons_color)):
-           outer_colors.append(dock.dock_settings.buttons_color[x].palette().button().color().name())
-
-        outer_explode = []
-        for x in range(0, len(dock.dock_settings.spin_box_explode)):
-            outer_explode.append(float(dock.dock_settings.spin_box_explode[x].value()/10))
-
-        outer_shadow = 0
-        if dock.dock_settings.check_box1_settings.checkState():
-            outer_shadow = dock.dock_settings.check_box1_settings.checkState()
-
-        outer_rotatelabels = 0
-        if dock.dock_settings.check_box2_settings.checkState():
-            outer_rotatelabels = dock.dock_settings.check_box2_settings.checkState()
-
-        data_autopct_list = {
-                '100%': '%1.0f%%',
-                '100.0%': '%1.1f%%',
-                '100.00%': '%1.2f%%',
-                '----': '',
-                '1': (lambda p: '{:,.1f}'.format(p * all/100)),
-                '100%  (1)': (lambda p: '{:1.0f}%({:,.0f})'.format(p, p * all/100)),
-                '100.0%  (1)': (lambda p: '{:1.1f}%({:,.0f})'.format(p, p * all / 100)),
-                '100.00%  (1)': (lambda p: '{:1.2f}%({:,.0f})'.format(p, p * all / 100)),
-                '100%     1': (lambda p: '{:1.0f}%\n{:,.0f}'.format(p, p * all / 100)),
-                '100.0%    1': (lambda p: '{:1.1f}%\n{:,.0f}'.format(p, p * all / 100)),
-                '100.00%    1': (lambda p: '{:1.2f}%\n{:,.0f}'.format(p, p * all / 100)),
-                }
-        outer_autopct = data_autopct_list[dock.dock_settings.Data_autopct.currentText()]
-        if not dock.dock_settings.check_box5_settings.checkState():
-            outer_autopct = ''
-
-        outer_wedgeprops = {'edgecolor': 'white'}
-        if dock.dock_settings.check_box3_settings.checkState() == 1:
-            outer_wedgeprops = {'edgecolor': 'black', 'linewidth': 1}
-        elif dock.dock_settings.check_box3_settings.checkState() == 2:
-            outer_wedgeprops = {'edgecolor': 'black', 'linewidth': 2}
-
-        outer_textprops = {'color': "black"}
-        if not dock.dock_settings.button_data_color.palette().button().color().name() == '#f0f0f0':
-            outer_textprops = {'color': "white"}
-
-        try:
-            if outer_sizes[-1] == '0':
-                raise ValueError("VALUE = 0")
-
-            self._static_ax = static_canvas.figure.subplots()
-            self._static_ax.pie(outer_sizes,
-                                labels=outer_labels,
-                                wedgeprops=outer_wedgeprops,
-                                colors=outer_colors,
-                                explode=outer_explode,
-                                autopct=outer_autopct,
-                                shadow=outer_shadow,
-                                startangle=90,
-                                rotatelabels=outer_rotatelabels,
-                                textprops=outer_textprops,
-                                )
-
-            if dock.dock_settings.check_box4_settings.checkState():
-                self._static_ax.legend(outer_labels,
-                                       loc='upper right',
-                                       bbox_to_anchor=(1.1, 1.120),
-                                       )
-            else:
-                self._static_ax.legend().remove()
-
-            self._static_ax.set_title(dock.dock_settings.line_edit_title.text())
-
-            dock.dock_data.central_layout.addWidget(static_canvas)
-            dock.dock_data.central_layout.addWidget(dock.dock_data.toolbar2)
-
-
-
-        except ValueError:
-            pass
