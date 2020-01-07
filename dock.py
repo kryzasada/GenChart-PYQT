@@ -131,19 +131,21 @@ class Dock:
 
         def left_chart(self):
                 self.dock_widget_chart = QtWidgets.QDockWidget(self.main_window_in_class)
-                self.dock_widget_chart.setMinimumSize(QtCore.QSize(133, 163))
+                self.dock_widget_chart.setMinimumSize(QtCore.QSize(145, 163))
                 self.dock_widget_chart.setObjectName("dock_widget_chart")
 
                 self.dock_widget_chart_contents = QtWidgets.QWidget()
-                self.dock_widget_chart_contents.setObjectName("dockWidgetChartContents")
+                self.dock_widget_chart.setWidget(self.dock_widget_chart_contents)
+
+                self.grid_chart_dock = QtWidgets.QHBoxLayout(self.dock_widget_chart_contents)
+
 
                 self.main_window_in_class.addDockWidget(QtCore.Qt.DockWidgetArea(1), self.dock_widget_chart)
                 chart_list = chartList.Chart(
-                                     self.dock_widget_chart_contents,
-                                     self.dock_widget_chart,
-                                     self.dockWidget_data_contents,
-                                     self.stacked_widget_data,
-                                     self.stacked_widget_settings)
+                                             self.grid_chart_dock,
+                                             self.dockWidget_data_contents,
+                                             self.stacked_widget_data,
+                                             self.stacked_widget_settings)
 
 
 
