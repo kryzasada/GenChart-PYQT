@@ -10,14 +10,6 @@ Chart generating program, written in PyQt5
 * [matplotlib](https://matplotlib.org/downloads.html)
 
 
-## Program structure
-![Struktore](https://github.com/kryzasada/ReadMe-Photo/blob/master/Chart/Struktore-main.png)
-
-
-## Important versions
-
-&#x23F3; Coming soon
-
 
 ## TODO
 |  ![Urgent](https://github.com/kryzasada/ReadMe-Photo/blob/master/Chart/TODO-table1.png) | ![Important](https://github.com/kryzasada/ReadMe-Photo/blob/master/Chart/TODO-table2.png) | ![Not urgent](https://github.com/kryzasada/ReadMe-Photo/blob/master/Chart/TODO-table3.png) |
