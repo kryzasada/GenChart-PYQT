@@ -19,7 +19,7 @@ class Chart:
         self.grid_chart_dock.addWidget(self.tab_widget)
 
         self.page_1 = QtWidgets.QWidget()
-        self.tab_widget.addItem(self.page_1, "Pie chart")
+        self.tab_widget.addItem(self.page_1, "Pie charts")
 
         self.page_1_layout = QtWidgets.QFormLayout(self.page_1)
 
@@ -49,8 +49,20 @@ class Chart:
 
     def pie_page_2(self):
         self.page_2 = QtWidgets.QWidget()
-        self.page_2.setGeometry(QtCore.QRect(0, 0, 112, 463))
-        self.tab_widget.addItem(self.page_2, "")
+        self.tab_widget.addItem(self.page_2, "Bar charts")
+
+        self.page_2_layout = QtWidgets.QFormLayout(self.page_2)
+
+        self.default_bar_button = QtWidgets.QPushButton(self.page_2)
+        self.default_bar_button.setText("Basic")
+        self.default_bar_button.setMaximumSize(QtCore.QSize(110, 23))
+        self.page_2_layout.setWidget(0, QtWidgets.QFormLayout.FieldRole, self.default_bar_button)
+
+        self.default_bar_image = QtWidgets.QLabel(self.page_2)
+        self.default_bar_image.setPixmap(QtGui.QPixmap('Image/Basic_bar_chart.png'))
+        self.default_bar_image.setScaledContents(True)
+        self.default_bar_image.setMaximumSize(QtCore.QSize(28, 27))
+        self.page_2_layout.setWidget(0, QtWidgets.QFormLayout.LabelRole, self.default_bar_image)
 
     def basic_click(self):
         self.stacked_Widget_data.setCurrentIndex(1)
