@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from PyQt5 import QtCore, QtWidgets
-import chartList, basicPie
+import chartList, chartMenu
 
 dock_data = 0
 dock_settings = 0
@@ -59,7 +59,7 @@ class Dock:
                 self.data_grid_page_2.setSpacing(0)
 
                 global dock_data
-                dock_data = basicPie.Data(self.data_page_2, self.data_grid_page_2, self.central_layout)
+                dock_data = chartMenu.Data(self.data_page_2, self.data_grid_page_2, self.central_layout)
                 dock_data.contain()
 
                 self.stacked_widget_data.addWidget(self.data_page_1)
@@ -119,7 +119,7 @@ class Dock:
                 self.settings_grid_page_1.setSpacing(0)
 
                 global dock_settings
-                dock_settings = basicPie.Settings(self.settings_page_2, self.settings_grid_page_2, self.central_layout)
+                dock_settings = chartMenu.Settings(self.settings_page_2, self.settings_grid_page_2, self.central_layout)
                 dock_settings.contain()
 
                 self.stacked_widget_settings.addWidget(self.settings_page_1)
