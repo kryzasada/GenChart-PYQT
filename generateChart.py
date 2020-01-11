@@ -12,13 +12,12 @@ class PieChart:
     def __init__(self, chart_type):
         self.contain()
 
-        if chart_type == 'Basic':
+        if chart_type == 'Basic_pie':
             self.basic()
-        if chart_type == 'Donut':
+        if chart_type == 'Donut_pie':
             self.donut()
 
     def contain(self):
-
         for i in reversed(range(dock.dock_data.central_layout.count())):
             dock.dock_data.central_layout.itemAt(i).widget().deleteLater()
 
@@ -182,7 +181,55 @@ class PieChart:
             dock.dock_data.central_layout.addWidget(self.static_canvas)
             dock.dock_data.central_layout.addWidget(dock.dock_data.toolbar2)
 
-
-
         except ValueError:
             pass
+
+
+class BarChart:
+    def __init__(self, chart_type):
+        self.contain()
+
+        if chart_type == 'Basic_bar':
+            self.basic()
+
+    def contain(self):
+        for i in reversed(range(dock.dock_data.central_layout.count())):
+            dock.dock_data.central_layout.itemAt(i).widget().deleteLater()
+
+        self.static_canvas = FigureCanvas(Figure())
+
+        self.outer_labels = []
+        for x in range(0, len(dock.dock_data.line_edit_data), 2):
+            self.outer_labels.append(str(dock.dock_data.line_edit_data[x].text()))
+
+        self.all = 0
+        self.outer_sizes = []
+        try:
+            for x in range(0, len(dock.dock_data.line_edit_data), 2):
+                self.outer_sizes.append(int(dock.dock_data.line_edit_data[x + 1].text()))
+                self.all += float(dock.dock_data.line_edit_data[x + 1].text())
+                if self.outer_sizes[-1] == 0:
+                    raise ValueError("VALUE = 0")
+
+        except ValueError:
+            self.outer_sizes2 = 0
+            for x in str(self.outer_sizes[-1]):
+                if x == ',':
+                    self.outer_sizes2 = self.outer_sizes[-1].replace(',', '.')
+
+            if self.outer_sizes2 == 0:
+                self.outer_sizes2 = 1
+
+            value_error = QtWidgets.QMessageBox()
+            value_error.setWindowTitle("VALUE")
+            value_error.setText("Value entry error                       ")
+            value_error.setInformativeText(
+                "Your value: %s \nCorrect: %s " % (str(self.outer_sizes[-1]), self.outer_sizes2))
+            value_error.setIcon(QtWidgets.QMessageBox.Critical)
+            value_error.setStandardButtons(QtWidgets.QMessageBox.Ok)
+            value_error.exec_()
+
+    def basic(self):
+        self._static_ax = self.static_canvas.figure.subplots()
+        self._static_ax.bar(self.outer_labels, height=self.outer_sizes, width=0.60)
+        dock.dock_data.central_layout.addWidget(self.static_canvas)
