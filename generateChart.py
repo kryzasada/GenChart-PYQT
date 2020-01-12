@@ -8,20 +8,8 @@ from matplotlib.figure import Figure
 import dock
 
 
-class PieChart:
-    def __init__(self, chart_type):
-        self.contain()
-
-        if chart_type == 'Basic_pie':
-            self.basic()
-        if chart_type == 'Donut_pie':
-            self.donut()
-
-    def contain(self):
-        for i in reversed(range(dock.dock_data.central_layout.count())):
-            dock.dock_data.central_layout.itemAt(i).widget().deleteLater()
-
-        self.static_canvas = FigureCanvas(Figure())
+def tool_bar():
+        static_canvas = FigureCanvas(Figure())
 
         NavigationToolbar2QT.toolitems = (
             ('Home', 'Reset original view', 'home', 'home'),
@@ -35,7 +23,23 @@ class PieChart:
             (None, None, None, None),
             ('Save', 'Save the figure', 'filesave', 'save_figure'),
         )
-        dock.dock_data.toolbar2 = NavigationToolbar2QT(self.static_canvas, self.static_canvas)
+        toolbar = NavigationToolbar2QT(static_canvas, static_canvas)
+
+        return static_canvas, toolbar
+
+
+class PieChart:
+    def __init__(self, chart_type):
+        self.contain()
+
+        if chart_type == 'Basic_pie':
+            self.basic()
+        if chart_type == 'Donut_pie':
+            self.donut()
+
+    def contain(self):
+        for i in reversed(range(dock.dock_data.central_layout.count())):
+            dock.dock_data.central_layout.itemAt(i).widget().deleteLater()
 
         self.all = 0
         self.outer_sizes = []
@@ -116,8 +120,9 @@ class PieChart:
             if self.outer_sizes[-1] == '0':
                 raise ValueError("VALUE = 0")
 
-            self._static_ax = self.static_canvas.figure.subplots()
-            self._static_ax.pie(
+            static_canvas, toolbar = tool_bar()
+            static_chart = static_canvas.figure.subplots()
+            static_chart.pie(
                                 self.outer_sizes,
                                 labels=self.outer_labels,
                                 wedgeprops=self.outer_wedgeprops,
@@ -127,23 +132,20 @@ class PieChart:
                                 shadow=self.outer_shadow,
                                 startangle=90,
                                 rotatelabels=self.outer_rotatelabels,
-                                textprops=self.outer_textprops,
-                                )
+                                textprops=self.outer_textprops)
 
             if dock.dock_settings.check_box4_settings.checkState():
-                self._static_ax.legend(self.outer_labels,
+                static_chart.legend(
+                                       self.outer_labels,
                                        loc='upper right',
-                                       bbox_to_anchor=(1.1, 1.120),
-                                       )
+                                       bbox_to_anchor=(1.1, 1.120))
             else:
-                self._static_ax.legend().remove()
+                static_chart.legend().remove()
 
-            self._static_ax.set_title(dock.dock_settings.line_edit_title.text())
+            static_chart.set_title(dock.dock_settings.line_edit_title.text())
 
-            dock.dock_data.central_layout.addWidget(self.static_canvas)
-            dock.dock_data.central_layout.addWidget(dock.dock_data.toolbar2)
-
-
+            dock.dock_data.central_layout.addWidget( static_canvas)
+            dock.dock_data.central_layout.addWidget(toolbar)
 
         except ValueError:
             pass
@@ -155,8 +157,9 @@ class PieChart:
             if self.outer_sizes[-1] == '0':
                 raise ValueError("VALUE = 0")
 
-            self._static_ax = self.static_canvas.figure.subplots()
-            self._static_ax.pie(
+            static_canvas, toolbar = tool_bar()
+            static_chart = static_canvas.figure.subplots()
+            static_chart.pie(
                                 self.outer_sizes,
                                 labels=self.outer_labels,
                                 wedgeprops=self.outer_wedgeprops,
@@ -171,17 +174,18 @@ class PieChart:
                                 )
 
             if dock.dock_settings.check_box4_settings.checkState():
-                self._static_ax.legend(self.outer_labels,
+                static_chart.legend(
+                                       self.outer_labels,
                                        loc='upper right',
                                        bbox_to_anchor=(1.1, 1.120),
                                        )
             else:
-                self._static_ax.legend().remove()
+                static_chart.legend().remove()
 
-            self._static_ax.set_title(dock.dock_settings.line_edit_title.text())
+            static_chart.set_title(dock.dock_settings.line_edit_title.text())
 
-            dock.dock_data.central_layout.addWidget(self.static_canvas)
-            dock.dock_data.central_layout.addWidget(dock.dock_data.toolbar2)
+            dock.dock_data.central_layout.addWidget(static_canvas)
+            dock.dock_data.central_layout.addWidget(toolbar)
 
         except ValueError:
             pass
@@ -241,8 +245,9 @@ class BarChart:
         try:
             self.outer_height = [int(x) for x in self.outer_height]
 
-            self._static_ax = self.static_canvas.figure.subplots()
-            self._static_ax.bar(
+            static_canvas, toolbar = tool_bar()
+            static_chart = static_canvas.figure.subplots()
+            static_chart.bar(
                                 self.outer_labels,
                                 height=self.outer_height,
                                 width=self.outer_width,
@@ -250,15 +255,20 @@ class BarChart:
                                 linewidth=self.outer_linewidth,
                                 edgecolor=self.outer_edgecolor)
 
-            dock.dock_data.central_layout.addWidget(self.static_canvas)
-
             if dock.dock_settings2.check_box_label.isChecked():
                 for x, y in enumerate(self.outer_height):
-                    self._static_ax.annotate(y, xy=(x, y+(self.outer_linewidth / 100 / 2)), ha='center', va='bottom')
+                    static_chart.annotate(
+                                             y,
+                                             xy=(x, y+(self.outer_linewidth / 100 / 2)),
+                                             ha='center',
+                                             va='bottom')
 
-            self._static_ax.set_title(dock.dock_settings2.title_edit_title.text())
-            self._static_ax.set_xlabel(dock.dock_settings2.lineX_edit_title.text())
-            self._static_ax.set_ylabel(dock.dock_settings2.lineY_edit_title.text())
+            static_chart.set_title(dock.dock_settings2.title_edit_title.text())
+            static_chart.set_xlabel(dock.dock_settings2.lineX_edit_title.text())
+            static_chart.set_ylabel(dock.dock_settings2.lineY_edit_title.text())
+
+            dock.dock_data.central_layout.addWidget(static_canvas)
+            dock.dock_data.central_layout.addWidget(toolbar)
 
         except ValueError:
             pass

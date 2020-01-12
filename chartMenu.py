@@ -2,9 +2,6 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 
-from matplotlib.backends.backend_qt5agg import NavigationToolbar2QT, FigureCanvas
-from matplotlib.figure import Figure
-
 from functools import partial
 import random
 import time
@@ -44,12 +41,11 @@ class DataPage2:
         self.sizePolicy.setHorizontalStretch(0)
         self.sizePolicy.setVerticalStretch(0)
 
+        """Create default menu in data/value dock"""
         self.label_data = []
         self.line_edit_data = []
         self.array_position_data = int()
         self.data_horizontal_position_widgets = int()
-
-        """Create default menu in data/value dock"""
         for self.data_horizontal_position_widgets in range(0, 4, 2):
             for self.array_position_data in range(0, 2):
                 self.label_data.append(QtWidgets.QLabel(self.scroll_area_contents))
