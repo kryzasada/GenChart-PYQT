@@ -92,7 +92,7 @@ class Chart:
 
     def basic_bar_click(self):
         self.stacked_Widget_data.setCurrentIndex(1)
-        self.stacked_widget_settings.setCurrentIndex(0)
+        self.stacked_widget_settings.setCurrentIndex(2)
         dock.dock_data.chart_type = 'Basic_bar'
 
         self.default_bar_button.setEnabled(False)

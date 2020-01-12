@@ -24,7 +24,6 @@ class Dock:
                 self.dockWidget_data.setMinimumSize(QtCore.QSize(150, 250))
                 self.dockWidget_data.setObjectName("dockWidget_data")
 
-
                 self.dockWidget_data_contents = QtWidgets.QWidget()
                 self.dockWidget_data_contents.setObjectName("dockWidget_data_contents")
                 self.dockWidget_data.setWidget(self.dockWidget_data_contents)
@@ -37,18 +36,19 @@ class Dock:
                 self.stacked_widget_data.setObjectName("stacked_widget_data")
                 self.grid_data_dock.addWidget(self.stacked_widget_data, 0, 0, 1, 1)
 
-
+                """ Page 1 """
                 self.data_page_1 = QtWidgets.QWidget()
                 self.data_page_1.setObjectName("data_page_1")
 
-                self.horizontal_layout = QtWidgets.QGridLayout(self.data_page_1)
-                self.horizontal_layout.setObjectName("horizontal_layout")
+                self.data_grid_page_1 = QtWidgets.QGridLayout(self.data_page_1)
+                self.data_grid_page_1.setObjectName("horizontal_layout")
 
                 self.label_data_page_1 = QtWidgets.QLabel(self.data_page_1)
                 self.label_data_page_1.setObjectName("chart_button")
                 self.label_data_page_1.setText("Select chart")
-                self.horizontal_layout.addWidget(self.label_data_page_1)
+                self.data_grid_page_1.addWidget(self.label_data_page_1)
 
+                """ Page 2 """
                 self.data_page_2 = QtWidgets.QWidget()
                 self.data_page_2.setObjectName("data_page_2")
 
@@ -59,9 +59,10 @@ class Dock:
                 self.data_grid_page_2.setSpacing(0)
 
                 global dock_data
-                dock_data = chartMenu.Data(self.data_page_2, self.data_grid_page_2, self.central_layout)
+                dock_data = chartMenu.DataPage2(self.data_page_2, self.data_grid_page_2, self.central_layout)
                 dock_data.contain()
 
+                """ Adding and showing """
                 self.stacked_widget_data.addWidget(self.data_page_1)
                 self.stacked_widget_data.addWidget(self.data_page_2)
 
@@ -98,17 +99,20 @@ class Dock:
                 self.stacked_widget_settings.setObjectName("stacked_widget_settings")
                 self.grid_settings_dock.addWidget(self.stacked_widget_settings)
 
+                """ Page 1 """
                 self.settings_page_1 = QtWidgets.QWidget()
                 self.settings_page_1.setObjectName("settings_page_1")
 
                 self.settings_grid_page_1 = QtWidgets.QVBoxLayout(self.settings_page_1)
                 self.settings_grid_page_1.setObjectName("settings_grid_page_1")
+                self.settings_grid_page_1.setSpacing(0)
 
                 self.label_default = QtWidgets.QLabel(self.settings_page_1)
                 self.label_default.setObjectName("label_default")
                 self.label_default.setText("Select chart")
                 self.settings_grid_page_1.addWidget(self.label_default)
 
+                """ Page 2 """
                 self.settings_page_2 = QtWidgets.QWidget()
                 self.settings_page_2.setObjectName("settings_page_2")
 
@@ -116,14 +120,32 @@ class Dock:
                 self.settings_grid_page_2.setObjectName("settings_grid_page_2")
 
                 self.settings_grid_page_2.setContentsMargins(0, 0, 0, 0)
-                self.settings_grid_page_1.setSpacing(0)
 
                 global dock_settings
-                dock_settings = chartMenu.Settings(self.settings_page_2, self.settings_grid_page_2, self.central_layout)
+                dock_settings = chartMenu.SettingsPage2(
+                                                        self.settings_page_2,
+                                                        self.settings_grid_page_2,
+                                                        self.central_layout)
                 dock_settings.contain()
 
+                """ Page 3 """
+                self.settings_page_3 = QtWidgets.QWidget()
+                self.settings_page_3.setObjectName("data_page_3")
+
+                self.settings_grid_page_3 = QtWidgets.QGridLayout(self.settings_page_3)
+                self.settings_grid_page_3.setObjectName("data_grid_page_3")
+                self.settings_grid_page_3.setContentsMargins(0, 0, 0, 0)
+
+                dock_settings2 = chartMenu.SettingsPage3(
+                                                         self.settings_page_3,
+                                                         self.settings_grid_page_3,
+                                                         self.central_layout)
+                dock_settings2.contain()
+
+                """ Adding and showing """
                 self.stacked_widget_settings.addWidget(self.settings_page_1)
                 self.stacked_widget_settings.addWidget(self.settings_page_2)
+                self.stacked_widget_settings.addWidget(self.settings_page_3)
 
                 self.stacked_widget_settings.setCurrentIndex(0)
 
