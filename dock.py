@@ -5,6 +5,7 @@ import chartList, chartMenu
 
 dock_data = 0
 dock_settings = 0
+dock_settings2 = 0
 
 
 class Dock:
@@ -136,6 +137,7 @@ class Dock:
                 self.settings_grid_page_3.setObjectName("data_grid_page_3")
                 self.settings_grid_page_3.setContentsMargins(0, 0, 0, 0)
 
+                global dock_settings2
                 dock_settings2 = chartMenu.SettingsPage3(
                                                          self.settings_page_3,
                                                          self.settings_grid_page_3,

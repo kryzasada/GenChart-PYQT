@@ -117,7 +117,8 @@ class PieChart:
                 raise ValueError("VALUE = 0")
 
             self._static_ax = self.static_canvas.figure.subplots()
-            self._static_ax.pie(self.outer_sizes,
+            self._static_ax.pie(
+                                self.outer_sizes,
                                 labels=self.outer_labels,
                                 wedgeprops=self.outer_wedgeprops,
                                 colors=self.outer_colors,
@@ -155,7 +156,8 @@ class PieChart:
                 raise ValueError("VALUE = 0")
 
             self._static_ax = self.static_canvas.figure.subplots()
-            self._static_ax.pie(self.outer_sizes,
+            self._static_ax.pie(
+                                self.outer_sizes,
                                 labels=self.outer_labels,
                                 wedgeprops=self.outer_wedgeprops,
                                 colors=self.outer_colors,
@@ -203,33 +205,61 @@ class BarChart:
             self.outer_labels.append(str(dock.dock_data.line_edit_data[x].text()))
 
         self.all = 0
-        self.outer_sizes = []
+        self.outer_height = []
         try:
             for x in range(0, len(dock.dock_data.line_edit_data), 2):
-                self.outer_sizes.append(int(dock.dock_data.line_edit_data[x + 1].text()))
+                self.outer_height.append(dock.dock_data.line_edit_data[x + 1].text())
                 self.all += float(dock.dock_data.line_edit_data[x + 1].text())
-                if self.outer_sizes[-1] == 0:
-                    raise ValueError("VALUE = 0")
 
         except ValueError:
-            self.outer_sizes2 = 0
-            for x in str(self.outer_sizes[-1]):
+            self.outer_height2 = 0
+            for x in str(self.outer_height[-1]):
                 if x == ',':
-                    self.outer_sizes2 = self.outer_sizes[-1].replace(',', '.')
+                    self.outer_height2 = self.outer_height[-1].replace(',', '.')
 
-            if self.outer_sizes2 == 0:
-                self.outer_sizes2 = 1
+            if self.outer_height2 == 0:
+                self.outer_height2 = 1
 
             value_error = QtWidgets.QMessageBox()
             value_error.setWindowTitle("VALUE")
             value_error.setText("Value entry error                       ")
             value_error.setInformativeText(
-                "Your value: %s \nCorrect: %s " % (str(self.outer_sizes[-1]), self.outer_sizes2))
+                "Your value: %s \nCorrect: %s " % (str(self.outer_height[-1]), self.outer_height2))
             value_error.setIcon(QtWidgets.QMessageBox.Critical)
             value_error.setStandardButtons(QtWidgets.QMessageBox.Ok)
             value_error.exec_()
 
+        self.outer_width = float(dock.dock_settings2.spin_box_bar_color.value() / 100)
+
+        self.outer_color = dock.dock_settings2.button_bar_color.palette().button().color().name()
+
+        self.outer_linewidth = dock.dock_settings2.spin_box_edge_color.value()
+
+        self.outer_edgecolor = dock.dock_settings2.button_edge_color.palette().button().color().name()
+
     def basic(self):
-        self._static_ax = self.static_canvas.figure.subplots()
-        self._static_ax.bar(self.outer_labels, height=self.outer_sizes, width=0.60)
-        dock.dock_data.central_layout.addWidget(self.static_canvas)
+        try:
+            self.outer_height = [int(x) for x in self.outer_height]
+
+            self._static_ax = self.static_canvas.figure.subplots()
+            self._static_ax.bar(
+                                self.outer_labels,
+                                height=self.outer_height,
+                                width=self.outer_width,
+                                color=self.outer_color,
+                                linewidth=self.outer_linewidth,
+                                edgecolor=self.outer_edgecolor)
+
+            dock.dock_data.central_layout.addWidget(self.static_canvas)
+
+            if dock.dock_settings2.check_box_label.isChecked():
+                for x, y in enumerate(self.outer_height):
+                    self._static_ax.annotate(y, xy=(x, y+(self.outer_linewidth / 100 / 2)), ha='center', va='bottom')
+
+            self._static_ax.set_title(dock.dock_settings2.title_edit_title.text())
+            self._static_ax.set_xlabel(dock.dock_settings2.lineX_edit_title.text())
+            self._static_ax.set_ylabel(dock.dock_settings2.lineY_edit_title.text())
+
+        except ValueError:
+            pass
+

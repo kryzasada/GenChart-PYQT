@@ -537,9 +537,9 @@ class SettingsPage3:
         self.line_1.setFrameShadow(QtWidgets.QFrame.Sunken)
         self.scroll_settings_layout.setWidget(3, QtWidgets.QFormLayout.LabelRole, self.line_1)
 
-        self.check_box1 = QtWidgets.QCheckBox()
-        self.check_box1.setText("Value label ")
-        self.scroll_settings_layout.setWidget(4, QtWidgets.QFormLayout.LabelRole, self.check_box1)
+        self.check_box_label = QtWidgets.QCheckBox()
+        self.check_box_label.setText("Value label ")
+        self.scroll_settings_layout.setWidget(4, QtWidgets.QFormLayout.LabelRole, self.check_box_label)
 
         self.line_2 = QtWidgets.QFrame()
         self.line_2.setSizePolicy(sizePolicy)
@@ -571,6 +571,8 @@ class SettingsPage3:
         self.layout_settings_layout.setWidget(1, QtWidgets.QFormLayout.FieldRole, self.label_bar_size)
 
         self.spin_box_edge_color = QtWidgets.QSpinBox()
+        self.spin_box_edge_color.setMinimum(0)
+        self.spin_box_edge_color.setMaximum(10)
         self.layout_settings_layout.setWidget(2, QtWidgets.QFormLayout.LabelRole, self.spin_box_edge_color)
 
         self.label_edge_size = QtWidgets.QLabel()
