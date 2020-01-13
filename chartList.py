@@ -15,7 +15,8 @@ class Chart:
         self.grid_chart_dock.addWidget(self.tab_widget)
 
         self.pie_chart()
-        self.pie_bar()
+        self.bar_chart()
+        self.line_chart()
 
     def pie_chart(self):
         self.page_1 = QtWidgets.QWidget()
@@ -47,7 +48,7 @@ class Chart:
         self.donut_pie_image.setMaximumSize(QtCore.QSize(27, 27))
         self.page_1_layout.setWidget(1, QtWidgets.QFormLayout.LabelRole, self.donut_pie_image)
 
-    def pie_bar(self):
+    def bar_chart(self):
         self.page_2 = QtWidgets.QWidget()
         self.tab_widget.addItem(self.page_2, "Bar charts")
 
@@ -65,17 +66,40 @@ class Chart:
         self.default_bar_image.setMaximumSize(QtCore.QSize(28, 27))
         self.page_2_layout.setWidget(0, QtWidgets.QFormLayout.LabelRole, self.default_bar_image)
 
+    def line_chart(self):
+        self.page_3 = QtWidgets.QWidget()
+        self.tab_widget.addItem(self.page_3, "Line charts")
+
+        self.page_3_layout = QtWidgets.QFormLayout(self.page_3)
+
+        self.default_line_button = QtWidgets.QPushButton(self.page_3)
+        self.default_line_button.setText("Basic")
+        self.default_line_button.setMaximumSize(QtCore.QSize(110, 23))
+        self.page_3_layout.setWidget(0, QtWidgets.QFormLayout.FieldRole, self.default_line_button)
+        self.default_line_button.clicked.connect(lambda: self.basic_line_click())
+
+        self.default_line_image = QtWidgets.QLabel(self.page_3)
+        self.default_line_image.setPixmap(QtGui.QPixmap('Image/Basic_line_chart.png'))
+        self.default_line_image.setScaledContents(True)
+        self.default_line_image.setMaximumSize(QtCore.QSize(28, 27))
+        self.page_3_layout.setWidget(0, QtWidgets.QFormLayout.LabelRole, self.default_line_image)
+
+
     def basic_pie_click(self):
         self.stacked_Widget_data.setCurrentIndex(1)
         self.stacked_widget_settings.setCurrentIndex(1)
         dock.dock_data.chart_type = 'Basic_pie'
 
         self.default_pie_button.setEnabled(False)
+
         if self.donut_pie_button.isEnabled() is False:
             self.donut_pie_button.setEnabled(True)
 
         elif self.default_bar_button.isEnabled() is False:
             self.default_bar_button.setEnabled(True)
+
+        elif self.default_line_button.isEnabled() is False:
+            self.default_line_button.setEnabled(True)
 
     def donut_pie_click(self):
         self.stacked_Widget_data.setCurrentIndex(1)
@@ -90,6 +114,9 @@ class Chart:
         elif self.default_bar_button.isEnabled() is False:
             self.default_bar_button.setEnabled(True)
 
+        elif self.default_line_button.isEnabled() is False:
+            self.default_line_button.setEnabled(True)
+
     def basic_bar_click(self):
         self.stacked_Widget_data.setCurrentIndex(1)
         self.stacked_widget_settings.setCurrentIndex(2)
@@ -102,5 +129,26 @@ class Chart:
 
         elif self.donut_pie_button.isEnabled() is False:
             self.donut_pie_button.setEnabled(True)
+
+        elif self.default_line_button.isEnabled() is False:
+            self.default_line_button.setEnabled(True)
+
+
+    def basic_line_click(self):
+        self.stacked_Widget_data.setCurrentIndex(1)
+        self.stacked_widget_settings.setCurrentIndex(0)
+        dock.dock_data.chart_type = 'Basic_bar'
+
+        self.default_line_button.setEnabled(False)
+
+        if self.default_pie_button.isEnabled() is False:
+            self.default_pie_button.setEnabled(True)
+
+        elif self.donut_pie_button.isEnabled() is False:
+            self.donut_pie_button.setEnabled(True)
+
+        elif self.default_bar_button.isEnabled() is False:
+            self.default_bar_button.setEnabled(True)
+
 
 
