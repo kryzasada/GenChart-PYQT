@@ -3,9 +3,13 @@
 from PyQt5 import QtCore, QtWidgets
 import chartList, chartMenu
 
-dock_data = 0
-dock_settings = 0
-dock_settings2 = 0
+#dock_data = 0
+#dock_settings = 0
+#dock_settings2 = 0
+
+dock_data = []
+dock_settings = []
+
 
 
 class Dock:
@@ -49,6 +53,8 @@ class Dock:
                 self.label_data_page_1.setText("Select chart")
                 self.data_grid_page_1.addWidget(self.label_data_page_1)
 
+                dock_data.append(0)
+
                 """ Page 2 """
                 self.data_page_2 = QtWidgets.QWidget()
                 self.data_page_2.setObjectName("data_page_2")
@@ -59,9 +65,8 @@ class Dock:
                 self.data_grid_page_2.setContentsMargins(3.5, 5, 3.5, 10)
                 self.data_grid_page_2.setSpacing(0)
 
-                global dock_data
-                dock_data = chartMenu.DataPage2(self.data_page_2, self.data_grid_page_2, self.central_layout)
-                dock_data.contain()
+                dock_data.append(chartMenu.DataPage2(self.data_page_2, self.data_grid_page_2, self.central_layout))
+                dock_data[1].contain()
 
                 """ Adding and showing """
                 self.stacked_widget_data.addWidget(self.data_page_1)
@@ -113,6 +118,8 @@ class Dock:
                 self.label_default.setText("Select chart")
                 self.settings_grid_page_1.addWidget(self.label_default)
 
+                dock_settings.append(0)
+
                 """ Page 2 """
                 self.settings_page_2 = QtWidgets.QWidget()
                 self.settings_page_2.setObjectName("settings_page_2")
@@ -122,12 +129,11 @@ class Dock:
 
                 self.settings_grid_page_2.setContentsMargins(0, 0, 0, 0)
 
-                global dock_settings
-                dock_settings = chartMenu.SettingsPage2(
-                                                        self.settings_page_2,
-                                                        self.settings_grid_page_2,
-                                                        self.central_layout)
-                dock_settings.contain()
+                dock_settings.append(chartMenu.SettingsPage2(
+                                                             self.settings_page_2,
+                                                             self.settings_grid_page_2,
+                                                             self.central_layout))
+                dock_settings[1].contain()
 
                 """ Page 3 """
                 self.settings_page_3 = QtWidgets.QWidget()
@@ -137,12 +143,11 @@ class Dock:
                 self.settings_grid_page_3.setObjectName("data_grid_page_3")
                 self.settings_grid_page_3.setContentsMargins(0, 0, 0, 0)
 
-                global dock_settings2
-                dock_settings2 = chartMenu.SettingsPage3(
-                                                         self.settings_page_3,
-                                                         self.settings_grid_page_3,
-                                                         self.central_layout)
-                dock_settings2.contain()
+                dock_settings.append(chartMenu.SettingsPage3(
+                                                             self.settings_page_3,
+                                                             self.settings_grid_page_3,
+                                                             self.central_layout))
+                dock_settings[2].contain()
 
                 """ Adding and showing """
                 self.stacked_widget_settings.addWidget(self.settings_page_1)

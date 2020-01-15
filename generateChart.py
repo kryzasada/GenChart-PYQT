@@ -38,15 +38,15 @@ class PieChart:
             self.donut()
 
     def contain(self):
-        for i in reversed(range(dock.dock_data.central_layout.count())):
-            dock.dock_data.central_layout.itemAt(i).widget().deleteLater()
+        for i in reversed(range(dock.dock_data[1].central_layout.count())):
+            dock.dock_data[1].central_layout.itemAt(i).widget().deleteLater()
 
         self.all = 0
         self.outer_sizes = []
         try:
-            for x in range(0, len(dock.dock_data.line_edit_data), 2):
-                self.outer_sizes.append(dock.dock_data.line_edit_data[x + 1].text())
-                self.all += float(dock.dock_data.line_edit_data[x + 1].text())
+            for x in range(0, len(dock.dock_data[1].line_edit_data), 2):
+                self.outer_sizes.append(dock.dock_data[1].line_edit_data[x + 1].text())
+                self.all += float(dock.dock_data[1].line_edit_data[x + 1].text())
                 if self.outer_sizes[-1] == '0':
                     raise ValueError("VALUE = 0")
 
@@ -69,24 +69,24 @@ class PieChart:
             value_error.exec_()
 
         self.outer_labels = []
-        for x in range(0, len(dock.dock_data.line_edit_data), 2):
-            self.outer_labels.append(str(dock.dock_data.line_edit_data[x].text()))
+        for x in range(0, len(dock.dock_data[1].line_edit_data), 2):
+            self.outer_labels.append(str(dock.dock_data[1].line_edit_data[x].text()))
 
         self.outer_colors = []
-        for x in range(0, len(dock.dock_settings.buttons_color)):
-            self.outer_colors.append(dock.dock_settings.buttons_color[x].palette().button().color().name())
+        for x in range(0, len(dock.dock_settings[1].buttons_color)):
+            self.outer_colors.append(dock.dock_settings[1].buttons_color[x].palette().button().color().name())
 
         self.outer_explode = []
-        for x in range(0, len(dock.dock_settings.spin_box_explode)):
-            self.outer_explode.append(float(dock.dock_settings.spin_box_explode[x].value() / 10))
+        for x in range(0, len(dock.dock_settings[1].spin_box_explode)):
+            self.outer_explode.append(float(dock.dock_settings[1].spin_box_explode[x].value() / 10))
 
         self.outer_shadow = 0
-        if dock.dock_settings.check_box1_settings.checkState():
-            self.outer_shadow = dock.dock_settings.check_box1_settings.checkState()
+        if dock.dock_settings[1].check_box1_settings.checkState():
+            self.outer_shadow = dock.dock_settings[1].check_box1_settings.checkState()
 
         self.outer_rotatelabels = 0
-        if dock.dock_settings.check_box2_settings.checkState():
-            self.outer_rotatelabels = dock.dock_settings.check_box2_settings.checkState()
+        if dock.dock_settings[1].check_box2_settings.checkState():
+            self.outer_rotatelabels = dock.dock_settings[1].check_box2_settings.checkState()
 
         data_autopct_list = {
             '100%': '%1.0f%%',
@@ -101,18 +101,18 @@ class PieChart:
             '100.0%    1': (lambda p: '{:1.1f}%\n{:,.0f}'.format(p, p * self.all / 100)),
             '100.00%    1': (lambda p: '{:1.2f}%\n{:,.0f}'.format(p, p * self.all / 100)),
         }
-        self.outer_autopct = data_autopct_list[dock.dock_settings.Data_autopct.currentText()]
-        if not dock.dock_settings.check_box5_settings.checkState():
+        self.outer_autopct = data_autopct_list[dock.dock_settings[1].Data_autopct.currentText()]
+        if not dock.dock_settings[1].check_box5_settings.checkState():
             self.outer_autopct = ''
 
         self.outer_wedgeprops = {'edgecolor': 'white'}
-        if dock.dock_settings.check_box3_settings.checkState() == 1:
+        if dock.dock_settings[1].check_box3_settings.checkState() == 1:
             self.outer_wedgeprops = {'edgecolor': 'black', 'linewidth': 1}
-        elif dock.dock_settings.check_box3_settings.checkState() == 2:
+        elif dock.dock_settings[1].check_box3_settings.checkState() == 2:
             self.outer_wedgeprops = {'edgecolor': 'black', 'linewidth': 2}
 
         self.outer_textprops = {'color': "black"}
-        if not dock.dock_settings.button_data_color.palette().button().color().name() == '#f0f0f0':
+        if not dock.dock_settings[1].button_data_color.palette().button().color().name() == '#f0f0f0':
             self.outer_textprops = {'color': "white"}
 
     def basic(self):
@@ -134,7 +134,7 @@ class PieChart:
                                 rotatelabels=self.outer_rotatelabels,
                                 textprops=self.outer_textprops)
 
-            if dock.dock_settings.check_box4_settings.checkState():
+            if dock.dock_settings[1].check_box4_settings.checkState():
                 static_chart.legend(
                                        self.outer_labels,
                                        loc='upper right',
@@ -142,10 +142,10 @@ class PieChart:
             else:
                 static_chart.legend().remove()
 
-            static_chart.set_title(dock.dock_settings.line_edit_title.text())
+            static_chart.set_title(dock.dock_settings[1].line_edit_title.text())
 
-            dock.dock_data.central_layout.addWidget( static_canvas)
-            dock.dock_data.central_layout.addWidget(toolbar)
+            dock.dock_data[1].central_layout.addWidget( static_canvas)
+            dock.dock_data[1].central_layout.addWidget(toolbar)
 
         except ValueError:
             pass
@@ -173,7 +173,7 @@ class PieChart:
                                 pctdistance=0.75
                                 )
 
-            if dock.dock_settings.check_box4_settings.checkState():
+            if dock.dock_settings[1].check_box4_settings.checkState():
                 static_chart.legend(
                                        self.outer_labels,
                                        loc='upper right',
@@ -182,10 +182,10 @@ class PieChart:
             else:
                 static_chart.legend().remove()
 
-            static_chart.set_title(dock.dock_settings.line_edit_title.text())
+            static_chart.set_title(dock.dock_settings[1].line_edit_title.text())
 
-            dock.dock_data.central_layout.addWidget(static_canvas)
-            dock.dock_data.central_layout.addWidget(toolbar)
+            dock.dock_data[1].central_layout.addWidget(static_canvas)
+            dock.dock_data[1].central_layout.addWidget(toolbar)
 
         except ValueError:
             pass
@@ -199,21 +199,21 @@ class BarChart:
             self.basic()
 
     def contain(self):
-        for i in reversed(range(dock.dock_data.central_layout.count())):
-            dock.dock_data.central_layout.itemAt(i).widget().deleteLater()
+        for i in reversed(range(dock.dock_data[1].central_layout.count())):
+            dock.dock_data[1].central_layout.itemAt(i).widget().deleteLater()
 
         self.static_canvas = FigureCanvas(Figure())
 
         self.outer_labels = []
-        for x in range(0, len(dock.dock_data.line_edit_data), 2):
-            self.outer_labels.append(str(dock.dock_data.line_edit_data[x].text()))
+        for x in range(0, len(dock.dock_data[1].line_edit_data), 2):
+            self.outer_labels.append(str(dock.dock_data[1].line_edit_data[x].text()))
 
         self.all = 0
         self.outer_height = []
         try:
-            for x in range(0, len(dock.dock_data.line_edit_data), 2):
-                self.outer_height.append(dock.dock_data.line_edit_data[x + 1].text())
-                self.all += float(dock.dock_data.line_edit_data[x + 1].text())
+            for x in range(0, len(dock.dock_data[1].line_edit_data), 2):
+                self.outer_height.append(dock.dock_data[1].line_edit_data[x + 1].text())
+                self.all += float(dock.dock_data[1].line_edit_data[x + 1].text())
 
         except ValueError:
             self.outer_height2 = 0
@@ -233,13 +233,13 @@ class BarChart:
             value_error.setStandardButtons(QtWidgets.QMessageBox.Ok)
             value_error.exec_()
 
-        self.outer_width = float(dock.dock_settings2.spin_box_bar_color.value() / 100)
+        self.outer_width = float(dock.dock_settings[2].spin_box_bar_color.value() / 100)
 
-        self.outer_color = dock.dock_settings2.button_bar_color.palette().button().color().name()
+        self.outer_color = dock.dock_settings[2].button_bar_color.palette().button().color().name()
 
-        self.outer_linewidth = dock.dock_settings2.spin_box_edge_color.value()
+        self.outer_linewidth = dock.dock_settings[2].spin_box_edge_color.value()
 
-        self.outer_edgecolor = dock.dock_settings2.button_edge_color.palette().button().color().name()
+        self.outer_edgecolor = dock.dock_settings[2].button_edge_color.palette().button().color().name()
 
     def basic(self):
         try:
@@ -255,7 +255,7 @@ class BarChart:
                                 linewidth=self.outer_linewidth,
                                 edgecolor=self.outer_edgecolor)
 
-            if dock.dock_settings2.check_box_label.isChecked():
+            if dock.dock_settings[2].check_box_label.isChecked():
                 for x, y in enumerate(self.outer_height):
                     static_chart.annotate(
                                              y,
@@ -263,13 +263,19 @@ class BarChart:
                                              ha='center',
                                              va='bottom')
 
-            static_chart.set_title(dock.dock_settings2.title_edit_title.text())
-            static_chart.set_xlabel(dock.dock_settings2.lineX_edit_title.text())
-            static_chart.set_ylabel(dock.dock_settings2.lineY_edit_title.text())
+            static_chart.set_title(dock.dock_settings[2].title_edit_title.text())
+            static_chart.set_xlabel(dock.dock_settings[2].lineX_edit_title.text())
+            static_chart.set_ylabel(dock.dock_settings[2].lineY_edit_title.text())
 
-            dock.dock_data.central_layout.addWidget(static_canvas)
-            dock.dock_data.central_layout.addWidget(toolbar)
+            dock.dock_data[1].central_layout.addWidget(static_canvas)
+            dock.dock_data[1].central_layout.addWidget(toolbar)
 
         except ValueError:
             pass
 
+class LineChart:
+    def __init__(self, chart_type):
+        self.contain()
+
+        if chart_type == 'Basic_bar':
+            self.basic()

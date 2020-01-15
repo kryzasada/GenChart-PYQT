@@ -88,7 +88,7 @@ class Chart:
     def basic_pie_click(self):
         self.stacked_Widget_data.setCurrentIndex(1)
         self.stacked_widget_settings.setCurrentIndex(1)
-        dock.dock_data.chart_type = 'Basic_pie'
+        dock.dock_data[1].chart_type = 'Basic_pie'
 
         self.default_pie_button.setEnabled(False)
 
@@ -104,7 +104,7 @@ class Chart:
     def donut_pie_click(self):
         self.stacked_Widget_data.setCurrentIndex(1)
         self.stacked_widget_settings.setCurrentIndex(1)
-        dock.dock_data.chart_type = 'Donut_pie'
+        dock.dock_data[1].chart_type = 'Donut_pie'
 
         self.donut_pie_button.setEnabled(False)
 
@@ -120,7 +120,7 @@ class Chart:
     def basic_bar_click(self):
         self.stacked_Widget_data.setCurrentIndex(1)
         self.stacked_widget_settings.setCurrentIndex(2)
-        dock.dock_data.chart_type = 'Basic_bar'
+        dock.dock_data[1].chart_type = 'Basic_bar'
 
         self.default_bar_button.setEnabled(False)
 
@@ -133,11 +133,10 @@ class Chart:
         elif self.default_line_button.isEnabled() is False:
             self.default_line_button.setEnabled(True)
 
-
     def basic_line_click(self):
         self.stacked_Widget_data.setCurrentIndex(1)
         self.stacked_widget_settings.setCurrentIndex(0)
-        dock.dock_data.chart_type = 'Basic_bar'
+        dock.dock_data[1].chart_type = 'Basic_line'
 
         self.default_line_button.setEnabled(False)
 
