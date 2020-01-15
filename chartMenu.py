@@ -130,6 +130,10 @@ class DataPage2:
                                            True if not self.chart_type.count('bar')
                                            else generateChart.BarChart(self.chart_type))
 
+        self.button_Create.clicked.connect(lambda:
+                                           True if not self.chart_type.count('line')
+                                           else generateChart.LineChart(self.chart_type))
+
     def add_data(self):
         self.data_horizontal_position_widgets += 2
         self.array_position_data += 2
@@ -290,7 +294,6 @@ class SettingsPage2:
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
 
-        print("13333" + str(dock.dock_data[1]))
         self.label_color = []
         self.buttons_color = []
         for array_position in range(0, 2):

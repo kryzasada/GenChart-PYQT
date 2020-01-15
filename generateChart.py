@@ -12,16 +12,16 @@ def tool_bar():
         static_canvas = FigureCanvas(Figure())
 
         NavigationToolbar2QT.toolitems = (
-            ('Home', 'Reset original view', 'home', 'home'),
-            ('Back', 'Back to previous view', 'back', 'back'),
-            ('Forward', 'Forward to next view', 'forward', 'forward'),
-            (None, None, None, None),
-            ('Pan', 'Pan axes with left mouse, zoom with right', 'move', 'pan'),
-            ('Zoom', 'Zoom to rectangle', 'zoom_to_rect', 'zoom'),
-            ('', 'Configure subplots', 'subplots', 'configure_subplots'),
-            (None, None, None, None),
-            (None, None, None, None),
-            ('Save', 'Save the figure', 'filesave', 'save_figure'),
+                                          ('Home', 'Reset original view', 'home', 'home'),
+                                          ('Back', 'Back to previous view', 'back', 'back'),
+                                          ('Forward', 'Forward to next view', 'forward', 'forward'),
+                                          (None, None, None, None),
+                                          ('Pan', 'Pan axes with left mouse, zoom with right', 'move', 'pan'),
+                                          ('Zoom', 'Zoom to rectangle', 'zoom_to_rect', 'zoom'),
+                                          ('', 'Configure subplots', 'subplots', 'configure_subplots'),
+                                          (None, None, None, None),
+                                          (None, None, None, None),
+                                          ('Save', 'Save the figure', 'filesave', 'save_figure'),
         )
         toolbar = NavigationToolbar2QT(static_canvas, static_canvas)
 
@@ -89,17 +89,17 @@ class PieChart:
             self.outer_rotatelabels = dock.dock_settings[1].check_box2_settings.checkState()
 
         data_autopct_list = {
-            '100%': '%1.0f%%',
-            '100.0%': '%1.1f%%',
-            '100.00%': '%1.2f%%',
-            '----': '',
-            '1': (lambda p: '{:,.1f}'.format(p * self.all / 100)),
-            '100%  (1)': (lambda p: '{:1.0f}%({:,.0f})'.format(p, p * self.all / 100)),
-            '100.0%  (1)': (lambda p: '{:1.1f}%({:,.0f})'.format(p, p * self.all / 100)),
-            '100.00%  (1)': (lambda p: '{:1.2f}%({:,.0f})'.format(p, p * self.all / 100)),
-            '100%     1': (lambda p: '{:1.0f}%\n{:,.0f}'.format(p, p * self.all / 100)),
-            '100.0%    1': (lambda p: '{:1.1f}%\n{:,.0f}'.format(p, p * self.all / 100)),
-            '100.00%    1': (lambda p: '{:1.2f}%\n{:,.0f}'.format(p, p * self.all / 100)),
+                            '100%': '%1.0f%%',
+                            '100.0%': '%1.1f%%',
+                            '100.00%': '%1.2f%%',
+                            '----': '',
+                            '1': (lambda p: '{:,.1f}'.format(p * self.all / 100)),
+                            '100%  (1)': (lambda p: '{:1.0f}%({:,.0f})'.format(p, p * self.all / 100)),
+                            '100.0%  (1)': (lambda p: '{:1.1f}%({:,.0f})'.format(p, p * self.all / 100)),
+                            '100.00%  (1)': (lambda p: '{:1.2f}%({:,.0f})'.format(p, p * self.all / 100)),
+                            '100%     1': (lambda p: '{:1.0f}%\n{:,.0f}'.format(p, p * self.all / 100)),
+                            '100.0%    1': (lambda p: '{:1.1f}%\n{:,.0f}'.format(p, p * self.all / 100)),
+                            '100.00%    1': (lambda p: '{:1.2f}%\n{:,.0f}'.format(p, p * self.all / 100)),
         }
         self.outer_autopct = data_autopct_list[dock.dock_settings[1].Data_autopct.currentText()]
         if not dock.dock_settings[1].check_box5_settings.checkState():
@@ -123,22 +123,22 @@ class PieChart:
             static_canvas, toolbar = tool_bar()
             static_chart = static_canvas.figure.subplots()
             static_chart.pie(
-                                self.outer_sizes,
-                                labels=self.outer_labels,
-                                wedgeprops=self.outer_wedgeprops,
-                                colors=self.outer_colors,
-                                explode=self.outer_explode,
-                                autopct=self.outer_autopct,
-                                shadow=self.outer_shadow,
-                                startangle=90,
-                                rotatelabels=self.outer_rotatelabels,
-                                textprops=self.outer_textprops)
+                             self.outer_sizes,
+                             labels=self.outer_labels,
+                             wedgeprops=self.outer_wedgeprops,
+                             colors=self.outer_colors,
+                             explode=self.outer_explode,
+                             autopct=self.outer_autopct,
+                             shadow=self.outer_shadow,
+                             startangle=90,
+                             rotatelabels=self.outer_rotatelabels,
+                             textprops=self.outer_textprops)
 
             if dock.dock_settings[1].check_box4_settings.checkState():
                 static_chart.legend(
-                                       self.outer_labels,
-                                       loc='upper right',
-                                       bbox_to_anchor=(1.1, 1.120))
+                                    self.outer_labels,
+                                    loc='upper right',
+                                    bbox_to_anchor=(1.1, 1.120))
             else:
                 static_chart.legend().remove()
 
@@ -160,25 +160,24 @@ class PieChart:
             static_canvas, toolbar = tool_bar()
             static_chart = static_canvas.figure.subplots()
             static_chart.pie(
-                                self.outer_sizes,
-                                labels=self.outer_labels,
-                                wedgeprops=self.outer_wedgeprops,
-                                colors=self.outer_colors,
-                                explode=self.outer_explode,
-                                autopct=self.outer_autopct,
-                                shadow=self.outer_shadow,
-                                startangle=90,
-                                rotatelabels=self.outer_rotatelabels,
-                                textprops=self.outer_textprops,
-                                pctdistance=0.75
-                                )
+                             self.outer_sizes,
+                             labels=self.outer_labels,
+                             wedgeprops=self.outer_wedgeprops,
+                             colors=self.outer_colors,
+                             explode=self.outer_explode,
+                             autopct=self.outer_autopct,
+                             shadow=self.outer_shadow,
+                             startangle=90,
+                             rotatelabels=self.outer_rotatelabels,
+                             textprops=self.outer_textprops,
+                             pctdistance=0.75)
 
             if dock.dock_settings[1].check_box4_settings.checkState():
                 static_chart.legend(
-                                       self.outer_labels,
-                                       loc='upper right',
-                                       bbox_to_anchor=(1.1, 1.120),
-                                       )
+                                    self.outer_labels,
+                                    loc='upper right',
+                                    bbox_to_anchor=(1.1, 1.120),
+                                    )
             else:
                 static_chart.legend().remove()
 
@@ -201,8 +200,6 @@ class BarChart:
     def contain(self):
         for i in reversed(range(dock.dock_data[1].central_layout.count())):
             dock.dock_data[1].central_layout.itemAt(i).widget().deleteLater()
-
-        self.static_canvas = FigureCanvas(Figure())
 
         self.outer_labels = []
         for x in range(0, len(dock.dock_data[1].line_edit_data), 2):
@@ -248,20 +245,20 @@ class BarChart:
             static_canvas, toolbar = tool_bar()
             static_chart = static_canvas.figure.subplots()
             static_chart.bar(
-                                self.outer_labels,
-                                height=self.outer_height,
-                                width=self.outer_width,
-                                color=self.outer_color,
-                                linewidth=self.outer_linewidth,
-                                edgecolor=self.outer_edgecolor)
+                             self.outer_labels,
+                             height=self.outer_height,
+                             width=self.outer_width,
+                             color=self.outer_color,
+                             linewidth=self.outer_linewidth,
+                             dgecolor=self.outer_edgecolor)
 
             if dock.dock_settings[2].check_box_label.isChecked():
                 for x, y in enumerate(self.outer_height):
                     static_chart.annotate(
-                                             y,
-                                             xy=(x, y+(self.outer_linewidth / 100 / 2)),
-                                             ha='center',
-                                             va='bottom')
+                                          y,
+                                          xy=(x, y+(self.outer_linewidth / 100 / 2)),
+                                          ha='center',
+                                          va='bottom')
 
             static_chart.set_title(dock.dock_settings[2].title_edit_title.text())
             static_chart.set_xlabel(dock.dock_settings[2].lineX_edit_title.text())
@@ -276,6 +273,52 @@ class BarChart:
 class LineChart:
     def __init__(self, chart_type):
         self.contain()
-
-        if chart_type == 'Basic_bar':
+        if chart_type == 'Basic_line':
             self.basic()
+
+    def contain(self):
+        for i in reversed(range(dock.dock_data[1].central_layout.count())):
+            dock.dock_data[1].central_layout.itemAt(i).widget().deleteLater()
+
+        self.outer_labels = []
+        for x in range(0, len(dock.dock_data[1].line_edit_data), 2):
+            self.outer_labels.append(str(dock.dock_data[1].line_edit_data[x].text()))
+
+        self.all = 0
+        self.outer_height = []
+        try:
+            for x in range(0, len(dock.dock_data[1].line_edit_data), 2):
+                self.outer_height.append(dock.dock_data[1].line_edit_data[x + 1].text())
+                self.all += float(dock.dock_data[1].line_edit_data[x + 1].text())
+
+        except ValueError:
+            self.outer_height2 = 0
+            for x in str(self.outer_height[-1]):
+                if x == ',':
+                    self.outer_height2 = self.outer_height[-1].replace(',', '.')
+
+            if self.outer_height2 == 0:
+                self.outer_height2 = 1
+
+            value_error = QtWidgets.QMessageBox()
+            value_error.setWindowTitle("VALUE")
+            value_error.setText("Value entry error                       ")
+            value_error.setInformativeText(
+                "Your value: %s \nCorrect: %s " % (str(self.outer_height[-1]), self.outer_height2))
+            value_error.setIcon(QtWidgets.QMessageBox.Critical)
+            value_error.setStandardButtons(QtWidgets.QMessageBox.Ok)
+            value_error.exec_()
+
+    def basic(self):
+
+        self.outer_height = [int(x) for x in self.outer_height]
+
+        static_canvas, toolbar = tool_bar()
+        static_chart = static_canvas.figure.subplots()
+        print(self.outer_labels, self.outer_height)
+        static_chart.plot(self.outer_labels,
+                          self.outer_height,
+                          linewidth=8)
+
+        dock.dock_data[1].central_layout.addWidget(static_canvas)
+        dock.dock_data[1].central_layout.addWidget(toolbar)
