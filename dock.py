@@ -3,13 +3,8 @@
 from PyQt5 import QtCore, QtWidgets
 import chartList, chartMenu
 
-#dock_data = 0
-#dock_settings = 0
-#dock_settings2 = 0
-
 dock_data = []
 dock_settings = []
-
 
 
 class Dock:
