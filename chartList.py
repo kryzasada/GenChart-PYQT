@@ -135,7 +135,7 @@ class Chart:
 
     def basic_line_click(self):
         self.stacked_Widget_data.setCurrentIndex(1)
-        self.stacked_widget_settings.setCurrentIndex(0)
+        self.stacked_widget_settings.setCurrentIndex(3)
         dock.dock_data[1].chart_type = 'Basic_line'
 
         self.default_line_button.setEnabled(False)

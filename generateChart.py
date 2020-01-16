@@ -250,7 +250,7 @@ class BarChart:
                              width=self.outer_width,
                              color=self.outer_color,
                              linewidth=self.outer_linewidth,
-                             dgecolor=self.outer_edgecolor)
+                             edgecolor=self.outer_edgecolor)
 
             if dock.dock_settings[2].check_box_label.isChecked():
                 for x, y in enumerate(self.outer_height):
@@ -260,15 +260,16 @@ class BarChart:
                                           ha='center',
                                           va='bottom')
 
-            static_chart.set_title(dock.dock_settings[2].title_edit_title.text())
-            static_chart.set_xlabel(dock.dock_settings[2].lineX_edit_title.text())
-            static_chart.set_ylabel(dock.dock_settings[2].lineY_edit_title.text())
+            static_chart.set_title(dock.dock_settings[2].line_edit_title.text())
+            static_chart.set_xlabel(dock.dock_settings[2].line_edit_lineX.text())
+            static_chart.set_ylabel(dock.dock_settings[2].line_edit_lineY.text())
 
             dock.dock_data[1].central_layout.addWidget(static_canvas)
             dock.dock_data[1].central_layout.addWidget(toolbar)
 
         except ValueError:
             pass
+
 
 class LineChart:
     def __init__(self, chart_type):
@@ -309,16 +310,33 @@ class LineChart:
             value_error.setStandardButtons(QtWidgets.QMessageBox.Ok)
             value_error.exec_()
 
+        self.outer_color = dock.dock_settings[3].button_line_color.palette().button().color().name()
+
+        self.outer_linewidth = dock.dock_settings[3].spin_box_line_size.value()
+
+        self.outer_label = dock.dock_settings[3].line_edit_legend.text()
+
     def basic(self):
+        try:
+            self.outer_height = [int(x) for x in self.outer_height]
 
-        self.outer_height = [int(x) for x in self.outer_height]
+            static_canvas, toolbar = tool_bar()
+            static_chart = static_canvas.figure.subplots()
+            static_chart.plot(self.outer_labels,
+                              self.outer_height,
+                              color=self.outer_color,
+                              linewidth=self.outer_linewidth,
+                              label=self.outer_label)
 
-        static_canvas, toolbar = tool_bar()
-        static_chart = static_canvas.figure.subplots()
-        print(self.outer_labels, self.outer_height)
-        static_chart.plot(self.outer_labels,
-                          self.outer_height,
-                          linewidth=8)
+            static_chart.set_title(dock.dock_settings[3].line_edit_title.text())
+            static_chart.set_xlabel(dock.dock_settings[3].line_edit_lineX.text())
+            static_chart.set_ylabel(dock.dock_settings[3].line_edit_lineY.text())
 
-        dock.dock_data[1].central_layout.addWidget(static_canvas)
-        dock.dock_data[1].central_layout.addWidget(toolbar)
+            if self.outer_label:
+                static_chart.legend()
+
+            dock.dock_data[1].central_layout.addWidget(static_canvas)
+            dock.dock_data[1].central_layout.addWidget(toolbar)
+
+        except ValueError:
+            pass

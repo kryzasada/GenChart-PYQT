@@ -9,16 +9,16 @@ import time
 import dock, generateChart
 
 
-class DataPage2:
+class DataPage1:
     def __init__(self, *args):
-        self.page_2 = args[0]
-        self.grid_page_2 = args[1]
+        self.page = args[0]
+        self.grid_page = args[1]
         self.central_layout = args[2]
 
         self.chart_type = 0
 
     def contain(self):
-        self.scroll_area = QtWidgets.QScrollArea(self.page_2)
+        self.scroll_area = QtWidgets.QScrollArea(self.page)
 
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Ignored, QtWidgets.QSizePolicy.Expanding)
         sizePolicy.setHeightForWidth(self.scroll_area.sizePolicy().hasHeightForWidth())
@@ -31,7 +31,7 @@ class DataPage2:
         self.scroll_area_contents.setGeometry(QtCore.QRect(0, 0, 153, 523))
         self.scroll_area_contents.setObjectName("scroll_area_contents")
 
-        self.grid_page_2.addWidget(self.scroll_area, 0, 0, 1, 1)
+        self.grid_page.addWidget(self.scroll_area, 0, 0, 1, 1)
         self.scroll_area.setWidget(self.scroll_area_contents)
 
         self.data_scroll_layout = QtWidgets.QFormLayout(self.scroll_area_contents)
@@ -253,16 +253,16 @@ class DataPage2:
         dock.dock_settings[1].label_color[int(position / 2)].setText(self.line_edit_data[position].text())
 
 
-class SettingsPage2:
+class SettingsPage1:
     def __init__(self, *args):
-        self.page_2 = args[0]
-        self.grid_page_2 = args[1]
+        self.page = args[0]
+        self.grid_page = args[1]
         self.central_layout = args[2]
 
     def contain(self):
-        self.tab_widget = QtWidgets.QTabWidget(self.page_2)
+        self.tab_widget = QtWidgets.QTabWidget(self.page)
         self.tab_widget.setObjectName("tab_widget")
-        self.grid_page_2.addWidget(self.tab_widget, 0, 0, 1, 1)
+        self.grid_page.addWidget(self.tab_widget, 0, 0, 1, 1)
 
         self.page_color = QtWidgets.QWidget()
         self.page_color.setObjectName("page_color")
@@ -485,14 +485,14 @@ class SettingsPage2:
         dock.dock_settings[1].buttons_color[number].setStyleSheet("background-color: %s;" % (str(color.name())))
 
 
-class SettingsPage3:
+class SettingsPage2:
     def __init__(self, *args):
-        self.page_3 = args[0]
-        self.grid_page_3 = args[1]
+        self.page = args[0]
+        self.grid_page = args[1]
         self.central_layout = args[2]
 
     def contain(self):
-        self.scroll_area = QtWidgets.QScrollArea(self.page_3)
+        self.scroll_area = QtWidgets.QScrollArea(self.page)
 
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Ignored, QtWidgets.QSizePolicy.Expanding)
         sizePolicy.setHeightForWidth(self.scroll_area.sizePolicy().hasHeightForWidth())
@@ -503,28 +503,28 @@ class SettingsPage3:
         self.scroll_area_contents = QtWidgets.QWidget()
         self.scroll_area_contents.setGeometry(QtCore.QRect(0, 0, 153, 523))
 
-        self.grid_page_3.addWidget(self.scroll_area, 0, 0, 1, 1)
+        self.grid_page.addWidget(self.scroll_area, 0, 0, 1, 1)
         self.scroll_area.setWidget(self.scroll_area_contents)
 
         self.scroll_settings_layout = QtWidgets.QFormLayout(self.scroll_area_contents)
 
-        self.title_edit_title = QtWidgets.QLineEdit()
-        self.title_edit_title.setMaximumSize(QtCore.QSize(100, 16777215))
-        self.title_edit_title.setClearButtonEnabled(True)
-        self.title_edit_title.setPlaceholderText('Set title')
-        self.scroll_settings_layout.setWidget(0, QtWidgets.QFormLayout.LabelRole, self.title_edit_title)
+        self.line_edit_title = QtWidgets.QLineEdit()
+        self.line_edit_title.setMaximumSize(QtCore.QSize(100, 16777215))
+        self.line_edit_title.setClearButtonEnabled(True)
+        self.line_edit_title.setPlaceholderText('Set title')
+        self.scroll_settings_layout.setWidget(0, QtWidgets.QFormLayout.LabelRole, self.line_edit_title)
 
-        self.lineY_edit_title = QtWidgets.QLineEdit()
-        self.lineY_edit_title.setMaximumSize(QtCore.QSize(100, 16777215))
-        self.lineY_edit_title.setClearButtonEnabled(True)
-        self.lineY_edit_title.setPlaceholderText('Label Y')
-        self.scroll_settings_layout.setWidget(1, QtWidgets.QFormLayout.LabelRole, self.lineY_edit_title)
+        self.line_edit_lineY = QtWidgets.QLineEdit()
+        self.line_edit_lineY.setMaximumSize(QtCore.QSize(100, 16777215))
+        self.line_edit_lineY.setClearButtonEnabled(True)
+        self.line_edit_lineY.setPlaceholderText('Label Y')
+        self.scroll_settings_layout.setWidget(1, QtWidgets.QFormLayout.LabelRole, self.line_edit_lineY)
 
-        self.lineX_edit_title = QtWidgets.QLineEdit()
-        self.lineX_edit_title.setMaximumSize(QtCore.QSize(100, 16777215))
-        self.lineX_edit_title.setClearButtonEnabled(True)
-        self.lineX_edit_title.setPlaceholderText('Label X')
-        self.scroll_settings_layout.setWidget(2, QtWidgets.QFormLayout.LabelRole, self.lineX_edit_title)
+        self.line_edit_lineX = QtWidgets.QLineEdit()
+        self.line_edit_lineX.setMaximumSize(QtCore.QSize(100, 16777215))
+        self.line_edit_lineX.setClearButtonEnabled(True)
+        self.line_edit_lineX.setPlaceholderText('Label X')
+        self.scroll_settings_layout.setWidget(2, QtWidgets.QFormLayout.LabelRole, self.line_edit_lineX)
 
         self.line_1 = QtWidgets.QFrame()
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
@@ -588,6 +588,98 @@ class SettingsPage3:
         self.label_edge_color = QtWidgets.QLabel()
         self.label_edge_color.setText("Edge color")
         self.layout_settings_layout.setWidget(3, QtWidgets.QFormLayout.FieldRole, self.label_edge_color)
+
+        self.scroll_settings_layout.setLayout(6, QtWidgets.QFormLayout.LabelRole, self.layout_settings_layout)
+
+    @staticmethod
+    def button_color(number):
+        color = QtWidgets.QColorDialog.getColor()
+        number.setStyleSheet("background-color: %s;" % (str(color.name())))
+
+class SettingsPage3:
+    def __init__(self, *args):
+        self.page = args[0]
+        self.grid_page = args[1]
+        self.central_layout = args[2]
+
+    def contain(self):
+        self.scroll_area = QtWidgets.QScrollArea(self.page)
+
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Ignored, QtWidgets.QSizePolicy.Expanding)
+        sizePolicy.setHeightForWidth(self.scroll_area.sizePolicy().hasHeightForWidth())
+
+        self.scroll_area.setSizePolicy(sizePolicy)
+        self.scroll_area.setWidgetResizable(True)
+
+        self.scroll_area_contents = QtWidgets.QWidget()
+        self.scroll_area_contents.setGeometry(QtCore.QRect(0, 0, 153, 523))
+
+        self.grid_page.addWidget(self.scroll_area, 0, 0, 1, 1)
+        self.scroll_area.setWidget(self.scroll_area_contents)
+
+        self.scroll_settings_layout = QtWidgets.QFormLayout(self.scroll_area_contents)
+
+        self.line_edit_title = QtWidgets.QLineEdit()
+        self.line_edit_title.setMaximumSize(QtCore.QSize(100, 16777215))
+        self.line_edit_title.setClearButtonEnabled(True)
+        self.line_edit_title.setPlaceholderText('Set title')
+        self.scroll_settings_layout.setWidget(0, QtWidgets.QFormLayout.LabelRole, self.line_edit_title)
+
+        self.line_edit_lineY = QtWidgets.QLineEdit()
+        self.line_edit_lineY.setMaximumSize(QtCore.QSize(100, 16777215))
+        self.line_edit_lineY.setClearButtonEnabled(True)
+        self.line_edit_lineY.setPlaceholderText('Label Y')
+        self.scroll_settings_layout.setWidget(1, QtWidgets.QFormLayout.LabelRole, self.line_edit_lineY)
+
+        self.line_edit_lineX = QtWidgets.QLineEdit()
+        self.line_edit_lineX.setMaximumSize(QtCore.QSize(100, 16777215))
+        self.line_edit_lineX.setClearButtonEnabled(True)
+        self.line_edit_lineX.setPlaceholderText('Label X')
+        self.scroll_settings_layout.setWidget(2, QtWidgets.QFormLayout.LabelRole, self.line_edit_lineX)
+
+        self.line_1 = QtWidgets.QFrame()
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy.setHorizontalStretch(110)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.line_1.sizePolicy().hasHeightForWidth())
+        self.line_1.setSizePolicy(sizePolicy)
+        self.line_1.setMinimumSize(QtCore.QSize(100, 0))
+        self.line_1.setFrameShape(QtWidgets.QFrame.HLine)
+        self.line_1.setFrameShadow(QtWidgets.QFrame.Sunken)
+        self.scroll_settings_layout.setWidget(3, QtWidgets.QFormLayout.LabelRole, self.line_1)
+
+        self.line_edit_legend = QtWidgets.QLineEdit()
+        self.line_edit_legend.setPlaceholderText("Legend ")
+        self.scroll_settings_layout.setWidget(4, QtWidgets.QFormLayout.LabelRole, self.line_edit_legend)
+
+        self.line_2 = QtWidgets.QFrame()
+        self.line_2.setSizePolicy(sizePolicy)
+        self.line_2.setMinimumSize(QtCore.QSize(100, 0))
+        self.line_2.setFrameShape(QtWidgets.QFrame.HLine)
+        self.line_2.setFrameShadow(QtWidgets.QFrame.Sunken)
+        self.scroll_settings_layout.setWidget(5, QtWidgets.QFormLayout.LabelRole, self.line_2)
+
+        self.layout_settings_layout = QtWidgets.QFormLayout()
+
+        self.spin_box_line_size = QtWidgets.QSpinBox()
+        self.spin_box_line_size.setMinimum(1)
+        self.spin_box_line_size.setMaximum(15)
+        self.spin_box_line_size.setValue(3)
+        self.layout_settings_layout.setWidget(0, QtWidgets.QFormLayout.LabelRole, self.spin_box_line_size)
+
+        self.label_line_size = QtWidgets.QLabel()
+        self.label_line_size.setText("Line size")
+        self.layout_settings_layout.setWidget(0, QtWidgets.QFormLayout.FieldRole, self.label_line_size)
+
+        self.button_line_color = QtWidgets.QPushButton()
+        self.button_line_color.setMinimumSize(QtCore.QSize(40, 0))
+        self.button_line_color.setStyleSheet("background-color: #1f77b4")
+        self.button_line_color.clicked.connect(lambda: self.button_color(self.button_line_color))
+        self.layout_settings_layout.setWidget(1, QtWidgets.QFormLayout.LabelRole, self.button_line_color)
+
+        self.label_line_size = QtWidgets.QLabel()
+        self.label_line_size.setText("Line color")
+        self.layout_settings_layout.setWidget(1, QtWidgets.QFormLayout.FieldRole, self.label_line_size)
 
         self.scroll_settings_layout.setLayout(6, QtWidgets.QFormLayout.LabelRole, self.layout_settings_layout)
 
