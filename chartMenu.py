@@ -650,6 +650,7 @@ class SettingsPage3:
 
         self.line_edit_legend = QtWidgets.QLineEdit()
         self.line_edit_legend.setPlaceholderText("Legend ")
+        self.line_edit_legend.setMaximumSize(QtCore.QSize(100, 16777215))
         self.scroll_settings_layout.setWidget(4, QtWidgets.QFormLayout.LabelRole, self.line_edit_legend)
 
         self.line_2 = QtWidgets.QFrame()
