@@ -84,13 +84,15 @@ class Chart:
         self.default_line_image.setMaximumSize(QtCore.QSize(28, 27))
         self.page_3_layout.setWidget(0, QtWidgets.QFormLayout.LabelRole, self.default_line_image)
 
+        self.tab_widget.setCurrentIndex(2)
+
+        #self.page_3.setHidden(True)
+        #self.tab_widget.currentChanged.connect(lambda: self.page_3.setHidden(False))
 
     def basic_pie_click(self):
         self.stacked_Widget_data.setCurrentIndex(1)
         self.stacked_widget_settings.setCurrentIndex(1)
         dock.dock_data[1].chart_type = 'Basic_pie'
-
-        self.default_pie_button.setEnabled(False)
 
         if self.donut_pie_button.isEnabled() is False:
             self.donut_pie_button.setEnabled(True)
@@ -105,8 +107,6 @@ class Chart:
         self.stacked_Widget_data.setCurrentIndex(1)
         self.stacked_widget_settings.setCurrentIndex(1)
         dock.dock_data[1].chart_type = 'Donut_pie'
-
-        self.donut_pie_button.setEnabled(False)
 
         if self.default_pie_button.isEnabled() is False:
             self.default_pie_button.setEnabled(True)
