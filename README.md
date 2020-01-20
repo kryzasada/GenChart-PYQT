@@ -14,7 +14,7 @@ Chart generating program, written in PyQt5
 ## TODO
 |  ![Urgent](https://github.com/kryzasada/ReadMe-Photo/blob/master/Chart/TODO-table1.png) | ![Important](https://github.com/kryzasada/ReadMe-Photo/blob/master/Chart/TODO-table2.png) | ![Not urgent](https://github.com/kryzasada/ReadMe-Photo/blob/master/Chart/TODO-table3.png) |
 | :------------: | :------------: | :------------: |
-| Add bar charts | Create logo | More languages |
+| Add more types of chart | Create logo | More languages |
 | &#x2796; | Legend settings | User settings |
 | &#x2796; | New menu in value dock | Black motive |
 
