@@ -43,12 +43,10 @@ class DataPage1:
 
         """Create default menu in data/value dock"""
 
-
         " Upper main label layout"
         self.upper_first_layout = QtWidgets.QFormLayout()
         self.upper_first_layout.setObjectName("upper_first_layout")
         self.data_scroll_layout.setLayout(0, QtWidgets.QFormLayout.FieldRole, self.upper_first_layout)
-
 
         " Upper label layout - label name"
         self.upper__TextName_layout = QtWidgets.QFormLayout()
@@ -104,7 +102,6 @@ class DataPage1:
         self.upper_TextValue_check.setObjectName("upper_TextValue_check")
         self.upper__TextValue_layout.setWidget(0, QtWidgets.QFormLayout.FieldRole, self.upper_TextValue_check)
 
-
         " Layout write name and check"
         self.upper_first_Name_layout = QtWidgets.QFormLayout()
         self.upper_first_Name_layout.setHorizontalSpacing(6)
@@ -144,7 +141,6 @@ class DataPage1:
         self.upper_first_Name_line.setFrameShape(QtWidgets.QFrame.HLine)
         self.upper_first_Name_line.setObjectName("upper_first_Name_line")
         self.upper_first_Name_layout.setWidget(1, QtWidgets.QFormLayout.LabelRole, self.upper_first_Name_line)
-
 
         " Layout value and check"
         self.upper_first_value_layout = QtWidgets.QFormLayout()
@@ -187,140 +183,31 @@ class DataPage1:
         self.upper_first_value_line.setObjectName("upper_first_value_line")
         self.upper_first_value_layout.setWidget(1, QtWidgets.QFormLayout.LabelRole, self.upper_first_value_line)
 
-
-        "           --------------------------------------------------                    "
-
-
-
-        self.button_X = QtWidgets.QPushButton(self.scroll_area_contents)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Preferred)
-        sizePolicy.setHeightForWidth(self.button_X.sizePolicy().hasHeightForWidth())
-        self.button_X.setSizePolicy(sizePolicy)
-        self.button_X.setMinimumSize(QtCore.QSize(20, 36))
-        self.button_X.setMaximumSize(QtCore.QSize(20, 36))
-        self.button_X.setIcon(QtGui.QIcon('Image/Other/value_menu_X.png'))
-        self.button_X.setStyleSheet("background-color: rgba(255, 255, 255, 0);")
-        self.button_X.clicked.connect(lambda: print("123"))
-        self.data_scroll_layout.setWidget(1, QtWidgets.QFormLayout.LabelRole, self.button_X)
-
-        " Second block layout "
-        self.second_block_layout = QtWidgets.QFormLayout()
-        self.second_block_layout.setObjectName("second_block_layout")
-
-
-        " Second block layout - line "
-        self.second_block_line = QtWidgets.QFrame(self.scroll_area_contents)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Maximum, QtWidgets.QSizePolicy.Fixed)
-        sizePolicy.setHeightForWidth(self.second_block_line.sizePolicy().hasHeightForWidth())
-        self.second_block_line.setSizePolicy(sizePolicy)
-        self.second_block_line.setMinimumSize(QtCore.QSize(87, 1))
-        self.second_block_line.setMaximumSize(QtCore.QSize(120, 0))
-        self.second_block_line.setFrameShadow(QtWidgets.QFrame.Plain)
-        self.second_block_line.setLineWidth(6)
-        self.second_block_line.setFrameShape(QtWidgets.QFrame.HLine)
-        self.second_block_line.setObjectName("second_block_line")
-        self.second_block_layout.setWidget(1, QtWidgets.QFormLayout.LabelRole, self.second_block_line)
-
-        " Layout write name and check in second block "
-        self.second_block_Name_layout = QtWidgets.QFormLayout()
-        self.second_block_Name_layout.setVerticalSpacing(0)
-        self.second_block_Name_layout.setObjectName("second_block_Name_layout")
-        self.second_block_layout.setLayout(2, QtWidgets.QFormLayout.LabelRole, self.second_block_Name_layout)
-        self.data_scroll_layout.setLayout(1, QtWidgets.QFormLayout.FieldRole, self.second_block_layout)
-
-        " Line edit - write name and check in second block"
-        self.second_block_Name_write = QtWidgets.QLineEdit(self.scroll_area_contents)
-        self.second_block_Name_write.setEnabled(True)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
-        sizePolicy.setHeightForWidth(self.second_block_Name_write.sizePolicy().hasHeightForWidth())
-        self.second_block_Name_write.setSizePolicy(sizePolicy)
-        self.second_block_Name_write.setMinimumSize(QtCore.QSize(65, 20))
-        self.second_block_Name_write.setMaximumSize(QtCore.QSize(16777215, 16777215))
-        self.second_block_Name_write.setText("def_2")
-        self.second_block_Name_write.setObjectName("second_block_Name_write")
-        self.second_block_Name_layout.setWidget(1, QtWidgets.QFormLayout.LabelRole, self.second_block_Name_write)
-
-        self.second_block_Name_check = QtWidgets.QCheckBox(self.scroll_area_contents)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.MinimumExpanding, QtWidgets.QSizePolicy.Expanding)
-        sizePolicy.setHeightForWidth(self.second_block_Name_check.sizePolicy().hasHeightForWidth())
-        self.second_block_Name_check.setSizePolicy(sizePolicy)
-        self.second_block_Name_check.setMinimumSize(QtCore.QSize(15, 20))
-        self.second_block_Name_check.setMaximumSize(QtCore.QSize(15, 20))
-        self.second_block_Name_check.setText("")
-        self.second_block_Name_check.setObjectName("second_block_Name_check")
-        self.second_block_Name_layout.setWidget(1, QtWidgets.QFormLayout.FieldRole, self.second_block_Name_check)
-
-        self.second_block_Name_line = QtWidgets.QFrame(self.scroll_area_contents)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Maximum, QtWidgets.QSizePolicy.Fixed)
-        sizePolicy.setHeightForWidth(self.second_block_Name_line.sizePolicy().hasHeightForWidth())
-        self.second_block_Name_line.setSizePolicy(sizePolicy)
-        self.second_block_Name_line.setMinimumSize(QtCore.QSize(65, 1))
-        self.second_block_Name_line.setMaximumSize(QtCore.QSize(0, 1))
-        self.second_block_Name_line.setFrameShadow(QtWidgets.QFrame.Plain)
-        self.second_block_Name_line.setLineWidth(6)
-        self.second_block_Name_line.setFrameShape(QtWidgets.QFrame.HLine)
-        self.second_block_Name_line.setObjectName("second_block_Name_line")
-        self.second_block_Name_layout.setWidget(2, QtWidgets.QFormLayout.LabelRole, self.second_block_Name_line)
-
-
-        " Layout spin Box and check in second block "
-        self.second_block_value_layout = QtWidgets.QFormLayout()
-        self.second_block_value_layout.setVerticalSpacing(0)
-        self.second_block_value_layout.setObjectName("second_block_value_layout")
-        self.second_block_layout.setLayout(2, QtWidgets.QFormLayout.FieldRole, self.second_block_value_layout)
-
-        " Spin box - value and check in second block"
-        self.second_block_value_spinBox = QtWidgets.QDoubleSpinBox(self.scroll_area_contents)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
-        sizePolicy.setHeightForWidth(self.second_block_value_spinBox.sizePolicy().hasHeightForWidth())
-        self.second_block_value_spinBox.setSizePolicy(sizePolicy)
-        self.second_block_value_spinBox.setMinimumSize(QtCore.QSize(50, 20))
-        self.second_block_value_spinBox.setMinimum(-9999999999.99)
-        self.second_block_value_spinBox.setMaximum(9999999999.99)
-        self.second_block_value_spinBox.setObjectName("second_block_value_spinBox")
-        self.second_block_value_layout.setWidget(1, QtWidgets.QFormLayout.LabelRole, self.second_block_value_spinBox)
-
-        self.second_block_value_check = QtWidgets.QCheckBox(self.scroll_area_contents)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.MinimumExpanding, QtWidgets.QSizePolicy.Ignored)
-        sizePolicy.setHeightForWidth(self.second_block_value_check.sizePolicy().hasHeightForWidth())
-        self.second_block_value_check.setSizePolicy(sizePolicy)
-        self.second_block_value_check.setMinimumSize(QtCore.QSize(15, 20))
-        self.second_block_value_check.setMaximumSize(QtCore.QSize(15, 20))
-        self.second_block_value_check.setText("")
-        self.second_block_value_check.setObjectName("second_block_value_check")
-        self.second_block_value_layout.setWidget(1, QtWidgets.QFormLayout.FieldRole, self.second_block_value_check)
-
-        self.second_block_value_line = QtWidgets.QFrame(self.scroll_area_contents)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Maximum, QtWidgets.QSizePolicy.Fixed)
-        sizePolicy.setHeightForWidth(self.second_block_value_line.sizePolicy().hasHeightForWidth())
-        self.second_block_value_line.setSizePolicy(sizePolicy)
-        self.second_block_value_line.setMinimumSize(QtCore.QSize(50, 1))
-        self.second_block_value_line.setMaximumSize(QtCore.QSize(120, 1))
-        self.second_block_value_line.setFrameShadow(QtWidgets.QFrame.Plain)
-        self.second_block_value_line.setLineWidth(6)
-        self.second_block_value_line.setFrameShape(QtWidgets.QFrame.HLine)
-        self.second_block_value_line.setObjectName("second_block_value_line_2")
-        self.second_block_value_layout.setWidget(2, QtWidgets.QFormLayout.LabelRole, self.second_block_value_line)
-
-
         self.space = QtWidgets.QFrame(self.scroll_area_contents)
-        self.second_block_layout.setWidget(3, QtWidgets.QFormLayout.LabelRole, self.space)
+        self.space.setMinimumSize(QtCore.QSize(0, 5))
+        self.space.setMaximumSize(QtCore.QSize(0, 5))
+        self.space.setLineWidth(0)
+        self.upper_first_layout.setWidget(2, QtWidgets.QFormLayout.LabelRole, self.space)
 
+        add_data = []
         self.button_Add = QtWidgets.QPushButton(self.scroll_area_contents)
         self.button_Add.setSizePolicy(self.sizePolicy)
         self.button_Add.setObjectName("pushButton")
         self.button_Add.setMaximumSize(QtCore.QSize(65, 20))
-        self.second_block_layout.setWidget(4, QtWidgets.QFormLayout.LabelRole, self.button_Add)
-        self.button_Add.clicked.connect(self.add_data)
         self.button_Add.setText("ADD DATA")
+        self.upper_first_layout.setWidget(3, QtWidgets.QFormLayout.LabelRole, self.button_Add)
+        self.button_Add.clicked.connect(lambda: add_data.append(self.AddData()))
 
         self.button_Create = QtWidgets.QPushButton(self.scroll_area_contents)
         self.button_Create.setObjectName("button_Create")
         self.button_Create.setMaximumSize(QtCore.QSize(65, 20))
-        self.second_block_layout.setWidget(5, QtWidgets.QFormLayout.LabelRole, self.button_Create)
+        self.upper_first_layout.setWidget(4, QtWidgets.QFormLayout.LabelRole, self.button_Create)
         self.button_Create.setText("CREATE")
 
-    """
+
+        print(self.data_scroll_layout.rowCount())
+
+        """
     self.button_Create.clicked.connect(lambda:
                                        True if not self.chart_type.count('pie')
                                        else generateChart.PieChart(self.chart_type))
@@ -332,9 +219,159 @@ class DataPage1:
     self.button_Create.clicked.connect(lambda:
                                        True if not self.chart_type.count('line')
                                        else generateChart.LineChart(self.chart_type))
-"""
-    def add_data(self):
-        pass
+        """
+
+
+    class AddData:
+        def __init__(self):
+            self.scroll_area_contents = dock.dock_data[1].scroll_area_contents
+            self.data_scroll_layout = dock.dock_data[1].data_scroll_layout
+
+            self.int = self.data_scroll_layout.rowCount()
+            print(self.int)
+            self.contein()
+            self.buttons_positions()
+
+        def contein(self):
+            self.second_block_layout = QtWidgets.QFormLayout()
+            self.second_block_layout.setObjectName("second_block_layout")
+            self.data_scroll_layout.setLayout(self.int, QtWidgets.QFormLayout.FieldRole, self.second_block_layout)
+
+            """ Second block layout - line """
+            self.button_X = QtWidgets.QPushButton(self.scroll_area_contents)
+            sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Preferred)
+            sizePolicy.setHeightForWidth(self.button_X.sizePolicy().hasHeightForWidth())
+            self.button_X.setSizePolicy(sizePolicy)
+            self.button_X.setMinimumSize(QtCore.QSize(20, 36))
+            self.button_X.setMaximumSize(QtCore.QSize(20, 36))
+            self.button_X.setIcon(QtGui.QIcon('Image/Other/value_menu_X.png'))
+            self.button_X.setStyleSheet("background-color: rgba(255, 255, 255, 0);")
+            self.button_X.clicked.connect(lambda: print("click"))
+            self.data_scroll_layout.setWidget(self.int, QtWidgets.QFormLayout.LabelRole, self.button_X)
+
+
+            " Second block layout - line "
+            self.second_block_line = QtWidgets.QFrame(self.scroll_area_contents)
+            sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Maximum, QtWidgets.QSizePolicy.Fixed)
+            sizePolicy.setHeightForWidth(self.second_block_line.sizePolicy().hasHeightForWidth())
+            self.second_block_line.setSizePolicy(sizePolicy)
+            self.second_block_line.setMinimumSize(QtCore.QSize(87, 1))
+            self.second_block_line.setMaximumSize(QtCore.QSize(120, 0))
+            self.second_block_line.setFrameShadow(QtWidgets.QFrame.Plain)
+            self.second_block_line.setLineWidth(6)
+            self.second_block_line.setFrameShape(QtWidgets.QFrame.HLine)
+            self.second_block_line.setObjectName("second_block_line")
+            self.second_block_layout.setWidget(0, QtWidgets.QFormLayout.LabelRole, self.second_block_line)
+
+            " Layout write name and check in second block "
+            self.second_block_Name_layout = QtWidgets.QFormLayout()
+            self.second_block_Name_layout.setVerticalSpacing(0)
+            self.second_block_Name_layout.setObjectName("second_block_Name_layout")
+            self.second_block_layout.setLayout(1, QtWidgets.QFormLayout.LabelRole, self.second_block_Name_layout)
+
+            " Line edit - write name and check in second block"
+            self.second_block_Name_write = QtWidgets.QLineEdit(self.scroll_area_contents)
+            self.second_block_Name_write.setEnabled(True)
+            sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
+            sizePolicy.setHeightForWidth(self.second_block_Name_write.sizePolicy().hasHeightForWidth())
+            self.second_block_Name_write.setSizePolicy(sizePolicy)
+            self.second_block_Name_write.setMinimumSize(QtCore.QSize(65, 20))
+            self.second_block_Name_write.setMaximumSize(QtCore.QSize(16777215, 16777215))
+            self.second_block_Name_write.setText("def_2")
+            self.second_block_Name_write.setObjectName("second_block_Name_write")
+            self.second_block_Name_layout.setWidget(1, QtWidgets.QFormLayout.LabelRole, self.second_block_Name_write)
+
+            self.second_block_Name_check = QtWidgets.QCheckBox(self.scroll_area_contents)
+            sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.MinimumExpanding, QtWidgets.QSizePolicy.Expanding)
+            sizePolicy.setHeightForWidth(self.second_block_Name_check.sizePolicy().hasHeightForWidth())
+            self.second_block_Name_check.setSizePolicy(sizePolicy)
+            self.second_block_Name_check.setMinimumSize(QtCore.QSize(15, 20))
+            self.second_block_Name_check.setMaximumSize(QtCore.QSize(15, 20))
+            self.second_block_Name_check.setText("")
+            self.second_block_Name_check.setObjectName("second_block_Name_check")
+            self.second_block_Name_layout.setWidget(1, QtWidgets.QFormLayout.FieldRole, self.second_block_Name_check)
+
+            self.second_block_Name_line = QtWidgets.QFrame(self.scroll_area_contents)
+            sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Maximum, QtWidgets.QSizePolicy.Fixed)
+            sizePolicy.setHeightForWidth(self.second_block_Name_line.sizePolicy().hasHeightForWidth())
+            self.second_block_Name_line.setSizePolicy(sizePolicy)
+            self.second_block_Name_line.setMinimumSize(QtCore.QSize(65, 1))
+            self.second_block_Name_line.setMaximumSize(QtCore.QSize(0, 1))
+            self.second_block_Name_line.setFrameShadow(QtWidgets.QFrame.Plain)
+            self.second_block_Name_line.setLineWidth(6)
+            self.second_block_Name_line.setFrameShape(QtWidgets.QFrame.HLine)
+            self.second_block_Name_line.setObjectName("second_block_Name_line")
+            self.second_block_Name_layout.setWidget(2, QtWidgets.QFormLayout.LabelRole, self.second_block_Name_line)
+
+            " Layout spin Box and check in second block "
+            self.second_block_value_layout = QtWidgets.QFormLayout()
+            self.second_block_value_layout.setVerticalSpacing(0)
+            self.second_block_value_layout.setObjectName("second_block_value_layout")
+            self.second_block_layout.setLayout(1, QtWidgets.QFormLayout.FieldRole, self.second_block_value_layout)
+
+            " Spin box - value and check in second block"
+            self.second_block_value_spinBox = QtWidgets.QDoubleSpinBox(self.scroll_area_contents)
+            sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
+            sizePolicy.setHeightForWidth(self.second_block_value_spinBox.sizePolicy().hasHeightForWidth())
+            self.second_block_value_spinBox.setSizePolicy(sizePolicy)
+            self.second_block_value_spinBox.setMinimumSize(QtCore.QSize(50, 20))
+            self.second_block_value_spinBox.setMinimum(-9999999999.99)
+            self.second_block_value_spinBox.setMaximum(9999999999.99)
+            self.second_block_value_spinBox.setObjectName("second_block_value_spinBox")
+            self.second_block_value_layout.setWidget(1,
+                                                     QtWidgets.QFormLayout.LabelRole,
+                                                     self.second_block_value_spinBox)
+
+            self.second_block_value_check = QtWidgets.QCheckBox(self.scroll_area_contents)
+            sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.MinimumExpanding, QtWidgets.QSizePolicy.Ignored)
+            sizePolicy.setHeightForWidth(self.second_block_value_check.sizePolicy().hasHeightForWidth())
+            self.second_block_value_check.setSizePolicy(sizePolicy)
+            self.second_block_value_check.setMinimumSize(QtCore.QSize(15, 20))
+            self.second_block_value_check.setMaximumSize(QtCore.QSize(15, 20))
+            self.second_block_value_check.setText("")
+            self.second_block_value_check.setObjectName("second_block_value_check")
+            self.second_block_value_layout.setWidget(1, QtWidgets.QFormLayout.FieldRole, self.second_block_value_check)
+
+            self.second_block_value_line = QtWidgets.QFrame(self.scroll_area_contents)
+            sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Maximum, QtWidgets.QSizePolicy.Fixed)
+            sizePolicy.setHeightForWidth(self.second_block_value_line.sizePolicy().hasHeightForWidth())
+            self.second_block_value_line.setSizePolicy(sizePolicy)
+            self.second_block_value_line.setMinimumSize(QtCore.QSize(50, 1))
+            self.second_block_value_line.setMaximumSize(QtCore.QSize(120, 1))
+            self.second_block_value_line.setFrameShadow(QtWidgets.QFrame.Plain)
+            self.second_block_value_line.setLineWidth(6)
+            self.second_block_value_line.setFrameShape(QtWidgets.QFrame.HLine)
+            self.second_block_value_line.setObjectName("second_block_value_line_2")
+            self.second_block_value_layout.setWidget(2, QtWidgets.QFormLayout.LabelRole, self.second_block_value_line)
+
+        def buttons_positions(self):
+            self.int = self.data_scroll_layout.rowCount()
+            if self.int == 1:
+                dock.dock_data[1].upper_first_layout.setWidget(4,
+                                                               QtWidgets.QFormLayout.LabelRole,
+                                                               dock.dock_data[1].button_Create)
+
+                dock.dock_data[1].upper_first_layout.setWidget(3,
+                                                               QtWidgets.QFormLayout.LabelRole,
+                                                               dock.dock_data[1].button_Add)
+
+                dock.dock_data[1].upper_first_layout.setWidget(2,
+                                                               QtWidgets.QFormLayout.LabelRole,
+                                                               dock.dock_data[1].space)
+            else:
+                self.second_block_Name_layout.setWidget(5,
+                                                        QtWidgets.QFormLayout.LabelRole,
+                                                        dock.dock_data[1].button_Create)
+
+                self.second_block_Name_layout.setWidget(4,
+                                                        QtWidgets.QFormLayout.LabelRole,
+                                                        dock.dock_data[1].button_Add)
+
+                self.second_block_Name_layout.setWidget(3,
+                                                        QtWidgets.QFormLayout.LabelRole,
+                                                        dock.dock_data[1].space)
+
+
 """    def add_data(self):
         self.data_horizontal_position_widgets += 2
         self.array_position_data += 2

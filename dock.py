@@ -51,7 +51,7 @@ class Dock:
 
         dock_data.append(0)
 
-        """ Page 2 """
+        """ Page 1 """
         self.data_page_1 = QtWidgets.QWidget()
         self.data_page_1.setObjectName("data_page_2")
 
