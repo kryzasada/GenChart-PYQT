@@ -27,5 +27,5 @@ Chart generating program, written in PyQt5
 |  ![Urgent](https://github.com/kryzasada/ReadMe-Photo/blob/master/Chart/TODO-table1.png) | ![Important](https://github.com/kryzasada/ReadMe-Photo/blob/master/Chart/TODO-table2.png) | ![Not urgent](https://github.com/kryzasada/ReadMe-Photo/blob/master/Chart/TODO-table3.png) |
 | :------------: | :------------: | :------------: |
 | &#x2796; | New menu in value doc |  New menu in settings doc |
-| &#x2796; | More languages | Black motive |
-| &#x2796; | User settings | More type of chart  |
+| &#x2796; | More type of chart | Black motive |
+| &#x2796; | User settings |  More languages |
