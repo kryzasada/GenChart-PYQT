@@ -215,6 +215,8 @@ class DataPage1:
         self.upper_first_layout.setWidget(4, QtWidgets.QFormLayout.LabelRole, self.button_Create)
         self.button_Create.setText("CREATE")
 
+        self.add_data.append(self.AddData())
+        self.add_data[-1].buttons_positions()
 
         """
     self.button_Create.clicked.connect(lambda:
@@ -251,9 +253,7 @@ class DataPage1:
                                                            QtWidgets.QFormLayout.LabelRole,
                                                            dock.dock_data[1].space)
 
-
             self.data_scroll_layout.removeRow(self.int)
-
 
             int2 = self.data_scroll_layout.rowCount()
             self.int -= 1
@@ -269,6 +269,11 @@ class DataPage1:
                     break
 
             self.buttons_positions()
+
+            """ Delete widget in settings: Page_1"""
+            dock.dock_settings[1].scroll_color_layout.removeRow(self.int)
+            del dock.dock_settings[1].buttons_color[self.int]
+
 
         def contein(self):
             self.second_block_layout = QtWidgets.QFormLayout()
@@ -380,6 +385,28 @@ class DataPage1:
             self.second_block_value_line.setObjectName("second_block_value_line_2")
             self.second_block_value_layout.setWidget(2, QtWidgets.QFormLayout.LabelRole, self.second_block_value_line)
 
+            """ Add widget in settings: Page_1"""
+            try:
+                dock.dock_settings[1].label_color.append(QtWidgets.QLabel())
+                dock.dock_settings[1].label_color[-1].setText(self.second_block_Name_write.text())
+                dock.dock_settings[1].scroll_color_layout.setWidget(self.int,
+                                                                    QtWidgets.QFormLayout.LabelRole,
+                                                                    dock.dock_settings[1].label_color[-1])
+
+                dock.dock_settings[1].buttons_color.append(QtWidgets.QPushButton())
+                sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
+                dock.dock_settings[1].buttons_color[-1].setSizePolicy(sizePolicy)
+                dock.dock_settings[1].scroll_color_layout.setWidget(self.int,
+                                                                    QtWidgets.QFormLayout.FieldRole,
+                                                                    dock.dock_settings[1].buttons_color[-1])
+
+                dock.dock_settings[1].buttons_color[-1].setStyleSheet("background-color: rgb(%s, %s, %s);"
+                                                                      % (random.randint(0, 250),
+                                                                         random.randint(0, 250),
+                                                                         random.randint(0, 250)))
+            except:
+                pass
+
         def buttons_positions(self):
             number = self.data_scroll_layout.rowCount()
             if not dock.dock_data[1].add_data == []:
@@ -399,37 +426,8 @@ class DataPage1:
 """    def add_data(self):
         self.data_horizontal_position_widgets += 2
         self.array_position_data += 2
-        self.data_scroll_layout.setWidget(
-                                          self.data_horizontal_position_widgets + 4,
-                                          QtWidgets.QFormLayout.LabelRole,
-                                          self.button_Create)
-        self.data_scroll_layout.setWidget(
-                                          self.data_horizontal_position_widgets + 3,
-                                          QtWidgets.QFormLayout.LabelRole,
-                                          self.button_Add)
-        self.data_scroll_layout.setWidget(
-                                          self.data_horizontal_position_widgets + 2,
-                                          QtWidgets.QFormLayout.LabelRole,
-                                          self.space)
 
-        self.line_edit_data.append(QtWidgets.QLineEdit(self.scroll_area_contents))
-        self.data_scroll_layout.setWidget(
-                                          self.data_horizontal_position_widgets,
-                                          QtWidgets.QFormLayout.LabelRole,
-                                          self.line_edit_data[self.array_position_data + 1])
-        self.line_edit_data.append(QtWidgets.QLineEdit(self.scroll_area_contents))
-        self.data_scroll_layout.setWidget(
-                                          self.data_horizontal_position_widgets,
-                                          QtWidgets.QFormLayout.FieldRole,
-                                          self.line_edit_data[self.array_position_data + 2])
-
-        self.line_edit_data[self.array_position_data + 1].setText("default_" +
-                                                                  str(int(self.data_horizontal_position_widgets/2 + 1)))
-        self.line_edit_data[self.array_position_data + 2].setText("1")
-
-        self.sizePolicy.setHeightForWidth(self.line_edit_data[self.array_position_data + 2]
-                                          .sizePolicy().hasHeightForWidth())
-        self.line_edit_data[self.array_position_data + 2].setSizePolicy(self.sizePolicy)
+       
 
         dock.dock_settings[1].label_color.append(QtWidgets.QLabel(dock.dock_settings[1].scroll_color_contents))
         dock.dock_settings[1].label_color[int(self.data_horizontal_position_widgets / 2)].setText(
@@ -522,8 +520,7 @@ class SettingsPage1:
         self.central_layout = args[2]
 
     def contain(self):
-        pass
-        """
+
         self.tab_widget = QtWidgets.QTabWidget(self.page)
         self.tab_widget.setObjectName("tab_widget")
         self.grid_page.addWidget(self.tab_widget, 0, 0, 1, 1)
@@ -562,7 +559,6 @@ class SettingsPage1:
         self.buttons_color = []
         for array_position in range(0, 2):
             self.label_color.append(QtWidgets.QLabel(self.scroll_color_contents))
-            self.label_color[array_position].setText(dock.dock_data[1].line_edit_data[array_position*2].text())
             self.scroll_color_layout.setWidget(
                                                 array_position,
                                                 QtWidgets.QFormLayout.LabelRole,
@@ -579,8 +575,13 @@ class SettingsPage1:
 
             if array_position == 0:
                 self.buttons_color[array_position].setStyleSheet("background-color: rgb(255, 167, 14);")
+                self.label_color[array_position].setText(dock.dock_data[1].upper_first_Name_write.text())
             else:
                 self.buttons_color[array_position].setStyleSheet("background-color: rgb(100, 150, 190);")
+                try:
+                    self.label_color[array_position].setText(dock.dock_data[1].add_data[-1].second_block_Name_write.text())
+                except:
+                    self.label_color[array_position].setText("bad")
 
     def p_explode(self):
         self.page_explode = QtWidgets.QWidget()
@@ -612,7 +613,6 @@ class SettingsPage1:
         self.spin_box_explode = []
         for array_position in range(0, 2):
             self.label_explode.append(QtWidgets.QLabel(self.scroll_explode_contents))
-            self.label_explode[array_position].setText(dock.dock_data[1].line_edit_data[array_position*2].text())
             self.scroll_explode_layout.setWidget(
                                                  array_position,
                                                  QtWidgets.QFormLayout.LabelRole,
@@ -625,6 +625,15 @@ class SettingsPage1:
                                                  array_position,
                                                  QtWidgets.QFormLayout.FieldRole,
                                                  self.spin_box_explode[array_position])
+
+            if array_position == 0:
+                self.label_explode[array_position].setText(dock.dock_data[1].upper_first_Name_write.text())
+            else:
+                try:
+                    self.label_explode[array_position].setText(
+                        dock.dock_data[1].add_data[-1].second_block_Name_write.text())
+                except:
+                    self.label_explode[array_position].setText("bad")
 
         self.spin_box_explode[0].setValue(1.0)
 
@@ -746,7 +755,7 @@ class SettingsPage1:
     @staticmethod
     def button_color(number):
         color = QtWidgets.QColorDialog.getColor()
-        dock.dock_settings[1].buttons_color[number].setStyleSheet("background-color: %s;" % (str(color.name())))"""
+        dock.dock_settings[1].buttons_color[number].setStyleSheet("background-color: %s;" % (str(color.name())))
 
 
 class SettingsPage2:
