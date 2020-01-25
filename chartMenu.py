@@ -157,6 +157,7 @@ class DataPage1:
         self.upper_first_value_spinBox.setMinimumSize(QtCore.QSize(50, 20))
         self.upper_first_value_spinBox.setMinimum(-9999999999.99)
         self.upper_first_value_spinBox.setMaximum(9999999999.99)
+        self.upper_first_value_spinBox.setValue(1.00)
         self.upper_first_value_spinBox.setObjectName("upper_first_value_spinBox")
         self.upper_first_value_layout.setWidget(0, QtWidgets.QFormLayout.LabelRole, self.upper_first_value_spinBox)
 
@@ -189,14 +190,15 @@ class DataPage1:
         self.space.setLineWidth(0)
         self.upper_first_layout.setWidget(2, QtWidgets.QFormLayout.LabelRole, self.space)
 
-        add_data = []
+        self.add_data = []
         self.button_Add = QtWidgets.QPushButton(self.scroll_area_contents)
         self.button_Add.setSizePolicy(self.sizePolicy)
         self.button_Add.setObjectName("pushButton")
         self.button_Add.setMaximumSize(QtCore.QSize(65, 20))
         self.button_Add.setText("ADD DATA")
         self.upper_first_layout.setWidget(3, QtWidgets.QFormLayout.LabelRole, self.button_Add)
-        self.button_Add.clicked.connect(lambda: add_data.append(self.AddData()))
+        self.button_Add.clicked.connect(lambda: self.add_data.append(self.AddData()))
+        self.button_Add.clicked.connect(lambda: self.add_data[-1].buttons_positions())
 
         self.button_Create = QtWidgets.QPushButton(self.scroll_area_contents)
         self.button_Create.setObjectName("button_Create")
@@ -204,8 +206,6 @@ class DataPage1:
         self.upper_first_layout.setWidget(4, QtWidgets.QFormLayout.LabelRole, self.button_Create)
         self.button_Create.setText("CREATE")
 
-
-        print(self.data_scroll_layout.rowCount())
 
         """
     self.button_Create.clicked.connect(lambda:
@@ -222,14 +222,50 @@ class DataPage1:
         """
 
 
+
     class AddData:
         def __init__(self):
             self.scroll_area_contents = dock.dock_data[1].scroll_area_contents
             self.data_scroll_layout = dock.dock_data[1].data_scroll_layout
 
             self.int = self.data_scroll_layout.rowCount()
-            print(self.int)
             self.contein()
+
+        def _dell(self):
+            self.data_scroll_layout.removeWidget(self.button_X)
+            self.button_X.deleteLater()
+            self.button_X = None
+            del self.button_X
+
+            dock.dock_data[1].upper_first_layout.setWidget(4,
+                                                           QtWidgets.QFormLayout.LabelRole,
+                                                           dock.dock_data[1].button_Create)
+
+            dock.dock_data[1].upper_first_layout.setWidget(3,
+                                                           QtWidgets.QFormLayout.LabelRole,
+                                                           dock.dock_data[1].button_Add)
+
+            dock.dock_data[1].upper_first_layout.setWidget(2,
+                                                           QtWidgets.QFormLayout.LabelRole,
+                                                           dock.dock_data[1].space)
+
+
+            self.data_scroll_layout.removeRow(self.int)
+
+
+            int2 = self.data_scroll_layout.rowCount()
+            self.int -= 1
+
+            del dock.dock_data[1].add_data[self.int]
+
+            while self.int <= int2:
+                try:
+                    dock.dock_data[1].add_data[self.int].int = self.int + 1
+                    self.int += 1
+
+                except :
+                    break
+
             self.buttons_positions()
 
         def contein(self):
@@ -246,9 +282,8 @@ class DataPage1:
             self.button_X.setMaximumSize(QtCore.QSize(20, 36))
             self.button_X.setIcon(QtGui.QIcon('Image/Other/value_menu_X.png'))
             self.button_X.setStyleSheet("background-color: rgba(255, 255, 255, 0);")
-            self.button_X.clicked.connect(lambda: print("click"))
+            self.button_X.clicked.connect(lambda: self._dell())
             self.data_scroll_layout.setWidget(self.int, QtWidgets.QFormLayout.LabelRole, self.button_X)
-
 
             " Second block layout - line "
             self.second_block_line = QtWidgets.QFrame(self.scroll_area_contents)
@@ -277,7 +312,7 @@ class DataPage1:
             self.second_block_Name_write.setSizePolicy(sizePolicy)
             self.second_block_Name_write.setMinimumSize(QtCore.QSize(65, 20))
             self.second_block_Name_write.setMaximumSize(QtCore.QSize(16777215, 16777215))
-            self.second_block_Name_write.setText("def_2")
+            self.second_block_Name_write.setText("def_" + str(self.int + 1))
             self.second_block_Name_write.setObjectName("second_block_Name_write")
             self.second_block_Name_layout.setWidget(1, QtWidgets.QFormLayout.LabelRole, self.second_block_Name_write)
 
@@ -315,6 +350,7 @@ class DataPage1:
             sizePolicy.setHeightForWidth(self.second_block_value_spinBox.sizePolicy().hasHeightForWidth())
             self.second_block_value_spinBox.setSizePolicy(sizePolicy)
             self.second_block_value_spinBox.setMinimumSize(QtCore.QSize(50, 20))
+            self.second_block_value_spinBox.setValue(1.00)
             self.second_block_value_spinBox.setMinimum(-9999999999.99)
             self.second_block_value_spinBox.setMaximum(9999999999.99)
             self.second_block_value_spinBox.setObjectName("second_block_value_spinBox")
@@ -345,32 +381,20 @@ class DataPage1:
             self.second_block_value_layout.setWidget(2, QtWidgets.QFormLayout.LabelRole, self.second_block_value_line)
 
         def buttons_positions(self):
-            self.int = self.data_scroll_layout.rowCount()
-            if self.int == 1:
-                dock.dock_data[1].upper_first_layout.setWidget(4,
-                                                               QtWidgets.QFormLayout.LabelRole,
-                                                               dock.dock_data[1].button_Create)
+            number = self.data_scroll_layout.rowCount()
+            if not dock.dock_data[1].add_data == []:
+                if not number == 1:
+                    dock.dock_data[1].add_data[-1].second_block_Name_layout.setWidget(5,
+                                                                                      QtWidgets.QFormLayout.LabelRole,
+                                                                                      dock.dock_data[1].button_Create)
 
-                dock.dock_data[1].upper_first_layout.setWidget(3,
-                                                               QtWidgets.QFormLayout.LabelRole,
-                                                               dock.dock_data[1].button_Add)
+                    dock.dock_data[1].add_data[-1].second_block_Name_layout.setWidget(4,
+                                                                                      QtWidgets.QFormLayout.LabelRole,
+                                                                                      dock.dock_data[1].button_Add)
 
-                dock.dock_data[1].upper_first_layout.setWidget(2,
-                                                               QtWidgets.QFormLayout.LabelRole,
-                                                               dock.dock_data[1].space)
-            else:
-                self.second_block_Name_layout.setWidget(5,
-                                                        QtWidgets.QFormLayout.LabelRole,
-                                                        dock.dock_data[1].button_Create)
-
-                self.second_block_Name_layout.setWidget(4,
-                                                        QtWidgets.QFormLayout.LabelRole,
-                                                        dock.dock_data[1].button_Add)
-
-                self.second_block_Name_layout.setWidget(3,
-                                                        QtWidgets.QFormLayout.LabelRole,
-                                                        dock.dock_data[1].space)
-
+                    dock.dock_data[1].add_data[-1].second_block_Name_layout.setWidget(3,
+                                                                                      QtWidgets.QFormLayout.LabelRole,
+                                                                                      dock.dock_data[1].space)
 
 """    def add_data(self):
         self.data_horizontal_position_widgets += 2
