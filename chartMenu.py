@@ -35,6 +35,9 @@ class DataPage1:
         self.scroll_area.setWidget(self.scroll_area_contents)
 
         self.data_scroll_layout = QtWidgets.QFormLayout(self.scroll_area_contents)
+        self.data_scroll_layout.setContentsMargins(0, 5, 0, 0)
+        self.data_scroll_layout.setHorizontalSpacing(2)
+        self.data_scroll_layout.setVerticalSpacing(2)
         self.data_scroll_layout.setObjectName("data_scroll_layout")
 
         self.sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Maximum, QtWidgets.QSizePolicy.Fixed)
@@ -46,10 +49,16 @@ class DataPage1:
         " Upper main label layout"
         self.upper_first_layout = QtWidgets.QFormLayout()
         self.upper_first_layout.setObjectName("upper_first_layout")
+        self.upper_first_layout.setContentsMargins(0, 0, 0, 0)
+        self.upper_first_layout.setHorizontalSpacing(2)
+        self.upper_first_layout.setVerticalSpacing(2)
         self.data_scroll_layout.setLayout(0, QtWidgets.QFormLayout.FieldRole, self.upper_first_layout)
 
         " Upper label layout - label name"
         self.upper__TextName_layout = QtWidgets.QFormLayout()
+        self.upper__TextName_layout.setContentsMargins(0, 0, 0, 0)
+        self.upper__TextName_layout.setHorizontalSpacing(5)
+        self.upper__TextName_layout.setVerticalSpacing(2)
         self.upper__TextName_layout.setObjectName("upper__TextName_layout")
         self.upper_first_layout.setLayout(0, QtWidgets.QFormLayout.LabelRole, self.upper__TextName_layout)
 
@@ -77,6 +86,9 @@ class DataPage1:
 
         " Upper label layout - label value"
         self.upper__TextValue_layout = QtWidgets.QFormLayout()
+        self.upper__TextValue_layout.setContentsMargins(0, 0, 0, 0)
+        self.upper__TextValue_layout.setHorizontalSpacing(5)
+        self.upper__TextValue_layout.setVerticalSpacing(2)
         self.upper__TextValue_layout.setObjectName("upper__TextValue_layout")
         self.upper_first_layout.setLayout(0, QtWidgets.QFormLayout.FieldRole, self.upper__TextValue_layout)
 
@@ -104,8 +116,9 @@ class DataPage1:
 
         " Layout write name and check"
         self.upper_first_Name_layout = QtWidgets.QFormLayout()
-        self.upper_first_Name_layout.setHorizontalSpacing(6)
-        self.upper_first_Name_layout.setVerticalSpacing(0)
+        self.upper_first_Name_layout.setContentsMargins(0, 0, 0, 0)
+        self.upper_first_Name_layout.setHorizontalSpacing(5)
+        self.upper_first_Name_layout.setVerticalSpacing(2)
         self.upper_first_Name_layout.setObjectName("upper_first_Name_layout")
         self.upper_first_layout.setLayout(1, QtWidgets.QFormLayout.LabelRole, self.upper_first_Name_layout)
 
@@ -121,8 +134,6 @@ class DataPage1:
         self.upper_first_Name_layout.setWidget(0, QtWidgets.QFormLayout.LabelRole, self.upper_first_Name_write)
 
         self.upper_first_Name_check = QtWidgets.QCheckBox(self.scroll_area_contents)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.MinimumExpanding, QtWidgets.QSizePolicy.Expanding)
-        sizePolicy.setHeightForWidth(self.upper_first_Name_check.sizePolicy().hasHeightForWidth())
         self.upper_first_Name_check.setSizePolicy(sizePolicy)
         self.upper_first_Name_check.setMinimumSize(QtCore.QSize(15, 20))
         self.upper_first_Name_check.setMaximumSize(QtCore.QSize(15, 20))
@@ -136,15 +147,15 @@ class DataPage1:
         self.upper_first_Name_line.setSizePolicy(sizePolicy)
         self.upper_first_Name_line.setMinimumSize(QtCore.QSize(65, 1))
         self.upper_first_Name_line.setMaximumSize(QtCore.QSize(120, 0))
-        self.upper_first_Name_line.setFrameShadow(QtWidgets.QFrame.Plain)
-        self.upper_first_Name_line.setLineWidth(6)
-        self.upper_first_Name_line.setFrameShape(QtWidgets.QFrame.HLine)
+        self.upper_first_Name_line.setLineWidth(-1)
         self.upper_first_Name_line.setObjectName("upper_first_Name_line")
         self.upper_first_Name_layout.setWidget(1, QtWidgets.QFormLayout.LabelRole, self.upper_first_Name_line)
 
         " Layout value and check"
         self.upper_first_value_layout = QtWidgets.QFormLayout()
-        self.upper_first_value_layout.setVerticalSpacing(0)
+        self.upper_first_value_layout.setContentsMargins(0, 0, 0, 0)
+        self.upper_first_value_layout.setHorizontalSpacing(5)
+        self.upper_first_value_layout.setVerticalSpacing(2)
         self.upper_first_value_layout.setObjectName("upper_first_value_layout")
         self.upper_first_layout.setLayout(1, QtWidgets.QFormLayout.FieldRole, self.upper_first_value_layout)
         self.data_scroll_layout.setLayout(0, QtWidgets.QFormLayout.FieldRole, self.upper_first_layout)
@@ -178,9 +189,7 @@ class DataPage1:
         self.upper_first_value_line.setSizePolicy(sizePolicy)
         self.upper_first_value_line.setMinimumSize(QtCore.QSize(50, 1))
         self.upper_first_value_line.setMaximumSize(QtCore.QSize(120, 0))
-        self.upper_first_value_line.setFrameShadow(QtWidgets.QFrame.Plain)
-        self.upper_first_value_line.setLineWidth(9)
-        self.upper_first_value_line.setFrameShape(QtWidgets.QFrame.HLine)
+        self.upper_first_value_line.setLineWidth(-1)
         self.upper_first_value_line.setObjectName("upper_first_value_line")
         self.upper_first_value_layout.setWidget(1, QtWidgets.QFormLayout.LabelRole, self.upper_first_value_line)
 
@@ -221,8 +230,6 @@ class DataPage1:
                                        else generateChart.LineChart(self.chart_type))
         """
 
-
-
     class AddData:
         def __init__(self):
             self.scroll_area_contents = dock.dock_data[1].scroll_area_contents
@@ -232,11 +239,6 @@ class DataPage1:
             self.contein()
 
         def _dell(self):
-            self.data_scroll_layout.removeWidget(self.button_X)
-            self.button_X.deleteLater()
-            self.button_X = None
-            del self.button_X
-
             dock.dock_data[1].upper_first_layout.setWidget(4,
                                                            QtWidgets.QFormLayout.LabelRole,
                                                            dock.dock_data[1].button_Create)
@@ -271,6 +273,9 @@ class DataPage1:
         def contein(self):
             self.second_block_layout = QtWidgets.QFormLayout()
             self.second_block_layout.setObjectName("second_block_layout")
+            self.second_block_layout.setContentsMargins(0, 0, 0, 0)
+            self.second_block_layout.setHorizontalSpacing(2)
+            self.second_block_layout.setVerticalSpacing(2)
             self.data_scroll_layout.setLayout(self.int, QtWidgets.QFormLayout.FieldRole, self.second_block_layout)
 
             """ Second block layout - line """
@@ -278,8 +283,8 @@ class DataPage1:
             sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Preferred)
             sizePolicy.setHeightForWidth(self.button_X.sizePolicy().hasHeightForWidth())
             self.button_X.setSizePolicy(sizePolicy)
-            self.button_X.setMinimumSize(QtCore.QSize(20, 36))
-            self.button_X.setMaximumSize(QtCore.QSize(20, 36))
+            self.button_X.setMinimumSize(QtCore.QSize(20, 24))
+            self.button_X.setMaximumSize(QtCore.QSize(20, 24))
             self.button_X.setIcon(QtGui.QIcon('Image/Other/value_menu_X.png'))
             self.button_X.setStyleSheet("background-color: rgba(255, 255, 255, 0);")
             self.button_X.clicked.connect(lambda: self._dell())
@@ -290,23 +295,22 @@ class DataPage1:
             sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Maximum, QtWidgets.QSizePolicy.Fixed)
             sizePolicy.setHeightForWidth(self.second_block_line.sizePolicy().hasHeightForWidth())
             self.second_block_line.setSizePolicy(sizePolicy)
-            self.second_block_line.setMinimumSize(QtCore.QSize(87, 1))
-            self.second_block_line.setMaximumSize(QtCore.QSize(120, 0))
-            self.second_block_line.setFrameShadow(QtWidgets.QFrame.Plain)
-            self.second_block_line.setLineWidth(6)
-            self.second_block_line.setFrameShape(QtWidgets.QFrame.HLine)
+            self.second_block_line.setMinimumSize(QtCore.QSize(85, 1))
+            self.second_block_line.setMaximumSize(QtCore.QSize(85, 1))
+            self.second_block_line.setLineWidth(-1)
             self.second_block_line.setObjectName("second_block_line")
             self.second_block_layout.setWidget(0, QtWidgets.QFormLayout.LabelRole, self.second_block_line)
 
             " Layout write name and check in second block "
             self.second_block_Name_layout = QtWidgets.QFormLayout()
-            self.second_block_Name_layout.setVerticalSpacing(0)
+            self.second_block_Name_layout.setContentsMargins(0, 0, 0, 0)
+            self.second_block_Name_layout.setHorizontalSpacing(5)
+            self.second_block_Name_layout.setVerticalSpacing(2)
             self.second_block_Name_layout.setObjectName("second_block_Name_layout")
             self.second_block_layout.setLayout(1, QtWidgets.QFormLayout.LabelRole, self.second_block_Name_layout)
 
             " Line edit - write name and check in second block"
             self.second_block_Name_write = QtWidgets.QLineEdit(self.scroll_area_contents)
-            self.second_block_Name_write.setEnabled(True)
             sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
             sizePolicy.setHeightForWidth(self.second_block_Name_write.sizePolicy().hasHeightForWidth())
             self.second_block_Name_write.setSizePolicy(sizePolicy)
@@ -317,8 +321,6 @@ class DataPage1:
             self.second_block_Name_layout.setWidget(1, QtWidgets.QFormLayout.LabelRole, self.second_block_Name_write)
 
             self.second_block_Name_check = QtWidgets.QCheckBox(self.scroll_area_contents)
-            sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.MinimumExpanding, QtWidgets.QSizePolicy.Expanding)
-            sizePolicy.setHeightForWidth(self.second_block_Name_check.sizePolicy().hasHeightForWidth())
             self.second_block_Name_check.setSizePolicy(sizePolicy)
             self.second_block_Name_check.setMinimumSize(QtCore.QSize(15, 20))
             self.second_block_Name_check.setMaximumSize(QtCore.QSize(15, 20))
@@ -331,16 +333,16 @@ class DataPage1:
             sizePolicy.setHeightForWidth(self.second_block_Name_line.sizePolicy().hasHeightForWidth())
             self.second_block_Name_line.setSizePolicy(sizePolicy)
             self.second_block_Name_line.setMinimumSize(QtCore.QSize(65, 1))
-            self.second_block_Name_line.setMaximumSize(QtCore.QSize(0, 1))
-            self.second_block_Name_line.setFrameShadow(QtWidgets.QFrame.Plain)
-            self.second_block_Name_line.setLineWidth(6)
-            self.second_block_Name_line.setFrameShape(QtWidgets.QFrame.HLine)
+            self.second_block_Name_line.setMaximumSize(QtCore.QSize(65, 1))
+            self.second_block_Name_line.setLineWidth(-1)
             self.second_block_Name_line.setObjectName("second_block_Name_line")
             self.second_block_Name_layout.setWidget(2, QtWidgets.QFormLayout.LabelRole, self.second_block_Name_line)
 
             " Layout spin Box and check in second block "
             self.second_block_value_layout = QtWidgets.QFormLayout()
-            self.second_block_value_layout.setVerticalSpacing(0)
+            self.second_block_value_layout.setContentsMargins(0, 0, 0, 0)
+            self.second_block_value_layout.setHorizontalSpacing(5)
+            self.second_block_value_layout.setVerticalSpacing(2)
             self.second_block_value_layout.setObjectName("second_block_value_layout")
             self.second_block_layout.setLayout(1, QtWidgets.QFormLayout.FieldRole, self.second_block_value_layout)
 
@@ -374,9 +376,7 @@ class DataPage1:
             self.second_block_value_line.setSizePolicy(sizePolicy)
             self.second_block_value_line.setMinimumSize(QtCore.QSize(50, 1))
             self.second_block_value_line.setMaximumSize(QtCore.QSize(120, 1))
-            self.second_block_value_line.setFrameShadow(QtWidgets.QFrame.Plain)
-            self.second_block_value_line.setLineWidth(6)
-            self.second_block_value_line.setFrameShape(QtWidgets.QFrame.HLine)
+            self.second_block_value_line.setLineWidth(-1)
             self.second_block_value_line.setObjectName("second_block_value_line_2")
             self.second_block_value_layout.setWidget(2, QtWidgets.QFormLayout.LabelRole, self.second_block_value_line)
 

@@ -58,8 +58,9 @@ class Dock:
         self.data_grid_page_1 = QtWidgets.QGridLayout(self.data_page_1)
         self.data_grid_page_1.setObjectName("data_grid_page_2")
 
-        self.data_grid_page_1.setContentsMargins(3.5, 5, 3.5, 10)
-        self.data_grid_page_1.setSpacing(0)
+        self.data_grid_page_1.setContentsMargins(3.5, 3.5, 3.5, 10)
+        self.data_grid_page_1.setHorizontalSpacing(2)
+        self.data_grid_page_1.setVerticalSpacing(2)
 
         dock_data.append(chartMenu.DataPage1(self.data_page_1, self.data_grid_page_1, self.central_layout))
         dock_data[1].contain()
