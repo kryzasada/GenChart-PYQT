@@ -221,6 +221,18 @@ class DataPage1:
         self.upper_first_layout.setWidget(4, QtWidgets.QFormLayout.LabelRole, self.button_Create)
         self.button_Create.setText("CREATE")
 
+        self.button_Create.clicked.connect(lambda:
+                                           True if not self.chart_type.count('pie')
+                                           else generateChart.PieChart(self.chart_type))
+
+        self.button_Create.clicked.connect(lambda:
+                                           True if not self.chart_type.count('bar')
+                                           else generateChart.BarChart(self.chart_type))
+
+        self.button_Create.clicked.connect(lambda:
+                                           True if not self.chart_type.count('line')
+                                           else generateChart.LineChart(self.chart_type))
+
         self.add_data.append(self.AddData())
         self.add_data[-1].buttons_positions()
 
@@ -244,20 +256,6 @@ class DataPage1:
                 self.upper_first_value_check.setChecked(False)
                 for x in self.add_data:
                     x.second_block_value_check.setChecked(False)
-
-        """
-    self.button_Create.clicked.connect(lambda:
-                                       True if not self.chart_type.count('pie')
-                                       else generateChart.PieChart(self.chart_type))
-
-    self.button_Create.clicked.connect(lambda:
-                                       True if not self.chart_type.count('bar')
-                                       else generateChart.BarChart(self.chart_type))
-
-    self.button_Create.clicked.connect(lambda:
-                                       True if not self.chart_type.count('line')
-                                       else generateChart.LineChart(self.chart_type))
-        """
 
     class AddData:
         def __init__(self):
@@ -475,97 +473,6 @@ class DataPage1:
                     dock.dock_data[1].add_data[-1].second_block_Name_layout.setWidget(3,
                                                                                       QtWidgets.QFormLayout.LabelRole,
                                                                                       dock.dock_data[1].space)
-        
-        
-        
-"""    def add_data(self):
-        self.data_horizontal_position_widgets += 2
-        self.array_position_data += 2
-
-       
-
-        dock.dock_settings[1].label_color.append(QtWidgets.QLabel(dock.dock_settings[1].scroll_color_contents))
-        dock.dock_settings[1].label_color[int(self.data_horizontal_position_widgets / 2)].setText(
-                                            dock.dock_data[1].line_edit_data[self.data_horizontal_position_widgets].text())
-
-        dock.dock_settings[1].scroll_color_layout.setWidget(
-                                                      int(self.data_horizontal_position_widgets/2),
-                                                      QtWidgets.QFormLayout.LabelRole,
-                                                      dock.dock_settings[1].label_color[
-                                                       int(self.data_horizontal_position_widgets/2)])
-
-        self.line_edit_data[
-                            self.data_horizontal_position_widgets].textChanged.connect(
-                             lambda: dock.dock_settings[1].label_color[int(
-                                                    self.data_horizontal_position_widgets / 2)].setText(
-                                                     self.line_edit_data[self.data_horizontal_position_widgets].text()))
-
-        time.sleep(0.1)
-        self.line_edit_data[self.data_horizontal_position_widgets].textChanged.connect(partial(
-                                                                                self.label_name,
-                                                                                self.data_horizontal_position_widgets))
-
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-
-        dock.dock_settings[1].buttons_color.append(QtWidgets.QPushButton(dock.dock_settings[1].scroll_color_contents))
-
-        dock.dock_settings[1].scroll_color_layout.setWidget(
-                                                      int(self.data_horizontal_position_widgets/2),
-                                                      QtWidgets.QFormLayout.FieldRole,
-                                                      dock.dock_settings[1].buttons_color[
-                                                       int(self.data_horizontal_position_widgets/2)])
-
-        dock.dock_settings[1].buttons_color[int(self.data_horizontal_position_widgets/2)].setSizePolicy(sizePolicy)
-
-        sizePolicy.setHeightForWidth(dock.dock_settings[1].buttons_color[int(
-                                        self.data_horizontal_position_widgets/2)].hasHeightForWidth())
-
-        dock.dock_settings[1].buttons_color[int(
-                                          self.data_horizontal_position_widgets/2)].clicked.connect(partial(
-                                           dock.dock_settings[1].button_color,
-                                          int(self.data_horizontal_position_widgets/2)))
-
-        if self.data_horizontal_position_widgets/2 == 2.0:
-            dock.dock_settings[1].buttons_color[2].setStyleSheet("background-color: rgb(44, 180, 44);")
-        elif self.data_horizontal_position_widgets/2 == 3.0:
-            dock.dock_settings[1].buttons_color[3].setStyleSheet("background-color: rgb(164, 70, 74);")
-
-        else:
-            dock.dock_settings[1].buttons_color[int(self.data_horizontal_position_widgets/2)].setStyleSheet(
-                    "background-color: rgb(%s, %s, %s);" % (
-                                                            random.randint(0, 250),
-                                                            random.randint(0, 250),
-                                                            random.randint(0, 250)))
-
-        dock.dock_settings[1].label_explode.append(QtWidgets.QLabel(dock.dock_settings[1].scroll_explode_contents))
-        dock.dock_settings[1].label_explode[int(self.data_horizontal_position_widgets/2)].setText(
-                                            dock.dock_data[1].line_edit_data[self.data_horizontal_position_widgets].text())
-        dock.dock_settings[1].scroll_explode_layout.setWidget(
-                                                        int(self.data_horizontal_position_widgets/2),
-                                                        QtWidgets.QFormLayout.LabelRole,
-                                                        dock.dock_settings[1].label_explode[
-                                                         int(self.data_horizontal_position_widgets/2)])
-
-        self.line_edit_data[self.data_horizontal_position_widgets].textChanged.connect(
-            lambda: dock.dock_settings[1].label_explode[int(self.data_horizontal_position_widgets / 2)].setText(
-                self.line_edit_data[self.data_horizontal_position_widgets].text()))
-
-        dock.dock_settings[1].spin_box_explode.append(QtWidgets.QDoubleSpinBox(dock.dock_settings[1].scroll_explode_contents))
-        sizePolicy.setHeightForWidth(dock.dock_settings[1].spin_box_explode[
-                                         int(self.data_horizontal_position_widgets/2)].sizePolicy().hasHeightForWidth())
-        dock.dock_settings[1].spin_box_explode[int(self.data_horizontal_position_widgets/2)].setSizePolicy(sizePolicy)
-        dock.dock_settings[1].scroll_explode_layout.setWidget(
-                                                        int(self.data_horizontal_position_widgets/2),
-                                                        QtWidgets.QFormLayout.FieldRole,
-                                                        dock.dock_settings[1].spin_box_explode[int(
-                                                         self.data_horizontal_position_widgets/2)])
-
-        dock.dock_settings[1].scroll_color_contents.update()
-
-    def label_name(self, position):
-        dock.dock_settings[1].label_color[int(position / 2)].setText(self.line_edit_data[position].text())"""
 
 
 class SettingsPage1:

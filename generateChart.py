@@ -11,8 +11,7 @@ import dock
 def tool_bar():
         static_canvas = FigureCanvas(Figure())
 
-        NavigationToolbar2QT.toolitems = (
-                                          ('Home', 'Reset original view', 'home', 'home'),
+        NavigationToolbar2QT.toolitems = (('Home', 'Reset original view', 'home', 'home'),
                                           ('Back', 'Back to previous view', 'back', 'back'),
                                           ('Forward', 'Forward to next view', 'forward', 'forward'),
                                           (None, None, None, None),
@@ -42,35 +41,32 @@ class PieChart:
             dock.dock_data[1].central_layout.itemAt(i).widget().deleteLater()
 
         self.all = 0
+        self.all += dock.dock_data[1].upper_first_value_spinBox.value()
         self.outer_sizes = []
         try:
-            for x in range(0, len(dock.dock_data[1].line_edit_data), 2):
-                self.outer_sizes.append(dock.dock_data[1].line_edit_data[x + 1].text())
-                self.all += float(dock.dock_data[1].line_edit_data[x + 1].text())
-                if self.outer_sizes[-1] == '0':
+            self.outer_sizes.append(dock.dock_data[1].upper_first_value_spinBox.value())
+            if self.outer_sizes[-1] == 0.0:
+                raise ValueError("VALUE = 0")
+
+            for x in range(0, len(dock.dock_data[1].add_data)):
+                self.outer_sizes.append(dock.dock_data[1].add_data[x].second_block_value_spinBox.value())
+                self.all += float(dock.dock_data[1].add_data[x].second_block_value_spinBox.value())
+                if self.outer_sizes[-1] == 0.0:
                     raise ValueError("VALUE = 0")
 
         except ValueError:
-            self.outer_sizes2 = 0
-            for x in str(self.outer_sizes[-1]):
-                if x == ',':
-                    self.outer_sizes2 = self.outer_sizes[-1].replace(',', '.')
-
-            if self.outer_sizes2 == 0:
-                self.outer_sizes2 = 1
-
             value_error = QtWidgets.QMessageBox()
             value_error.setWindowTitle("VALUE")
             value_error.setText("Value entry error                       ")
-            value_error.setInformativeText(
-                "Your value: %s \nCorrect: %s " % (str(self.outer_sizes[-1]), self.outer_sizes2))
+            value_error.setInformativeText("The pie chart can't be 0 ")
             value_error.setIcon(QtWidgets.QMessageBox.Critical)
             value_error.setStandardButtons(QtWidgets.QMessageBox.Ok)
             value_error.exec_()
 
         self.outer_labels = []
-        for x in range(0, len(dock.dock_data[1].line_edit_data), 2):
-            self.outer_labels.append(str(dock.dock_data[1].line_edit_data[x].text()))
+        self.outer_labels.append(dock.dock_data[1].upper_first_Name_write.text())
+        for x in range(0, len(dock.dock_data[1].add_data)):
+            self.outer_labels.append(str(dock.dock_data[1].add_data[x].second_block_Name_write.text()))
 
         self.outer_colors = []
         for x in range(0, len(dock.dock_settings[1].buttons_color)):
@@ -88,19 +84,18 @@ class PieChart:
         if dock.dock_settings[1].check_box2_settings.checkState():
             self.outer_rotatelabels = dock.dock_settings[1].check_box2_settings.checkState()
 
-        data_autopct_list = {
-                            '100%': '%1.0f%%',
-                            '100.0%': '%1.1f%%',
-                            '100.00%': '%1.2f%%',
-                            '----': '',
-                            '1': (lambda p: '{:,.1f}'.format(p * self.all / 100)),
-                            '100%  (1)': (lambda p: '{:1.0f}%({:,.0f})'.format(p, p * self.all / 100)),
-                            '100.0%  (1)': (lambda p: '{:1.1f}%({:,.0f})'.format(p, p * self.all / 100)),
-                            '100.00%  (1)': (lambda p: '{:1.2f}%({:,.0f})'.format(p, p * self.all / 100)),
-                            '100%     1': (lambda p: '{:1.0f}%\n{:,.0f}'.format(p, p * self.all / 100)),
-                            '100.0%    1': (lambda p: '{:1.1f}%\n{:,.0f}'.format(p, p * self.all / 100)),
-                            '100.00%    1': (lambda p: '{:1.2f}%\n{:,.0f}'.format(p, p * self.all / 100)),
-        }
+        data_autopct_list = {'100%': '%1.0f%%',
+                             '100.0%': '%1.1f%%',
+                             '100.00%': '%1.2f%%',
+                             '----': '',
+                             '1': (lambda p: '{:,.1f}'.format(p * self.all / 100)),
+                             '100%  (1)': (lambda p: '{:1.0f}%({:,.0f})'.format(p, p * self.all / 100)),
+                             '100.0%  (1)': (lambda p: '{:1.1f}%({:,.0f})'.format(p, p * self.all / 100)),
+                             '100.00%  (1)': (lambda p: '{:1.2f}%({:,.0f})'.format(p, p * self.all / 100)),
+                             '100%     1': (lambda p: '{:1.0f}%\n{:,.0f}'.format(p, p * self.all / 100)),
+                             '100.0%    1': (lambda p: '{:1.1f}%\n{:,.0f}'.format(p, p * self.all / 100)),
+                             '100.00%    1': (lambda p: '{:1.2f}%\n{:,.0f}'.format(p, p * self.all / 100))}
+
         self.outer_autopct = data_autopct_list[dock.dock_settings[1].Data_autopct.currentText()]
         if not dock.dock_settings[1].check_box5_settings.checkState():
             self.outer_autopct = ''
@@ -117,9 +112,6 @@ class PieChart:
 
     def basic(self):
         try:
-            if self.outer_sizes[-1] == '0':
-                raise ValueError("VALUE = 0")
-
             static_canvas, toolbar = tool_bar()
             static_chart = static_canvas.figure.subplots()
             static_chart.pie(
@@ -154,9 +146,6 @@ class PieChart:
         self.outer_wedgeprops.update({'width': 0.5})
 
         try:
-            if self.outer_sizes[-1] == '0':
-                raise ValueError("VALUE = 0")
-
             static_canvas, toolbar = tool_bar()
             static_chart = static_canvas.figure.subplots()
             static_chart.pie(
@@ -202,30 +191,29 @@ class BarChart:
             dock.dock_data[1].central_layout.itemAt(i).widget().deleteLater()
 
         self.outer_labels = []
-        for x in range(0, len(dock.dock_data[1].line_edit_data), 2):
-            self.outer_labels.append(str(dock.dock_data[1].line_edit_data[x].text()))
+        self.outer_labels.append(dock.dock_data[1].upper_first_Name_write.text())
+        for x in range(0, len(dock.dock_data[1].add_data)):
+            self.outer_labels.append(str(dock.dock_data[1].add_data[x].second_block_Name_write.text()))
 
         self.all = 0
+        self.all += dock.dock_data[1].upper_first_value_spinBox.value()
         self.outer_height = []
         try:
-            for x in range(0, len(dock.dock_data[1].line_edit_data), 2):
-                self.outer_height.append(dock.dock_data[1].line_edit_data[x + 1].text())
-                self.all += float(dock.dock_data[1].line_edit_data[x + 1].text())
+            self.outer_height.append(dock.dock_data[1].upper_first_value_spinBox.value())
+            if self.outer_height[-1] == 0.0:
+                raise ValueError("VALUE = 0")
+
+            for x in range(0, len(dock.dock_data[1].add_data)):
+                self.outer_height.append(dock.dock_data[1].add_data[x].second_block_value_spinBox.value())
+                self.all += float(dock.dock_data[1].add_data[x].second_block_value_spinBox.value())
+                if self.outer_height[-1] == 0.0:
+                    raise ValueError("VALUE = 0")
 
         except ValueError:
-            self.outer_height2 = 0
-            for x in str(self.outer_height[-1]):
-                if x == ',':
-                    self.outer_height2 = self.outer_height[-1].replace(',', '.')
-
-            if self.outer_height2 == 0:
-                self.outer_height2 = 1
-
             value_error = QtWidgets.QMessageBox()
             value_error.setWindowTitle("VALUE")
             value_error.setText("Value entry error                       ")
-            value_error.setInformativeText(
-                "Your value: %s \nCorrect: %s " % (str(self.outer_height[-1]), self.outer_height2))
+            value_error.setInformativeText("The pie chart can't be 0 ")
             value_error.setIcon(QtWidgets.QMessageBox.Critical)
             value_error.setStandardButtons(QtWidgets.QMessageBox.Ok)
             value_error.exec_()
@@ -282,30 +270,29 @@ class LineChart:
             dock.dock_data[1].central_layout.itemAt(i).widget().deleteLater()
 
         self.outer_labels = []
-        for x in range(0, len(dock.dock_data[1].line_edit_data), 2):
-            self.outer_labels.append(str(dock.dock_data[1].line_edit_data[x].text()))
+        self.outer_labels.append(dock.dock_data[1].upper_first_Name_write.text())
+        for x in range(0, len(dock.dock_data[1].add_data)):
+            self.outer_labels.append(str(dock.dock_data[1].add_data[x].second_block_Name_write.text()))
 
         self.all = 0
+        self.all += dock.dock_data[1].upper_first_value_spinBox.value()
         self.outer_height = []
         try:
-            for x in range(0, len(dock.dock_data[1].line_edit_data), 2):
-                self.outer_height.append(dock.dock_data[1].line_edit_data[x + 1].text())
-                self.all += float(dock.dock_data[1].line_edit_data[x + 1].text())
+            self.outer_height.append(dock.dock_data[1].upper_first_value_spinBox.value())
+            if self.outer_height[-1] == 0.0:
+                raise ValueError("VALUE = 0")
+
+            for x in range(0, len(dock.dock_data[1].add_data)):
+                self.outer_height.append(dock.dock_data[1].add_data[x].second_block_value_spinBox.value())
+                self.all += float(dock.dock_data[1].add_data[x].second_block_value_spinBox.value())
+                if self.outer_height[-1] == 0.0:
+                    raise ValueError("VALUE = 0")
 
         except ValueError:
-            self.outer_height2 = 0
-            for x in str(self.outer_height[-1]):
-                if x == ',':
-                    self.outer_height2 = self.outer_height[-1].replace(',', '.')
-
-            if self.outer_height2 == 0:
-                self.outer_height2 = 1
-
             value_error = QtWidgets.QMessageBox()
             value_error.setWindowTitle("VALUE")
             value_error.setText("Value entry error                       ")
-            value_error.setInformativeText(
-                "Your value: %s \nCorrect: %s " % (str(self.outer_height[-1]), self.outer_height2))
+            value_error.setInformativeText("The pie chart can't be 0 ")
             value_error.setIcon(QtWidgets.QMessageBox.Critical)
             value_error.setStandardButtons(QtWidgets.QMessageBox.Ok)
             value_error.exec_()
