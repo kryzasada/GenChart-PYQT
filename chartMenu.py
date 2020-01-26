@@ -81,8 +81,10 @@ class DataPage1:
         self.upper__TextName_check.setMinimumSize(QtCore.QSize(15, 20))
         self.upper__TextName_check.setMaximumSize(QtCore.QSize(15, 0))
         self.upper__TextName_check.setText("")
+        self.upper__TextName_check.setChecked(True)
         self.upper__TextName_check.setObjectName("upper__TextName_check")
         self.upper__TextName_layout.setWidget(0, QtWidgets.QFormLayout.FieldRole, self.upper__TextName_check)
+        self.upper__TextName_check.stateChanged.connect(lambda: self.check_display("Name"))
 
         " Upper label layout - label value"
         self.upper__TextValue_layout = QtWidgets.QFormLayout()
@@ -111,8 +113,10 @@ class DataPage1:
         self.upper_TextValue_check.setMinimumSize(QtCore.QSize(15, 20))
         self.upper_TextValue_check.setMaximumSize(QtCore.QSize(15, 20))
         self.upper_TextValue_check.setText("")
+        self.upper_TextValue_check.setChecked(True)
         self.upper_TextValue_check.setObjectName("upper_TextValue_check")
         self.upper__TextValue_layout.setWidget(0, QtWidgets.QFormLayout.FieldRole, self.upper_TextValue_check)
+        self.upper_TextValue_check.stateChanged.connect(lambda: self.check_display("Value"))
 
         " Layout write name and check"
         self.upper_first_Name_layout = QtWidgets.QFormLayout()
@@ -138,6 +142,7 @@ class DataPage1:
         self.upper_first_Name_check.setMinimumSize(QtCore.QSize(15, 20))
         self.upper_first_Name_check.setMaximumSize(QtCore.QSize(15, 20))
         self.upper_first_Name_check.setText("")
+        self.upper_first_Name_check.setChecked(True)
         self.upper_first_Name_check.setObjectName("upper_first_Name_check")
         self.upper_first_Name_layout.setWidget(0, QtWidgets.QFormLayout.FieldRole, self.upper_first_Name_check)
 
@@ -179,7 +184,7 @@ class DataPage1:
         self.upper_first_value_check.setMinimumSize(QtCore.QSize(15, 20))
         self.upper_first_value_check.setMaximumSize(QtCore.QSize(15, 20))
         self.upper_first_value_check.setText("")
-        self.upper_first_value_check.setTristate(False)
+        self.upper_first_value_check.setChecked(True)
         self.upper_first_value_check.setObjectName("upper_first_value_check")
         self.upper_first_value_layout.setWidget(0, QtWidgets.QFormLayout.FieldRole, self.upper_first_value_check)
 
@@ -205,6 +210,7 @@ class DataPage1:
         self.button_Add.setObjectName("pushButton")
         self.button_Add.setMaximumSize(QtCore.QSize(65, 20))
         self.button_Add.setText("ADD DATA")
+
         self.upper_first_layout.setWidget(3, QtWidgets.QFormLayout.LabelRole, self.button_Add)
         self.button_Add.clicked.connect(lambda: self.add_data.append(self.AddData()))
         self.button_Add.clicked.connect(lambda: self.add_data[-1].buttons_positions())
@@ -217,6 +223,27 @@ class DataPage1:
 
         self.add_data.append(self.AddData())
         self.add_data[-1].buttons_positions()
+
+    def check_display(self, type):
+        if type == "Name":
+            if self.upper__TextName_check.checkState():
+                self.upper_first_Name_check.setChecked(True)
+                for x in self.add_data:
+                    x.second_block_Name_check.setChecked(True)
+            else:
+                self.upper_first_Name_check.setChecked(False)
+                for x in self.add_data:
+                    x.second_block_Name_check.setChecked(False)
+
+        elif type == "Value":
+            if self.upper_TextValue_check.checkState():
+                self.upper_first_value_check.setChecked(True)
+                for x in self.add_data:
+                    x.second_block_value_check.setChecked(True)
+            else:
+                self.upper_first_value_check.setChecked(False)
+                for x in self.add_data:
+                    x.second_block_value_check.setChecked(False)
 
         """
     self.button_Create.clicked.connect(lambda:
@@ -335,6 +362,7 @@ class DataPage1:
             self.second_block_Name_check.setMinimumSize(QtCore.QSize(15, 20))
             self.second_block_Name_check.setMaximumSize(QtCore.QSize(15, 20))
             self.second_block_Name_check.setText("")
+            self.second_block_Name_check.setChecked(True)
             self.second_block_Name_check.setObjectName("second_block_Name_check")
             self.second_block_Name_layout.setWidget(1, QtWidgets.QFormLayout.FieldRole, self.second_block_Name_check)
 
@@ -377,6 +405,7 @@ class DataPage1:
             self.second_block_value_check.setMinimumSize(QtCore.QSize(15, 20))
             self.second_block_value_check.setMaximumSize(QtCore.QSize(15, 20))
             self.second_block_value_check.setText("")
+            self.second_block_value_check.setChecked(True)
             self.second_block_value_check.setObjectName("second_block_value_check")
             self.second_block_value_layout.setWidget(1, QtWidgets.QFormLayout.FieldRole, self.second_block_value_check)
 
@@ -428,8 +457,6 @@ class DataPage1:
                 dock.dock_settings[1].scroll_explode_layout.setWidget(self.int,
                                                                       QtWidgets.QFormLayout.FieldRole,
                                                                       dock.dock_settings[1].spin_box_explode[-1])
-
-
             except:
                 pass
 
@@ -792,8 +819,6 @@ class SettingsPage1:
 
     @staticmethod
     def button_color(number):
-        print( dock.dock_settings[1].buttons_color)
-        print("number: " + str(number))
         color = QtWidgets.QColorDialog.getColor()
         dock.dock_settings[1].buttons_color[number].setStyleSheet("background-color: %s;" % (str(color.name())))
 
