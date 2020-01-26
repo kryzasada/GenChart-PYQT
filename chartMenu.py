@@ -260,10 +260,11 @@ class DataPage1:
 
             del dock.dock_data[1].add_data[self.int]
 
-            while self.int <= int2:
+            int1 = self.int
+            while int1 <= int2:
                 try:
-                    dock.dock_data[1].add_data[self.int].int = self.int + 1
-                    self.int += 1
+                    dock.dock_data[1].add_data[int1].int = int1 + 1
+                    int1 += 1
 
                 except :
                     break
@@ -271,9 +272,13 @@ class DataPage1:
             self.buttons_positions()
 
             """ Delete widget in settings: Page_1"""
-            dock.dock_settings[1].scroll_color_layout.removeRow(self.int)
-            del dock.dock_settings[1].buttons_color[self.int]
+            dock.dock_settings[1].scroll_color_layout.removeRow(self.int+1)
+            del dock.dock_settings[1].label_color[self.int+1]
+            del dock.dock_settings[1].buttons_color[self.int+1]
 
+            dock.dock_settings[1].scroll_explode_layout.removeRow(self.int+1)
+            del dock.dock_settings[1].label_explode[self.int+1]
+            del dock.dock_settings[1].spin_box_explode[self.int+1]
 
         def contein(self):
             self.second_block_layout = QtWidgets.QFormLayout()
@@ -392,6 +397,9 @@ class DataPage1:
                 dock.dock_settings[1].scroll_color_layout.setWidget(self.int,
                                                                     QtWidgets.QFormLayout.LabelRole,
                                                                     dock.dock_settings[1].label_color[-1])
+                self.second_block_Name_write.textChanged.connect(lambda:
+                                                                 dock.dock_settings[1].label_color[self.int].setText(
+                                                                     self.second_block_Name_write.text()))
 
                 dock.dock_settings[1].buttons_color.append(QtWidgets.QPushButton())
                 sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
@@ -399,11 +407,29 @@ class DataPage1:
                 dock.dock_settings[1].scroll_color_layout.setWidget(self.int,
                                                                     QtWidgets.QFormLayout.FieldRole,
                                                                     dock.dock_settings[1].buttons_color[-1])
-
                 dock.dock_settings[1].buttons_color[-1].setStyleSheet("background-color: rgb(%s, %s, %s);"
                                                                       % (random.randint(0, 250),
                                                                          random.randint(0, 250),
                                                                          random.randint(0, 250)))
+                dock.dock_settings[1].buttons_color[-1].clicked.connect(lambda:
+                                                                        dock.dock_settings[1].button_color(self.int))
+
+                dock.dock_settings[1].label_explode.append(QtWidgets.QLabel())
+                dock.dock_settings[1].label_explode[-1].setText(self.second_block_Name_write.text())
+                dock.dock_settings[1].scroll_explode_layout.setWidget(self.int,
+                                                                      QtWidgets.QFormLayout.LabelRole,
+                                                                      dock.dock_settings[1].label_explode[-1])
+                self.second_block_Name_write.textChanged.connect(lambda:
+                                                                 dock.dock_settings[1].label_explode[self.int].setText(
+                                                                     self.second_block_Name_write.text()))
+
+                dock.dock_settings[1].spin_box_explode.append(QtWidgets.QDoubleSpinBox())
+                dock.dock_settings[1].spin_box_explode[-1].setSizePolicy(sizePolicy)
+                dock.dock_settings[1].scroll_explode_layout.setWidget(self.int,
+                                                                      QtWidgets.QFormLayout.FieldRole,
+                                                                      dock.dock_settings[1].spin_box_explode[-1])
+
+
             except:
                 pass
 
@@ -422,7 +448,9 @@ class DataPage1:
                     dock.dock_data[1].add_data[-1].second_block_Name_layout.setWidget(3,
                                                                                       QtWidgets.QFormLayout.LabelRole,
                                                                                       dock.dock_data[1].space)
-
+        
+        
+        
 """    def add_data(self):
         self.data_horizontal_position_widgets += 2
         self.array_position_data += 2
@@ -573,15 +601,22 @@ class SettingsPage1:
             sizePolicy.setHeightForWidth(self.buttons_color[array_position].hasHeightForWidth())
             self.buttons_color[array_position].clicked.connect(partial(self.button_color, array_position))
 
+
             if array_position == 0:
                 self.buttons_color[array_position].setStyleSheet("background-color: rgb(255, 167, 14);")
                 self.label_color[array_position].setText(dock.dock_data[1].upper_first_Name_write.text())
+                dock.dock_data[1].upper_first_Name_write.textChanged.connect(
+                                                                    lambda: self.label_color[0].setText(
+                                                                       dock.dock_data[1].upper_first_Name_write.text()))
+
+
             else:
                 self.buttons_color[array_position].setStyleSheet("background-color: rgb(100, 150, 190);")
-                try:
-                    self.label_color[array_position].setText(dock.dock_data[1].add_data[-1].second_block_Name_write.text())
-                except:
-                    self.label_color[array_position].setText("bad")
+                self.label_color[array_position].setText(dock.dock_data[1].add_data[-1].second_block_Name_write.text())
+                dock.dock_data[1].add_data[0].second_block_Name_write.textChanged.connect(
+                                                        lambda: self.label_color[1].setText(
+                                                          dock.dock_data[1].add_data[0].second_block_Name_write.text()))
+
 
     def p_explode(self):
         self.page_explode = QtWidgets.QWidget()
@@ -628,12 +663,15 @@ class SettingsPage1:
 
             if array_position == 0:
                 self.label_explode[array_position].setText(dock.dock_data[1].upper_first_Name_write.text())
+                dock.dock_data[1].upper_first_Name_write.textChanged.connect(
+                                                                    lambda: self.label_explode[0].setText(
+                                                                       dock.dock_data[1].upper_first_Name_write.text()))
             else:
-                try:
-                    self.label_explode[array_position].setText(
-                        dock.dock_data[1].add_data[-1].second_block_Name_write.text())
-                except:
-                    self.label_explode[array_position].setText("bad")
+                self.label_explode[array_position].setText(
+                                                          dock.dock_data[1].add_data[-1].second_block_Name_write.text())
+                dock.dock_data[1].add_data[0].second_block_Name_write.textChanged.connect(
+                                                        lambda: self.label_explode[1].setText(
+                                                          dock.dock_data[1].add_data[0].second_block_Name_write.text()))
 
         self.spin_box_explode[0].setValue(1.0)
 
@@ -754,6 +792,8 @@ class SettingsPage1:
 
     @staticmethod
     def button_color(number):
+        print( dock.dock_settings[1].buttons_color)
+        print("number: " + str(number))
         color = QtWidgets.QColorDialog.getColor()
         dock.dock_settings[1].buttons_color[number].setStyleSheet("background-color: %s;" % (str(color.name())))
 
