@@ -5,13 +5,18 @@
 #
 
 from PyQt5 import QtCore, QtGui, QtWidgets, QtQuickWidgets
-from PyQt5 import QtQuickWidgets
 import sys
 import dock, menuStatusBar, chartList
 
 
 class UiMainWindow(object):
     def setupUi(self, main_window):
+
+        if 0:
+            style_css = "Theme/darkorange.css"
+            style = open(style_css, "r")
+            app.setStyleSheet(style.read())
+
         main_window.resize(800, 598)
         main_window.setContextMenuPolicy(QtCore.Qt.NoContextMenu)
         main_window.setTabShape(QtWidgets.QTabWidget.Triangular)
