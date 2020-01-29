@@ -5,8 +5,10 @@
 #
 
 from PyQt5 import QtCore, QtGui, QtWidgets, QtQuickWidgets
-import sys
+import sys, linecache
 import dock, menuStatusBar, chartList
+
+
 
 
 class UiMainWindow(object):
@@ -17,7 +19,21 @@ class UiMainWindow(object):
             style = open(style_css, "r")
             app.setStyleSheet(style.read())
 
-        main_window.resize(800, 598)
+        try:
+            file_line = linecache.getline("settings.txt", 3)
+            if file_line == "First start = 1\n":
+                print("Open first time configuration window")
+
+                old_file = open("settings.txt").read()
+                old_file = old_file.replace('First start = 1', 'First start = 0')
+                new_file = open("settings.txt", 'w')
+                new_file.write(old_file)
+                new_file.close()
+
+        finally:
+            linecache.clearcache()
+
+        main_window.resize(800, 600)
         main_window.setContextMenuPolicy(QtCore.Qt.NoContextMenu)
         main_window.setTabShape(QtWidgets.QTabWidget.Triangular)
         main_window.setWindowIcon(QtGui.QIcon("Image/Icons/blank-logo.ico"))
