@@ -79,7 +79,7 @@
    <widget class="Line" name="line_3">
     <property name="geometry">
      <rect>
-      <x>10</x>
+      <x>20</x>
       <y>370</y>
       <width>531</width>
       <height>16</height>
@@ -211,6 +211,52 @@
     <item>
      <property name="text">
       <string>Ubuntu</string>
+     </property>
+    </item>
+   </widget>
+   <widget class="Line" name="line">
+    <property name="geometry">
+     <rect>
+      <x>280</x>
+      <y>47</y>
+      <width>3</width>
+      <height>80</height>
+     </rect>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Vertical</enum>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_language_3">
+    <property name="geometry">
+     <rect>
+      <x>300</x>
+      <y>60</y>
+      <width>81</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Resolution:</string>
+    </property>
+   </widget>
+   <widget class="QComboBox" name="combo_box_language_2">
+    <property name="geometry">
+     <rect>
+      <x>380</x>
+      <y>60</y>
+      <width>141</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <item>
+     <property name="text">
+      <string>800 x 600</string>
      </property>
     </item>
    </widget>
