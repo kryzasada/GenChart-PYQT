@@ -30,8 +30,8 @@ try:
         MainWindow1 = QMainWindow()
         window1 = window.firstConfiguration()
         window1.contain(MainWindow1)
-        window1.button_start.clicked.connect(lambda: MainWindow1.close())
-        window1.button_start.clicked.connect(lambda: window2_create())
+        window1.start_button.clicked.connect(lambda: MainWindow1.close())
+        window1.start_button.clicked.connect(lambda: window2_create())
         MainWindow1.show()
         sys.exit(app1.exec_())
 
