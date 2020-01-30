@@ -1,6 +1,6 @@
 /// If you don't know how it works, don't change anything. It may damage this program! ///
  
-First start = 0
+First start = 1
 Language = English
 Resolution1 = 800
 Resolution2 = 600
