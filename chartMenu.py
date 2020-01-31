@@ -209,6 +209,7 @@ class DataPage1:
         self.button_Add.setSizePolicy(self.sizePolicy)
         self.button_Add.setObjectName("pushButton")
         self.button_Add.setMaximumSize(QtCore.QSize(65, 20))
+        self.button_Add.setMinimumSize(QtCore.QSize(65, 20))
         self.button_Add.setText("ADD DATA")
 
         self.upper_first_layout.setWidget(3, QtWidgets.QFormLayout.LabelRole, self.button_Add)
@@ -217,6 +218,7 @@ class DataPage1:
 
         self.button_Create = QtWidgets.QPushButton(self.scroll_area_contents)
         self.button_Create.setObjectName("button_Create")
+        self.button_Create.setMinimumSize(QtCore.QSize(65, 20))
         self.button_Create.setMaximumSize(QtCore.QSize(65, 20))
         self.upper_first_layout.setWidget(4, QtWidgets.QFormLayout.LabelRole, self.button_Create)
         self.button_Create.setText("CREATE")
@@ -321,7 +323,7 @@ class DataPage1:
             self.button_X.setMinimumSize(QtCore.QSize(20, 24))
             self.button_X.setMaximumSize(QtCore.QSize(20, 24))
             self.button_X.setIcon(QtGui.QIcon('Image/Other/value_menu_X.png'))
-            self.button_X.setStyleSheet("background-color: rgba(255, 255, 255, 0);")
+            self.button_X.setStyleSheet("background-color: rgba(255, 255, 255, 0); border: 0;")
             self.button_X.clicked.connect(lambda: self._dell())
             self.data_scroll_layout.setWidget(self.int, QtWidgets.QFormLayout.LabelRole, self.button_X)
 
@@ -429,6 +431,8 @@ class DataPage1:
                                                                      self.second_block_Name_write.text()))
 
                 dock.dock_settings[1].buttons_color.append(QtWidgets.QPushButton())
+                dock.dock_settings[1].buttons_color[-1].setMinimumSize(QtCore.QSize(35, 20))
+                dock.dock_settings[1].buttons_color[-1].setMaximumSize(QtCore.QSize(35, 20))
                 sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
                 dock.dock_settings[1].buttons_color[-1].setSizePolicy(sizePolicy)
                 dock.dock_settings[1].scroll_color_layout.setWidget(self.int,
@@ -451,6 +455,8 @@ class DataPage1:
                                                                      self.second_block_Name_write.text()))
 
                 dock.dock_settings[1].spin_box_explode.append(QtWidgets.QDoubleSpinBox())
+                dock.dock_settings[1].spin_box_explode[-1].setMinimumSize(QtCore.QSize(50, 20))
+                dock.dock_settings[1].spin_box_explode[-1].setMaximumSize(QtCore.QSize(50, 20))
                 dock.dock_settings[1].spin_box_explode[-1].setSizePolicy(sizePolicy)
                 dock.dock_settings[1].scroll_explode_layout.setWidget(self.int,
                                                                       QtWidgets.QFormLayout.FieldRole,
@@ -527,6 +533,8 @@ class SettingsPage1:
                                                 self.label_color[array_position])
 
             self.buttons_color.append(QtWidgets.QPushButton(self.scroll_color_contents))
+            self.buttons_color[array_position].setMinimumSize(QtCore.QSize(35, 20))
+            self.buttons_color[array_position].setMaximumSize(QtCore.QSize(35, 20))
             self.scroll_color_layout.setWidget(
                                                 array_position,
                                                 QtWidgets.QFormLayout.FieldRole,
@@ -588,6 +596,8 @@ class SettingsPage1:
                                                  self.label_explode[array_position])
 
             self.spin_box_explode.append(QtWidgets.QDoubleSpinBox(self.scroll_explode_contents))
+            self.spin_box_explode[array_position].setMinimumSize(QtCore.QSize(50, 20))
+            self.spin_box_explode[array_position].setMaximumSize(QtCore.QSize(50, 20))
             sizePolicy.setHeightForWidth(self.spin_box_explode[array_position].sizePolicy().hasHeightForWidth())
             self.spin_box_explode[array_position].setSizePolicy(sizePolicy)
             self.scroll_explode_layout.setWidget(
@@ -681,8 +691,8 @@ class SettingsPage1:
         self.check_box5_settings.clicked.connect(self.show_data_setting)
 
         self.button_data_color = QtWidgets.QPushButton(self.scroll_settings_contents)
-        self.button_data_color.setMinimumSize(QtCore.QSize(45, 0))
-        self.button_data_color.setMaximumSize(QtCore.QSize(47, 16777215))
+        self.button_data_color.setMinimumSize(QtCore.QSize(45, 22))
+        self.button_data_color.setMaximumSize(QtCore.QSize(47, 22))
         self.button_data_color.setText("Color")
         self.button_data_color.clicked.connect(self.setting_button_color)
         self.button_data_color.setStyleSheet("background-color: #f0f0f0;" "color: rgb(0, 0, 0);")
@@ -807,7 +817,7 @@ class SettingsPage2:
 
         self.button_bar_color = QtWidgets.QPushButton()
         self.button_bar_color.setMinimumSize(QtCore.QSize(40, 0))
-        self.button_bar_color.setStyleSheet("background-color: #1f77b4")
+        self.button_bar_color.setStyleSheet("background-color: #1f77b4; width: 0px;")
         self.button_bar_color.clicked.connect(lambda: self.button_color(self.button_bar_color))
         self.layout_settings_layout.setWidget(1, QtWidgets.QFormLayout.LabelRole, self.button_bar_color)
 
@@ -826,7 +836,7 @@ class SettingsPage2:
 
         self.button_edge_color = QtWidgets.QPushButton()
         self.button_edge_color.setMinimumSize(QtCore.QSize(40, 0))
-        self.button_edge_color.setStyleSheet("background-color: #222")
+        self.button_edge_color.setStyleSheet("background-color: #222; width: 0px;")
         self.button_edge_color.clicked.connect(lambda: self.button_color(self.button_edge_color))
         self.layout_settings_layout.setWidget(3, QtWidgets.QFormLayout.LabelRole, self.button_edge_color)
 
@@ -919,7 +929,7 @@ class SettingsPage3:
 
         self.button_line_color = QtWidgets.QPushButton()
         self.button_line_color.setMinimumSize(QtCore.QSize(40, 0))
-        self.button_line_color.setStyleSheet("background-color: #1f77b4")
+        self.button_line_color.setStyleSheet("background-color: #1f77b4; width: 0px;")
         self.button_line_color.clicked.connect(lambda: self.button_color(self.button_line_color))
         self.layout_settings_layout.setWidget(1, QtWidgets.QFormLayout.LabelRole, self.button_line_color)
 
