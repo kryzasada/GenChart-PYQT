@@ -4,5 +4,7 @@ First start = 1
 Language = English
 Resolution1 = 800
 Resolution2 = 600
-Font =  Arial
-Theme = Default
+Font = Arial
+Theme= Default
+
+//
