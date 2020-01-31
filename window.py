@@ -1,6 +1,12 @@
+# -*- coding: utf-8 -*-
+
+#
+# Created by: PyQt5 UI code generator 5.13.0
+#
+
 from PyQt5 import QtCore, QtGui, QtWidgets, QtQuickWidgets
 import dock, menuStatusBar
-
+import linecache
 
 class firstConfiguration:
     def contain(self, main_window):
@@ -44,9 +50,11 @@ class firstConfiguration:
         self.font_label.setFont(font)
         self.font_label.setText("Font:")
 
+
         self.font_combo_box = QtWidgets.QFontComboBox(self.central_widget)
         self.font_combo_box.setGeometry(QtCore.QRect(130, 90, 141, 22))
         self.font_combo_box.setCurrentFont(QtGui.QFont("Arial"))
+        self.font_combo_box.currentFontChanged.connect(lambda: self.change_font())
 
         self.line1_vertical = QtWidgets.QFrame(self.central_widget)
         self.line1_vertical.setGeometry(QtCore.QRect(280, 47, 3, 80))
@@ -105,9 +113,41 @@ class firstConfiguration:
         self.start_button = QtWidgets.QPushButton(self.central_widget)
         self.start_button.setGeometry(QtCore.QRect(460, 390, 75, 23))
         self.start_button.setText("START")
+        self.start_button.clicked.connect(lambda: self.save_settings())
 
         QtCore.QMetaObject.connectSlotsByName(main_window)
 
+    def change_font(self):
+        self.title_label.setFont(QtGui.QFont(self.font_combo_box.currentFont().family(), 11))
+        self.language_label.setFont(QtGui.QFont(self.font_combo_box.currentFont().family(), 10))
+        self.font_label.setFont(QtGui.QFont(self.font_combo_box.currentFont().family(), 10))
+        self.resolution_label.setFont(QtGui.QFont(self.font_combo_box.currentFont().family(), 10))
+        self.theme_label.setFont(QtGui.QFont(self.font_combo_box.currentFont().family(), 10))
+        self.start_button.setFont(QtGui.QFont(self.font_combo_box.currentFont().family(), 10))
+
+        self.language_combo_box.setFont(QtGui.QFont(self.font_combo_box.currentFont().family(), 10))
+        self.resolution_combo_box.setFont(QtGui.QFont(self.font_combo_box.currentFont().family(), 10))
+        self.theme_combo_box.setFont(QtGui.QFont(self.font_combo_box.currentFont().family(), 10))
+
+    def save_settings(self):
+        old_file = open("settings.txt").read()
+        old_file = old_file.replace(linecache.getline("settings.txt", 4),
+                                    ("Language = %s\n" % self.language_combo_box.currentText()))
+        old_file = old_file.replace(linecache.getline("settings.txt", 7),
+                                    ("Font = %s\n" % self.font_combo_box.currentFont().family()))
+
+        if self.resolution_combo_box.currentText() == "800 x 600":
+            old_file = old_file.replace(linecache.getline("settings.txt", 5),
+                                        ("Resolution1 = %s\n" % "800"))
+            old_file = old_file.replace(linecache.getline("settings.txt", 6),
+                                        ("Resolution2 = %s\n" % "600"))
+
+        old_file = old_file.replace(linecache.getline("settings.txt", 8),
+                                    ("Theme= %s\n" % self.theme_combo_box.currentText()))
+
+        new_file = open("settings.txt", 'w')
+        new_file.write(old_file)
+        new_file.close()
 
 class main:
     def contain(self, main_window):
