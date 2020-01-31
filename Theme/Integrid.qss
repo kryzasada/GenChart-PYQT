@@ -1,4 +1,7 @@
-/*Copyright (c) DevSec Studio. All rights reserved.
+/*
+Author: https://qss-stock.devsecstudio.com/
+
+Copyright (c) DevSec Studio. All rights reserved.
 
 MIT License
 
@@ -35,7 +38,6 @@ QWidget
 QLabel
 {
 	background-color: transparent;
-	color: #fff;
 
 }
 
@@ -179,11 +181,11 @@ QPushButton
 {
 	background-color: qlineargradient(spread:repeat, x1:1, y1:0, x2:1, y2:1, stop:0 rgba(184, 184, 184, 255),stop:1 rgba(159, 159, 159, 255));
 	color: #000;
-	min-width: 80px;
+	width: 60px;
+	height: 20px;
 	border-style: solid;
 	border-width: 1px;
 	border-color: #051a39;
-	padding: 5px;
 
 }
 
@@ -376,97 +378,6 @@ QComboBox::down-arrow
     image: url(://arrow-down.png);
     width: 8px;
     height: 8px;
-}
-
-
-/*-----QSpinBox & QDateTimeEdit-----*/
-QSpinBox,
-QDateTimeEdit 
-{
-    background-color: #f6f6f6;
-	color : #000;
-	border: 1px solid #000;
-	padding: 3px;
-	padding-left: 5px;
-
-}
-
-
-QSpinBox::up-button, 
-QDateTimeEdit::up-button
-{
-	background-color: qlineargradient(spread:repeat, x1:1, y1:0, x2:1, y2:1, stop:0 rgba(184, 184, 184, 255),stop:1 rgba(159, 159, 159, 255));
-    width: 16px; 
-    border-width: 1px;
-	border-color: #000;
-
-}
-
-
-QSpinBox::up-button:hover, 
-QDateTimeEdit::up-button:hover
-{
-	background-color: #585858;
-
-}
-
-
-QSpinBox::up-button:pressed, 
-QDateTimeEdit::up-button:pressed
-{
-	background-color: #252525;
-    width: 16px; 
-    border-width: 1px;
-
-}
-
-
-QSpinBox::up-arrow,
-QDateTimeEdit::up-arrow
-{
-    image: url(://arrow-up.png);
-    width: 7px;
-    height: 7px;
-
-}
-
-
-QSpinBox::down-button, 
-QDateTimeEdit::down-button
-{
-	background-color: qlineargradient(spread:repeat, x1:1, y1:0, x2:1, y2:1, stop:0 rgba(184, 184, 184, 255),stop:1 rgba(159, 159, 159, 255));
-    width: 16px; 
-    border-width: 1px;
-	border-color: #000;
-
-}
-
-
-QSpinBox::down-button:hover, 
-QDateTimeEdit::down-button:hover
-{
-	background-color: #585858;
-
-}
-
-
-QSpinBox::down-button:pressed, 
-QDateTimeEdit::down-button:pressed
-{
-	background-color: #252525;
-    width: 16px; 
-    border-width: 1px;
-
-}
-
-
-QSpinBox::down-arrow,
-QDateTimeEdit::down-arrow
-{
-    image: url(://arrow-down.png);
-    width: 7px;
-    height: 7px;
-
 }
 
 
@@ -686,58 +597,6 @@ QListView::item:hover {
     background-color: #5e5e5e;
     border: none;
     color: #000;
-
-}
-
-
-/*-----QCheckBox-----*/
-QCheckBox
-{
-	background-color: transparent;
-    color: #000;
-	border: none;
-
-}
-
-
-QCheckBox::indicator
-{
-    background-color: lightgray;
-    border: 1px solid #000;
-    width: 12px;
-    height: 12px;
-
-}
-
-
-QCheckBox::indicator:checked
-{
-    image:url("./ressources/check.png");
-	background-color: #46a2da;
-    border: 1px solid #3a546e;
-
-}
-
-
-QCheckBox::indicator:unchecked:hover
-{
-	border: 1px solid #46a2da; 
-
-}
-
-
-QCheckBox::disabled
-{
-	color: #656565;
-
-}
-
-
-QCheckBox::indicator:disabled
-{
-	background-color: #656565;
-	color: #656565;
-    border: 1px solid #656565;
 
 }
 

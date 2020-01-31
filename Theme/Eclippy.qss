@@ -1,4 +1,7 @@
-/*Copyright (c) DevSec Studio. All rights reserved.
+/*
+Author: https://qss-stock.devsecstudio.com/
+
+Copyright (c) DevSec Studio. All rights reserved.
 
 MIT License
 
@@ -162,6 +165,16 @@ QTabBar::tab:!selected:hover
 	color: #fff; 
 
 }
+
+/*-----QPushButton-----*/
+
+QPushButton::disabled
+{
+	background-color: #404040;
+	color: #656565;
+	border-color: #051a39;
+}
+
 
 
 /*-----QToolButton-----*/
@@ -394,94 +407,6 @@ QComboBox QListView
 	color: #fff;
 	border: 1px solid black;
 	border-radius: 2px;
-
-}
-
-
-/*-----QSpinBox-----*/
-QSpinBox 
-{
-    border: 1px solid gray;
-	min-height: 12px;
-    border-radius : 2px;
-	color : black;
-    background-color: rgb(157, 157, 157);
-
-}
-
-
-QSpinBox:hover 
-{
-	background-color: rgb(190, 190, 190);
-
-}
-
-
-QSpinBox::up-button 
-{
-	border-top-right-radius:2px;
-	background-color: #777777;
-    width: 16px; 
-    border-width: 1px;
-
-}
-
-
-QSpinBox::up-button:hover 
-{
-	background-color: #585858;
-
-}
-
-
-QSpinBox::up-button:pressed 
-{
-	background-color: #252525;
-    width: 16px; 
-    border-width: 1px;
-
-}
-
-
-QSpinBox::up-arrow 
-{
-    image: url(://arrow-up.png);
-    width: 7px;
-    height: 7px;
-
-}
-
-
-QSpinBox::down-button 
-{
-	border-bottom-right-radius:2px;
-	background-color: #777777;
-    width: 16px; 
-    border-width: 1px;
-
-}
-
-
-QSpinBox::down-button:hover 
-{
-	background-color: #585858;
-
-}
-
-QSpinBox::down-button:pressed 
-{
-	background-color: #252525;
-    width: 16px; 
-    border-width: 1px;
-
-}
-
-
-QSpinBox::down-arrow 
-{
-    image: url(://arrow-down.png);
-    width: 7px;
-    height: 7px;
 
 }
 

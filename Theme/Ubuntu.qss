@@ -8,9 +8,7 @@ Available at: https://github.com/GTRONICK/QSS/blob/master/Ubuntu.qss
 QMainWindow {
 	background-color:#f0f0f0;
 }
-QCheckBox {
-	padding:2px;
-}
+
 QCheckBox:hover {
 	border-radius:4px;
 	border-style:solid;
