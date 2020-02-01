@@ -17,7 +17,6 @@ class firstConfiguration:
         self.main_window.setWindowIcon(QtGui.QIcon("Image/Icons/blank-logo.ico"))
         self.main_window.setWindowTitle("GenChart - First Time Configuration")
 
-
         self.central_widget = QtWidgets.QWidget(self.main_window)
         self.main_window.setCentralWidget(self.central_widget)
 
@@ -45,7 +44,8 @@ class firstConfiguration:
         self.language_combo_box = QtWidgets.QComboBox(self.central_widget)
         self.language_combo_box.setGeometry(QtCore.QRect(130, 60, 141, 22))
         self.language_combo_box.addItem("English")
-        self.language_combo_box.addItem("Polish")
+        self.language_combo_box.addItem("Polski")
+        self.language_combo_box.currentIndexChanged.connect(lambda: self.change_language())
 
         self.font_label = QtWidgets.QLabel(self.central_widget)
         self.font_label.setGeometry(QtCore.QRect(40, 90, 81, 22))
@@ -72,7 +72,7 @@ class firstConfiguration:
         self.resolution_label.setText("Resolution:")
 
         self.resolution_combo_box = QtWidgets.QComboBox(self.central_widget)
-        self.resolution_combo_box.setGeometry(QtCore.QRect(380, 60, 141, 22))
+        self.resolution_combo_box.setGeometry(QtCore.QRect(390, 60, 141, 22))
         self.resolution_combo_box.addItem("800 x 600")
 
         self.line2_horizontal = QtWidgets.QFrame(self.central_widget)
@@ -155,6 +155,26 @@ class firstConfiguration:
         self.start_button.clicked.connect(lambda: self.save_settings())
 
         QtCore.QMetaObject.connectSlotsByName(self.main_window)
+
+    def change_language(self):
+        if self.language_combo_box.currentText() == "Polski":
+            self.main_window.setWindowTitle("GenChart - Pierwsza konfiguracja")
+            self.title_label.setText("Konfigurator GemChart:")
+            self.language_label.setText("Język:")
+            self.font_label.setText("Font:")
+            self.resolution_label.setText("Rozdzielczość:")
+            self.theme_label.setText("Motyw: ")
+            self.preview_theme_label.setText("Podgląd: ")
+            self.start_button.setText("START")
+
+        elif self.language_combo_box.currentText() == "English":
+            self.main_window.setWindowTitle("GenChart - First Time Configuration")
+            self.title_label.setText("GemChart configuration:")
+            self.language_label.setText("Language:")
+            self.font_label.setText("Font:")
+            self.resolution_label.setText("Resolution:")
+            self.theme_label.setText("Theme: ")
+            self.preview_theme_label.setText("Preview: ")
 
     def change_font(self):
         self.title_label.setFont(QtGui.QFont(self.font_combo_box.currentFont().family(), 11))
