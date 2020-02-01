@@ -7,15 +7,19 @@
 from PyQt5 import QtCore, QtGui, QtWidgets, QtQuickWidgets
 import dock, menuStatusBar
 import linecache
+import time
+
 
 class firstConfiguration:
     def contain(self, main_window):
-        main_window.resize(568, 431)
-        main_window.setWindowIcon(QtGui.QIcon("Image/Icons/blank-logo.ico"))
-        main_window.setWindowTitle("GenChart - First Time Configuration")
+        self.main_window = main_window
+        self.main_window.resize(568, 265)
+        self.main_window.setWindowIcon(QtGui.QIcon("Image/Icons/blank-logo.ico"))
+        self.main_window.setWindowTitle("GenChart - First Time Configuration")
 
-        self.central_widget = QtWidgets.QWidget(main_window)
-        main_window.setCentralWidget(self.central_widget)
+
+        self.central_widget = QtWidgets.QWidget(self.main_window)
+        self.main_window.setCentralWidget(self.central_widget)
 
         self.title_label = QtWidgets.QLabel(self.central_widget)
         self.title_label.setGeometry(QtCore.QRect(20, 0, 531, 51))
@@ -50,7 +54,6 @@ class firstConfiguration:
         self.font_label.setFont(font)
         self.font_label.setText("Font:")
 
-
         self.font_combo_box = QtWidgets.QFontComboBox(self.central_widget)
         self.font_combo_box.setGeometry(QtCore.QRect(130, 90, 141, 22))
         self.font_combo_box.setCurrentFont(QtGui.QFont("Arial"))
@@ -82,10 +85,10 @@ class firstConfiguration:
         font = QtGui.QFont()
         font.setPointSize(10)
         self.theme_label.setFont(font)
-        self.theme_label.setText("Theme")
+        self.theme_label.setText("Theme: ")
 
         self.theme_combo_box = QtWidgets.QComboBox(self.central_widget)
-        self.theme_combo_box.setGeometry(QtCore.QRect(130, 140, 181, 22))
+        self.theme_combo_box.setGeometry(QtCore.QRect(130, 140, 141, 22))
         self.theme_combo_box.addItem("Default")
         self.theme_combo_box.addItem("Integrid")
         self.theme_combo_box.addItem("Ubuntu")
@@ -94,8 +97,9 @@ class firstConfiguration:
         self.theme_combo_box.currentIndexChanged.connect(lambda: self.change_theme())
 
         self.theme_stacked = QtWidgets.QStackedWidget(self.central_widget)
-        self.theme_stacked.setGeometry(QtCore.QRect(134, 170, 320, 200))
+        self.theme_stacked.setGeometry(QtCore.QRect(154, 170, 320, 200))
         self.theme_stacked.setStyleSheet("border: 0.5px solid black")
+        self.theme_stacked.hide()
 
         self.theme_page1 = QtWidgets.QWidget()
         self.theme_page1.setStyleSheet("border-image: url(Image/Theme/Default.png) 0 0 0 0 stretch stretch;")
@@ -121,17 +125,36 @@ class firstConfiguration:
         self.theme_stacked.addWidget(self.theme_page4)
         self.theme_stacked.addWidget(self.theme_page5)
 
+        self.transparent_label = QtWidgets.QLabel(self.central_widget)
+        self.transparent_label.setStyleSheet("background-color: #F0F0F0")
+
+        self.preview_theme_label = QtWidgets.QLabel(self.central_widget)
+        self.preview_theme_label.setGeometry(QtCore.QRect(40, 165, 81, 22))
+        font = QtGui.QFont()
+        font.setPointSize(10)
+        self.preview_theme_label.setFont(font)
+        self.preview_theme_label.setText("Preview: ")
+
+        self.preview_theme_checkBox = QtWidgets.QCheckBox(self.central_widget)
+        self.preview_theme_checkBox.setGeometry(QtCore.QRect(130, 165, 81, 22))
+        self.preview_theme_checkBox.stateChanged.connect(lambda: self.show_preview())
+
+        self.line2_vertical = QtWidgets.QFrame(self.central_widget)
+        self.line2_vertical.setGeometry(QtCore.QRect(280, 127, 3, 87))
+        self.line2_vertical.setFrameShape(QtWidgets.QFrame.VLine)
+        self.line2_vertical.setFrameShadow(QtWidgets.QFrame.Sunken)
+
         self.line3_horizontal = QtWidgets.QFrame(self.central_widget)
-        self.line3_horizontal.setGeometry(QtCore.QRect(20, 370, 531, 16))
+        self.line3_horizontal.setGeometry(QtCore.QRect(20, 206, 531, 16))
         self.line3_horizontal.setFrameShape(QtWidgets.QFrame.HLine)
         self.line3_horizontal.setFrameShadow(QtWidgets.QFrame.Sunken)
 
         self.start_button = QtWidgets.QPushButton(self.central_widget)
-        self.start_button.setGeometry(QtCore.QRect(460, 390, 75, 23))
+        self.start_button.setGeometry(QtCore.QRect(460, 226, 75, 23))
         self.start_button.setText("START")
         self.start_button.clicked.connect(lambda: self.save_settings())
 
-        QtCore.QMetaObject.connectSlotsByName(main_window)
+        QtCore.QMetaObject.connectSlotsByName(self.main_window)
 
     def change_font(self):
         self.title_label.setFont(QtGui.QFont(self.font_combo_box.currentFont().family(), 11))
@@ -139,6 +162,7 @@ class firstConfiguration:
         self.font_label.setFont(QtGui.QFont(self.font_combo_box.currentFont().family(), 10))
         self.resolution_label.setFont(QtGui.QFont(self.font_combo_box.currentFont().family(), 10))
         self.theme_label.setFont(QtGui.QFont(self.font_combo_box.currentFont().family(), 10))
+        self.preview_theme_label.setFont(QtGui.QFont(self.font_combo_box.currentFont().family(), 10))
         self.start_button.setFont(QtGui.QFont(self.font_combo_box.currentFont().family(), 10))
 
         self.language_combo_box.setFont(QtGui.QFont(self.font_combo_box.currentFont().family(), 10))
@@ -157,6 +181,62 @@ class firstConfiguration:
             self.theme_stacked.setCurrentIndex(3)
         elif x == "Combinear":
             self.theme_stacked.setCurrentIndex(4)
+
+    def show_preview(self):
+        if self.preview_theme_checkBox.checkState():
+            self.line2_vertical.hide()
+            self.theme_stacked.show()
+
+            self.window_animation = QtCore.QPropertyAnimation(self.main_window, b"size")
+            self.window_animation.setDuration(800)
+            self.window_animation.setStartValue(QtCore.QSize(568, 265))
+            self.window_animation.setEndValue(QtCore.QSize(568, 431))
+            self.window_animation.start()
+
+            self.button_animation = QtCore.QPropertyAnimation(self.start_button, b"geometry")
+            self.button_animation.setDuration(800)
+            self.button_animation.setStartValue(QtCore.QRect(460, 226, 75, 23))
+            self.button_animation.setEndValue(QtCore.QRect(460, 390, 75, 23))
+            self.button_animation.start()
+
+            self.label_animation = QtCore.QPropertyAnimation(self.transparent_label, b"geometry")
+            self.label_animation.setDuration(800)
+            self.label_animation.setStartValue(QtCore.QRect(154, 210, 320, 60))
+            self.label_animation.setEndValue(QtCore.QRect(154, 376, 320, 60))
+            self.label_animation.start()
+
+            self.line_animation = QtCore.QPropertyAnimation(self.line3_horizontal, b"geometry")
+            self.line_animation.setDuration(800)
+            self.line_animation.setStartValue(QtCore.QRect(20, 206, 531, 16))
+            self.line_animation.setEndValue(QtCore.QRect(20, 370, 531, 16))
+            self.line_animation.start()
+
+        else:
+            self.window_animation = QtCore.QPropertyAnimation(self.main_window, b"size")
+            self.window_animation.setDuration(800)
+            self.window_animation.setStartValue(QtCore.QSize(568, 431))
+            self.window_animation.setEndValue(QtCore.QSize(568, 265))
+            self.window_animation.start()
+
+            self.button_animation = QtCore.QPropertyAnimation(self.start_button, b"geometry")
+            self.button_animation.setDuration(800)
+            self.button_animation.setStartValue(QtCore.QRect(460, 390, 75, 23))
+            self.button_animation.setEndValue(QtCore.QRect(460, 226, 75, 23))
+            self.button_animation.start()
+
+            self.label_animation = QtCore.QPropertyAnimation(self.transparent_label, b"geometry")
+            self.label_animation.setDuration(800)
+            self.label_animation.setStartValue(QtCore.QRect(154, 376, 320, 60))
+            self.label_animation.setEndValue(QtCore.QRect(154, 210, 320, 60))
+            self.label_animation.start()
+            self.label_animation.finished.connect(lambda: self.theme_stacked.hide())
+
+            self.line_animation = QtCore.QPropertyAnimation(self.line3_horizontal, b"geometry")
+            self.line_animation.setDuration(800)
+            self.line_animation.setStartValue(QtCore.QRect(20, 370, 531, 16))
+            self.line_animation.setEndValue(QtCore.QRect(20, 206, 531, 16))
+            self.line_animation.start()
+            self.line_animation.finished.connect(lambda: self.line2_vertical.show())
 
     def save_settings(self):
         old_file = open("settings.txt").read()
@@ -199,9 +279,3 @@ class main:
             status_bar = menuStatusBar.StatusBar(main_window)
 
             QtCore.QMetaObject.connectSlotsByName(main_window)
-
-            """
-                style_css = "Theme/darkorange.css"
-                style = open(style_css, "r")
-                app.setStyleSheet(style.read())
-            """
