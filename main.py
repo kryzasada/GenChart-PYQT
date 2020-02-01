@@ -9,14 +9,6 @@ import linecache
 
 import window
 
-
-def window2_create():
-    MainWindow2 = QMainWindow()
-    window2 = window.main()
-    window2.contain(MainWindow2)
-    MainWindow2.show()
-
-
 try:
     file_line = linecache.getline("settings.txt", 3)
     if file_line == "First start = 1\n":
@@ -31,16 +23,17 @@ try:
         window1 = window.firstConfiguration()
         window1.contain(MainWindow1)
         window1.start_button.clicked.connect(lambda: MainWindow1.close())
-        window1.start_button.clicked.connect(lambda: window2_create())
         MainWindow1.show()
         sys.exit(app1.exec_())
-
-    else:
-        app2 = QApplication(sys.argv)
-        window2_create()
-        sys.exit(app2.exec_())
 
 
 finally:
     linecache.clearcache()
+
+    app2 = QApplication(sys.argv)
+    MainWindow2 = QMainWindow()
+    window2 = window.main()
+    window2.contain(MainWindow2)
+    MainWindow2.show()
+    sys.exit(app2.exec_())
 
