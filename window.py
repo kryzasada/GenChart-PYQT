@@ -85,25 +85,41 @@ class firstConfiguration:
         self.theme_label.setText("Theme")
 
         self.theme_combo_box = QtWidgets.QComboBox(self.central_widget)
-        self.theme_combo_box.setGeometry(QtCore.QRect(130, 140, 141, 22))
+        self.theme_combo_box.setGeometry(QtCore.QRect(130, 140, 181, 22))
         self.theme_combo_box.addItem("Default")
-        self.theme_combo_box.addItem("Eclippy")
+        self.theme_combo_box.addItem("Integrid")
         self.theme_combo_box.addItem("Ubuntu")
+        self.theme_combo_box.addItem("Eclippy")
+        self.theme_combo_box.addItem("Combinear")
+        self.theme_combo_box.currentIndexChanged.connect(lambda: self.change_theme())
 
         self.theme_stacked = QtWidgets.QStackedWidget(self.central_widget)
-        self.theme_stacked.setGeometry(QtCore.QRect(290, 140, 231, 221))
-        self.theme_stacked.setObjectName("stackedWidget")
+        self.theme_stacked.setGeometry(QtCore.QRect(134, 170, 320, 200))
+        self.theme_stacked.setStyleSheet("border: 0.5px solid black")
 
         self.theme_page1 = QtWidgets.QWidget()
-        self.theme_page1.setObjectName("page")
-        self.theme_page1.setStyleSheet("background-color: rgb(125, 125, 125);")
+        self.theme_page1.setStyleSheet("border-image: url(Image/Theme/Default.png) 0 0 0 0 stretch stretch;")
 
         self.theme_page2 = QtWidgets.QWidget()
-        self.theme_page2.setObjectName("page_2")
-        self.theme_page2.setStyleSheet("background-color: #1CE;")
+        self.theme_page2.setStyleSheet("border-image: url(Image/Theme/Integrid.png) 0 0 0 0 stretch stretch;")
+
+        self.theme_page3 = QtWidgets.QWidget()
+        self.theme_page3.setObjectName("page_2")
+        self.theme_page3.setStyleSheet("border-image: url(Image/Theme/Ubuntu.png) 0 0 0 0 stretch stretch;")
+
+        self.theme_page4 = QtWidgets.QWidget()
+        self.theme_page4.setObjectName("page_2")
+        self.theme_page4.setStyleSheet("border-image: url(Image/Theme/Eclippy.png) 0 0 0 0 stretch stretch;")
+
+        self.theme_page5 = QtWidgets.QWidget()
+        self.theme_page5.setObjectName("page_2")
+        self.theme_page5.setStyleSheet("border-image: url(Image/Theme/Combinear.png) 0 0 0 0 stretch stretch;")
 
         self.theme_stacked.addWidget(self.theme_page1)
         self.theme_stacked.addWidget(self.theme_page2)
+        self.theme_stacked.addWidget(self.theme_page3)
+        self.theme_stacked.addWidget(self.theme_page4)
+        self.theme_stacked.addWidget(self.theme_page5)
 
         self.line3_horizontal = QtWidgets.QFrame(self.central_widget)
         self.line3_horizontal.setGeometry(QtCore.QRect(20, 370, 531, 16))
@@ -129,6 +145,19 @@ class firstConfiguration:
         self.resolution_combo_box.setFont(QtGui.QFont(self.font_combo_box.currentFont().family(), 10))
         self.theme_combo_box.setFont(QtGui.QFont(self.font_combo_box.currentFont().family(), 10))
 
+    def change_theme(self):
+        x = self.theme_combo_box.currentText()
+        if x == "Default":
+            self.theme_stacked.setCurrentIndex(0)
+        elif x == "Integrid":
+            self.theme_stacked.setCurrentIndex(1)
+        elif x == "Ubuntu":
+            self.theme_stacked.setCurrentIndex(2)
+        elif x == "Eclippy":
+            self.theme_stacked.setCurrentIndex(3)
+        elif x == "Combinear":
+            self.theme_stacked.setCurrentIndex(4)
+
     def save_settings(self):
         old_file = open("settings.txt").read()
         old_file = old_file.replace(linecache.getline("settings.txt", 4),
@@ -137,10 +166,8 @@ class firstConfiguration:
                                     ("Font = %s\n" % self.font_combo_box.currentFont().family()))
 
         if self.resolution_combo_box.currentText() == "800 x 600":
-            old_file = old_file.replace(linecache.getline("settings.txt", 5),
-                                        ("Resolution1 = %s\n" % "800"))
-            old_file = old_file.replace(linecache.getline("settings.txt", 6),
-                                        ("Resolution2 = %s\n" % "600"))
+            old_file = old_file.replace(linecache.getline("settings.txt", 5), ("Resolution1 = %s\n" % "800"))
+            old_file = old_file.replace(linecache.getline("settings.txt", 6), ("Resolution2 = %s\n" % "600"))
 
         old_file = old_file.replace(linecache.getline("settings.txt", 8),
                                     ("Theme= %s\n" % self.theme_combo_box.currentText()))
