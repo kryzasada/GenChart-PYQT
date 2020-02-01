@@ -31,6 +31,14 @@ finally:
     linecache.clearcache()
 
     app2 = QApplication(sys.argv)
+
+    style_css = "Theme/Integrid.qss"
+    style = open(style_css, "r")
+    app2.setStyleSheet(style.read())
+
+    font_line = linecache.getline("settings.txt", 7)
+    app2.setStyleSheet(" *{font-family: %s;}" % font_line[font_line.find("=")+2: -1])
+
     MainWindow2 = QMainWindow()
     window2 = window.main()
     window2.contain(MainWindow2)
