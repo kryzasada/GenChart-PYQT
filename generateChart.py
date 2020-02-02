@@ -46,13 +46,13 @@ class PieChart:
         self.outer_sizes = []
         try:
             self.outer_sizes.append(dock.dock_data[1].upper_first_value_spinBox.value())
-            if self.outer_sizes[-1] == 0.0:
+            if self.outer_sizes[-1] <= 0.0:
                 raise ValueError("VALUE = 0")
 
             for x in range(0, len(dock.dock_data[1].add_data)):
                 self.outer_sizes.append(dock.dock_data[1].add_data[x].second_block_value_spinBox.value())
                 self.all += float(dock.dock_data[1].add_data[x].second_block_value_spinBox.value())
-                if self.outer_sizes[-1] == 0.0:
+                if self.outer_sizes[-1] <= 0.0:
                     raise ValueError("VALUE = 0")
 
         except ValueError:
@@ -113,6 +113,9 @@ class PieChart:
 
     def basic(self):
         try:
+            if self.outer_sizes[-1] <= 0.0:
+                raise ValueError("VALUE = 0")
+
             static_canvas, toolbar = tool_bar()
             static_chart = static_canvas.figure.subplots()
             static_chart.pie(
@@ -201,20 +204,15 @@ class BarChart:
         self.outer_height = []
         try:
             self.outer_height.append(dock.dock_data[1].upper_first_value_spinBox.value())
-            if self.outer_height[-1] == 0.0:
-                raise ValueError("VALUE = 0")
 
             for x in range(0, len(dock.dock_data[1].add_data)):
                 self.outer_height.append(dock.dock_data[1].add_data[x].second_block_value_spinBox.value())
                 self.all += float(dock.dock_data[1].add_data[x].second_block_value_spinBox.value())
-                if self.outer_height[-1] == 0.0:
-                    raise ValueError("VALUE = 0")
 
         except ValueError:
             value_error = QtWidgets.QMessageBox()
             value_error.setWindowTitle(linecache.getline("Language/Language.txt", 147)[:-1])
             value_error.setText(linecache.getline("Language/Language.txt", 148)[:-1])
-            value_error.setInformativeText(linecache.getline("Language/Language.txt", 149)[:-1])
             value_error.setIcon(QtWidgets.QMessageBox.Critical)
             value_error.setStandardButtons(QtWidgets.QMessageBox.Ok)
             value_error.exec_()
@@ -280,20 +278,15 @@ class LineChart:
         self.outer_height = []
         try:
             self.outer_height.append(dock.dock_data[1].upper_first_value_spinBox.value())
-            if self.outer_height[-1] == 0.0:
-                raise ValueError("VALUE = 0")
 
             for x in range(0, len(dock.dock_data[1].add_data)):
                 self.outer_height.append(dock.dock_data[1].add_data[x].second_block_value_spinBox.value())
                 self.all += float(dock.dock_data[1].add_data[x].second_block_value_spinBox.value())
-                if self.outer_height[-1] == 0.0:
-                    raise ValueError("VALUE = 0")
 
         except ValueError:
             value_error = QtWidgets.QMessageBox()
-            value_error.setWindowTitle("VALUE")
-            value_error.setText("Value entry error                       ")
-            value_error.setInformativeText("The pie chart can't be 0 ")
+            value_error.setWindowTitle(linecache.getline("Language/Language.txt", 147)[:-1])
+            value_error.setText(linecache.getline("Language/Language.txt", 148)[:-1])
             value_error.setIcon(QtWidgets.QMessageBox.Critical)
             value_error.setStandardButtons(QtWidgets.QMessageBox.Ok)
             value_error.exec_()
