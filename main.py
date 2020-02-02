@@ -31,15 +31,25 @@ finally:
 
     app2 = QApplication(sys.argv)
 
+    """ Set font and theme in main window """
     font_line = linecache.getline("settings.txt", 7)
     theme_line = linecache.getline("settings.txt", 8)
-
     if not theme_line[theme_line.find("=")+2: -1] == "Default":
         style_css = "Theme/%s.qss" % theme_line[theme_line.find("=")+2: -1]
         style = open(style_css, "r")
         app2.setStyleSheet(style.read() + "* {font-family: %s;}" % font_line[font_line.find("=")+2: -1])
     else:
         app2.setStyleSheet("* {font-family: %s;}" % font_line[font_line.find("=") + 2: -1])
+
+    """ Set language in main window """
+    if linecache.getline("settings.txt", 4) == "Language = English\n":
+        new_language_file = open("Language/languageEnglish.txt").read()
+    elif linecache.getline("settings.txt", 4) == "Language = Polski\n":
+        new_language_file = open("Language/languagePolish.txt").read()
+
+    new_file = open("Language/Language.txt", 'w')
+    new_file.write(new_language_file)
+    new_file.close()
 
     MainWindow2 = QMainWindow()
     window2 = window.main()
