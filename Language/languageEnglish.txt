@@ -13,7 +13,7 @@ Report your problem
 Docks
 Visiable
 Type of chart
-Value
+Values
 Settings
 .
 .
@@ -23,7 +23,7 @@ Settings
 
 -- dock --
 
-Value
+Values
 Select chart
 .
 .
