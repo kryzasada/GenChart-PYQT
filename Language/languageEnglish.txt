@@ -1,0 +1,159 @@
+---- ENGLISH ----
+
+-- menuStatusBar --
+	
+Report
+Report your problem
+ If you found bugs, inform me:                  
+(click the button)
+.
+.
+.
+.
+Docks
+Visiable
+Type of chart
+Value
+Settings
+.
+.
+.
+.
+.
+
+-- dock --
+
+Value
+Select chart
+.
+.
+.
+.
+Settings
+Select chart
+.
+.
+.
+.
+Type of chart
+.
+.
+.
+.
+
+-- chartList --
+
+Pie charts
+Basic
+Donut
+.
+.
+.
+.
+.
+Bar charts
+Basic
+.
+.
+.
+.
+.
+Line charts
+Basic
+.
+.
+.
+.
+.
+
+-- chartMenu --
+
+Name
+.
+.
+.
+Value
+.
+.
+.
+ADD DATA
+.
+.
+CREATE
+.
+.
+Color
+.
+.
+.
+Explode
+.
+.
+.
+Settings
+.
+Set title
+.
+.
+Shadow
+Rotate Labels
+Frame
+Legend
+.
+.
+DATA SETTINGS
+Show
+Color
+.
+.
+.
+.
+. 
+Set title
+Label Y
+Label X
+.
+.
+Value label 
+.
+Bar size
+Bar color
+Edge size
+Edge color
+.
+.
+.
+.
+.
+.
+Set title
+Label Y
+Label X
+.
+Legend
+.
+.
+Line size
+Line color
+.
+.
+.
+.
+.
+.
+
+-- generateChart --
+
+VALUE
+Value entry error                       
+The pie chart can't be 0 
+
+
+
+
+
+
+
+
+
+

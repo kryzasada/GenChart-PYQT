@@ -1,0 +1,159 @@
+---- POLISH ----
+
+-- menuStatusBar --
+	
+Zgłoś
+Zgłoś problem
+ Jeśli znalazłeś błąd, poinformuj mnie:                  
+(kliknij w przycisk)
+.
+.
+.
+.
+Okna
+Widoczność
+Lista wygresów
+Dane
+Ustawienia
+.
+.
+.
+.
+.
+
+-- dock --
+
+Dane
+Wybierz wykres
+.
+.
+.
+.
+Ustawienia
+Wybierz wykres
+.
+.
+.
+.
+Lista wygresów
+.
+.
+.
+.
+
+-- chartList --
+
+Wykres kołowy
+Podstawowy
+Pierścieniowy
+.
+.
+.
+.
+.
+Bar charts
+Podstawowy
+.
+.
+.
+.
+.
+Line charts
+Podstawowy
+.
+.
+.
+.
+.
+
+-- chartMenu --
+
+Nazwa
+.
+.
+.
+Wartość
+.
+.
+.
+Więcej
+.
+.
+Stwórz
+.
+.
+Color
+.
+.
+.
+Odstęp
+.
+.
+.
+Ustawienia
+.
+Tytuł
+.
+.
+Cień
+Rotacja nazw
+Krawędź
+Legenda
+.
+.
+Ustawienia Danych
+Pokaż
+Color
+.
+.
+.
+.
+. 
+Tytuł
+Oś Y
+Oś X
+.
+.
+Pokaż wartość
+.
+Rozmiar słupka
+Color słupka
+Rozmiar krawędzi
+Color krawędzi
+.
+.
+.
+.
+.
+.
+Tytuł
+Oś Y
+Oś X
+.
+Legenda
+.
+.
+Rozmiar lini
+Color lini
+.
+.
+.
+.
+.
+.
+
+-- generateChart --
+
+Wartość
+Błąd wprowadzania wartości                     
+Wartość wykresu kołowego nie może wynosić 0
+
+
+
+
+
+
+
+
+
+
