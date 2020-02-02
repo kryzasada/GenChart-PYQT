@@ -26,22 +26,23 @@ try:
         MainWindow1.show()
         sys.exit(app1.exec_())
 
-
 finally:
     linecache.clearcache()
 
     app2 = QApplication(sys.argv)
 
-    style_css = "Theme/Integrid.qss"
-    style = open(style_css, "r")
-    app2.setStyleSheet(style.read())
-
     font_line = linecache.getline("settings.txt", 7)
-    app2.setStyleSheet(" *{font-family: %s;}" % font_line[font_line.find("=")+2: -1])
+    theme_line = linecache.getline("settings.txt", 8)
+
+    if not theme_line[theme_line.find("=")+2: -1] == "Default":
+        style_css = "Theme/%s.qss" % theme_line[theme_line.find("=")+2: -1]
+        style = open(style_css, "r")
+        app2.setStyleSheet(style.read() + "* {font-family: %s;}" % font_line[font_line.find("=")+2: -1])
+    else:
+        app2.setStyleSheet("* {font-family: %s;}" % font_line[font_line.find("=") + 2: -1])
 
     MainWindow2 = QMainWindow()
     window2 = window.main()
     window2.contain(MainWindow2)
     MainWindow2.show()
     sys.exit(app2.exec_())
-
