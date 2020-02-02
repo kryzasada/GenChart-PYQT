@@ -4,6 +4,7 @@ from PyQt5 import QtCore, QtGui
 from PyQt5.QtWidgets import QMenuBar, QAction, QStatusBar, QMessageBox, QPushButton, QLabel
 from PyQt5.QtGui import QIcon
 import webbrowser
+import linecache
 
 
 class MenuBar:
@@ -18,24 +19,24 @@ class MenuBar:
         self.main_manu.setGeometry(QtCore.QRect(0, 0, 800, 21))
         self.main_window_in_class.setMenuBar(self.main_manu)
 
-        report = self.main_manu.addMenu("Report")
-        report.addAction("Report your problem")
+        report = self.main_manu.addMenu(linecache.getline("Language/Language.txt", 5)[:-1])
+        report.addAction(linecache.getline("Language/Language.txt", 6)[:-1])
         report.triggered.connect(lambda: self.message_report())
 
-        docks = self.main_manu.addMenu("Docks")
-        docks_visiable = docks.addMenu("Visiable")
+        docks = self.main_manu.addMenu(linecache.getline("Language/Language.txt", 13)[:-1])
+        docks_visiable = docks.addMenu(linecache.getline("Language/Language.txt", 14)[:-1])
 
-        self.list_charts = docks_visiable.addAction("List of charts")
+        self.list_charts = docks_visiable.addAction(linecache.getline("Language/Language.txt", 15)[:-1])
         self.list_charts.setCheckable(True)
         self.list_charts.setChecked(True)
         self.list_charts.triggered.connect(lambda: self.show_dock(0))
 
-        self.Data = docks_visiable.addAction("Data")
+        self.Data = docks_visiable.addAction(linecache.getline("Language/Language.txt", 16)[:-1])
         self.Data.setCheckable(True)
         self.Data.setChecked(True)
         self.Data.triggered.connect(lambda: self.show_dock(1))
 
-        self.Settings = docks_visiable.addAction("Settings")
+        self.Settings = docks_visiable.addAction(linecache.getline("Language/Language.txt", 17)[:-1])
         self.Settings.setCheckable(True)
         self.Settings.setChecked(True)
         self.Settings.triggered.connect(lambda: self.show_dock(2))
@@ -46,12 +47,13 @@ class MenuBar:
 
     def message_report(self):
         message = QMessageBox()
-        message.setWindowTitle("Report your problem")
-        message.setText(" If you found bugs, inform me:                  ")
+        message.setWindowTitle(linecache.getline("Language/Language.txt", 6)[:-1])
+        message.setText(linecache.getline("Language/Language.txt", 7)[:-1])
         message.setIcon(QMessageBox.Information)
         message.setStandardButtons(QMessageBox.Ignore)
         message.addButton(QPushButton('GtiHub'), QMessageBox.YesRole)
-        message.setInformativeText("\n -Email: chart.bugreport@gmail.com \n \n -GtiHub: (click the button)")
+        message.setInformativeText("\n -Email: chart.bugreport@gmail.com \n \n -GtiHub: " +
+                                   (linecache.getline("Language/Language.txt", 8)[:-1]))
         message.buttonClicked.connect(self.github_link)
         message.exec_()
 

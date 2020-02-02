@@ -4,6 +4,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 
 from matplotlib.backends.backend_qt5agg import NavigationToolbar2QT, FigureCanvas
 from matplotlib.figure import Figure
+import linecache
 
 import dock
 
@@ -56,9 +57,9 @@ class PieChart:
 
         except ValueError:
             value_error = QtWidgets.QMessageBox()
-            value_error.setWindowTitle("VALUE")
-            value_error.setText("Value entry error                       ")
-            value_error.setInformativeText("The pie chart can't be 0 ")
+            value_error.setWindowTitle(linecache.getline("Language/Language.txt", 147)[:-1])
+            value_error.setText(linecache.getline("Language/Language.txt", 148)[:-1])
+            value_error.setInformativeText(linecache.getline("Language/Language.txt", 149)[:-1])
             value_error.setIcon(QtWidgets.QMessageBox.Critical)
             value_error.setStandardButtons(QtWidgets.QMessageBox.Ok)
             value_error.exec_()
@@ -211,9 +212,9 @@ class BarChart:
 
         except ValueError:
             value_error = QtWidgets.QMessageBox()
-            value_error.setWindowTitle("VALUE")
-            value_error.setText("Value entry error                       ")
-            value_error.setInformativeText("The pie chart can't be 0 ")
+            value_error.setWindowTitle(linecache.getline("Language/Language.txt", 147)[:-1])
+            value_error.setText(linecache.getline("Language/Language.txt", 148)[:-1])
+            value_error.setInformativeText(linecache.getline("Language/Language.txt", 149)[:-1])
             value_error.setIcon(QtWidgets.QMessageBox.Critical)
             value_error.setStandardButtons(QtWidgets.QMessageBox.Ok)
             value_error.exec_()

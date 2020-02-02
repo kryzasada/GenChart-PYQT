@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from PyQt5 import QtCore, QtWidgets
+import linecache
 import chartList, chartMenu
 
 dock_data = []
@@ -14,7 +15,9 @@ class Dock:
 
     def right_up(self):
         self.dockWidget_data = QtWidgets.QDockWidget(self.main_window_in_class)
-        self.dockWidget_data.topLevelChanged.connect(lambda: dock_title(self.dockWidget_data, "Value"))
+        self.dockWidget_data.topLevelChanged.connect(lambda:
+                                                     dock_title(self.dockWidget_data,
+                                                                linecache.getline("Language/Language.txt", 26)[:-1]))
 
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
@@ -46,7 +49,7 @@ class Dock:
 
         self.label_data_page_0 = QtWidgets.QLabel(self.data_page_0)
         self.label_data_page_0.setObjectName("chart_button")
-        self.label_data_page_0.setText("Select chart")
+        self.label_data_page_0.setText(linecache.getline("Language/Language.txt", 27)[:-1])
         self.data_grid_page_0.addWidget(self.label_data_page_0)
 
         dock_data.append(0)
@@ -75,7 +78,10 @@ class Dock:
 
     def right_down(self):
         self.dockWidget_settings = QtWidgets.QDockWidget(self.main_window_in_class)
-        self.dockWidget_settings.topLevelChanged.connect(lambda: dock_title(self.dockWidget_settings, "Settings"))
+        self.dockWidget_settings.topLevelChanged.connect(lambda:
+                                                         dock_title(self.dockWidget_settings,
+                                                                    (linecache.getline(
+                                                                        "Language/Language.txt", 32)[:-1])))
 
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
         sizePolicy.setHorizontalStretch(0)
@@ -113,7 +119,7 @@ class Dock:
 
         self.label_default = QtWidgets.QLabel(self.settings_page_0)
         self.label_default.setObjectName("label_default")
-        self.label_default.setText("Select chart")
+        self.label_default.setText(linecache.getline("Language/Language.txt", 33)[:-1])
         self.settings_grid_page_0.addWidget(self.label_default)
 
         dock_settings.append(0)
@@ -174,7 +180,10 @@ class Dock:
     def left_chart(self):
         self.dock_widget_chart = QtWidgets.QDockWidget(self.main_window_in_class)
         print(self.dock_widget_chart)
-        self.dock_widget_chart.topLevelChanged.connect(lambda: dock_title(self.dock_widget_chart, "Type of chart"))
+        self.dock_widget_chart.topLevelChanged.connect(lambda:
+                                                       dock_title(self.dock_widget_chart,
+                                                                  (linecache.getline(
+                                                                      "Language/Language.txt", 38)[:-1])))
 
         self.dock_widget_chart.setMinimumSize(QtCore.QSize(145, 163))
         self.dock_widget_chart.setObjectName("dock_widget_chart")
