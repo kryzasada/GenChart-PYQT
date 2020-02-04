@@ -95,6 +95,16 @@ class Chart:
         self.stacked_widget_settings.setCurrentIndex(1)
         dock.dock_data[1].chart_type = 'Basic_pie'
 
+        dock.dock_data[1].upper_TextValue_check.setEnabled(False)
+        dock.dock_data[1].upper_first_value_check.setEnabled(False)
+        for x in dock.dock_data[1].add_data:
+            x.second_block_value_check.setEnabled(False)
+
+        dock.dock_data[1].upper__TextName_check.setEnabled(True)
+        dock.dock_data[1].upper_first_Name_check.setEnabled(True)
+        for x in dock.dock_data[1].add_data:
+            x.second_block_Name_check.setEnabled(True)
+
         self.default_pie_button.setEnabled(False)
 
         if self.donut_pie_button.isEnabled() is False:
@@ -110,6 +120,16 @@ class Chart:
         self.stacked_Widget_data.setCurrentIndex(1)
         self.stacked_widget_settings.setCurrentIndex(1)
         dock.dock_data[1].chart_type = 'Donut_pie'
+
+        dock.dock_data[1].upper_TextValue_check.setEnabled(False)
+        dock.dock_data[1].upper_first_value_check.setEnabled(False)
+        for x in dock.dock_data[1].add_data:
+            x.second_block_value_check.setEnabled(False)
+
+        dock.dock_data[1].upper__TextName_check.setEnabled(True)
+        dock.dock_data[1].upper_first_Name_check.setEnabled(True)
+        for x in dock.dock_data[1].add_data:
+            x.second_block_Name_check.setEnabled(True)
 
         self.donut_pie_button.setEnabled(False)
 
@@ -127,6 +147,16 @@ class Chart:
         self.stacked_widget_settings.setCurrentIndex(2)
         dock.dock_data[1].chart_type = 'Basic_bar'
 
+        dock.dock_data[1].upper_TextValue_check.setEnabled(True)
+        dock.dock_data[1].upper_first_value_check.setEnabled(True)
+        for x in dock.dock_data[1].add_data:
+            x.second_block_value_check.setEnabled(True)
+
+        dock.dock_data[1].upper__TextName_check.setEnabled(False)
+        dock.dock_data[1].upper_first_Name_check.setEnabled(False)
+        for x in dock.dock_data[1].add_data:
+            x.second_block_Name_check.setEnabled(False)
+
         self.default_bar_button.setEnabled(False)
 
         if self.default_pie_button.isEnabled() is False:
@@ -142,6 +172,16 @@ class Chart:
         self.stacked_Widget_data.setCurrentIndex(1)
         self.stacked_widget_settings.setCurrentIndex(3)
         dock.dock_data[1].chart_type = 'Basic_line'
+
+        dock.dock_data[1].upper_TextValue_check.setEnabled(True)
+        dock.dock_data[1].upper_first_value_check.setEnabled(True)
+        for x in dock.dock_data[1].add_data:
+            x.second_block_value_check.setEnabled(True)
+
+        dock.dock_data[1].upper__TextName_check.setEnabled(False)
+        dock.dock_data[1].upper_first_Name_check.setEnabled(False)
+        for x in dock.dock_data[1].add_data:
+            x.second_block_Name_check.setEnabled(False)
 
         self.default_line_button.setEnabled(False)
 
