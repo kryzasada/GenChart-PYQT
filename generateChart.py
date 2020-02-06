@@ -73,7 +73,6 @@ class PieChart:
 
             for x in range(0, len(dock.dock_data[1].add_data)):
                 if dock.dock_data[1].add_data[x].second_block_Name_check.checkState():
-                    print(x)
                     self.outer_labels.append(str(dock.dock_data[1].add_data[x].second_block_Name_write.text()))
                 else:
                     self.outer_labels.append("")
@@ -250,13 +249,19 @@ class BarChart:
                              linewidth=self.outer_linewidth,
                              edgecolor=self.outer_edgecolor)
 
-            if dock.dock_settings[2].check_box_label.isChecked():
-                for x, y in enumerate(self.outer_height):
-                    static_chart.annotate(
-                                          y,
-                                          xy=(x, y+(self.outer_linewidth / 100 / 2)),
+            if dock.dock_data[1].upper_TextValue_check.isChecked():
+                if dock.dock_data[1].upper_first_value_check.checkState():
+                    static_chart.annotate(self.outer_height[0],
+                                          xy=(0, self.outer_height[0]+(self.outer_linewidth / 100 / 2)),
                                           ha='center',
                                           va='bottom')
+
+                for x, y in enumerate(self.outer_height[1:]):
+                    if dock.dock_data[1].add_data[x].second_block_value_check.checkState():
+                        static_chart.annotate(y,
+                                              xy=(x+1, y+(self.outer_linewidth / 100 / 2)),
+                                              ha='center',
+                                              va='bottom')
 
             static_chart.set_title(dock.dock_settings[2].line_edit_title.text())
             static_chart.set_xlabel(dock.dock_settings[2].line_edit_lineX.text())
