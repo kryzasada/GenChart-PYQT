@@ -364,6 +364,14 @@ class DataPage1:
             self.second_block_Name_check.setMaximumSize(QtCore.QSize(15, 20))
             self.second_block_Name_check.setText("")
             self.second_block_Name_check.setChecked(True)
+            if dock.dock_data[1].chart_type == 'Basic_pie':
+                self.second_block_Name_check.setEnabled(True)
+            elif dock.dock_data[1].chart_type == 'Donut_pie':
+                self.second_block_Name_check.setEnabled(True)
+            elif dock.dock_data[1].chart_type == 'Basic_bar':
+                self.second_block_Name_check.setEnabled(False)
+            elif dock.dock_data[1].chart_type == 'Basic_line':
+                self.second_block_Name_check.setEnabled(False)
             self.second_block_Name_check.setObjectName("second_block_Name_check")
             self.second_block_Name_layout.setWidget(1, QtWidgets.QFormLayout.FieldRole, self.second_block_Name_check)
 
@@ -407,6 +415,14 @@ class DataPage1:
             self.second_block_value_check.setMaximumSize(QtCore.QSize(15, 20))
             self.second_block_value_check.setText("")
             self.second_block_value_check.setChecked(True)
+            if dock.dock_data[1].chart_type == 'Basic_pie':
+                self.second_block_value_check.setEnabled(False)
+            elif dock.dock_data[1].chart_type == 'Donut_pie':
+                self.second_block_value_check.setEnabled(False)
+            elif dock.dock_data[1].chart_type == 'Basic_bar':
+                self.second_block_value_check.setEnabled(True)
+            elif dock.dock_data[1].chart_type == 'Basic_line':
+                self.second_block_value_check.setEnabled(False)
             self.second_block_value_check.setObjectName("second_block_value_check")
             self.second_block_value_layout.setWidget(1, QtWidgets.QFormLayout.FieldRole, self.second_block_value_check)
 

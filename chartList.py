@@ -173,10 +173,10 @@ class Chart:
         self.stacked_widget_settings.setCurrentIndex(3)
         dock.dock_data[1].chart_type = 'Basic_line'
 
-        dock.dock_data[1].upper_TextValue_check.setEnabled(True)
-        dock.dock_data[1].upper_first_value_check.setEnabled(True)
+        dock.dock_data[1].upper_TextValue_check.setEnabled(False)
+        dock.dock_data[1].upper_first_value_check.setEnabled(False)
         for x in dock.dock_data[1].add_data:
-            x.second_block_value_check.setEnabled(True)
+            x.second_block_value_check.setEnabled(False)
 
         dock.dock_data[1].upper__TextName_check.setEnabled(False)
         dock.dock_data[1].upper_first_Name_check.setEnabled(False)
