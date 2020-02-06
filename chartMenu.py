@@ -809,17 +809,6 @@ class SettingsPage2:
         self.line_1.setFrameShadow(QtWidgets.QFrame.Sunken)
         self.scroll_settings_layout.setWidget(3, QtWidgets.QFormLayout.LabelRole, self.line_1)
 
-        self.check_box_label = QtWidgets.QCheckBox()
-        self.check_box_label.setText(linecache.getline("Language/Language.txt", 117)[:-1])
-        self.scroll_settings_layout.setWidget(4, QtWidgets.QFormLayout.LabelRole, self.check_box_label)
-
-        self.line_2 = QtWidgets.QFrame()
-        self.line_2.setSizePolicy(sizePolicy)
-        self.line_2.setMinimumSize(QtCore.QSize(100, 0))
-        self.line_2.setFrameShape(QtWidgets.QFrame.HLine)
-        self.line_2.setFrameShadow(QtWidgets.QFrame.Sunken)
-        self.scroll_settings_layout.setWidget(5, QtWidgets.QFormLayout.LabelRole, self.line_2)
-
         self.layout_settings_layout = QtWidgets.QFormLayout()
 
         self.spin_box_bar_color = QtWidgets.QSpinBox()
@@ -861,7 +850,7 @@ class SettingsPage2:
         self.label_edge_color.setText(linecache.getline("Language/Language.txt", 122)[:-1])
         self.layout_settings_layout.setWidget(3, QtWidgets.QFormLayout.FieldRole, self.label_edge_color)
 
-        self.scroll_settings_layout.setLayout(6, QtWidgets.QFormLayout.LabelRole, self.layout_settings_layout)
+        self.scroll_settings_layout.setLayout(4, QtWidgets.QFormLayout.LabelRole, self.layout_settings_layout)
 
     @staticmethod
     def button_color(number):
