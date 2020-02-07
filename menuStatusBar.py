@@ -23,6 +23,9 @@ class MenuBar:
         report.addAction(linecache.getline("Language/Language.txt", 6)[:-1])
         report.triggered.connect(lambda: self.message_report())
 
+        self.settings = self.main_manu.addMenu("Settings")
+        self.settings.addAction("User settings")
+
         docks = self.main_manu.addMenu(linecache.getline("Language/Language.txt", 13)[:-1])
         docks_visiable = docks.addMenu(linecache.getline("Language/Language.txt", 14)[:-1])
 

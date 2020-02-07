@@ -295,7 +295,11 @@ class main:
             showDock.right_down()
             showDock.left_chart()
 
-            menu_bar = menuStatusBar.MenuBar(main_window, showDock)
+            self.menu_bar = menuStatusBar.MenuBar(main_window, showDock)
             status_bar = menuStatusBar.StatusBar(main_window)
 
             QtCore.QMetaObject.connectSlotsByName(main_window)
+
+class UserSetting:
+    def contain(self, main_window):
+        main_window.resize(551, 321)

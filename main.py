@@ -4,6 +4,7 @@
 # Created by: PyQt5 UI code generator 5.13.0
 #
 from PyQt5.QtWidgets import QApplication, QMainWindow
+from PyQt5 import QtCore, QtGui, QtWidgets
 import sys
 import linecache
 
@@ -55,4 +56,13 @@ finally:
     window2 = window.main()
     window2.contain(MainWindow2)
     MainWindow2.show()
+
+    #MainWindow2.setDisabled(True)
+
+    MainWindow3 = QtWidgets.QWidget()
+    window3 = window.UserSetting()
+    window3.contain(MainWindow3)
+    MainWindow3.hide()
+    window2.menu_bar.settings.triggered.connect(lambda: MainWindow3.show())
+
     sys.exit(app2.exec_())
