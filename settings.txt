@@ -5,6 +5,12 @@ Language = English
 Resolution1 = 800
 Resolution2 = 600
 Font = Arial
-Theme= Default
+Theme = Default
+Type of chart position = Left
+Type of chart stack = 0
+Value position = Right
+Type of chart stack = 0
+Settings position = Right
+Type of chart stack = 0
 
 //
