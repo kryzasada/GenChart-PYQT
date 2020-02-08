@@ -309,20 +309,25 @@ class UserSetting:
         self.treeWidget = QtWidgets.QTreeWidget(main_window)
         self.treeWidget.setHeaderLabel("GenChart")
         self.treeWidget.setGeometry(QtCore.QRect(10, 10, 151, 261))
+        self.treeWidget.currentItemChanged.connect(self.treeWidget_clicked)
 
-        item_0 = QtWidgets.QTreeWidgetItem(self.treeWidget, ["Application"])
-        item_0_0 = QtWidgets.QTreeWidgetItem(item_0, ["User interface"])
-        item_1 = QtWidgets.QTreeWidgetItem(item_0, ["Docks"])
-        item_1_0 = QtWidgets.QTreeWidgetItem(item_1, ["Type of chart"])
-        item_1_1 = QtWidgets.QTreeWidgetItem(item_1, ["Value"])
-        item_1_2 = QtWidgets.QTreeWidgetItem(item_1, ["Settings"])
-        item_2 = QtWidgets.QTreeWidgetItem(self.treeWidget, ["Chart"])
-        item_2_0 = QtWidgets.QTreeWidgetItem(item_2, ["General"])
+        item_1 = QtWidgets.QTreeWidgetItem(self.treeWidget, ["Application"], type=1)
+        item_1_1 = QtWidgets.QTreeWidgetItem(item_1, ["User interface"], type=11)
+        item_1_2 = QtWidgets.QTreeWidgetItem(item_1, ["Docks"], type=12)
+        item_1_2_1 = QtWidgets.QTreeWidgetItem(item_1_2, ["Type of chart"], type=121)
+        item_1_2_2 = QtWidgets.QTreeWidgetItem(item_1_2, ["Value"], type=122)
+        item_1_2_3 = QtWidgets.QTreeWidgetItem(item_1_2, ["Settings"], type=123)
+        item_2 = QtWidgets.QTreeWidgetItem(self.treeWidget, ["Chart"], type=2)
+        item_2_1 = QtWidgets.QTreeWidgetItem(item_2, ["General"], type=21)
+
+        self.treeWidget.expandItem(item_1)
+        self.treeWidget.expandItem(item_1_2)
+        self.treeWidget.expandItem(item_2)
 
         self.title_label = QtWidgets.QLabel(main_window)
         self.title_label.setGeometry(QtCore.QRect(180, 10, 351, 21))
         self.title_label.setStyleSheet("background-color: rgb(212, 212, 212);")
-        self.title_label.setText("...")
+        self.title_label.setText(" ")
         self.title_label.setAlignment(QtCore.Qt.AlignCenter)
 
         self.main_stackedWidget = QtWidgets.QStackedWidget(main_window)
@@ -334,7 +339,7 @@ class UserSetting:
 
         self.label_2 = QtWidgets.QLabel(self.page_0)
         self.label_2.setGeometry(QtCore.QRect(80, 50, 47, 13))
-        self.label_2.setText("123")
+        self.label_2.setText("0")
 
         self.page_1 = QtWidgets.QWidget()
         self.page_1.setObjectName("page_1-user_interface")
@@ -447,3 +452,22 @@ class UserSetting:
 
         self.main_stackedWidget.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(main_window)
+
+    def treeWidget_clicked(self, type):
+        if type.type() == 11:
+            self.main_stackedWidget.setCurrentIndex(1)
+            self.title_label.setText("User interface")
+
+        elif type.type() == 121 or type.type() == 122 or type.type() == 123:
+            self.main_stackedWidget.setCurrentIndex(2)
+            if type.type() == 121:
+                self.title_label.setText("Docks - Type of chart")
+            elif type.type() == 122:
+                self.title_label.setText("Docks - Value")
+            elif type.type() == 123:
+                self.title_label.setText("Docks - Settings")
+
+        elif type.type() == 21:
+            self.main_stackedWidget.setCurrentIndex(2)
+            self.title_label.setText("General")
+
