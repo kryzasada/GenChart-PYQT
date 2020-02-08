@@ -63,6 +63,9 @@ finally:
     window3 = window.UserSetting()
     window3.contain(MainWindow3)
     MainWindow3.hide()
+
     window2.menu_bar.settings.triggered.connect(lambda: MainWindow3.show())
+    window3.button_cancel.clicked.connect(lambda: MainWindow3.hide())
+    window3.button_save.clicked.connect(lambda: MainWindow3.hide())
 
     sys.exit(app2.exec_())
