@@ -9,8 +9,8 @@ Theme = Default
 Type of chart position = Left
 Type of chart stack = 0
 Value position = Right
-Type of chart stack = 0
+Value stack = 0
 Settings position = Right
-Type of chart stack = 0
+Settings stack = 0
 
 //

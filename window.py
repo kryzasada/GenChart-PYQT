@@ -359,8 +359,8 @@ class UserSetting(QtWidgets.QWidget):
         self.comboBox_language_p1.setObjectName("combo_box_language")
         self.comboBox_language_p1.addItem("English")
         self.comboBox_language_p1.addItem("Polski")
-        self.comboBox_language_p1.setCurrentText(linecache.getline("../settings.txt", 4)
-                                              [linecache.getline("../settings.txt", 4).find("=") + 2: -1])
+        self.comboBox_language_p1.setCurrentText(linecache.getline("settings.txt", 4)
+                                              [linecache.getline("settings.txt", 4).find("=") + 2: -1])
 
         self.label_font_p1 = QtWidgets.QLabel(self.page_1)
         self.label_font_p1.setGeometry(QtCore.QRect(20, 40, 81, 22))
@@ -371,8 +371,8 @@ class UserSetting(QtWidgets.QWidget):
 
         self.comboBox_font_p1 = QtWidgets.QFontComboBox(self.page_1)
         self.comboBox_font_p1.setGeometry(QtCore.QRect(110, 40, 141, 22))
-        self.comboBox_font_p1.setCurrentFont(QtGui.QFont(linecache.getline("../settings.txt", 7)
-                                                      [linecache.getline("../settings.txt", 7).find("=") + 2: -1]))
+        self.comboBox_font_p1.setCurrentFont(QtGui.QFont(linecache.getline("settings.txt", 7)
+                                                      [linecache.getline("settings.txt", 7).find("=") + 2: -1]))
 
         self.label_resolution_p1 = QtWidgets.QLabel(self.page_1)
         self.label_resolution_p1.setGeometry(QtCore.QRect(20, 70, 81, 22))
@@ -384,8 +384,8 @@ class UserSetting(QtWidgets.QWidget):
         self.comboBox_resolution_p1 = QtWidgets.QComboBox(self.page_1)
         self.comboBox_resolution_p1.setGeometry(QtCore.QRect(110, 70, 141, 22))
         self.comboBox_resolution_p1.addItem("800 x 600")
-        if (linecache.getline("../settings.txt", 5) == 'Resolution1 = 800\n'
-                and linecache.getline("../settings.txt", 6) == 'Resolution2 = 600\n'):
+        if (linecache.getline("settings.txt", 5) == 'Resolution1 = 800\n'
+                and linecache.getline("settings.txt", 6) == 'Resolution2 = 600\n'):
             self.comboBox_resolution_p1.setCurrentText("800 x 600")
 
         self.label_theme_p1 = QtWidgets.QLabel(self.page_1)
@@ -402,8 +402,8 @@ class UserSetting(QtWidgets.QWidget):
         self.comboBox_theme_p1.addItem("Ubuntu")
         self.comboBox_theme_p1.addItem("Eclippy")
         self.comboBox_theme_p1.addItem("Combinear")
-        self.comboBox_theme_p1.setCurrentText(linecache.getline("../settings.txt", 8)
-                                           [linecache.getline("../settings.txt", 8).find("=") + 2: -1])
+        self.comboBox_theme_p1.setCurrentText(linecache.getline("settings.txt", 8)
+                                           [linecache.getline("settings.txt", 8).find("=") + 2: -1])
 
         """ Stacked widget page 2 """
         self.page_2 = QtWidgets.QWidget()
@@ -424,8 +424,8 @@ class UserSetting(QtWidgets.QWidget):
         self.comboBox_dock_position_p2.addItem("Down")
         self.comboBox_dock_position_p2.addItem("Left")
         self.comboBox_dock_position_p2.addItem("Upper")
-        self.comboBox_dock_position_p2.setCurrentText(linecache.getline("../settings.txt", 9)
-                                                      [linecache.getline("../settings.txt", 9).find("=") + 2: -1])
+        self.comboBox_dock_position_p2.setCurrentText(linecache.getline("settings.txt", 9)
+                                                      [linecache.getline("settings.txt", 9).find("=") + 2: -1])
 
         self.label_stack_docks_p2 = QtWidgets.QLabel(self.page_2)
         self.label_stack_docks_p2.setGeometry(QtCore.QRect(20, 40, 81, 22))
@@ -437,7 +437,7 @@ class UserSetting(QtWidgets.QWidget):
         self.check_stack_docks_p2 = QtWidgets.QCheckBox(self.page_2)
         self.check_stack_docks_p2.setGeometry(QtCore.QRect(110, 40, 21, 17))
         self.check_stack_docks_p2.setText("")
-        if linecache.getline("../settings.txt", 10)[linecache.getline("../settings.txt", 10).find("=") + 2: -1] == "2":
+        if linecache.getline("settings.txt", 10)[linecache.getline("settings.txt", 10).find("=") + 2: -1] == "2":
             self.check_stack_docks_p2.setCheckState(2)
         else:
             self.check_stack_docks_p2.setCheckState(False)
@@ -461,8 +461,8 @@ class UserSetting(QtWidgets.QWidget):
         self.comboBox_dock_position_p3.addItem("Down")
         self.comboBox_dock_position_p3.addItem("Left")
         self.comboBox_dock_position_p3.addItem("Upper")
-        self.comboBox_dock_position_p3.setCurrentText(linecache.getline("../settings.txt", 11)
-                                                      [linecache.getline("../settings.txt", 11).find("=") + 2:-1])
+        self.comboBox_dock_position_p3.setCurrentText(linecache.getline("settings.txt", 11)
+                                                      [linecache.getline("settings.txt", 11).find("=") + 2:-1])
 
         self.label_stack_docks_p3 = QtWidgets.QLabel(self.page_3)
         self.label_stack_docks_p3.setGeometry(QtCore.QRect(20, 40, 81, 22))
@@ -474,7 +474,7 @@ class UserSetting(QtWidgets.QWidget):
         self.check_stack_docks_p3 = QtWidgets.QCheckBox(self.page_3)
         self.check_stack_docks_p3.setGeometry(QtCore.QRect(110, 40, 21, 17))
         self.check_stack_docks_p3.setText("")
-        if linecache.getline("../settings.txt", 12)[linecache.getline("../settings.txt", 12).find("=") + 2: -1] == "2":
+        if linecache.getline("settings.txt", 12)[linecache.getline("settings.txt", 12).find("=") + 2: -1] == "2":
             self.check_stack_docks_p3.setCheckState(2)
         else:
             self.check_stack_docks_p3.setCheckState(False)
@@ -498,8 +498,8 @@ class UserSetting(QtWidgets.QWidget):
         self.comboBox_dock_position_p4.addItem("Down")
         self.comboBox_dock_position_p4.addItem("Left")
         self.comboBox_dock_position_p4.addItem("Upper")
-        self.comboBox_dock_position_p4.setCurrentText(linecache.getline("../settings.txt", 13)
-                                                      [linecache.getline("../settings.txt", 13).find("=") + 2:-1])
+        self.comboBox_dock_position_p4.setCurrentText(linecache.getline("settings.txt", 13)
+                                                      [linecache.getline("settings.txt", 13).find("=") + 2:-1])
 
         self.label_stack_docks_p4 = QtWidgets.QLabel(self.page_4)
         self.label_stack_docks_p4.setGeometry(QtCore.QRect(20, 40, 81, 22))
@@ -511,7 +511,7 @@ class UserSetting(QtWidgets.QWidget):
         self.check_stack_docks_p4 = QtWidgets.QCheckBox(self.page_4)
         self.check_stack_docks_p4.setGeometry(QtCore.QRect(110, 40, 21, 17))
         self.check_stack_docks_p4.setText("")
-        if linecache.getline("../settings.txt", 14)[linecache.getline("../settings.txt",14).find("=") + 2: -1] == "2":
+        if linecache.getline("settings.txt", 14)[linecache.getline("settings.txt",14).find("=") + 2: -1] == "2":
             self.check_stack_docks_p4.setCheckState(2)
         else:
             self.check_stack_docks_p4.setCheckState(False)
@@ -606,12 +606,12 @@ class UserSetting(QtWidgets.QWidget):
         old_file = old_file.replace(linecache.getline("settings.txt", 11),
                                     ("Value position = %s\n" % self.comboBox_dock_position_p3.currentText()))
         old_file = old_file.replace(linecache.getline("settings.txt", 12),
-                                    ("Type of chart stack = %s\n" % self.check_stack_docks_p3.checkState()))
+                                    ("Value stack = %s\n" % self.check_stack_docks_p3.checkState()))
 
         old_file = old_file.replace(linecache.getline("settings.txt", 13),
                                     ("Settings position = %s\n" % self.comboBox_dock_position_p4.currentText()))
         old_file = old_file.replace(linecache.getline("settings.txt", 14),
-                                    ("Type of chart stack = %s\n" % self.check_stack_docks_p4.checkState()))
+                                    ("Settings stack = %s\n" % self.check_stack_docks_p4.checkState()))
 
         new_file = open("settings.txt", 'w')
         new_file.write(old_file)
