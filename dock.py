@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from PyQt5 import QtCore, QtWidgets
+from PyQt5 import QtCore, QtWidgets, QtGui
 import linecache
 import chartList, chartMenu
 
@@ -73,8 +73,6 @@ class Dock:
         self.stacked_widget_data.addWidget(self.data_page_1)
 
         self.stacked_widget_data.setCurrentIndex(0)
-
-        self.main_window_in_class.addDockWidget(QtCore.Qt.DockWidgetArea(2), self.dockWidget_data)
 
     def right_down(self):
         self.dockWidget_settings = QtWidgets.QDockWidget(self.main_window_in_class)
@@ -175,8 +173,6 @@ class Dock:
 
         self.stacked_widget_settings.setCurrentIndex(0)
 
-        self.main_window_in_class.addDockWidget(QtCore.Qt.DockWidgetArea(2), self.dockWidget_settings)
-
     def left_chart(self):
         self.dock_widget_chart = QtWidgets.QDockWidget(self.main_window_in_class)
         print(self.dock_widget_chart)
@@ -193,12 +189,76 @@ class Dock:
 
         self.grid_chart_dock = QtWidgets.QHBoxLayout(self.dock_widget_chart_contents)
 
-        self.main_window_in_class.addDockWidget(QtCore.Qt.DockWidgetArea(1), self.dock_widget_chart)
         chart_list = chartList.Chart(
                                      self.grid_chart_dock,
                                      self.dockWidget_data_contents,
                                      self.stacked_widget_data,
                                      self.stacked_widget_settings)
+
+        self.docks_position()
+
+    def docks_position(self):
+        if linecache.getline("settings.txt", 9) == "Type of chart position = Left\n":
+            self.main_window_in_class.addDockWidget(QtCore.Qt.DockWidgetArea(1), self.dock_widget_chart)
+            type_position = 1
+        elif linecache.getline("settings.txt", 9) == "Type of chart position = Right\n":
+            self.main_window_in_class.addDockWidget(QtCore.Qt.DockWidgetArea(2), self.dock_widget_chart)
+            type_position = 2
+        elif linecache.getline("settings.txt", 9) == "Type of chart position = Down\n":
+            self.main_window_in_class.addDockWidget(QtCore.Qt.DockWidgetArea(8), self.dock_widget_chart)
+            type_position = 3
+        elif linecache.getline("settings.txt", 9) == "Type of chart position = Upper\n":
+            self.main_window_in_class.addDockWidget(QtCore.Qt.DockWidgetArea(4), self.dock_widget_chart)
+            type_position = 4
+
+        if linecache.getline("settings.txt", 11) == "Value position = Left\n":
+            self.main_window_in_class.addDockWidget(QtCore.Qt.DockWidgetArea(1), self.dockWidget_data)
+            value_position = 1
+        elif linecache.getline("settings.txt", 11) == "Value position = Right\n":
+            self.main_window_in_class.addDockWidget(QtCore.Qt.DockWidgetArea(2), self.dockWidget_data)
+            value_position = 2
+        elif linecache.getline("settings.txt", 11) == "Value position = Down\n":
+            self.main_window_in_class.addDockWidget(QtCore.Qt.DockWidgetArea(8), self.dockWidget_data)
+            value_position = 3
+        elif linecache.getline("settings.txt", 11) == "Value position = Upper\n":
+            self.main_window_in_class.addDockWidget(QtCore.Qt.DockWidgetArea(4), self.dockWidget_data)
+            value_position = 4
+
+        if linecache.getline("settings.txt", 13) == "Settings position = Left\n":
+            self.main_window_in_class.addDockWidget(QtCore.Qt.DockWidgetArea(1), self.dockWidget_settings)
+            setting_position = 1
+        elif linecache.getline("settings.txt", 13) == "Settings position = Right\n":
+            self.main_window_in_class.addDockWidget(QtCore.Qt.DockWidgetArea(2), self.dockWidget_settings)
+            setting_position = 2
+        elif linecache.getline("settings.txt", 13) == "Settings position = Down\n":
+            self.main_window_in_class.addDockWidget(QtCore.Qt.DockWidgetArea(8), self.dockWidget_settings)
+            setting_position = 3
+        elif linecache.getline("settings.txt", 13) == "Settings position = Upper\n":
+            self.main_window_in_class.addDockWidget(QtCore.Qt.DockWidgetArea(4), self.dockWidget_settings)
+            setting_position = 4
+
+
+        if (type_position == value_position and
+                linecache.getline("settings.txt", 10)[linecache.getline("settings.txt", 10).find("=") + 2: -1] ==
+                linecache.getline("settings.txt", 12)[linecache.getline("settings.txt", 12).find("=") + 2: -1] == "2"):
+            self.main_window_in_class.tabifyDockWidget(self.dockWidget_data, self.dock_widget_chart)
+
+        if (type_position == setting_position and
+                linecache.getline("settings.txt", 10)[linecache.getline("settings.txt", 10).find("=") + 2: -1] ==
+                linecache.getline("settings.txt", 14)[linecache.getline("settings.txt", 14).find("=") + 2: -1] == "2"):
+            self.main_window_in_class.tabifyDockWidget(self.dockWidget_settings, self.dock_widget_chart)
+
+        if (value_position == setting_position and
+                linecache.getline("settings.txt", 12)[linecache.getline("settings.txt", 12).find("=") + 2: -1] ==
+                linecache.getline("settings.txt", 14)[linecache.getline("settings.txt", 14).find("=") + 2: -1] == "2"):
+            self.main_window_in_class.tabifyDockWidget(self.dockWidget_settings, self.dockWidget_data)
+
+        if (type_position == value_position == setting_position and
+                linecache.getline("settings.txt", 10)[linecache.getline("settings.txt", 10).find("=") + 2: -1] ==
+                linecache.getline("settings.txt", 12)[linecache.getline("settings.txt", 12).find("=") + 2: -1] ==
+                linecache.getline("settings.txt", 14)[linecache.getline("settings.txt", 14).find("=") + 2: -1] == "2"):
+            self.main_window_in_class.tabifyDockWidget(self.dockWidget_settings, self.dock_widget_chart)
+            self.main_window_in_class.tabifyDockWidget(self.dockWidget_data, self.dock_widget_chart)
 
 
 def dock_title(dock, name):
