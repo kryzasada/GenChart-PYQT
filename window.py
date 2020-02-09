@@ -585,6 +585,13 @@ class UserSetting(QtWidgets.QWidget):
         self.check_stack_docks_p4.setCheckState(0)
 
     def save_settings(self):
+        information_message = QtWidgets.QMessageBox()
+        information_message.setWindowTitle("Warning")
+        information_message.setText("You must restart program to apply these changes")
+        information_message.setIcon(QtWidgets.QMessageBox.Information)
+        information_message.setStandardButtons(QtWidgets.QMessageBox.Ok)
+        information_message.exec_()
+
         old_file = open("settings.txt").read()
 
         old_file = old_file.replace(linecache.getline("settings.txt", 4),
