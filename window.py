@@ -305,6 +305,7 @@ class UserSetting(QtWidgets.QWidget):
     def contain(self, main_window):
         main_window.setObjectName("main_window")
         main_window.resize(551, 321)
+        main_window.setWindowTitle("Settings")
 
         self.treeWidget = QtWidgets.QTreeWidget(main_window)
         self.treeWidget.setHeaderLabel("GenChart")
@@ -340,7 +341,7 @@ class UserSetting(QtWidgets.QWidget):
 
         self.label_p0 = QtWidgets.QLabel(self.page_0)
         self.label_p0.setGeometry(QtCore.QRect(80, 50, 47, 13))
-        self.label_p0.setText("0")
+        self.label_p0.setText("")
 
         """ Stacked widget page 1 """
         self.page_1 = QtWidgets.QWidget()
