@@ -70,7 +70,7 @@ class DataPage1:
         self.upper__TextName_label.setSizePolicy(sizePolicy)
         self.upper__TextName_label.setMinimumSize(QtCore.QSize(65, 0))
         self.upper__TextName_label.setMaximumSize(QtCore.QSize(120, 16777215))
-        self.upper__TextName_label.setText(linecache.getline("Language/Language.txt", 71)[:-1])
+        self.upper__TextName_label.setText(linecache.getline("Language/Language.txt", 302)[:-1])
         self.upper__TextName_label.setAlignment(QtCore.Qt.AlignCenter)
         self.upper__TextName_label.setObjectName("upper__TextName_label")
         self.upper__TextName_layout.setWidget(0, QtWidgets.QFormLayout.LabelRole, self.upper__TextName_label)
@@ -102,7 +102,7 @@ class DataPage1:
         self.upper__TextValue_label.setSizePolicy(sizePolicy)
         self.upper__TextValue_label.setMinimumSize(QtCore.QSize(50, 20))
         self.upper__TextValue_label.setMaximumSize(QtCore.QSize(20, 16777215))
-        self.upper__TextValue_label.setText(linecache.getline("Language/Language.txt", 75)[:-1])
+        self.upper__TextValue_label.setText(linecache.getline("Language/Language.txt", 306)[:-1])
         self.upper__TextValue_label.setAlignment(QtCore.Qt.AlignCenter)
         self.upper__TextValue_label.setObjectName("upper__TextValue_label")
         self.upper__TextValue_layout.setWidget(0, QtWidgets.QFormLayout.LabelRole, self.upper__TextValue_label)
@@ -211,7 +211,7 @@ class DataPage1:
         self.button_Add.setObjectName("pushButton")
         self.button_Add.setMaximumSize(QtCore.QSize(65, 20))
         self.button_Add.setMinimumSize(QtCore.QSize(65, 20))
-        self.button_Add.setText(linecache.getline("Language/Language.txt", 79)[:-1])
+        self.button_Add.setText(linecache.getline("Language/Language.txt", 310)[:-1])
 
         self.upper_first_layout.setWidget(3, QtWidgets.QFormLayout.LabelRole, self.button_Add)
         self.button_Add.clicked.connect(lambda: self.add_data.append(self.AddData()))
@@ -222,7 +222,7 @@ class DataPage1:
         self.button_Create.setMinimumSize(QtCore.QSize(65, 20))
         self.button_Create.setMaximumSize(QtCore.QSize(65, 20))
         self.upper_first_layout.setWidget(4, QtWidgets.QFormLayout.LabelRole, self.button_Create)
-        self.button_Create.setText(linecache.getline("Language/Language.txt", 82)[:-1])
+        self.button_Create.setText(linecache.getline("Language/Language.txt", 313)[:-1])
 
         self.button_Create.clicked.connect(lambda:
                                            True if not self.chart_type.count('pie')
@@ -512,7 +512,7 @@ class SettingsPage1:
 
         self.page_color = QtWidgets.QWidget()
         self.page_color.setObjectName("page_color")
-        self.tab_widget.addTab(self.page_color, linecache.getline("Language/Language.txt", 85)[:-1])
+        self.tab_widget.addTab(self.page_color, linecache.getline("Language/Language.txt", 316)[:-1])
 
         self.p_color()
         self.p_explode()
@@ -580,7 +580,7 @@ class SettingsPage1:
     def p_explode(self):
         self.page_explode = QtWidgets.QWidget()
         self.page_explode.setObjectName("page_explode")
-        self.tab_widget.addTab(self.page_explode, linecache.getline("Language/Language.txt", 89)[:-1])
+        self.tab_widget.addTab(self.page_explode, linecache.getline("Language/Language.txt", 320)[:-1])
 
         self.page_explode_layout = QtWidgets.QHBoxLayout(self.page_explode)
         self.page_explode_layout.setObjectName("page_explode_layout")
@@ -638,7 +638,7 @@ class SettingsPage1:
 
     def p_settings(self):
         self.page_settings = QtWidgets.QWidget()
-        self.tab_widget.addTab(self.page_settings, linecache.getline("Language/Language.txt", 93)[:-1])
+        self.tab_widget.addTab(self.page_settings, linecache.getline("Language/Language.txt", 324)[:-1])
 
         self.page_settings_layout = QtWidgets.QHBoxLayout(self.page_settings)
 
@@ -655,24 +655,24 @@ class SettingsPage1:
         self.line_edit_title = QtWidgets.QLineEdit(self.scroll_color_contents)
         self.line_edit_title.setMaximumSize(QtCore.QSize(95, 16777215))
         self.line_edit_title.setClearButtonEnabled(True)
-        self.line_edit_title.setPlaceholderText(linecache.getline("Language/Language.txt", 95)[:-1])
+        self.line_edit_title.setPlaceholderText(linecache.getline("Language/Language.txt", 326)[:-1])
         self.scroll_settings_layout.setWidget(0, QtWidgets.QFormLayout.LabelRole, self.line_edit_title)
 
         self.check_box1_settings = QtWidgets.QCheckBox(self.scroll_settings_contents)
-        self.check_box1_settings.setText(linecache.getline("Language/Language.txt", 98)[:-1])
+        self.check_box1_settings.setText(linecache.getline("Language/Language.txt", 329)[:-1])
         self.scroll_settings_layout.setWidget(1, QtWidgets.QFormLayout.LabelRole, self.check_box1_settings)
 
         self.check_box2_settings = QtWidgets.QCheckBox(self.scroll_settings_contents)
-        self.check_box2_settings.setText(linecache.getline("Language/Language.txt", 99)[:-1])
+        self.check_box2_settings.setText(linecache.getline("Language/Language.txt", 330)[:-1])
         self.scroll_settings_layout.setWidget(2, QtWidgets.QFormLayout.LabelRole, self.check_box2_settings)
 
         self.check_box3_settings = QtWidgets.QCheckBox(self.scroll_settings_contents)
-        self.check_box3_settings.setText(linecache.getline("Language/Language.txt", 100)[:-1])
+        self.check_box3_settings.setText(linecache.getline("Language/Language.txt", 331)[:-1])
         self.check_box3_settings.setTristate(True)
         self.scroll_settings_layout.setWidget(3, QtWidgets.QFormLayout.LabelRole, self.check_box3_settings)
 
         self.check_box4_settings = QtWidgets.QCheckBox(self.scroll_settings_contents)
-        self.check_box4_settings.setText(linecache.getline("Language/Language.txt", 101)[:-1])
+        self.check_box4_settings.setText(linecache.getline("Language/Language.txt", 332)[:-1])
         self.scroll_settings_layout.setWidget(4, QtWidgets.QFormLayout.LabelRole, self.check_box4_settings)
 
         self.line_1 = QtWidgets.QFrame(self.scroll_settings_contents)
@@ -695,14 +695,14 @@ class SettingsPage1:
         self.label_data_settings.setMinimumSize(QtCore.QSize(100, 0))
         self.label_data_settings.setMaximumSize(QtCore.QSize(155, 16777215))
         self.label_data_settings.setAlignment(QtCore.Qt.AlignCenter)
-        self.label_data_settings.setText(linecache.getline("Language/Language.txt", 104)[:-1])
+        self.label_data_settings.setText(linecache.getline("Language/Language.txt", 335)[:-1])
         self.scroll_settings_layout.setWidget(6, QtWidgets.QFormLayout.LabelRole,  self.label_data_settings)
 
         self.Data_settings_layout = QtWidgets.QFormLayout()
 
         self.check_box5_settings = QtWidgets.QCheckBox(self.scroll_settings_contents)
         self.check_box5_settings.setObjectName("check_box1_settings")
-        self.check_box5_settings.setText(linecache.getline("Language/Language.txt", 105)[:-1])
+        self.check_box5_settings.setText(linecache.getline("Language/Language.txt", 336)[:-1])
         self.check_box5_settings.setChecked(True)
         self.check_box5_settings.clicked.connect(self.show_data_setting)
         self.Data_settings_layout.setWidget(0, QtWidgets.QFormLayout.LabelRole, self.check_box5_settings)
@@ -710,7 +710,7 @@ class SettingsPage1:
         self.button_data_color = QtWidgets.QPushButton(self.scroll_settings_contents)
         self.button_data_color.setMinimumSize(QtCore.QSize(45, 22))
         self.button_data_color.setMaximumSize(QtCore.QSize(47, 22))
-        self.button_data_color.setText(linecache.getline("Language/Language.txt", 106)[:-1])
+        self.button_data_color.setText(linecache.getline("Language/Language.txt", 337)[:-1])
         self.button_data_color.clicked.connect(self.setting_button_color)
         self.button_data_color.setStyleSheet("background-color: #f0f0f0;" "color: rgb(0, 0, 0);")
         self.Data_settings_layout.setWidget(1, QtWidgets.QFormLayout.LabelRole, self.button_data_color)
@@ -783,19 +783,19 @@ class SettingsPage2:
         self.line_edit_title = QtWidgets.QLineEdit()
         self.line_edit_title.setMaximumSize(QtCore.QSize(100, 16777215))
         self.line_edit_title.setClearButtonEnabled(True)
-        self.line_edit_title.setPlaceholderText(linecache.getline("Language/Language.txt", 112)[:-1])
+        self.line_edit_title.setPlaceholderText(linecache.getline("Language/Language.txt", 343)[:-1])
         self.scroll_settings_layout.setWidget(0, QtWidgets.QFormLayout.LabelRole, self.line_edit_title)
 
         self.line_edit_lineY = QtWidgets.QLineEdit()
         self.line_edit_lineY.setMaximumSize(QtCore.QSize(100, 16777215))
         self.line_edit_lineY.setClearButtonEnabled(True)
-        self.line_edit_lineY.setPlaceholderText(linecache.getline("Language/Language.txt", 113)[:-1])
+        self.line_edit_lineY.setPlaceholderText(linecache.getline("Language/Language.txt", 344)[:-1])
         self.scroll_settings_layout.setWidget(1, QtWidgets.QFormLayout.LabelRole, self.line_edit_lineY)
 
         self.line_edit_lineX = QtWidgets.QLineEdit()
         self.line_edit_lineX.setMaximumSize(QtCore.QSize(100, 16777215))
         self.line_edit_lineX.setClearButtonEnabled(True)
-        self.line_edit_lineX.setPlaceholderText(linecache.getline("Language/Language.txt", 114)[:-1])
+        self.line_edit_lineX.setPlaceholderText(linecache.getline("Language/Language.txt", 345)[:-1])
         self.scroll_settings_layout.setWidget(2, QtWidgets.QFormLayout.LabelRole, self.line_edit_lineX)
 
         self.line_1 = QtWidgets.QFrame()
@@ -818,7 +818,7 @@ class SettingsPage2:
         self.layout_settings_layout.setWidget(0, QtWidgets.QFormLayout.LabelRole, self.spin_box_bar_color)
 
         self.label_bar_size = QtWidgets.QLabel()
-        self.label_bar_size.setText(linecache.getline("Language/Language.txt", 119)[:-1])
+        self.label_bar_size.setText(linecache.getline("Language/Language.txt", 350)[:-1])
         self.layout_settings_layout.setWidget(0, QtWidgets.QFormLayout.FieldRole, self.label_bar_size)
 
         self.button_bar_color = QtWidgets.QPushButton()
@@ -828,7 +828,7 @@ class SettingsPage2:
         self.layout_settings_layout.setWidget(1, QtWidgets.QFormLayout.LabelRole, self.button_bar_color)
 
         self.label_bar_size = QtWidgets.QLabel()
-        self.label_bar_size.setText(linecache.getline("Language/Language.txt", 120)[:-1])
+        self.label_bar_size.setText(linecache.getline("Language/Language.txt", 351)[:-1])
         self.layout_settings_layout.setWidget(1, QtWidgets.QFormLayout.FieldRole, self.label_bar_size)
 
         self.spin_box_edge_color = QtWidgets.QSpinBox()
@@ -837,7 +837,7 @@ class SettingsPage2:
         self.layout_settings_layout.setWidget(2, QtWidgets.QFormLayout.LabelRole, self.spin_box_edge_color)
 
         self.label_edge_size = QtWidgets.QLabel()
-        self.label_edge_size.setText(linecache.getline("Language/Language.txt", 121)[:-1])
+        self.label_edge_size.setText(linecache.getline("Language/Language.txt", 352)[:-1])
         self.layout_settings_layout.setWidget(2, QtWidgets.QFormLayout.FieldRole, self.label_edge_size)
 
         self.button_edge_color = QtWidgets.QPushButton()
@@ -847,7 +847,7 @@ class SettingsPage2:
         self.layout_settings_layout.setWidget(3, QtWidgets.QFormLayout.LabelRole, self.button_edge_color)
 
         self.label_edge_color = QtWidgets.QLabel()
-        self.label_edge_color.setText(linecache.getline("Language/Language.txt", 122)[:-1])
+        self.label_edge_color.setText(linecache.getline("Language/Language.txt", 353)[:-1])
         self.layout_settings_layout.setWidget(3, QtWidgets.QFormLayout.FieldRole, self.label_edge_color)
 
         self.scroll_settings_layout.setLayout(4, QtWidgets.QFormLayout.LabelRole, self.layout_settings_layout)
@@ -883,19 +883,19 @@ class SettingsPage3:
         self.line_edit_title = QtWidgets.QLineEdit()
         self.line_edit_title.setMaximumSize(QtCore.QSize(100, 16777215))
         self.line_edit_title.setClearButtonEnabled(True)
-        self.line_edit_title.setPlaceholderText(linecache.getline("Language/Language.txt", 129)[:-1])
+        self.line_edit_title.setPlaceholderText(linecache.getline("Language/Language.txt", 360)[:-1])
         self.scroll_settings_layout.setWidget(0, QtWidgets.QFormLayout.LabelRole, self.line_edit_title)
 
         self.line_edit_lineY = QtWidgets.QLineEdit()
         self.line_edit_lineY.setMaximumSize(QtCore.QSize(100, 16777215))
         self.line_edit_lineY.setClearButtonEnabled(True)
-        self.line_edit_lineY.setPlaceholderText(linecache.getline("Language/Language.txt", 130)[:-1])
+        self.line_edit_lineY.setPlaceholderText(linecache.getline("Language/Language.txt", 361)[:-1])
         self.scroll_settings_layout.setWidget(1, QtWidgets.QFormLayout.LabelRole, self.line_edit_lineY)
 
         self.line_edit_lineX = QtWidgets.QLineEdit()
         self.line_edit_lineX.setMaximumSize(QtCore.QSize(100, 16777215))
         self.line_edit_lineX.setClearButtonEnabled(True)
-        self.line_edit_lineX.setPlaceholderText(linecache.getline("Language/Language.txt", 131)[:-1])
+        self.line_edit_lineX.setPlaceholderText(linecache.getline("Language/Language.txt", 362)[:-1])
         self.scroll_settings_layout.setWidget(2, QtWidgets.QFormLayout.LabelRole, self.line_edit_lineX)
 
         self.line_1 = QtWidgets.QFrame()
@@ -910,7 +910,7 @@ class SettingsPage3:
         self.scroll_settings_layout.setWidget(3, QtWidgets.QFormLayout.LabelRole, self.line_1)
 
         self.line_edit_legend = QtWidgets.QLineEdit()
-        self.line_edit_legend.setPlaceholderText(linecache.getline("Language/Language.txt", 133)[:-1])
+        self.line_edit_legend.setPlaceholderText(linecache.getline("Language/Language.txt", 364)[:-1])
         self.line_edit_legend.setMaximumSize(QtCore.QSize(100, 16777215))
         self.scroll_settings_layout.setWidget(4, QtWidgets.QFormLayout.LabelRole, self.line_edit_legend)
 
@@ -930,7 +930,7 @@ class SettingsPage3:
         self.layout_settings_layout.setWidget(0, QtWidgets.QFormLayout.LabelRole, self.spin_box_line_size)
 
         self.label_line_size = QtWidgets.QLabel()
-        self.label_line_size.setText(linecache.getline("Language/Language.txt", 136)[:-1])
+        self.label_line_size.setText(linecache.getline("Language/Language.txt", 367)[:-1])
         self.layout_settings_layout.setWidget(0, QtWidgets.QFormLayout.FieldRole, self.label_line_size)
 
         self.button_line_color = QtWidgets.QPushButton()
@@ -940,7 +940,7 @@ class SettingsPage3:
         self.layout_settings_layout.setWidget(1, QtWidgets.QFormLayout.LabelRole, self.button_line_color)
 
         self.label_line_size = QtWidgets.QLabel()
-        self.label_line_size.setText(linecache.getline("Language/Language.txt", 137)[:-1])
+        self.label_line_size.setText(linecache.getline("Language/Language.txt", 368)[:-1])
         self.layout_settings_layout.setWidget(1, QtWidgets.QFormLayout.FieldRole, self.label_line_size)
 
         self.scroll_settings_layout.setLayout(6, QtWidgets.QFormLayout.LabelRole, self.layout_settings_layout)

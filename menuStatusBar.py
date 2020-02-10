@@ -23,23 +23,23 @@ class MenuBar:
         report.addAction(linecache.getline("Language/Language.txt", 6)[:-1])
         report.triggered.connect(lambda: self.message_report())
 
-        self.settings = self.main_manu.addMenu("Settings")
-        self.settings.addAction("User settings")
+        self.settings = self.main_manu.addMenu(linecache.getline("Language/Language.txt", 25)[:-1])
+        self.settings.addAction(linecache.getline("Language/Language.txt", 26)[:-1])
 
-        docks = self.main_manu.addMenu(linecache.getline("Language/Language.txt", 13)[:-1])
-        docks_visiable = docks.addMenu(linecache.getline("Language/Language.txt", 14)[:-1])
+        docks = self.main_manu.addMenu(linecache.getline("Language/Language.txt", 14)[:-1])
+        docks_visiable = docks.addMenu(linecache.getline("Language/Language.txt", 15)[:-1])
 
-        self.list_charts = docks_visiable.addAction(linecache.getline("Language/Language.txt", 15)[:-1])
+        self.list_charts = docks_visiable.addAction(linecache.getline("Language/Language.txt", 16)[:-1])
         self.list_charts.setCheckable(True)
         self.list_charts.setChecked(True)
         self.list_charts.triggered.connect(lambda: self.show_dock(0))
 
-        self.Data = docks_visiable.addAction(linecache.getline("Language/Language.txt", 16)[:-1])
+        self.Data = docks_visiable.addAction(linecache.getline("Language/Language.txt", 17)[:-1])
         self.Data.setCheckable(True)
         self.Data.setChecked(True)
         self.Data.triggered.connect(lambda: self.show_dock(1))
 
-        self.Settings = docks_visiable.addAction(linecache.getline("Language/Language.txt", 17)[:-1])
+        self.Settings = docks_visiable.addAction(linecache.getline("Language/Language.txt", 18)[:-1])
         self.Settings.setCheckable(True)
         self.Settings.setChecked(True)
         self.Settings.triggered.connect(lambda: self.show_dock(2))
@@ -53,8 +53,8 @@ class MenuBar:
         message.setWindowTitle(linecache.getline("Language/Language.txt", 6)[:-1])
         message.setText(linecache.getline("Language/Language.txt", 7)[:-1])
         message.setIcon(QMessageBox.Information)
-        message.setStandardButtons(QMessageBox.Ignore)
         message.addButton(QPushButton('GtiHub'), QMessageBox.YesRole)
+        message.addButton(QPushButton(linecache.getline("Language/Language.txt", 9)[:-1]), QMessageBox.YesRole)
         message.setInformativeText("\n -Email: chart.bugreport@gmail.com \n \n -GtiHub: " +
                                    (linecache.getline("Language/Language.txt", 8)[:-1]))
         message.buttonClicked.connect(self.github_link)

@@ -17,7 +17,7 @@ class Dock:
         self.dockWidget_data = QtWidgets.QDockWidget(self.main_window_in_class)
         self.dockWidget_data.topLevelChanged.connect(lambda:
                                                      dock_title(self.dockWidget_data,
-                                                                linecache.getline("Language/Language.txt", 26)[:-1]))
+                                                                linecache.getline("Language/Language.txt", 102)[:-1]))
 
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
@@ -49,7 +49,7 @@ class Dock:
 
         self.label_data_page_0 = QtWidgets.QLabel(self.data_page_0)
         self.label_data_page_0.setObjectName("chart_button")
-        self.label_data_page_0.setText(linecache.getline("Language/Language.txt", 27)[:-1])
+        self.label_data_page_0.setText(linecache.getline("Language/Language.txt", 103)[:-1])
         self.data_grid_page_0.addWidget(self.label_data_page_0)
 
         dock_data.append(0)
@@ -79,7 +79,7 @@ class Dock:
         self.dockWidget_settings.topLevelChanged.connect(lambda:
                                                          dock_title(self.dockWidget_settings,
                                                                     (linecache.getline(
-                                                                        "Language/Language.txt", 32)[:-1])))
+                                                                        "Language/Language.txt", 108)[:-1])))
 
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
         sizePolicy.setHorizontalStretch(0)
@@ -117,7 +117,7 @@ class Dock:
 
         self.label_default = QtWidgets.QLabel(self.settings_page_0)
         self.label_default.setObjectName("label_default")
-        self.label_default.setText(linecache.getline("Language/Language.txt", 33)[:-1])
+        self.label_default.setText(linecache.getline("Language/Language.txt", 109)[:-1])
         self.settings_grid_page_0.addWidget(self.label_default)
 
         dock_settings.append(0)
@@ -179,7 +179,7 @@ class Dock:
         self.dock_widget_chart.topLevelChanged.connect(lambda:
                                                        dock_title(self.dock_widget_chart,
                                                                   (linecache.getline(
-                                                                      "Language/Language.txt", 38)[:-1])))
+                                                                      "Language/Language.txt", 114)[:-1])))
 
         self.dock_widget_chart.setMinimumSize(QtCore.QSize(145, 163))
         self.dock_widget_chart.setObjectName("dock_widget_chart")
@@ -198,42 +198,42 @@ class Dock:
         self.docks_position()
 
     def docks_position(self):
-        if linecache.getline("settings.txt", 9) == "Type of chart position = Left\n":
+        if linecache.getline("settings.txt", 9) == "Type of chart position = 2\n":
             self.main_window_in_class.addDockWidget(QtCore.Qt.DockWidgetArea(1), self.dock_widget_chart)
             type_position = 1
-        elif linecache.getline("settings.txt", 9) == "Type of chart position = Right\n":
+        elif linecache.getline("settings.txt", 9) == "Type of chart position = 0\n":
             self.main_window_in_class.addDockWidget(QtCore.Qt.DockWidgetArea(2), self.dock_widget_chart)
             type_position = 2
-        elif linecache.getline("settings.txt", 9) == "Type of chart position = Down\n":
+        elif linecache.getline("settings.txt", 9) == "Type of chart position = 1\n":
             self.main_window_in_class.addDockWidget(QtCore.Qt.DockWidgetArea(8), self.dock_widget_chart)
             type_position = 3
-        elif linecache.getline("settings.txt", 9) == "Type of chart position = Upper\n":
+        elif linecache.getline("settings.txt", 9) == "Type of chart position = 3\n":
             self.main_window_in_class.addDockWidget(QtCore.Qt.DockWidgetArea(4), self.dock_widget_chart)
             type_position = 4
 
-        if linecache.getline("settings.txt", 11) == "Value position = Left\n":
+        if linecache.getline("settings.txt", 11) == "Value position = 2\n":
             self.main_window_in_class.addDockWidget(QtCore.Qt.DockWidgetArea(1), self.dockWidget_data)
             value_position = 1
-        elif linecache.getline("settings.txt", 11) == "Value position = Right\n":
+        elif linecache.getline("settings.txt", 11) == "Value position = 0\n":
             self.main_window_in_class.addDockWidget(QtCore.Qt.DockWidgetArea(2), self.dockWidget_data)
             value_position = 2
-        elif linecache.getline("settings.txt", 11) == "Value position = Down\n":
+        elif linecache.getline("settings.txt", 11) == "Value position = 1\n":
             self.main_window_in_class.addDockWidget(QtCore.Qt.DockWidgetArea(8), self.dockWidget_data)
             value_position = 3
-        elif linecache.getline("settings.txt", 11) == "Value position = Upper\n":
+        elif linecache.getline("settings.txt", 11) == "Value position = 3\n":
             self.main_window_in_class.addDockWidget(QtCore.Qt.DockWidgetArea(4), self.dockWidget_data)
             value_position = 4
 
-        if linecache.getline("settings.txt", 13) == "Settings position = Left\n":
+        if linecache.getline("settings.txt", 13) == "Settings position = 2\n":
             self.main_window_in_class.addDockWidget(QtCore.Qt.DockWidgetArea(1), self.dockWidget_settings)
             setting_position = 1
-        elif linecache.getline("settings.txt", 13) == "Settings position = Right\n":
+        elif linecache.getline("settings.txt", 13) == "Settings position = 0\n":
             self.main_window_in_class.addDockWidget(QtCore.Qt.DockWidgetArea(2), self.dockWidget_settings)
             setting_position = 2
-        elif linecache.getline("settings.txt", 13) == "Settings position = Down\n":
+        elif linecache.getline("settings.txt", 13) == "Settings position = 1\n":
             self.main_window_in_class.addDockWidget(QtCore.Qt.DockWidgetArea(8), self.dockWidget_settings)
             setting_position = 3
-        elif linecache.getline("settings.txt", 13) == "Settings position = Upper\n":
+        elif linecache.getline("settings.txt", 13) == "Settings position = 3\n":
             self.main_window_in_class.addDockWidget(QtCore.Qt.DockWidgetArea(4), self.dockWidget_settings)
             setting_position = 4
 

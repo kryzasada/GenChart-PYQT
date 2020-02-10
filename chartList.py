@@ -21,12 +21,12 @@ class Chart:
 
     def pie_chart(self):
         self.page_1 = QtWidgets.QWidget()
-        self.tab_widget.addItem(self.page_1, linecache.getline("Language/Language.txt", 46)[:-1])
+        self.tab_widget.addItem(self.page_1, linecache.getline("Language/Language.txt", 202)[:-1])
 
         self.page_1_layout = QtWidgets.QFormLayout(self.page_1)
 
         self.default_pie_button = QtWidgets.QPushButton(self.page_1)
-        self.default_pie_button.setText(linecache.getline("Language/Language.txt", 47)[:-1])
+        self.default_pie_button.setText(linecache.getline("Language/Language.txt", 203)[:-1])
         self.default_pie_button.setMaximumSize(QtCore.QSize(110, 23))
         self.page_1_layout.setWidget(0, QtWidgets.QFormLayout.FieldRole, self.default_pie_button)
         self.default_pie_button.clicked.connect(lambda: self.basic_pie_click())
@@ -38,7 +38,7 @@ class Chart:
         self.page_1_layout.setWidget(0, QtWidgets.QFormLayout.LabelRole, self.default_pie_image)
 
         self.donut_pie_button = QtWidgets.QPushButton(self.page_1)
-        self.donut_pie_button.setText(linecache.getline("Language/Language.txt", 48)[:-1])
+        self.donut_pie_button.setText(linecache.getline("Language/Language.txt", 204)[:-1])
         self.donut_pie_button.setMaximumSize(QtCore.QSize(110, 23))
         self.page_1_layout.setWidget(1, QtWidgets.QFormLayout.FieldRole, self.donut_pie_button)
         self.donut_pie_button.clicked.connect(lambda: self.donut_pie_click())
@@ -51,12 +51,12 @@ class Chart:
 
     def bar_chart(self):
         self.page_2 = QtWidgets.QWidget()
-        self.tab_widget.addItem(self.page_2, linecache.getline("Language/Language.txt", 54)[:-1])
+        self.tab_widget.addItem(self.page_2, linecache.getline("Language/Language.txt", 210)[:-1])
 
         self.page_2_layout = QtWidgets.QFormLayout(self.page_2)
 
         self.default_bar_button = QtWidgets.QPushButton(self.page_2)
-        self.default_bar_button.setText(linecache.getline("Language/Language.txt", 55)[:-1])
+        self.default_bar_button.setText(linecache.getline("Language/Language.txt", 211)[:-1])
         self.default_bar_button.setMaximumSize(QtCore.QSize(110, 23))
         self.page_2_layout.setWidget(0, QtWidgets.QFormLayout.FieldRole, self.default_bar_button)
         self.default_bar_button.clicked.connect(lambda: self.basic_bar_click())
@@ -69,12 +69,12 @@ class Chart:
 
     def line_chart(self):
         self.page_3 = QtWidgets.QWidget()
-        self.tab_widget.addItem(self.page_3, linecache.getline("Language/Language.txt", 61)[:-1])
+        self.tab_widget.addItem(self.page_3, linecache.getline("Language/Language.txt", 217)[:-1])
 
         self.page_3_layout = QtWidgets.QFormLayout(self.page_3)
 
         self.default_line_button = QtWidgets.QPushButton(self.page_3)
-        self.default_line_button.setText(linecache.getline("Language/Language.txt", 62)[:-1])
+        self.default_line_button.setText(linecache.getline("Language/Language.txt", 218)[:-1])
         self.default_line_button.setMaximumSize(QtCore.QSize(110, 23))
         self.page_3_layout.setWidget(0, QtWidgets.QFormLayout.FieldRole, self.default_line_button)
         self.default_line_button.clicked.connect(lambda: self.basic_line_click())
