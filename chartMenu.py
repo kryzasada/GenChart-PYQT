@@ -822,7 +822,8 @@ class SettingsPage2:
         self.layout_settings_layout.setWidget(0, QtWidgets.QFormLayout.FieldRole, self.label_bar_size)
 
         self.button_bar_color = QtWidgets.QPushButton()
-        self.button_bar_color.setMinimumSize(QtCore.QSize(40, 0))
+        self.button_bar_color.setMinimumSize(QtCore.QSize(40, 20))
+        self.button_bar_color.setMaximumSize(QtCore.QSize(40, 20))
         self.button_bar_color.setStyleSheet("background-color: #1f77b4; width: 0px;")
         self.button_bar_color.clicked.connect(lambda: self.button_color(self.button_bar_color))
         self.layout_settings_layout.setWidget(1, QtWidgets.QFormLayout.LabelRole, self.button_bar_color)
@@ -841,7 +842,8 @@ class SettingsPage2:
         self.layout_settings_layout.setWidget(2, QtWidgets.QFormLayout.FieldRole, self.label_edge_size)
 
         self.button_edge_color = QtWidgets.QPushButton()
-        self.button_edge_color.setMinimumSize(QtCore.QSize(40, 0))
+        self.button_edge_color.setMinimumSize(QtCore.QSize(40, 20))
+        self.button_edge_color.setMaximumSize(QtCore.QSize(40, 20))
         self.button_edge_color.setStyleSheet("background-color: #222; width: 0px;")
         self.button_edge_color.clicked.connect(lambda: self.button_color(self.button_edge_color))
         self.layout_settings_layout.setWidget(3, QtWidgets.QFormLayout.LabelRole, self.button_edge_color)
@@ -934,7 +936,8 @@ class SettingsPage3:
         self.layout_settings_layout.setWidget(0, QtWidgets.QFormLayout.FieldRole, self.label_line_size)
 
         self.button_line_color = QtWidgets.QPushButton()
-        self.button_line_color.setMinimumSize(QtCore.QSize(40, 0))
+        self.button_line_color.setMinimumSize(QtCore.QSize(40, 20))
+        self.button_line_color.setMaximumSize(QtCore.QSize(40, 20))
         self.button_line_color.setStyleSheet("background-color: #1f77b4; width: 0px;")
         self.button_line_color.clicked.connect(lambda: self.button_color(self.button_line_color))
         self.layout_settings_layout.setWidget(1, QtWidgets.QFormLayout.LabelRole, self.button_line_color)
