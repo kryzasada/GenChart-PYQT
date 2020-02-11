@@ -343,7 +343,7 @@ class UserSetting(QtWidgets.QWidget):
 
         self.title_label = QtWidgets.QLabel(main_window)
         self.title_label.setGeometry(QtCore.QRect(180, 10, 351, 21))
-        self.title_label.setStyleSheet("background-color: rgb(212, 212, 212);")
+        self.title_label.setStyleSheet("background-color: rgb(212, 212, 212); color: black;")
         self.title_label.setText(" ")
         self.title_label.setAlignment(QtCore.Qt.AlignCenter)
 
