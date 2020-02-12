@@ -449,20 +449,6 @@ QHeaderView::section::vertical
 }
 
 
-QHeaderView::section::horizontal::first,
-QHeaderView::section::horizontal::only-one
-{
-    border-left: 1px solid #353635;
-
-}
-
-
-QHeaderView::section::horizontal
-{
-    border-left: 1px solid #353635;
-
-}
-
 
 QTableCornerButton::section
 {
@@ -505,19 +491,11 @@ QTreeView::item:!selected:hover
 
 }
 
-
-QTreeView::branch:has-children:!has-siblings:closed,
-QTreeView::branch:closed:has-children:has-siblings 
+QHeaderView::section 
 {
-	image: url(://tree-closed.png);
-
-}
-
-
-QTreeView::branch:open:has-children:!has-siblings,
-QTreeView::branch:open:has-children:has-siblings  
-{
-	image: url(://tree-open.png);
+	background-color: #f6f6f6;
+	color: #000;
+	border: 0px solid white;
 
 }
 

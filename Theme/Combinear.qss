@@ -500,7 +500,6 @@ QTreeView::item:selected
 
 }
 
-
 QTreeView::item:!selected:hover
 {
     background-color: #262626;
@@ -509,21 +508,14 @@ QTreeView::item:!selected:hover
 
 }
 
-
-QTreeView::branch:has-children:!has-siblings:closed,
-QTreeView::branch:closed:has-children:has-siblings 
+QHeaderView::section 
 {
-	image: url(://tree-closed.png);
-
+	background-color: #2d2d2d;
+	color: rgb(215, 215, 215);
+	border: 0px solid red;
+	margin: 0px;
 }
 
-
-QTreeView::branch:open:has-children:!has-siblings,
-QTreeView::branch:open:has-children:has-siblings  
-{
-	image: url(://tree-open.png);
-
-}
 
 
 /*-----QListView-----*/

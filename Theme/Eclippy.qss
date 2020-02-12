@@ -292,19 +292,11 @@ QTreeView::item:!selected:hover
 }
 
 
-QTreeView::branch:has-children:!has-siblings:closed,
-QTreeView::branch:closed:has-children:has-siblings 
+
+QHeaderView::section 
 {
-	image: url(://tree-closed.png);
-
-}
-
-
-QTreeView::branch:open:has-children:!has-siblings,
-QTreeView::branch:open:has-children:has-siblings  
-{
-	image: url(://tree-open.png);
-
+	background-color: rgb(50, 50, 50);
+	color: rgb(215, 215, 215);
 }
 
 
