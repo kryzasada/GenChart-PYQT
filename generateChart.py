@@ -65,19 +65,16 @@ class PieChart:
             value_error.exec_()
 
         self.outer_labels = []
-        if dock.dock_data[1].upper__TextName_check.checkState():
-            if dock.dock_data[1].upper_first_Name_check.checkState():
-                self.outer_labels.append(dock.dock_data[1].upper_first_Name_write.text())
+        if dock.dock_data[1].upper_first_Name_check.checkState():
+            self.outer_labels.append(dock.dock_data[1].upper_first_Name_write.text())
+        else:
+            self.outer_labels.append("")
+
+        for x in range(0, len(dock.dock_data[1].add_data)):
+            if dock.dock_data[1].add_data[x].second_block_Name_check.checkState():
+                self.outer_labels.append(str(dock.dock_data[1].add_data[x].second_block_Name_write.text()))
             else:
                 self.outer_labels.append("")
-
-            for x in range(0, len(dock.dock_data[1].add_data)):
-                if dock.dock_data[1].add_data[x].second_block_Name_check.checkState():
-                    self.outer_labels.append(str(dock.dock_data[1].add_data[x].second_block_Name_write.text()))
-                else:
-                    self.outer_labels.append("")
-        else:
-            self.outer_labels = None
 
         self.outer_colors = []
         for x in range(0, len(dock.dock_settings[1].buttons_color)):
@@ -147,6 +144,9 @@ class PieChart:
                                     bbox_to_anchor=(1.1, 1.120))
             else:
                 static_chart.legend().remove()
+
+
+
 
             static_chart.set_title(dock.dock_settings[1].line_edit_title.text())
 
