@@ -65,16 +65,26 @@ class PieChart:
             value_error.exec_()
 
         self.outer_labels = []
+        self.legend_labels = []
+        if dock.dock_settings[1].check_box4_settings.checkState() == 2:
+            self.legend_labels.append(dock.dock_data[1].upper_first_Name_write.text())
+        else:
+            self.legend_labels.append(" ")
         if dock.dock_data[1].upper_first_Name_check.checkState():
             self.outer_labels.append(dock.dock_data[1].upper_first_Name_write.text())
         else:
             self.outer_labels.append("")
 
         for x in range(0, len(dock.dock_data[1].add_data)):
+            if dock.dock_settings[1].check_box4_settings.checkState() == 2:
+                self.legend_labels.append(str(dock.dock_data[1].add_data[x].second_block_Name_write.text()))
+            else:
+                self.legend_labels.append("")
             if dock.dock_data[1].add_data[x].second_block_Name_check.checkState():
                 self.outer_labels.append(str(dock.dock_data[1].add_data[x].second_block_Name_write.text()))
             else:
                 self.outer_labels.append("")
+
 
         self.outer_colors = []
         for x in range(0, len(dock.dock_settings[1].buttons_color)):
@@ -139,14 +149,11 @@ class PieChart:
 
             if dock.dock_settings[1].check_box4_settings.checkState():
                 static_chart.legend(
-                                    self.outer_labels,
+                                    self.legend_labels,
                                     loc='upper right',
                                     bbox_to_anchor=(1.1, 1.120))
             else:
                 static_chart.legend().remove()
-
-
-
 
             static_chart.set_title(dock.dock_settings[1].line_edit_title.text())
 
@@ -177,7 +184,7 @@ class PieChart:
 
             if dock.dock_settings[1].check_box4_settings.checkState():
                 static_chart.legend(
-                                    self.outer_labels,
+                                    self.legend_labels,
                                     loc='upper right',
                                     bbox_to_anchor=(1.1, 1.120),
                                     )

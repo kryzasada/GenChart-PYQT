@@ -673,6 +673,7 @@ class SettingsPage1:
 
         self.check_box4_settings = QtWidgets.QCheckBox(self.scroll_settings_contents)
         self.check_box4_settings.setText(linecache.getline("Language/Language.txt", 332)[:-1])
+        self.check_box4_settings.setTristate(True)
         self.scroll_settings_layout.setWidget(4, QtWidgets.QFormLayout.LabelRole, self.check_box4_settings)
 
         self.line_1 = QtWidgets.QFrame(self.scroll_settings_contents)
