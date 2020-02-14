@@ -459,8 +459,9 @@ class DataPage1:
                                                                       % (random.randint(0, 250),
                                                                          random.randint(0, 250),
                                                                          random.randint(0, 250)))
-                dock.dock_settings[1].buttons_color[-1].clicked.connect(lambda:
-                                                                        dock.dock_settings[1].button_color(self.int))
+                dock.dock_settings[1].buttons_color[-1].clicked.connect(partial
+                                                                        (button_color,
+                                                                         dock.dock_settings[1].buttons_color[-1]))
 
                 dock.dock_settings[1].label_explode.append(QtWidgets.QLabel())
                 dock.dock_settings[1].label_explode[-1].setText(self.second_block_Name_write.text())
@@ -558,7 +559,7 @@ class SettingsPage1:
                                                 self.buttons_color[array_position])
             self.buttons_color[array_position].setSizePolicy(sizePolicy)
             sizePolicy.setHeightForWidth(self.buttons_color[array_position].hasHeightForWidth())
-            self.buttons_color[array_position].clicked.connect(partial(self.button_color, array_position))
+            self.buttons_color[array_position].clicked.connect(partial(button_color, self.buttons_color[-1]))
 
 
             if array_position == 0:
@@ -752,11 +753,6 @@ class SettingsPage1:
             self.Data_autopct.setEnabled(False)
             self.button_data_color.setStyleSheet("background-color: #f0f0f0;" "color: rgb(160, 160, 160);")
 
-    @staticmethod
-    def button_color(number):
-        color = QtWidgets.QColorDialog.getColor()
-        dock.dock_settings[1].buttons_color[number].setStyleSheet("background-color: %s;" % (str(color.name())))
-
 
 class SettingsPage2:
     def __init__(self, *args):
@@ -826,7 +822,7 @@ class SettingsPage2:
         self.button_bar_color.setMinimumSize(QtCore.QSize(40, 20))
         self.button_bar_color.setMaximumSize(QtCore.QSize(40, 20))
         self.button_bar_color.setStyleSheet("background-color: #1f77b4; width: 0px;")
-        self.button_bar_color.clicked.connect(lambda: self.button_color(self.button_bar_color))
+        self.button_bar_color.clicked.connect(lambda: button_color(self.button_bar_color))
         self.layout_settings_layout.setWidget(1, QtWidgets.QFormLayout.LabelRole, self.button_bar_color)
 
         self.label_bar_size = QtWidgets.QLabel()
@@ -846,7 +842,7 @@ class SettingsPage2:
         self.button_edge_color.setMinimumSize(QtCore.QSize(40, 20))
         self.button_edge_color.setMaximumSize(QtCore.QSize(40, 20))
         self.button_edge_color.setStyleSheet("background-color: #222; width: 0px;")
-        self.button_edge_color.clicked.connect(lambda: self.button_color(self.button_edge_color))
+        self.button_edge_color.clicked.connect(lambda: button_color(self.button_edge_color))
         self.layout_settings_layout.setWidget(3, QtWidgets.QFormLayout.LabelRole, self.button_edge_color)
 
         self.label_edge_color = QtWidgets.QLabel()
@@ -855,10 +851,6 @@ class SettingsPage2:
 
         self.scroll_settings_layout.setLayout(4, QtWidgets.QFormLayout.LabelRole, self.layout_settings_layout)
 
-    @staticmethod
-    def button_color(number):
-        color = QtWidgets.QColorDialog.getColor()
-        number.setStyleSheet("background-color: %s;" % (str(color.name())))
 
 class SettingsPage3:
     def __init__(self, *args):
@@ -940,7 +932,7 @@ class SettingsPage3:
         self.button_line_color.setMinimumSize(QtCore.QSize(40, 20))
         self.button_line_color.setMaximumSize(QtCore.QSize(40, 20))
         self.button_line_color.setStyleSheet("background-color: #1f77b4; width: 0px;")
-        self.button_line_color.clicked.connect(lambda: self.button_color(self.button_line_color))
+        self.button_line_color.clicked.connect(lambda: button_color(self.button_line_color))
         self.layout_settings_layout.setWidget(1, QtWidgets.QFormLayout.LabelRole, self.button_line_color)
 
         self.label_line_size = QtWidgets.QLabel()
@@ -949,7 +941,14 @@ class SettingsPage3:
 
         self.scroll_settings_layout.setLayout(6, QtWidgets.QFormLayout.LabelRole, self.layout_settings_layout)
 
-    @staticmethod
-    def button_color(number):
-        color = QtWidgets.QColorDialog.getColor()
-        number.setStyleSheet("background-color: %s;" % (str(color.name())))
+def button_color(object):
+    QtWidgets.QColorDialog.setStandardColor(0, QtGui.QColor("#000001"))
+
+    x = object.palette().button().color().name()
+    color = QtWidgets.QColorDialog.getColor(QtGui.QColor(x))
+    object.setStyleSheet("background-color: %s;" % (str(color.name())))
+    for x in range(14, -1, -1):
+        QtWidgets.QColorDialog.setCustomColor(x+1, QtGui.QColor(QtWidgets.QColorDialog.customColor(x)))
+    QtWidgets.QColorDialog.setCustomColor(0, QtGui.QColor(color.name()))
+
+
