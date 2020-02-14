@@ -3,41 +3,69 @@
 #
 # Created by: PyQt5 UI code generator 5.13.0
 #
-
-from PyQt5 import QtCore, QtGui, QtWidgets, QtQuickWidgets
-from PyQt5 import QtQuickWidgets
+from PyQt5.QtWidgets import QApplication, QMainWindow
+from PyQt5 import QtCore, QtGui, QtWidgets
 import sys
-import dock, menuStatusBar, chartList
+import linecache
 
+import window
 
-class UiMainWindow(object):
-    def setupUi(self, main_window):
-        main_window.resize(800, 598)
-        main_window.setContextMenuPolicy(QtCore.Qt.NoContextMenu)
-        main_window.setTabShape(QtWidgets.QTabWidget.Triangular)
-        main_window.setWindowIcon(QtGui.QIcon("Image/Icons/blank-logo.ico"))
-        main_window.setWindowTitle("GenChart")
+try:
+    file_line = linecache.getline("settings.txt", 3)
+    if file_line == "First start = 1\n":
+        old_file = open("settings.txt").read()
+        old_file = old_file.replace('First start = 1', 'First start = 0')
+        new_file = open("settings.txt", 'w')
+        new_file.write(old_file)
+        new_file.close()
 
-        self.centralwidget = QtWidgets.QWidget(main_window)
-        self.centralwidget.setObjectName("centralwidget")
-        main_window.setCentralWidget(self.centralwidget)
+        app1 = QApplication(sys.argv)
+        MainWindow1 = QMainWindow()
+        window1 = window.firstConfiguration()
+        window1.contain(MainWindow1)
+        window1.start_button.clicked.connect(lambda: MainWindow1.close())
+        MainWindow1.show()
+        sys.exit(app1.exec_())
 
-        self.central_layout = QtWidgets.QVBoxLayout(self.centralwidget)
+finally:
+    linecache.clearcache()
 
-        showDock = dock.Dock(main_window, self.central_layout)
-        showDock.right_up()
-        showDock.right_down()
-        showDock.left_chart()
+    app2 = QApplication(sys.argv)
 
-        menu_bar = menuStatusBar.MenuBar(main_window, showDock)
-        status_bar = menuStatusBar.StatusBar(main_window)
+    """ Set font and theme in main window """
+    font_line = linecache.getline("settings.txt", 7)
+    theme_line = linecache.getline("settings.txt", 8)
+    if not theme_line[theme_line.find("=")+2: -1] == "Default":
+        style_css = "Theme/%s.qss" % theme_line[theme_line.find("=")+2: -1]
+        style = open(style_css, "r")
+        app2.setStyleSheet(style.read() + "* {font-family: %s;}" % font_line[font_line.find("=")+2: -1])
+    else:
+        app2.setStyleSheet("* {font-family: %s;}" % font_line[font_line.find("=") + 2: -1])
 
-        QtCore.QMetaObject.connectSlotsByName(main_window)
+    """ Set language in main window """
+    if linecache.getline("settings.txt", 4) == "Language = English\n":
+        new_language_file = open("Language/languageEnglish.txt").read()
+    elif linecache.getline("settings.txt", 4) == "Language = Polski\n":
+        new_language_file = open("Language/languagePolish.txt").read()
 
-if __name__ == "__main__":
-    app = QtWidgets.QApplication(sys.argv)
-    main_window = QtWidgets.QMainWindow()
-    ui = UiMainWindow()
-    ui.setupUi(main_window)
-    main_window.show()
-    sys.exit(app.exec_())
+    new_file = open("Language/Language.txt", 'w')
+    new_file.write(new_language_file)
+    new_file.close()
+
+    MainWindow2 = QMainWindow()
+    window2 = window.main()
+    window2.contain(MainWindow2)
+    MainWindow2.show()
+
+    #MainWindow2.setDisabled(True)
+
+    MainWindow3 = QtWidgets.QWidget()
+    window3 = window.UserSetting()
+    window3.contain(MainWindow3)
+    MainWindow3.hide()
+
+    window2.menu_bar.settings.triggered.connect(lambda: MainWindow3.show())
+    window3.button_cancel.clicked.connect(lambda: MainWindow3.hide())
+    window3.button_save.clicked.connect(lambda: MainWindow3.hide())
+
+    sys.exit(app2.exec_())
