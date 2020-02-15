@@ -5,6 +5,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from matplotlib.backends.backend_qt5agg import NavigationToolbar2QT, FigureCanvas
 from matplotlib.figure import Figure
 import linecache
+import math
 
 import dock
 
@@ -36,6 +37,8 @@ class PieChart:
             self.basic()
         if chart_type == 'Donut_pie':
             self.donut()
+        if chart_type == 'Percent_pie':
+            self.percent()
 
     def contain(self):
         for i in reversed(range(dock.dock_data[1].central_layout.count())):
@@ -192,6 +195,47 @@ class PieChart:
                 static_chart.legend().remove()
 
             static_chart.set_title(dock.dock_settings[1].line_edit_title.text())
+
+            dock.dock_data[1].central_layout.addWidget(static_canvas)
+            dock.dock_data[1].central_layout.addWidget(toolbar)
+
+        except ValueError:
+            pass
+
+    def percent(self):
+
+        sort = sorted(self.outer_sizes)
+
+        resize = str(math.floor(sort[-1]))
+        resize += '.'
+
+        outer_sizes2 = []
+        for x in range(len(self.outer_sizes)):
+            val = round(10 ** resize[::1].find('.') - self.outer_sizes[x], 2)
+            outer_sizes2.append([val, self.outer_sizes[x]])
+
+        size = -0.30
+        size2 = 0.30
+        color = ['#d5f6da', '#5cdb6f']
+
+        try:
+            static_canvas, toolbar = tool_bar()
+            static_chart = static_canvas.figure.subplots()
+            for x in range(len(self.outer_sizes)):
+                static_chart.pie(outer_sizes2[x],
+                                 radius=1+size,
+                                 colors=color,
+                                 startangle=90,
+                                 wedgeprops=dict(width=size2, edgecolor='k'))
+
+                static_chart.text(0.01,
+                                  1.07 + size,
+                                  self.outer_labels[x],
+                                  horizontalalignment='center',
+                                  verticalalignment='center')
+
+                size += 0.3
+
 
             dock.dock_data[1].central_layout.addWidget(static_canvas)
             dock.dock_data[1].central_layout.addWidget(toolbar)
