@@ -97,11 +97,14 @@ class Chart:
         self.default_line_image.setMaximumSize(QtCore.QSize(28, 27))
         self.page_3_layout.setWidget(0, QtWidgets.QFormLayout.LabelRole, self.default_line_image)
 
-        self.tab_widget.setCurrentIndex(0)
+        self.tab_widget.setCurrentIndex(2)
 
-        #self.page_3.setHidden(True)
-        #self.tab_widget.currentChanged.connect(lambda: self.page_3.setHidden(False))
+        self.page_3.setHidden(True)
+        self.tab_widget.currentChanged.connect(lambda: self.page_3.setHidden(False))
+        self.tab_widget.mouseReleaseEvent = lambda event: self.page_3.setHidden(False)
 
+    def test(self):
+        print("123")
     def chart_click(self, type):
         for object in (self.default_pie_button,
                        self.donut_pie_button,
