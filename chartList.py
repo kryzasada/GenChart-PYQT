@@ -49,6 +49,18 @@ class Chart:
         self.donut_pie_image.setMaximumSize(QtCore.QSize(27, 27))
         self.page_1_layout.setWidget(1, QtWidgets.QFormLayout.LabelRole, self.donut_pie_image)
 
+        self.percent_pie_button = QtWidgets.QPushButton(self.page_1)
+        self.percent_pie_button.setText("Percentage\ndonut")
+        self.percent_pie_button.setMaximumSize(QtCore.QSize(110, 46))
+        self.page_1_layout.setWidget(2, QtWidgets.QFormLayout.FieldRole, self.percent_pie_button)
+        #self.percent_pie_button.clicked.connect(lambda: self.donut_pie_click())
+
+        self.percent_pie_image = QtWidgets.QLabel(self.page_1)
+        self.percent_pie_image.setPixmap(QtGui.QPixmap('Image/Donut_pie_chart.png'))
+        self.percent_pie_image.setScaledContents(True)
+        self.percent_pie_image.setMaximumSize(QtCore.QSize(27, 27))
+        self.page_1_layout.setWidget(2, QtWidgets.QFormLayout.LabelRole, self.percent_pie_image)
+
     def bar_chart(self):
         self.page_2 = QtWidgets.QWidget()
         self.tab_widget.addItem(self.page_2, linecache.getline("Language/Language.txt", 210)[:-1])
