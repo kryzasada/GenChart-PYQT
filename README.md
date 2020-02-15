@@ -28,4 +28,5 @@ Chart generating program, written in PyQt5
 | :------------: | :------------: | :------------: |
 | Visibility of charts list at startup | More chart |  New menu in settings dock |
 | &#x2796; | &#x2796; | More languages |
+| &#x2796; | &#x2796; | Interaction with canvas |
 
