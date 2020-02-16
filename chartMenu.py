@@ -368,6 +368,8 @@ class DataPage1:
                 self.second_block_Name_check.setEnabled(True)
             elif dock.dock_data[1].chart_type == 'Donut_pie':
                 self.second_block_Name_check.setEnabled(True)
+            elif dock.dock_data[1].chart_type == 'Percent_pie':
+                self.second_block_Name_check.setEnabled(True)
             elif dock.dock_data[1].chart_type == 'Basic_bar':
                 self.second_block_Name_check.setEnabled(False)
             elif dock.dock_data[1].chart_type == 'Basic_line':
@@ -418,6 +420,8 @@ class DataPage1:
             if dock.dock_data[1].chart_type == 'Basic_pie':
                 self.second_block_value_check.setEnabled(False)
             elif dock.dock_data[1].chart_type == 'Donut_pie':
+                self.second_block_value_check.setEnabled(False)
+            elif dock.dock_data[1].chart_type == 'Percent_pie':
                 self.second_block_value_check.setEnabled(False)
             elif dock.dock_data[1].chart_type == 'Basic_bar':
                 self.second_block_value_check.setEnabled(True)
