@@ -103,8 +103,7 @@ class Chart:
         self.tab_widget.currentChanged.connect(lambda: self.page_3.setHidden(False))
         self.tab_widget.mouseReleaseEvent = lambda event: self.page_3.setHidden(False)
 
-    def test(self):
-        print("123")
+
     def chart_click(self, type):
         for object in (self.default_pie_button,
                        self.donut_pie_button,
