@@ -135,7 +135,7 @@ class Chart:
 
         elif type == "percent_pie":
             self.stacked_Widget_data.setCurrentIndex(1)
-            self.stacked_widget_settings.setCurrentIndex(1)
+            self.stacked_widget_settings.setCurrentIndex(4)
             dock.dock_data[1].chart_type = 'Percent_pie'
             self.percent_pie_button.setEnabled(False)
 

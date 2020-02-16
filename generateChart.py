@@ -88,18 +88,27 @@ class PieChart:
             else:
                 self.outer_labels.append("")
 
-
-        self.outer_colors = []
+        self.outer_colors1 = []
         for x in range(0, len(dock.dock_settings[1].buttons_color)):
-            self.outer_colors.append(dock.dock_settings[1].buttons_color[x].palette().button().color().name())
+            self.outer_colors1.append(dock.dock_settings[1].buttons_color[x].palette().button().color().name())
+
+        self.outer_colors2 = []
+        self.outer_colors2.append(dock.dock_settings[4].button_color3.palette().button().color().name())
+        self.outer_colors2.append(dock.dock_settings[4].button_color2.palette().button().color().name())
 
         self.outer_explode = []
         for x in range(0, len(dock.dock_settings[1].spin_box_explode)):
             self.outer_explode.append(float(dock.dock_settings[1].spin_box_explode[x].value() / 10))
 
-        self.outer_shadow = 0
+        self.outer_radius = dock.dock_settings[4].spin_box_size.value() / -10
+
+        self.outer_shadow1 = 0
         if dock.dock_settings[1].check_box1_settings.checkState():
-            self.outer_shadow = dock.dock_settings[1].check_box1_settings.checkState()
+            self.outer_shadow1 = dock.dock_settings[1].check_box1_settings.checkState()
+
+        self.outer_shadow2 = 0
+        if dock.dock_settings[4].check_box1.checkState():
+            self.outer_shadow2 = dock.dock_settings[4].check_box1.checkState()
 
         self.outer_rotatelabels = 0
         if dock.dock_settings[1].check_box2_settings.checkState():
@@ -121,11 +130,21 @@ class PieChart:
         if not dock.dock_settings[1].check_box5_settings.checkState():
             self.outer_autopct = ''
 
-        self.outer_wedgeprops = {'edgecolor': 'white'}
+        self.outer_wedgeprops1 = {'edgecolor': 'white'}
         if dock.dock_settings[1].check_box3_settings.checkState() == 1:
-            self.outer_wedgeprops = {'edgecolor': 'black', 'linewidth': 1}
+            self.outer_wedgeprops1 = {'edgecolor': 'black', 'linewidth': 1}
         elif dock.dock_settings[1].check_box3_settings.checkState() == 2:
-            self.outer_wedgeprops = {'edgecolor': 'black', 'linewidth': 2}
+            self.outer_wedgeprops1 = {'edgecolor': 'black', 'linewidth': 2}
+
+        self.outer_wedgeprops2 = {'edgecolor': 'white'}
+        if dock.dock_settings[4].check_box2.checkState() == 1:
+            self.outer_wedgeprops2 = {'edgecolor':
+                                          dock.dock_settings[4].button_color1.palette().button().color().name(),
+                                      'linewidth': 1}
+        elif dock.dock_settings[4].check_box2.checkState() == 2:
+            self.outer_wedgeprops2 = {'edgecolor':
+                                          dock.dock_settings[4].button_color1.palette().button().color().name(),
+                                      'linewidth': 2}
 
         self.outer_textprops = {'color': "black"}
         if not dock.dock_settings[1].button_data_color.palette().button().color().name() == '#f0f0f0':
@@ -141,11 +160,11 @@ class PieChart:
             static_chart.pie(
                              self.outer_sizes,
                              labels=self.outer_labels,
-                             wedgeprops=self.outer_wedgeprops,
-                             colors=self.outer_colors,
+                             wedgeprops=self.outer_wedgeprops1,
+                             colors=self.outer_colors1,
                              explode=self.outer_explode,
                              autopct=self.outer_autopct,
-                             shadow=self.outer_shadow,
+                             shadow=self.outer_shadow1,
                              startangle=90,
                              rotatelabels=self.outer_rotatelabels,
                              textprops=self.outer_textprops)
@@ -167,7 +186,7 @@ class PieChart:
             pass
 
     def donut(self):
-        self.outer_wedgeprops.update({'width': 0.5})
+        self.outer_wedgeprops1.update({'width': 0.5})
 
         try:
             static_canvas, toolbar = tool_bar()
@@ -175,11 +194,11 @@ class PieChart:
             static_chart.pie(
                              self.outer_sizes,
                              labels=self.outer_labels,
-                             wedgeprops=self.outer_wedgeprops,
-                             colors=self.outer_colors,
+                             wedgeprops=self.outer_wedgeprops1,
+                             colors=self.outer_colors1,
                              explode=self.outer_explode,
                              autopct=self.outer_autopct,
-                             shadow=self.outer_shadow,
+                             shadow=self.outer_shadow1,
                              startangle=90,
                              rotatelabels=self.outer_rotatelabels,
                              textprops=self.outer_textprops,
@@ -205,38 +224,37 @@ class PieChart:
     def percent(self):
 
         sort = sorted(self.outer_sizes)
-
         resize = str(math.floor(sort[-1]))
         resize += '.'
-
         outer_sizes2 = []
         for x in range(len(self.outer_sizes)):
             val = round(10 ** resize[::1].find('.') - self.outer_sizes[x], 2)
             outer_sizes2.append([val, self.outer_sizes[x]])
 
-        size = -0.30
-        size2 = 0.30
-        color = ['#d5f6da', '#5cdb6f']
+        self.outer_radius2 = self.outer_radius * -1
+
+        self.outer_wedgeprops2['width'] = self.outer_radius2
 
         try:
             static_canvas, toolbar = tool_bar()
             static_chart = static_canvas.figure.subplots()
             for x in range(len(self.outer_sizes)):
                 static_chart.pie(outer_sizes2[x],
-                                 radius=1+size,
-                                 colors=color,
+                                 radius=1+self.outer_radius,
+                                 colors=self.outer_colors2,
                                  startangle=90,
-                                 wedgeprops=dict(width=size2, edgecolor='k'))
+                                 shadow=self.outer_shadow2,
+                                 wedgeprops=self.outer_wedgeprops2)
 
                 static_chart.text(0.01,
-                                  1.07 + size,
+                                  1.07 + self.outer_radius,
                                   self.outer_labels[x],
                                   horizontalalignment='center',
                                   verticalalignment='center')
 
-                size += 0.3
+                self.outer_radius += self.outer_radius2
 
-
+            static_chart.set_title(dock.dock_settings[4].line_edit_title.text())
             dock.dock_data[1].central_layout.addWidget(static_canvas)
             dock.dock_data[1].central_layout.addWidget(toolbar)
 

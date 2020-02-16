@@ -107,7 +107,7 @@ class Dock:
         self.stacked_widget_settings.setObjectName("stacked_widget_settings")
         self.grid_settings_dock.addWidget(self.stacked_widget_settings)
 
-        """ Page 1 """
+        """ Page 0 """
         self.settings_page_0 = QtWidgets.QWidget()
         self.settings_page_0.setObjectName("settings_page_1")
 
@@ -143,7 +143,7 @@ class Dock:
 
         self.settings_grid_page_2 = QtWidgets.QGridLayout(self.settings_page_2)
         self.settings_grid_page_2.setObjectName("data_grid_page_3")
-        self.settings_grid_page_2.setContentsMargins(0, 0, 0, 0)
+        self.settings_grid_page_2.setContentsMargins(0, 0, 3.5, 0)
 
         dock_settings.append(chartMenu.SettingsPage2(
             self.settings_page_2,
@@ -157,7 +157,7 @@ class Dock:
 
         self.settings_grid_page_3 = QtWidgets.QGridLayout(self.settings_page_3)
         self.settings_grid_page_3.setObjectName("data_grid_page_3")
-        self.settings_grid_page_3.setContentsMargins(0, 0, 0, 0)
+        self.settings_grid_page_3.setContentsMargins(0, 0, 3.5, 0)
 
         dock_settings.append(chartMenu.SettingsPage3(
             self.settings_page_3,
@@ -165,11 +165,26 @@ class Dock:
             self.central_layout))
         dock_settings[3].contain()
 
+        """ Page 4 """
+        self.settings_page_4 = QtWidgets.QWidget()
+        self.settings_page_4.setObjectName("data_page_4")
+
+        self.settings_grid_page_4 = QtWidgets.QGridLayout(self.settings_page_4)
+        self.settings_grid_page_4.setObjectName("data_grid_page_4")
+        self.settings_grid_page_4.setContentsMargins(0, 0, 3.5, 0)
+
+        dock_settings.append(chartMenu.SettingsPage4(
+            self.settings_page_4,
+            self.settings_grid_page_4,
+            self.central_layout))
+        dock_settings[4].contain()
+
         """ Adding and showing """
         self.stacked_widget_settings.addWidget(self.settings_page_0)
         self.stacked_widget_settings.addWidget(self.settings_page_1)
         self.stacked_widget_settings.addWidget(self.settings_page_2)
         self.stacked_widget_settings.addWidget(self.settings_page_3)
+        self.stacked_widget_settings.addWidget(self.settings_page_4)
 
         self.stacked_widget_settings.setCurrentIndex(0)
 
