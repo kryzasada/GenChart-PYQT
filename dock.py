@@ -190,7 +190,6 @@ class Dock:
 
     def left_chart(self):
         self.dock_widget_chart = QtWidgets.QDockWidget(self.main_window_in_class)
-        print(self.dock_widget_chart)
         self.dock_widget_chart.topLevelChanged.connect(lambda:
                                                        dock_title(self.dock_widget_chart,
                                                                   (linecache.getline(
