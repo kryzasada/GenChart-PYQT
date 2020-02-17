@@ -56,7 +56,7 @@ class Chart:
         self.percent_pie_button.clicked.connect(lambda: self.chart_click("percent_pie"))
 
         self.percent_pie_image = QtWidgets.QLabel(self.page_1)
-        self.percent_pie_image.setPixmap(QtGui.QPixmap('Image/Donut_pie_chart.png'))
+        self.percent_pie_image.setPixmap(QtGui.QPixmap('Image/Percentage_donut_pie_chart.png'))
         self.percent_pie_image.setScaledContents(True)
         self.percent_pie_image.setMaximumSize(QtCore.QSize(27, 27))
         self.page_1_layout.setWidget(2, QtWidgets.QFormLayout.LabelRole, self.percent_pie_image)
