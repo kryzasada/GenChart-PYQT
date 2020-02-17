@@ -32,7 +32,7 @@ class Chart:
         self.default_pie_button.clicked.connect(lambda: self.chart_click("basic_pie"))
 
         self.default_pie_image = QtWidgets.QLabel(self.page_1)
-        self.default_pie_image.setPixmap(QtGui.QPixmap('Image/Basic_pie_chart.png'))
+        self.default_pie_image.setPixmap(QtGui.QPixmap('Image/Chart_images/Basic_pie_chart.png'))
         self.default_pie_image.setScaledContents(True)
         self.default_pie_image.setMaximumSize(QtCore.QSize(27, 27))
         self.page_1_layout.setWidget(0, QtWidgets.QFormLayout.LabelRole, self.default_pie_image)
@@ -44,7 +44,7 @@ class Chart:
         self.donut_pie_button.clicked.connect(lambda: self.chart_click("donut_pie"))
 
         self.donut_pie_image = QtWidgets.QLabel(self.page_1)
-        self.donut_pie_image.setPixmap(QtGui.QPixmap('Image/Donut_pie_chart.png'))
+        self.donut_pie_image.setPixmap(QtGui.QPixmap('Image/Chart_images/Donut_pie_chart.png'))
         self.donut_pie_image.setScaledContents(True)
         self.donut_pie_image.setMaximumSize(QtCore.QSize(27, 27))
         self.page_1_layout.setWidget(1, QtWidgets.QFormLayout.LabelRole, self.donut_pie_image)
@@ -56,7 +56,7 @@ class Chart:
         self.percent_pie_button.clicked.connect(lambda: self.chart_click("percent_pie"))
 
         self.percent_pie_image = QtWidgets.QLabel(self.page_1)
-        self.percent_pie_image.setPixmap(QtGui.QPixmap('Image/Percentage_donut_pie_chart.png'))
+        self.percent_pie_image.setPixmap(QtGui.QPixmap('Image/Chart_images/Percentage_donut_pie_chart.png'))
         self.percent_pie_image.setScaledContents(True)
         self.percent_pie_image.setMaximumSize(QtCore.QSize(27, 27))
         self.page_1_layout.setWidget(2, QtWidgets.QFormLayout.LabelRole, self.percent_pie_image)
@@ -74,7 +74,7 @@ class Chart:
         self.default_bar_button.clicked.connect(lambda: self.chart_click("basic_bar"))
 
         self.default_bar_image = QtWidgets.QLabel(self.page_2)
-        self.default_bar_image.setPixmap(QtGui.QPixmap('Image/Basic_bar_chart.png'))
+        self.default_bar_image.setPixmap(QtGui.QPixmap('Image/Chart_images/Basic_bar_chart.png'))
         self.default_bar_image.setScaledContents(True)
         self.default_bar_image.setMaximumSize(QtCore.QSize(28, 27))
         self.page_2_layout.setWidget(0, QtWidgets.QFormLayout.LabelRole, self.default_bar_image)
@@ -92,7 +92,7 @@ class Chart:
         self.default_line_button.clicked.connect(lambda: self.chart_click("basic_line"))
 
         self.default_line_image = QtWidgets.QLabel(self.page_3)
-        self.default_line_image.setPixmap(QtGui.QPixmap('Image/Basic_line_chart.png'))
+        self.default_line_image.setPixmap(QtGui.QPixmap('Image/Chart_images/Basic_line_chart.png'))
         self.default_line_image.setScaledContents(True)
         self.default_line_image.setMaximumSize(QtCore.QSize(28, 27))
         self.page_3_layout.setWidget(0, QtWidgets.QFormLayout.LabelRole, self.default_line_image)
