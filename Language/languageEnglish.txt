@@ -202,7 +202,7 @@ Type of chart
 Pie charts
 Basic
 Donut
-.
+Percentage
 .
 .
 .
@@ -368,9 +368,9 @@ Line size
 Line color
 .
 .
-.
-.
-.
+Size
+Frame color 
+Colors
 .
 .
 .

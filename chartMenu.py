@@ -368,6 +368,8 @@ class DataPage1:
                 self.second_block_Name_check.setEnabled(True)
             elif dock.dock_data[1].chart_type == 'Donut_pie':
                 self.second_block_Name_check.setEnabled(True)
+            elif dock.dock_data[1].chart_type == 'Percent_pie':
+                self.second_block_Name_check.setEnabled(True)
             elif dock.dock_data[1].chart_type == 'Basic_bar':
                 self.second_block_Name_check.setEnabled(False)
             elif dock.dock_data[1].chart_type == 'Basic_line':
@@ -418,6 +420,8 @@ class DataPage1:
             if dock.dock_data[1].chart_type == 'Basic_pie':
                 self.second_block_value_check.setEnabled(False)
             elif dock.dock_data[1].chart_type == 'Donut_pie':
+                self.second_block_value_check.setEnabled(False)
+            elif dock.dock_data[1].chart_type == 'Percent_pie':
                 self.second_block_value_check.setEnabled(False)
             elif dock.dock_data[1].chart_type == 'Basic_bar':
                 self.second_block_value_check.setEnabled(True)
@@ -940,6 +944,115 @@ class SettingsPage3:
         self.layout_settings_layout.setWidget(1, QtWidgets.QFormLayout.FieldRole, self.label_line_size)
 
         self.scroll_settings_layout.setLayout(6, QtWidgets.QFormLayout.LabelRole, self.layout_settings_layout)
+
+
+class SettingsPage4:
+    def __init__(self, *args):
+        self.page = args[0]
+        self.grid_page = args[1]
+        self.central_layout = args[2]
+
+    def contain(self):
+        self.scroll_area = QtWidgets.QScrollArea(self.page)
+
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Ignored, QtWidgets.QSizePolicy.Expanding)
+        sizePolicy.setHeightForWidth(self.scroll_area.sizePolicy().hasHeightForWidth())
+
+        self.scroll_area.setSizePolicy(sizePolicy)
+        self.scroll_area.setWidgetResizable(True)
+
+        self.scroll_area_contents = QtWidgets.QWidget()
+        self.scroll_area_contents.setGeometry(QtCore.QRect(0, 0, 153, 523))
+
+        self.grid_page.addWidget(self.scroll_area, 0, 0, 1, 1)
+        self.scroll_area.setWidget(self.scroll_area_contents)
+
+        self.scroll_settings_layout = QtWidgets.QFormLayout(self.scroll_area_contents)
+
+        self.line_edit_title = QtWidgets.QLineEdit()
+        self.line_edit_title.setMaximumSize(QtCore.QSize(100, 16777215))
+        self.line_edit_title.setClearButtonEnabled(True)
+        self.line_edit_title.setPlaceholderText(linecache.getline("Language/Language.txt", 360)[:-1])
+        self.scroll_settings_layout.setWidget(0, QtWidgets.QFormLayout.LabelRole, self.line_edit_title)
+
+        self.check_box1 = QtWidgets.QCheckBox()
+        self.check_box1.setText(linecache.getline("Language/Language.txt", 329)[:-1])
+        self.scroll_settings_layout.setWidget(1, QtWidgets.QFormLayout.LabelRole, self.check_box1)
+
+        self.check_box2 = QtWidgets.QCheckBox()
+        self.check_box2.setText(linecache.getline("Language/Language.txt", 331)[:-1])
+        self.check_box2.setTristate(True)
+        self.check_box2.stateChanged.connect(self.frame_display)
+        self.scroll_settings_layout.setWidget(2, QtWidgets.QFormLayout.LabelRole, self.check_box2)
+
+        self.line_1 = QtWidgets.QFrame()
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy.setHorizontalStretch(110)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.line_1.sizePolicy().hasHeightForWidth())
+        self.line_1.setSizePolicy(sizePolicy)
+        self.line_1.setMinimumSize(QtCore.QSize(100, 0))
+        self.line_1.setFrameShape(QtWidgets.QFrame.HLine)
+        self.line_1.setFrameShadow(QtWidgets.QFrame.Sunken)
+        self.scroll_settings_layout.setWidget(3, QtWidgets.QFormLayout.LabelRole, self.line_1)
+
+        self.layout_settings_layout = QtWidgets.QFormLayout()
+
+        self.spin_box_size = QtWidgets.QSpinBox()
+        self.spin_box_size.setMinimum(2)
+        self.spin_box_size.setMaximum(5)
+        self.spin_box_size.setValue(3)
+        self.spin_box_size.setMinimumSize(QtCore.QSize(40, 20))
+        self.spin_box_size.setMaximumSize(QtCore.QSize(40, 20))
+        self.layout_settings_layout.setWidget(0, QtWidgets.QFormLayout.LabelRole, self.spin_box_size)
+
+        self.label_line_size = QtWidgets.QLabel()
+        self.label_line_size.setText(linecache.getline("Language/Language.txt", 371)[:-1])
+        self.layout_settings_layout.setWidget(0, QtWidgets.QFormLayout.FieldRole, self.label_line_size)
+
+        self.button_color1 = QtWidgets.QPushButton()
+        self.button_color1.setMinimumSize(QtCore.QSize(40, 20))
+        self.button_color1.setMaximumSize(QtCore.QSize(40, 20))
+        self.button_color1.setEnabled(False)
+        self.button_color1.setStyleSheet("background-color: rgba(34,34,34, 70); width: 0px;")
+        self.button_color1.clicked.connect(lambda: button_color(self.button_color1))
+        self.layout_settings_layout.setWidget(1, QtWidgets.QFormLayout.LabelRole, self.button_color1)
+
+        self.label_line_color = QtWidgets.QLabel()
+        self.label_line_color.setText(linecache.getline("Language/Language.txt", 372)[:-1])
+        self.label_line_color.setEnabled(False)
+        self.layout_settings_layout.setWidget(1, QtWidgets.QFormLayout.FieldRole, self.label_line_color)
+
+        self.button_color2 = QtWidgets.QPushButton()
+        self.button_color2.setMinimumSize(QtCore.QSize(40, 20))
+        self.button_color2.setMaximumSize(QtCore.QSize(40, 20))
+        self.button_color2.setStyleSheet("background-color: #5cdb6f; width: 0px;")
+        self.button_color2.clicked.connect(lambda: button_color(self.button_color2))
+        self.layout_settings_layout.setWidget(2, QtWidgets.QFormLayout.LabelRole, self.button_color2)
+
+        self.button_color3 = QtWidgets.QPushButton()
+        self.button_color3.setMinimumSize(QtCore.QSize(40, 20))
+        self.button_color3.setMaximumSize(QtCore.QSize(40, 20))
+        self.button_color3.setStyleSheet("background-color: #d5f6da; width: 0px;")
+        self.button_color3.clicked.connect(lambda: button_color(self.button_color3))
+        self.layout_settings_layout.setWidget(3, QtWidgets.QFormLayout.LabelRole, self.button_color3)
+
+        self.label_color = QtWidgets.QLabel()
+        self.label_color.setText(linecache.getline("Language/Language.txt", 373)[:-1])
+        self.layout_settings_layout.setWidget(2, QtWidgets.QFormLayout.FieldRole, self.label_color)
+
+        self.scroll_settings_layout.setLayout(4, QtWidgets.QFormLayout.LabelRole, self.layout_settings_layout)
+
+    def frame_display(self):
+        if self.check_box2.checkState():
+            self.button_color1.setEnabled(True)
+            self.button_color1.setStyleSheet("background-color: #222222; width: 0px;")
+            self.label_line_color.setEnabled(True)
+        else:
+            self.button_color1.setEnabled(False)
+            self.button_color1.setStyleSheet("background-color: rgba(34,34,34, 70); width: 0px;")
+            self.label_line_color.setEnabled(False)
+
 
 def button_color(object):
     QtWidgets.QColorDialog.setStandardColor(0, QtGui.QColor("#000001"))

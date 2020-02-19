@@ -202,7 +202,7 @@ Lista wygresów
 Wykres kołowy
 Podstawowy
 Pierścieniowy
-.
+Procentowo
 .
 .
 .
@@ -368,9 +368,9 @@ Rozmiar lini
 Color lini
 .
 .
-.
-.
-.
+Rozmiar
+Kolor krawędzi
+Kolory
 .
 .
 .
