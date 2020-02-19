@@ -945,6 +945,7 @@ class SettingsPage3:
 
         self.scroll_settings_layout.setLayout(6, QtWidgets.QFormLayout.LabelRole, self.layout_settings_layout)
 
+
 class SettingsPage4:
     def __init__(self, *args):
         self.page = args[0]
@@ -1006,7 +1007,7 @@ class SettingsPage4:
         self.layout_settings_layout.setWidget(0, QtWidgets.QFormLayout.LabelRole, self.spin_box_size)
 
         self.label_line_size = QtWidgets.QLabel()
-        self.label_line_size.setText(" Size ")
+        self.label_line_size.setText(linecache.getline("Language/Language.txt", 371)[:-1])
         self.layout_settings_layout.setWidget(0, QtWidgets.QFormLayout.FieldRole, self.label_line_size)
 
         self.button_color1 = QtWidgets.QPushButton()
@@ -1018,7 +1019,7 @@ class SettingsPage4:
         self.layout_settings_layout.setWidget(1, QtWidgets.QFormLayout.LabelRole, self.button_color1)
 
         self.label_line_color = QtWidgets.QLabel()
-        self.label_line_color.setText(" Frame color ")
+        self.label_line_color.setText(linecache.getline("Language/Language.txt", 372)[:-1])
         self.label_line_color.setEnabled(False)
         self.layout_settings_layout.setWidget(1, QtWidgets.QFormLayout.FieldRole, self.label_line_color)
 
@@ -1037,7 +1038,7 @@ class SettingsPage4:
         self.layout_settings_layout.setWidget(3, QtWidgets.QFormLayout.LabelRole, self.button_color3)
 
         self.label_color = QtWidgets.QLabel()
-        self.label_color.setText(" Colors ")
+        self.label_color.setText(linecache.getline("Language/Language.txt", 373)[:-1])
         self.layout_settings_layout.setWidget(2, QtWidgets.QFormLayout.FieldRole, self.label_color)
 
         self.scroll_settings_layout.setLayout(4, QtWidgets.QFormLayout.LabelRole, self.layout_settings_layout)

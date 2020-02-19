@@ -50,7 +50,9 @@ class Chart:
         self.page_1_layout.setWidget(1, QtWidgets.QFormLayout.LabelRole, self.donut_pie_image)
 
         self.percent_pie_button = QtWidgets.QPushButton(self.page_1)
-        self.percent_pie_button.setText("Percentage\ndonut")
+        self.percent_pie_button.setText(linecache.getline("Language/Language.txt", 205)[:-1] +
+                                        "\n" +
+                                        linecache.getline("Language/Language.txt", 204)[:-1].lower())
         self.percent_pie_button.setMaximumSize(QtCore.QSize(110, 46))
         self.page_1_layout.setWidget(2, QtWidgets.QFormLayout.FieldRole, self.percent_pie_button)
         self.percent_pie_button.clicked.connect(lambda: self.chart_click("percent_pie"))
