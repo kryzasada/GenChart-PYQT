@@ -19,7 +19,7 @@ Chart generating program, written in PyQt5
 
 ## Download
 1. Download file .exe:  
-   * Download with file hosting [MEGA.nz](https://mega.nz/).
+   * Download with file hosting [MEGA.nz](https://mega.nz/#!XIdjTKZI!V6tTJIFD3hLTvf2wc8DvtjHkiccwtwofdCOIY3fhJUQ).
 <br>
 
 2. Download source code from [Releases tab](https://github.com/kryzasada/GenChart-PYQT/releases).
@@ -37,7 +37,7 @@ Chart generating program, written in PyQt5
   
 ## Screenshot  
  <img src="https://github.com/kryzasada/GenChart-PYQT/blob/master/Image/README/Program_preview.gif" 
-      alt="GenChart 'PYQT" align="center">
+      alt="GenChart'PYQT Program preview" align="middle">
 
   
 ## Future
@@ -56,3 +56,4 @@ Chart generating program, written in PyQt5
   
  
 ## License 
+GPL-3.0
