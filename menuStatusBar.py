@@ -108,6 +108,6 @@ class StatusBar:
         self.main_window_in_class.setStatusBar(self.status_bar)
 
         version = QLabel(self.main_window_in_class)
-        version.setText("   v. 0.4.0")
+        version.setText("   v. 1.0.0")
 
         self.status_bar.addWidget(version)
