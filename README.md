@@ -18,8 +18,12 @@ Chart generating program, written in PyQt5
 
 
 ## Download
-1. Download file .exe:  
-   * Download with file hosting [MEGA.nz](https://mega.nz/#!XIdjTKZI!V6tTJIFD3hLTvf2wc8DvtjHkiccwtwofdCOIY3fhJUQ).
+1. Download file .exe:
+      
+   * Download with file hosting [MEGA.nz](https://mega.nz/#!Xd1EnA7A!F_F0z8tTjo8p35gEZzcHz5A5VosktVr5N8hYMGuErVs).
+   ##### Run:
+   * Unzip file.
+   * Open ``` !GenChart.exe ```
 <br>
 
 2. Download source code from [Releases tab](https://github.com/kryzasada/GenChart-PYQT/releases).
