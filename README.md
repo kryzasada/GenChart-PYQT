@@ -1,4 +1,4 @@
- <img src="https://github.com/kryzasada/Chart/blob/master/Image/Icons/full-logo.png" 
+  <img src="https://github.com/kryzasada/Chart/blob/master/Image/Icons/full-logo.png" 
       alt="GenChart 'PYQT" height="15%" width="15%" align="right">
      <br>
      
@@ -9,7 +9,7 @@
   <img alt="GitHub tag (latest by date)" src="https://img.shields.io/github/v/tag/kryzasada/GenChart-PYQT?label=version">
 </div> 
 
-<br>
+<br> 
 <br>
 
 
@@ -17,16 +17,47 @@
 Chart generating program, written in PyQt5 
 
 
-## Requirements
-* &#x2755; This program doesn't have file .exe &#x2755;
-* [Pythom 3.7.5+](https://www.python.org/downloads/)
-* [PyQt5](https://pypi.org/project/PyQt5/)
-* [matplotlib](https://matplotlib.org/downloads.html)
+## Download
+1. Download file .exe:
+      
+   * Download with file hosting [MEGA.nz](https://mega.nz/#!Xd1EnA7A!F_F0z8tTjo8p35gEZzcHz5A5VosktVr5N8hYMGuErVs).
+   ##### Run:
+   * Unzip file.
+   * Open ``` !GenChart.exe ```
+<br>
 
-## TODO
-|  ![Urgent](https://github.com/kryzasada/ReadMe-Photo/blob/master/Chart/TODO-table1.png) | ![Important](https://github.com/kryzasada/ReadMe-Photo/blob/master/Chart/TODO-table2.png) | ![Not urgent](https://github.com/kryzasada/ReadMe-Photo/blob/master/Chart/TODO-table3.png) |
+2. Download source code from [Releases tab](https://github.com/kryzasada/GenChart-PYQT/releases).
+   ##### Run:
+   Open cmd at location of this downloaded source code and use:  
+   ```
+   python main.py
+   ```
+   ##### Requirements:
+   * [Python 3.7.5+](https://www.python.org/downloads/)
+   * [PyQt5](https://pypi.org/project/PyQt5/)
+   * [matplotlib](https://matplotlib.org/downloads.html)  
+   
+  
+  
+## Screenshot  
+ <img src="https://github.com/kryzasada/GenChart-PYQT/blob/master/Image/README/Program_preview.gif" 
+      alt="GenChart'PYQT Program preview" align="middle">
+
+  
+## Future
+|  ![Urgent](https://github.com/kryzasada/GenChart-PYQT/blob/master/Image/README/TODO-Urgent.png) | ![Important](https://github.com/kryzasada/GenChart-PYQT/blob/master/Image/README/TODO-Important.png) | ![Not urgent](https://github.com/kryzasada/GenChart-PYQT/blob/master/Image/README/TODO-NotUrgent%20.png) |
 | :------------: | :------------: | :------------: |
-| Visibility of charts list at startup | More chart |  New menu in settings dock |
-| &#x2796; | &#x2796; | More languages |
-| &#x2796; | &#x2796; | Interaction with canvas |
-
+| &#x2796; | More chart |  New menu in settings dock |
+| &#x2796; | Load data from file  | More languages |
+| &#x2796; | &#x2796; | Interaction with canvas |  
+  
+  
+  
+## How you can help
+* Report problems in [Issues tab](https://github.com/kryzasada/GenChart-PYQT/issues).
+* Translate this program on more languages.  
+  
+  
+ 
+## License 
+GPL-3.0
