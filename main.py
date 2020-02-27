@@ -65,6 +65,7 @@ finally:
     MainWindow3.hide()
 
     window2.menu_bar.settings.triggered.connect(lambda: MainWindow3.show())
+    window2.menu_bar.settings.triggered.connect(lambda: window3.starting_settings())
     window3.button_cancel.clicked.connect(lambda: MainWindow3.hide())
     window3.button_save.clicked.connect(lambda: MainWindow3.hide())
 
