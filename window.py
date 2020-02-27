@@ -578,16 +578,27 @@ class UserSetting(QtWidgets.QWidget):
             self.title_label.setText(linecache.getline("Language/Language.txt", 524)[:-1])
 
     def default_settings(self):
-        self.comboBox_language_p1.setCurrentText("English")
-        self.comboBox_font_p1.setCurrentFont(QtGui.QFont("Arial"))
-        self.comboBox_resolution_p1.setCurrentText("800 x 600")
-        self.comboBox_theme_p1.setCurrentText("Default")
-        self.comboBox_dock_position_p2.setCurrentIndex(2)
-        self.check_stack_docks_p2.setCheckState(0)
-        self.comboBox_dock_position_p3.setCurrentIndex(0)
-        self.check_stack_docks_p3.setCheckState(0)
-        self.comboBox_dock_position_p4.setCurrentIndex(0)
-        self.check_stack_docks_p4.setCheckState(0)
+        def default_settings_button(button):
+            if button.text() == '&Yes':
+                self.comboBox_language_p1.setCurrentText("English")
+                self.comboBox_font_p1.setCurrentFont(QtGui.QFont("Arial"))
+                self.comboBox_resolution_p1.setCurrentText("800 x 600")
+                self.comboBox_theme_p1.setCurrentText("Default")
+                self.comboBox_dock_position_p2.setCurrentIndex(2)
+                self.check_stack_docks_p2.setCheckState(0)
+                self.comboBox_dock_position_p3.setCurrentIndex(0)
+                self.check_stack_docks_p3.setCheckState(0)
+                self.comboBox_dock_position_p4.setCurrentIndex(0)
+                self.check_stack_docks_p4.setCheckState(0)
+
+        information_message = QtWidgets.QMessageBox()
+        information_message.setWindowTitle(linecache.getline("Language/Language.txt", 565)[:-1])
+        information_message.setText(linecache.getline("Language/Language.txt", 569)[:-1])
+        information_message.setIcon(QtWidgets.QMessageBox.Warning)
+        information_message.setStandardButtons(QtWidgets.QMessageBox.Yes | QtWidgets.QMessageBox.No)
+        information_message.setDefaultButton(QtWidgets.QMessageBox.No)
+        information_message.buttonClicked.connect(default_settings_button)
+        information_message.exec_()
 
     def starting_settings(self):
         self.comboBox_language_p1.setCurrentText(linecache.getline("settings.txt", 4)
@@ -617,7 +628,7 @@ class UserSetting(QtWidgets.QWidget):
 
         self.comboBox_dock_position_p4.setCurrentIndex(int(linecache.getline("settings.txt", 13)
                                                            [linecache.getline("settings.txt", 13).find("=") + 2:-1]))
-        if linecache.getline("settings.txt", 14)[linecache.getline("settings.txt",14).find("=") + 2: -1] == "2":
+        if linecache.getline("settings.txt", 14)[linecache.getline("settings.txt", 14).find("=") + 2: -1] == "2":
             self.check_stack_docks_p4.setCheckState(2)
         else:
             self.check_stack_docks_p4.setCheckState(False)
