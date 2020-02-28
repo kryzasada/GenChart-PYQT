@@ -3,6 +3,7 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 from matplotlib.backends.backend_qt5agg import NavigationToolbar2QT, FigureCanvas
+from matplotlib.backends.backend_qt5 import SubplotToolQt
 from matplotlib.figure import Figure, SubplotParams
 import linecache
 import math
@@ -25,9 +26,17 @@ def tool_bar():
         if hspace is not None:
             self.subplotpars.hspace = hspace
 
+    def alternative_configure_subplots(self):
+        dia = SubplotToolQt(figure.canvas.figure, figure.canvas.parent())
+        dia.setWindowTitle("Chart configure")
+        dia.exec_()
+
     figure = Figure()
     figure.subplotpars.update = alternative_update.__get__(figure, SubplotParams)
     static_canvas = FigureCanvas(figure)
+
+    NavigationToolbar2QT.configure_subplots = alternative_configure_subplots.__get__(NavigationToolbar2QT,
+                                                                                     NavigationToolbar2QT)
 
     NavigationToolbar2QT.toolitems = (('Home', 'Reset original view', 'home', 'home'),
                                       ('Back', 'Back to previous view', 'back', 'back'),
