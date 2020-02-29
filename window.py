@@ -306,6 +306,7 @@ class UserSetting(QtWidgets.QWidget):
         main_window.setObjectName("main_window")
         main_window.resize(551, 321)
         main_window.setWindowTitle(linecache.getline("Language/Language.txt", 502)[:-1])
+        main_window.setWindowIcon(QtGui.QIcon("Image/Other/user_settings.png"))
 
         self.treeWidget = QtWidgets.QTreeWidget(main_window)
         self.treeWidget.setHeaderLabel("GenChart")
