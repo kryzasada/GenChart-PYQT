@@ -29,6 +29,7 @@ def tool_bar():
     def alternative_configure_subplots(self):
         dia = SubplotToolQt(figure.canvas.figure, figure.canvas.parent())
         dia.setWindowTitle("Chart configure")
+        dia.setWindowIcon(QtGui.QIcon("Image/Other/chart_configure.png"))
         dia.exec_()
 
     figure = Figure()
