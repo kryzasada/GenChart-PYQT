@@ -20,7 +20,7 @@ Chart generating program, written in PyQt5
 ## Download
 1. Download file .exe:
       
-   * Open directory in file hosting [MEGA.nz](https://mega.nz/#F!vFMWEKjB!yx-2_IV7YcWzzVfS3VIsyg).
+   * Open directory in file hosting MEGA.nz [https://mega.nz/#F!vFMWEKjB!yx-2_IV7YcWzzVfS3VIsyg](https://mega.nz/#F!vFMWEKjB!yx-2_IV7YcWzzVfS3VIsyg).
    * Download latest version.
    ##### Run:
    * Unzip file.
