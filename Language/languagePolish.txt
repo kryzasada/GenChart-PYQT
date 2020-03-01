@@ -566,7 +566,7 @@ Ostrzeżenie
 Musisz ponownie uruchomić program, aby zastosować te zmiany
 .
 .
-.
+Czy na pewno chcesz przywrócić wszystkie ustawienia do wartości domyślnych?
 .
 .
 .

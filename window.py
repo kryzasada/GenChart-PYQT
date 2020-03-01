@@ -306,6 +306,7 @@ class UserSetting(QtWidgets.QWidget):
         main_window.setObjectName("main_window")
         main_window.resize(551, 321)
         main_window.setWindowTitle(linecache.getline("Language/Language.txt", 502)[:-1])
+        main_window.setWindowIcon(QtGui.QIcon("Image/Other/user_settings.png"))
 
         self.treeWidget = QtWidgets.QTreeWidget(main_window)
         self.treeWidget.setHeaderLabel("GenChart")
@@ -376,8 +377,7 @@ class UserSetting(QtWidgets.QWidget):
         self.comboBox_language_p1.setObjectName("combo_box_language")
         self.comboBox_language_p1.addItem("English")
         self.comboBox_language_p1.addItem("Polski")
-        self.comboBox_language_p1.setCurrentText(linecache.getline("settings.txt", 4)
-                                              [linecache.getline("settings.txt", 4).find("=") + 2: -1])
+        self.comboBox_language_p1.currentTextChanged.connect(lambda: self.button_save.setEnabled(True))
 
         self.label_font_p1 = QtWidgets.QLabel(self.page_1)
         self.label_font_p1.setGeometry(QtCore.QRect(20, 40, 81, 22))
@@ -388,8 +388,7 @@ class UserSetting(QtWidgets.QWidget):
 
         self.comboBox_font_p1 = QtWidgets.QFontComboBox(self.page_1)
         self.comboBox_font_p1.setGeometry(QtCore.QRect(120, 40, 141, 22))
-        self.comboBox_font_p1.setCurrentFont(QtGui.QFont(linecache.getline("settings.txt", 7)
-                                                         [linecache.getline("settings.txt", 7).find("=") + 2: -1]))
+        self.comboBox_font_p1.currentFontChanged.connect(lambda: self.button_save.setEnabled(True))
 
         self.label_resolution_p1 = QtWidgets.QLabel(self.page_1)
         self.label_resolution_p1.setGeometry(QtCore.QRect(20, 70, 100, 22))
@@ -401,9 +400,7 @@ class UserSetting(QtWidgets.QWidget):
         self.comboBox_resolution_p1 = QtWidgets.QComboBox(self.page_1)
         self.comboBox_resolution_p1.setGeometry(QtCore.QRect(120, 70, 141, 22))
         self.comboBox_resolution_p1.addItem("800 x 600")
-        if (linecache.getline("settings.txt", 5) == 'Resolution1 = 800\n'
-                and linecache.getline("settings.txt", 6) == 'Resolution2 = 600\n'):
-            self.comboBox_resolution_p1.setCurrentText("800 x 600")
+        self.comboBox_resolution_p1.currentTextChanged.connect(lambda: self.button_save.setEnabled(True))
 
         self.label_theme_p1 = QtWidgets.QLabel(self.page_1)
         self.label_theme_p1.setGeometry(QtCore.QRect(20, 100, 81, 22))
@@ -419,8 +416,7 @@ class UserSetting(QtWidgets.QWidget):
         self.comboBox_theme_p1.addItem("Ubuntu")
         self.comboBox_theme_p1.addItem("Eclippy")
         self.comboBox_theme_p1.addItem("Combinear")
-        self.comboBox_theme_p1.setCurrentText(linecache.getline("settings.txt", 8)
-                                           [linecache.getline("settings.txt", 8).find("=") + 2: -1])
+        self.comboBox_theme_p1.currentTextChanged.connect(lambda: self.button_save.setEnabled(True))
 
         """ Stacked widget page 2 """
         self.page_2 = QtWidgets.QWidget()
@@ -441,8 +437,7 @@ class UserSetting(QtWidgets.QWidget):
         self.comboBox_dock_position_p2.addItem(linecache.getline("Language/Language.txt", 546)[:-1])
         self.comboBox_dock_position_p2.addItem(linecache.getline("Language/Language.txt", 547)[:-1])
         self.comboBox_dock_position_p2.addItem(linecache.getline("Language/Language.txt", 548)[:-1])
-        self.comboBox_dock_position_p2.setCurrentIndex(int(linecache.getline("settings.txt", 9)
-                                                           [linecache.getline("settings.txt", 9).find("=") + 2: -1]))
+        self.comboBox_dock_position_p2.currentTextChanged.connect(lambda: self.button_save.setEnabled(True))
 
         self.label_stack_docks_p2 = QtWidgets.QLabel(self.page_2)
         self.label_stack_docks_p2.setGeometry(QtCore.QRect(20, 40, 120, 22))
@@ -454,10 +449,7 @@ class UserSetting(QtWidgets.QWidget):
         self.check_stack_docks_p2 = QtWidgets.QCheckBox(self.page_2)
         self.check_stack_docks_p2.setGeometry(QtCore.QRect(130, 40, 21, 24))
         self.check_stack_docks_p2.setText("")
-        if linecache.getline("settings.txt", 10)[linecache.getline("settings.txt", 10).find("=") + 2: -1] == "2":
-            self.check_stack_docks_p2.setCheckState(2)
-        else:
-            self.check_stack_docks_p2.setCheckState(False)
+        self.check_stack_docks_p2.stateChanged.connect(lambda: self.button_save.setEnabled(True))
 
         """ Stacked widget page 3 """
         self.page_3 = QtWidgets.QWidget()
@@ -478,9 +470,7 @@ class UserSetting(QtWidgets.QWidget):
         self.comboBox_dock_position_p3.addItem(linecache.getline("Language/Language.txt", 546)[:-1])
         self.comboBox_dock_position_p3.addItem(linecache.getline("Language/Language.txt", 547)[:-1])
         self.comboBox_dock_position_p3.addItem(linecache.getline("Language/Language.txt", 548)[:-1])
-        self.comboBox_dock_position_p3.setCurrentIndex(int(linecache.getline("settings.txt", 11)
-                                                           [linecache.getline("settings.txt", 11).find("=") + 2:-1]))
-
+        self.comboBox_dock_position_p3.currentTextChanged.connect(lambda: self.button_save.setEnabled(True))
         self.label_stack_docks_p3 = QtWidgets.QLabel(self.page_3)
         self.label_stack_docks_p3.setGeometry(QtCore.QRect(20, 40, 120, 22))
         font = QtGui.QFont()
@@ -491,10 +481,7 @@ class UserSetting(QtWidgets.QWidget):
         self.check_stack_docks_p3 = QtWidgets.QCheckBox(self.page_3)
         self.check_stack_docks_p3.setGeometry(QtCore.QRect(130, 40, 21, 24))
         self.check_stack_docks_p3.setText("")
-        if linecache.getline("settings.txt", 12)[linecache.getline("settings.txt", 12).find("=") + 2: -1] == "2":
-            self.check_stack_docks_p3.setCheckState(2)
-        else:
-            self.check_stack_docks_p3.setCheckState(False)
+        self.check_stack_docks_p3.stateChanged.connect(lambda: self.button_save.setEnabled(True))
 
         """ Stacked widget page 4 """
         self.page_4 = QtWidgets.QWidget()
@@ -515,8 +502,7 @@ class UserSetting(QtWidgets.QWidget):
         self.comboBox_dock_position_p4.addItem(linecache.getline("Language/Language.txt", 546)[:-1])
         self.comboBox_dock_position_p4.addItem(linecache.getline("Language/Language.txt", 547)[:-1])
         self.comboBox_dock_position_p4.addItem(linecache.getline("Language/Language.txt", 548)[:-1])
-        self.comboBox_dock_position_p4.setCurrentIndex(int(linecache.getline("settings.txt", 13)
-                                                           [linecache.getline("settings.txt", 13).find("=") + 2:-1]))
+        self.comboBox_dock_position_p4.currentTextChanged.connect(lambda: self.button_save.setEnabled(True))
 
         self.label_stack_docks_p4 = QtWidgets.QLabel(self.page_4)
         self.label_stack_docks_p4.setGeometry(QtCore.QRect(20, 40, 120, 22))
@@ -528,10 +514,7 @@ class UserSetting(QtWidgets.QWidget):
         self.check_stack_docks_p4 = QtWidgets.QCheckBox(self.page_4)
         self.check_stack_docks_p4.setGeometry(QtCore.QRect(130, 40, 21, 24))
         self.check_stack_docks_p4.setText("")
-        if linecache.getline("settings.txt", 14)[linecache.getline("settings.txt",14).find("=") + 2: -1] == "2":
-            self.check_stack_docks_p4.setCheckState(2)
-        else:
-            self.check_stack_docks_p4.setCheckState(False)
+        self.check_stack_docks_p4.stateChanged.connect(lambda: self.button_save.setEnabled(True))
 
         """ Stacked widget page 5 """
         self.page_5 = QtWidgets.QWidget()
@@ -596,16 +579,62 @@ class UserSetting(QtWidgets.QWidget):
             self.title_label.setText(linecache.getline("Language/Language.txt", 524)[:-1])
 
     def default_settings(self):
-        self.comboBox_language_p1.setCurrentText("English")
-        self.comboBox_font_p1.setCurrentFont(QtGui.QFont("Arial"))
-        self.comboBox_resolution_p1.setCurrentText("800 x 600")
-        self.comboBox_theme_p1.setCurrentText("Default")
-        self.comboBox_dock_position_p2.setCurrentIndex(2)
-        self.check_stack_docks_p2.setCheckState(0)
-        self.comboBox_dock_position_p3.setCurrentIndex(0)
-        self.check_stack_docks_p3.setCheckState(0)
-        self.comboBox_dock_position_p4.setCurrentIndex(0)
-        self.check_stack_docks_p4.setCheckState(0)
+        def default_settings_button(button):
+            if button.text() == '&Yes':
+                self.comboBox_language_p1.setCurrentText("English")
+                self.comboBox_font_p1.setCurrentFont(QtGui.QFont("Arial"))
+                self.comboBox_resolution_p1.setCurrentText("800 x 600")
+                self.comboBox_theme_p1.setCurrentText("Default")
+                self.comboBox_dock_position_p2.setCurrentIndex(2)
+                self.check_stack_docks_p2.setCheckState(0)
+                self.comboBox_dock_position_p3.setCurrentIndex(0)
+                self.check_stack_docks_p3.setCheckState(0)
+                self.comboBox_dock_position_p4.setCurrentIndex(0)
+                self.check_stack_docks_p4.setCheckState(0)
+
+        information_message = QtWidgets.QMessageBox()
+        information_message.setWindowTitle(linecache.getline("Language/Language.txt", 565)[:-1])
+        information_message.setText(linecache.getline("Language/Language.txt", 569)[:-1])
+        information_message.setIcon(QtWidgets.QMessageBox.Warning)
+        information_message.setStandardButtons(QtWidgets.QMessageBox.Yes | QtWidgets.QMessageBox.No)
+        information_message.setDefaultButton(QtWidgets.QMessageBox.No)
+        information_message.buttonClicked.connect(default_settings_button)
+        information_message.exec_()
+
+    def starting_settings(self):
+        self.comboBox_language_p1.setCurrentText(linecache.getline("settings.txt", 4)
+                                                 [linecache.getline("settings.txt", 4).find("=") + 2: -1])
+        self.comboBox_font_p1.setCurrentFont(QtGui.QFont(linecache.getline("settings.txt", 7)
+                                                         [linecache.getline("settings.txt", 7).find("=") + 2: -1]))
+        if (linecache.getline("settings.txt", 5) == 'Resolution1 = 800\n'
+                and linecache.getline("settings.txt", 6) == 'Resolution2 = 600\n'):
+            self.comboBox_resolution_p1.setCurrentText("800 x 600")
+
+        self.comboBox_theme_p1.setCurrentText(linecache.getline("settings.txt", 8)
+                                              [linecache.getline("settings.txt", 8).find("=") + 2: -1])
+
+        self.comboBox_dock_position_p2.setCurrentIndex(int(linecache.getline("settings.txt", 9)
+                                                           [linecache.getline("settings.txt", 9).find("=") + 2: -1]))
+        if linecache.getline("settings.txt", 10)[linecache.getline("settings.txt", 10).find("=") + 2: -1] == "2":
+            self.check_stack_docks_p2.setCheckState(2)
+        else:
+            self.check_stack_docks_p2.setCheckState(False)
+
+        self.comboBox_dock_position_p3.setCurrentIndex(int(linecache.getline("settings.txt", 11)
+                                                           [linecache.getline("settings.txt", 11).find("=") + 2:-1]))
+        if linecache.getline("settings.txt", 12)[linecache.getline("settings.txt", 12).find("=") + 2: -1] == "2":
+            self.check_stack_docks_p3.setCheckState(2)
+        else:
+            self.check_stack_docks_p3.setCheckState(False)
+
+        self.comboBox_dock_position_p4.setCurrentIndex(int(linecache.getline("settings.txt", 13)
+                                                           [linecache.getline("settings.txt", 13).find("=") + 2:-1]))
+        if linecache.getline("settings.txt", 14)[linecache.getline("settings.txt", 14).find("=") + 2: -1] == "2":
+            self.check_stack_docks_p4.setCheckState(2)
+        else:
+            self.check_stack_docks_p4.setCheckState(False)
+
+        self.button_save.setEnabled(False)
 
     def save_settings(self):
         information_message = QtWidgets.QMessageBox()

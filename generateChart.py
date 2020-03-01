@@ -3,7 +3,8 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 from matplotlib.backends.backend_qt5agg import NavigationToolbar2QT, FigureCanvas
-from matplotlib.figure import Figure
+from matplotlib.backends.backend_qt5 import SubplotToolQt
+from matplotlib.figure import Figure, SubplotParams
 import linecache
 import math
 
@@ -11,22 +12,47 @@ import dock
 
 
 def tool_bar():
-        static_canvas = FigureCanvas(Figure())
+    def alternative_update(self, left=None, bottom=None, right=None, top=None, wspace=None, hspace=None):
+        if left is not None:
+            self.subplotpars.left = left
+        if right is not None:
+            self.subplotpars.right = right
+        if bottom is not None:
+            self.subplotpars.bottom = bottom
+        if top is not None:
+            self.subplotpars.top = top
+        if wspace is not None:
+            self.subplotpars.wspace = wspace
+        if hspace is not None:
+            self.subplotpars.hspace = hspace
 
-        NavigationToolbar2QT.toolitems = (('Home', 'Reset original view', 'home', 'home'),
-                                          ('Back', 'Back to previous view', 'back', 'back'),
-                                          ('Forward', 'Forward to next view', 'forward', 'forward'),
-                                          (None, None, None, None),
-                                          ('Pan', 'Pan axes with left mouse, zoom with right', 'move', 'pan'),
-                                          ('Zoom', 'Zoom to rectangle', 'zoom_to_rect', 'zoom'),
-                                          ('', 'Configure subplots', 'subplots', 'configure_subplots'),
-                                          (None, None, None, None),
-                                          (None, None, None, None),
-                                          ('Save', 'Save the figure', 'filesave', 'save_figure'),
-        )
-        toolbar = NavigationToolbar2QT(static_canvas, static_canvas)
+    def alternative_configure_subplots(self):
+        dia = SubplotToolQt(figure.canvas.figure, figure.canvas.parent())
+        dia.setWindowTitle("Chart configure")
+        dia.setWindowIcon(QtGui.QIcon("Image/Other/chart_configure.png"))
+        dia.exec_()
 
-        return static_canvas, toolbar
+    figure = Figure()
+    figure.subplotpars.update = alternative_update.__get__(figure, SubplotParams)
+    static_canvas = FigureCanvas(figure)
+
+    NavigationToolbar2QT.configure_subplots = alternative_configure_subplots.__get__(NavigationToolbar2QT,
+                                                                                     NavigationToolbar2QT)
+
+    NavigationToolbar2QT.toolitems = (('Home', 'Reset original view', 'home', 'home'),
+                                      ('Back', 'Back to previous view', 'back', 'back'),
+                                      ('Forward', 'Forward to next view', 'forward', 'forward'),
+                                      (None, None, None, None),
+                                      ('Pan', 'Pan axes with left mouse, zoom with right', 'move', 'pan'),
+                                      ('Zoom', 'Zoom to rectangle', 'zoom_to_rect', 'zoom'),
+                                      ('', 'Configure subplots', 'subplots', 'configure_subplots'),
+                                      (None, None, None, None),
+                                      (None, None, None, None),
+                                      ('Save', 'Save the figure', 'filesave', 'save_figure'),
+                                      )
+    toolbar = NavigationToolbar2QT(static_canvas, static_canvas)
+
+    return static_canvas, toolbar
 
 
 class PieChart:
@@ -156,30 +182,33 @@ class PieChart:
                 raise ValueError("VALUE = 0")
 
             static_canvas, toolbar = tool_bar()
+
             static_chart = static_canvas.figure.subplots()
+            static_chart.format_coord = (lambda x, y: "")
+
             static_chart.pie(
-                             self.outer_sizes,
-                             labels=self.outer_labels,
-                             wedgeprops=self.outer_wedgeprops1,
-                             colors=self.outer_colors1,
-                             explode=self.outer_explode,
-                             autopct=self.outer_autopct,
-                             shadow=self.outer_shadow1,
-                             startangle=90,
-                             rotatelabels=self.outer_rotatelabels,
-                             textprops=self.outer_textprops)
+                self.outer_sizes,
+                labels=self.outer_labels,
+                wedgeprops=self.outer_wedgeprops1,
+                colors=self.outer_colors1,
+                explode=self.outer_explode,
+                autopct=self.outer_autopct,
+                shadow=self.outer_shadow1,
+                startangle=90,
+                rotatelabels=self.outer_rotatelabels,
+                textprops=self.outer_textprops)
 
             if dock.dock_settings[1].check_box4_settings.checkState():
                 static_chart.legend(
-                                    self.legend_labels,
-                                    loc='upper right',
-                                    bbox_to_anchor=(1.1, 1.120))
+                    self.legend_labels,
+                    loc='upper right',
+                    bbox_to_anchor=(1.1, 1.120))
             else:
                 static_chart.legend().remove()
 
             static_chart.set_title(dock.dock_settings[1].line_edit_title.text())
 
-            dock.dock_data[1].central_layout.addWidget( static_canvas)
+            dock.dock_data[1].central_layout.addWidget(static_canvas)
             dock.dock_data[1].central_layout.addWidget(toolbar)
 
         except ValueError:
@@ -190,26 +219,29 @@ class PieChart:
 
         try:
             static_canvas, toolbar = tool_bar()
+
             static_chart = static_canvas.figure.subplots()
+            static_chart.format_coord = (lambda x, y: "")
+
             static_chart.pie(
-                             self.outer_sizes,
-                             labels=self.outer_labels,
-                             wedgeprops=self.outer_wedgeprops1,
-                             colors=self.outer_colors1,
-                             explode=self.outer_explode,
-                             autopct=self.outer_autopct,
-                             shadow=self.outer_shadow1,
-                             startangle=90,
-                             rotatelabels=self.outer_rotatelabels,
-                             textprops=self.outer_textprops,
-                             pctdistance=0.75)
+                self.outer_sizes,
+                labels=self.outer_labels,
+                wedgeprops=self.outer_wedgeprops1,
+                colors=self.outer_colors1,
+                explode=self.outer_explode,
+                autopct=self.outer_autopct,
+                shadow=self.outer_shadow1,
+                startangle=90,
+                rotatelabels=self.outer_rotatelabels,
+                textprops=self.outer_textprops,
+                pctdistance=0.75)
 
             if dock.dock_settings[1].check_box4_settings.checkState():
                 static_chart.legend(
-                                    self.legend_labels,
-                                    loc='upper right',
-                                    bbox_to_anchor=(1.1, 1.120),
-                                    )
+                    self.legend_labels,
+                    loc='upper right',
+                    bbox_to_anchor=(1.1, 1.120),
+                )
             else:
                 static_chart.legend().remove()
 
@@ -237,10 +269,13 @@ class PieChart:
 
         try:
             static_canvas, toolbar = tool_bar()
+
             static_chart = static_canvas.figure.subplots()
+            static_chart.format_coord = (lambda x, y: "")
+
             for x in range(len(self.outer_sizes)):
                 static_chart.pie(outer_sizes2[x],
-                                 radius=1+self.outer_radius,
+                                 radius=1 + self.outer_radius,
                                  colors=self.outer_colors2,
                                  startangle=90,
                                  shadow=self.outer_shadow2,
@@ -309,26 +344,29 @@ class BarChart:
             self.outer_height = [int(x) for x in self.outer_height]
 
             static_canvas, toolbar = tool_bar()
+
             static_chart = static_canvas.figure.subplots()
+            static_chart.format_coord = (lambda x, y: " " + "y={0:-f}".format(y))
+
             static_chart.bar(
-                             self.outer_labels,
-                             height=self.outer_height,
-                             width=self.outer_width,
-                             color=self.outer_color,
-                             linewidth=self.outer_linewidth,
-                             edgecolor=self.outer_edgecolor)
+                self.outer_labels,
+                height=self.outer_height,
+                width=self.outer_width,
+                color=self.outer_color,
+                linewidth=self.outer_linewidth,
+                edgecolor=self.outer_edgecolor)
 
             if dock.dock_data[1].upper_TextValue_check.isChecked():
                 if dock.dock_data[1].upper_first_value_check.checkState():
                     static_chart.annotate(self.outer_height[0],
-                                          xy=(0, self.outer_height[0]+(self.outer_linewidth / 100 / 2)),
+                                          xy=(0, self.outer_height[0] + (self.outer_linewidth / 100 / 2)),
                                           ha='center',
                                           va='bottom')
 
                 for x, y in enumerate(self.outer_height[1:]):
                     if dock.dock_data[1].add_data[x].second_block_value_check.checkState():
                         static_chart.annotate(y,
-                                              xy=(x+1, y+(self.outer_linewidth / 100 / 2)),
+                                              xy=(x + 1, y + (self.outer_linewidth / 100 / 2)),
                                               ha='center',
                                               va='bottom')
 
@@ -387,7 +425,10 @@ class LineChart:
             self.outer_height = [int(x) for x in self.outer_height]
 
             static_canvas, toolbar = tool_bar()
+
             static_chart = static_canvas.figure.subplots()
+            static_chart.format_coord = (lambda x, y: " " + "y={0:-f}".format(y))
+            
             static_chart.plot(self.outer_labels,
                               self.outer_height,
                               color=self.outer_color,

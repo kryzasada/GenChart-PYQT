@@ -566,7 +566,7 @@ Warning
 You must restart program to apply these changes
 .
 .
-.
+Are you sure you would like to restore all settings to their default?
 .
 .
 .
