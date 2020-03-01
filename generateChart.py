@@ -184,6 +184,8 @@ class PieChart:
             static_canvas, toolbar = tool_bar()
 
             static_chart = static_canvas.figure.subplots()
+            static_chart.format_coord = (lambda x, y: "")
+
             static_chart.pie(
                 self.outer_sizes,
                 labels=self.outer_labels,
@@ -217,7 +219,10 @@ class PieChart:
 
         try:
             static_canvas, toolbar = tool_bar()
+
             static_chart = static_canvas.figure.subplots()
+            static_chart.format_coord = (lambda x, y: "")
+
             static_chart.pie(
                 self.outer_sizes,
                 labels=self.outer_labels,
@@ -264,7 +269,10 @@ class PieChart:
 
         try:
             static_canvas, toolbar = tool_bar()
+
             static_chart = static_canvas.figure.subplots()
+            static_chart.format_coord = (lambda x, y: "")
+
             for x in range(len(self.outer_sizes)):
                 static_chart.pie(outer_sizes2[x],
                                  radius=1 + self.outer_radius,
@@ -336,7 +344,10 @@ class BarChart:
             self.outer_height = [int(x) for x in self.outer_height]
 
             static_canvas, toolbar = tool_bar()
+
             static_chart = static_canvas.figure.subplots()
+            static_chart.format_coord = (lambda x, y: " " + "y={0:-f}".format(y))
+
             static_chart.bar(
                 self.outer_labels,
                 height=self.outer_height,
@@ -414,7 +425,10 @@ class LineChart:
             self.outer_height = [int(x) for x in self.outer_height]
 
             static_canvas, toolbar = tool_bar()
+
             static_chart = static_canvas.figure.subplots()
+            static_chart.format_coord = (lambda x, y: " " + "y={0:-f}".format(y))
+            
             static_chart.plot(self.outer_labels,
                               self.outer_height,
                               color=self.outer_color,
