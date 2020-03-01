@@ -103,8 +103,10 @@ class Chart:
 
         self.page_3.setHidden(True)
         self.tab_widget.currentChanged.connect(lambda: self.page_3.setHidden(False))
-        self.tab_widget.mouseReleaseEvent = lambda event: self.page_3.setHidden(False)
 
+        findWidget = self.tab_widget.findChildren(QtWidgets.QAbstractButton)
+        findWidget2 = self.page_3.findChildren(QtWidgets.QAbstractButton)
+        findWidget[(len(findWidget2)*-1)-1].clicked.connect(lambda: self.page_3.setHidden(False))
 
     def chart_click(self, type):
         for object in (self.default_pie_button,
